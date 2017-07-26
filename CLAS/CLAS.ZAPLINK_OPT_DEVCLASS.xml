@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="6602B9B0B3F80FB702EB6D46098B37C3" CODE_SIGNATURE="75189B4E68FCC4DF01DD00B6DFA2561D" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_OPT_DEVCLASS" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_OPT_BASE" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Zap Link DevClass options">U1&amp;FUNCTIONALITY&amp;
+ASOptions for development classes
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="LOCAL_DEVCLASS" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;$TMP&apos;" TYPTYPE="1" TYPE="TD_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Devclass for Local class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for DevClass"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUBSTITUTIONKINDS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF substitutionkinds,
+        use_container  TYPE td_substitutionkind VALUE &apos;C&apos;,    &quot; Keep dev class in XML file
+        no_overwrite   TYPE td_substitutionkind VALUE &apos;N&apos;,    &quot; No overwrite : Use existing devclass, otherwise use container devclass otherwise use local otherwise let user choose
+        keep_existing  TYPE td_substitutionkind VALUE &apos;K&apos;,    &quot; Use devclass define in component
+        local          TYPE td_substitutionkind VALUE &apos;L&apos;,    &quot; Devclass = $TMP
+        fixed          TYPE td_substitutionkind VALUE &apos;F&apos;,    &quot; Assign allways the same specified devclass
+      END OF substitutionkinds
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All possible Devclass substitution Kinds"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_DEVCLASS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DevClass"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_SUBSTITUTION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_SUBSTITUTIONKIND">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Devclass substitution Kind"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  super-&gt;constructor( ).
+  _substitution = substitutionkinds-keep_existing.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DO_EXISTS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do devclass exists"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_DEVCLASS"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_EXISTS"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  result = abap_false.
+  CHECK NOT data IS INITIAL.
+
+  CALL FUNCTION &apos;TRINT_DEVCLASS_GET&apos;
+    EXPORTING
+      iv_devclass              = data
+*      IV_LANGU                 = SY-LANGU
+*      IV_WITH_LAYER            = &apos;X&apos;
+*      IV_WITH_TEXT             = &apos; &apos;
+*      IV_USE_MEMORY            = &apos; &apos;
+*    IMPORTING
+*      ES_TDEVC                 =
+    EXCEPTIONS
+      devclass_not_found       = 1
+      OTHERS                   = 2.
+  IF sy-subrc = 0.
+    result = abap_true.
+  ELSEIF sy-subrc &lt;&gt; 1.
+    RAISE EXCEPTION TYPE ZCX_ZL_OPT_DEVCLASS
+          EXPORTING textid = ZCX_ZL_OPT_DEVCLASS=&gt;missing_devclass
+                  devclass = data.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_DEVCLASS" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DevClass : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_DEVCLASS"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+result = _devclass.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_EXISTING" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get existing devclass"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component in progress"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_DEVCLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="DevClass used for object"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _name        TYPE tadir-obj_name.
+  DATA _type        TYPE tadir-object.
+  DATA _exists      TYPE saus_dpara-tadirexist.
+  DATA _kind        TYPE tadir-pgmid.
+
+  CHECK component IS BOUND.
+
+  TRY.
+      _type = component-&gt;get_type( ).
+      _name = component-&gt;get_name( ).
+      _kind = component-&gt;get_typekind( ).
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.
+
+  CALL FUNCTION &apos;TRINT_TADIR_QUERY&apos;
+    EXPORTING
+      iv_pgmid           = _kind
+      iv_object          = _type
+      iv_obj_name        = _name
+    IMPORTING
+*      EV_OBJECT          =
+*      EV_SRCSYSTEM       =
+      ev_devclass        = result
+*      EV_AUTHOR          =
+*      EV_GENFLAG         =
+      ev_exist           = _exists.
+  IF _exists IS INITIAL.
+    CLEAR result.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SUBSTITUTIONKIND" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Substitution Kind : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_SUBSTITUTIONKIND">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Devclass substitution Kind"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  result = _substitution.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_DEVCLASS" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DevClass : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_DEVCLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="DevClass"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CHECK data &lt;&gt; _devclass.
+
+  IF _devclass IS INITIAL AND _substitution = substitutionkinds-fixed.
+    RAISE EXCEPTION TYPE ZCX_ZL_OPT_DEVCLASS
+          EXPORTING textid = ZCX_ZL_OPT_DEVCLASS=&gt;missing_devclass
+                 substkind = _substitution.
+  ENDIF.
+  _devclass = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_SUBSTITUTIONKIND" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Substitution Kind : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_SUBSTITUTIONKIND">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Devclass substitution Kind"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CHECK data &lt;&gt; _substitution.
+
+  CASE data.
+    WHEN substitutionkinds-keep_existing OR
+         substitutionkinds-use_container OR
+         substitutionkinds-no_overwrite  OR
+         substitutionkinds-local.
+    WHEN substitutionkinds-fixed.
+      IF _devclass IS INITIAL.
+        RAISE EXCEPTION TYPE ZCX_ZL_OPT_DEVCLASS
+              EXPORTING textid = ZCX_ZL_OPT_DEVCLASS=&gt;missing_devclass
+                     substkind = data.
+      ENDIF.
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE ZCX_ZL_OPT_DEVCLASS
+            EXPORTING textid = ZCX_ZL_OPT_DEVCLASS=&gt;invalid_substitutionkind
+                   substkind = data.
+  ENDCASE.
+  _substitution = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SUBSTITUTE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get substitute devclass"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component in progress"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_DEVCLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="DevClass used for object"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPT_DEVCLASS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA comp_devc TYPE td_devclass.
+
+  CHECK component IS BOUND.
+  comp_devc = component-&gt;directory-devclass.
+
+  TRY.
+
+    IF component-&gt;get_type( ) = &apos;DEVC&apos;.
+      result = component-&gt;get_name( ).
+    ELSE.
+      CASE _substitution.
+        WHEN substitutionkinds-no_overwrite.
+          result = get_existing( component ).
+          IF NOT result IS INITIAL.
+            EXIT.
+          ENDIF.
+          IF do_exists( comp_devc ) = abap_true.
+            result = comp_devc.
+            EXIT.
+          ENDIF.
+          result = me-&gt;_devclass.
+        WHEN substitutionkinds-keep_existing.
+          result = get_existing( component ).
+          IF result IS INITIAL.
+            result = local_devclass.
+          ENDIF.
+        WHEN substitutionkinds-use_container.
+          IF do_exists( comp_devc ) = abap_true.
+            result = comp_devc.
+          ELSE.
+            result = local_devclass.
+          ENDIF.
+        WHEN substitutionkinds-local.
+          result = local_devclass.
+        WHEN substitutionkinds-fixed.
+          result = me-&gt;_devclass.
+        WHEN OTHERS.
+          RAISE EXCEPTION TYPE ZCX_ZL_OPT_DEVCLASS
+                EXPORTING textid = ZCX_ZL_OPT_DEVCLASS=&gt;invalid_substitutionkind
+                       substkind = _substitution.
+      ENDCASE.
+    ENDIF.
+
+    mac_def_catch ZCX_ZL_OPT_DEVCLASS.
+  ENDTRY.
+
+  IF result IS INITIAL.   result = local_devclass.    ENDIF.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZL_OPT_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for Options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="BB2DD93C3DAEC048B07FC26A72910DD6" CODE_SIGNATURE="29BC65949FE5D39A2D98B5BC2E09F3E6" CONNECTOR="AAAD0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_MACROS" TYPE="PROG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA EDTX="X" VARCL="X" SUBC="I" RSTAT="K" RMAND="200" RLOAD="E" UCCHECK="X"/>
+  <SOURCE>`
+*---------------------------------------------------------------------*
+*  Include           ZAPLINK_MACROS
+*---------------------------------------------------------------------*
+* Contains macros uses in framework objects
+*---------------------------------------------------------------------*
+
+* Macro to clear a field if exists
+* Introduced by ISSUE 142
+DEFINE mac_clear_field_if_exists.
+  ASSIGN COMPONENT &amp;2 OF STRUCTURE &amp;1 to &amp;3.
+  IF sy-subrc = 0.
+    CLEAR &amp;3.
+  ENDIF.
+END-OF-DEFINITION.
+
+* Macro for raising exception from symsg
+DEFINE mac_raise_symsg.
+  try.
+      o_mycx ?= zcx_zaplink=&gt;create_from_symsg( classname = &amp;1   &quot; &apos;ZCX_ZL_CONNECTOR&apos;
+                                               textid    = &amp;2 ). &quot; ZCX_ZL_CONNECTOR=&gt;system_error
+    catch zcx_zaplink into o_cx.
+      raise exception o_cx.
+  endtry.
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+* Raise CNX exception : Type not supported
+DEFINE mac_raise_type_not_supported.
+* Type &apos;&amp;TYPE&amp;&apos; is not supported by this connector &apos;&amp;CONNCLASS&amp;&apos;
+  RAISE EXCEPTION type ZCX_ZL_CONNECTOR
+    EXPORTING
+      textid    = ZCX_ZL_CONNECTOR=&gt;type_not_supported
+      type      = &amp;2
+      connclass = &amp;1.
+END-OF-DEFINITION.
+
+* Create a ZAPLink Cascade exception
+DEFINE mac_cascade_raise.
+* Exception &apos;&amp;CX_NAME&amp;&apos; has occured
+  CREATE OBJECT &amp;1
+    EXPORTING
+      textid   = zcx_zaplink=&gt;system_error
+      previous = &amp;2.
+  &amp;1-&gt;update( ).
+  raise exception &amp;1.
+END-OF-DEFINITION.
+
+* Issue 93
+** Create a Cascade exception
+*DEFINE mac_cascade_raise.
+** Exception &apos;&amp;CX_NAME&amp;&apos; has occured
+*  create object &amp;1
+*    exporting
+*      textid   = ZCX_ZAPLINK=&gt;system_error
+*      previous = &amp;2.
+*  &amp;1-&gt;update( ).
+*  raise exception &amp;1.
+*END-OF-DEFINITION.
+
+* Add application logs if message present
+DEFINE mac_add_log.
+  clear sy-subrc.
+  if &amp;1 is bound and &amp;2 is bound.             &quot; for security
+    if &amp;1-&gt;has_messages_of_msgt( id_msgty = &amp;3 ) = abap_true.
+      &amp;2-&gt;add_from_instance( io_msglist = &amp;1
+                      if_add_as_subnode = abap_true ).
+      sy-subrc = 8.
+    endif.
+  endif.
+END-OF-DEFINITION.
+
+* Create application_log
+* &amp;1 Aplication log
+* &amp;2 Sub_object
+* &amp;3 Ext number
+DEFINE mac_create_log.
+  if not &amp;1 is bound. create object &amp;1. endif.
+  if &amp;1-&gt;get_handle( ) is initial.
+    call method &amp;1-&gt;init
+      exporting
+        id_object      = zaplink_datatypes=&gt;ballog_object
+        id_subobject   = &amp;2
+        id_extnumber   = &amp;3
+        auto_upd_custo = abap_true
+        id_activity    = zaplink_message_collector=&gt;actions-create
+      exceptions
+        error          = 1
+        others         = 2.
+    if sy-subrc &lt;&gt; 0.
+      message id sy-msgid type &apos;I&apos; number sy-msgno with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    endif.
+  endif.
+END-OF-DEFINITION.
+
+DEFINE mac_add_mf_and_raise.
+  o_mycx ?= zcx_zaplink=&gt;create_from_mf_cx( funcname = &amp;1
+                                              subrc = &amp;2
+                                          classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+  application_log-&gt;add_symsg( ).
+  application_log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+DEFINE mac_raise_mf.
+  o_mycx ?= zcx_zaplink=&gt;create_from_mf_cx( funcname = &amp;1
+                                              subrc = &amp;2
+                                          classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+DEFINE mac_add_mf_and_raise_class.
+  o_mycx ?= zcx_zaplink=&gt;create_from_mf_cx( funcname = &amp;2
+                                              subrc = &amp;3
+                                          classname = &amp;1 ).
+  application_log-&gt;add_symsg( ).
+  application_log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+DEFINE mac_add_name_meth_and_raise.
+  o_mycx ?= zcx_zaplink=&gt;create_from_method_cx( class_name = &amp;1
+                                                   method = &amp;2
+                                                    subrc = &amp;3
+                                             cx_classname = &amp;4 ).
+  application_log-&gt;add_symsg( ).
+  application_log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+DEFINE mac_add_obj_meth_and_raise.
+  o_mycx ?= zcx_zaplink=&gt;create_from_method_cx( class = &amp;1
+                                               method = &amp;2
+                                                subrc = &amp;3
+                                         cx_classname = &apos;ZCX_ZL_CONNECTOR&apos;).
+  application_log-&gt;add_symsg( ).
+  application_log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+DEFINE mac_raise_obj_meth_by_name.
+  o_mycx ?= zcx_zaplink=&gt;create_from_method_cx( class_name = &amp;1
+                                                    method = &amp;2
+                                                     subrc = &amp;3
+                                              cx_classname = &apos;ZCX_ZL_CONNECTOR&apos;).
+  application_log-&gt;add_symsg( ).
+  application_log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.
+
+* Default catch : Catch and raise component exception or cascade any other ZAPLINK exception
+DEFINE mac_def_catch.
+  catch &amp;1 into o_mycx.
+    raise exception o_mycx.
+    catch zcx_zaplink into o_cx.
+      mac_cascade_raise o_mycx o_cx.
+    END-OF-DEFINITION.</SOURCE>
+  <TEXTSPOOL>
+   <ITEM ID="R">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="ZAPLink - Macros - Internal use only" LENGTH="36 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+ </RAW>
+</ZL_OBJECT>

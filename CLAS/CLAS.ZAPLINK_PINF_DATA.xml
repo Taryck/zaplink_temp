@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="EDEBD03DD27A38BFF67D60935145B1A3" CODE_SIGNATURE="2C03294414EEEC39796FD55A3570C697" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_PINF_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Package Interface datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_PACKAGE
+ASDefine XML structure of a Package Interface
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="SCOMPIDTLN">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Interface Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ACLS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ACLS"/>
+   <ITEM CMPNAME="ELEMENTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ELEMENTS"/>
+   <ITEM CMPNAME="IF" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="IF_PACKAGE_INTERFACE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface for Package Interfaces"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_PACKAGE" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR:
+*    me-&gt;a0_maindata-author,         &quot; Issue 88 : Person responsible : Must be clear because user might not exists
+    me-&gt;a0_maindata-created_by,
+    me-&gt;a0_maindata-created_on,
+    me-&gt;a0_maindata-changed_by,
+    me-&gt;a0_maindata-changed_on.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unanonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  If me-&gt;a0_maindata-created_by is INITIAL. me-&gt;a0_maindata-created_by = sy-uname. endif.
+  If me-&gt;a0_maindata-created_on is INITIAL. me-&gt;a0_maindata-created_on = sy-datum. endif.
+*    me-&gt;a0_maindata-changed_by,
+*    me-&gt;a0_maindata-changed_on.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TT_ACLS" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tt_acls     TYPE STANDARD TABLE OF scomaclstr WITH NON-UNIQUE DEFAULT KEY
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface&apos;s ACLs"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ELEMENTS" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    TT_ELEMENTS TYPE STANDARD TABLE OF scomeldtln WITH NON-UNIQUE DEFAULT KEY
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface elements"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

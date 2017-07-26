@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="CAC6A8763F77EEDE4194EA8A6D76C9DD" CONNECTOR="1FAC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_EASYXML" TYPE="MSAG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-XML" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA MASTERLANG="E" RESPUSER="TBENSIAL"/>
+  <MESSAGES>
+   <ITEM MSGNR="000" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="System Error &amp;1 : on &amp;2 in &amp;3"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="001" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Data type &amp;2 has been found on &amp;1 and cannot be handled !">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASThe component &amp;V1&amp; of type Interface (&amp;V2&amp;) has been found. But
+  Interface data type cannot be handled and are ignored.
+U1&amp;SYSTEM_RESPONSE&amp;
+ASIn god we trust
+U1&amp;WHAT_TO_DO&amp;
+ASIgnore this message or change data type.
+U1&amp;SYS_ADMIN&amp;
+*</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="002" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT='Exception &amp;1 &quot;&amp;2&amp;3&quot; occurs in &amp;4 !'/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="003" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component &amp;1 found in XML tag &amp;2 do not exist on target data type &amp;3"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="004" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Self field &apos;&amp;1&apos; of &amp;2 (&amp;3) must be simple data type, not &apos;&amp;4&apos;">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASThe self field &apos;&amp;V1&amp;&apos; (defined by constant ZAPLINK_EASYXML=&gt;
+  SELF_FIELDNAME) should be a simple data type &apos;E&apos; (look at
+  CL_ABAP_TYPEDESCR=&gt; KIND_ELEM : Elementary Type).
+ASThis field Elementary Type is in structure &apos;&amp;V2&amp;&apos; of data type &apos;&amp;V3&amp;&apos;
+  and his type kind &apos;&amp;V4&amp;&apos; (look at constants list in ABAP Class
+  CL_ABAP_TYPEDESCR).
+U1&amp;SYSTEM_RESPONSE&amp;
+ASThe &quot;self field&quot; functionality has been ignored and the field &apos;&amp;V1&amp;&apos; has
+  been processed like any other fields.
+U1&amp;WHAT_TO_DO&amp;
+ASChange field &apos;&amp;V1&amp;&apos; type or name.
+U1&amp;SYS_ADMIN&amp;
+ASThe &quot;self field&quot; functionality allows field &apos;&amp;V1&amp;&apos; in a structure to be
+  stored XML Node value instead of an XML Node attribute. Usually this is
+  used for long strings or string with CR_LF.
+*</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="005" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Successfull conversion XML to data."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="006" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Successfull conversion data to XML."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="007" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Node name of table line should be &apos;&amp;1&apos; but is &apos;&amp;2&apos; within &amp;3"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="008" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Error converting node to RAW component object"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="009" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="XML Errors for component &amp;1 &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="010" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Error with &amp;1 &amp;2 : Confirm or abort this comp."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="011" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Full Exception text : &amp;1&amp;2&amp;3&amp;4"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="012" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &amp;1&amp;2 occurs in &amp;3&amp;4 !"/>
+    </TEXTS>
+   </ITEM>
+  </MESSAGES>
+  <TEXTS>
+   <ITEM LANGU="E" SHORT_TXT="Messages for Object ZAPLINK_EASYXML"/>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

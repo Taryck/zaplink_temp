@@ -1,0 +1,1836 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4EEAD7B370F0014E6AB84E6693994176" CODE_SIGNATURE="DE0B78A3B37BBC3BAF87A222E579FB76" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_OBJECT_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Commun Data for Class &amp; Interface">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_OBJECT
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_KIND"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_LANG"/>
+   <ITEM CMPNAME="TS_SOURCEASSTRUC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_SOURCEASSTRUC"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DYNPROS"/>
+   <ITEM CMPNAME="TT_LTEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_LTEXTS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="ALIASES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ALIAS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s Aliases"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ATTRIBUTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ATTRIBUTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s attributes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="COMPONENTS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_COMPONENTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component&apos;s list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFERRED" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_DEFERRED">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Deffered loads"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOCUMENTATION" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_DOCS"/>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF doc_ids,
+      BEGIN OF class,
+*table TDCLT
+*DOKCLASS DOKTITEL
+*CA       Class attribute
+*CE       Class event
+*CL       Class
+*CO       Class method
+*CT       Class type
+        header    TYPE td_doc_id VALUE &apos;CL&apos;,
+        attribute TYPE td_doc_id VALUE &apos;CA&apos;,
+        method    TYPE td_doc_id VALUE &apos;CO&apos;,
+        event     TYPE td_doc_id VALUE &apos;CE&apos;,
+        type      TYPE td_doc_id VALUE &apos;CT&apos;,
+      END OF class,
+      BEGIN OF interface,
+        header    TYPE td_doc_id VALUE &apos;IF&apos;,
+        attribute TYPE td_doc_id VALUE &apos;IA&apos;,
+        method    TYPE td_doc_id VALUE &apos;IO&apos;,
+        event     TYPE td_doc_id VALUE &apos;IE&apos;,
+        type      TYPE td_doc_id VALUE &apos;IT&apos;,   &quot; does not exists yet
+      END OF interface,
+    END OF doc_ids
+`</ITEM>
+   <ITEM CMPNAME="EVENTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_EVENTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s Events"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="INTERFACES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_INTERFACES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class interface use"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE" TYPTYPE="1" TYPE="ABAP_CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line separator Code =&gt; String"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="METHODS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_METHODS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s methods"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="METHOD_SEPARATOR" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;~&apos;" TYPTYPE="1" TYPE="ABAP_CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Method separator"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJECT_TYPES" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF object_types,                                  &quot;#EC NOTEXT
+      class        TYPE td_comptype VALUE &apos;CLAS&apos;,
+      interface    TYPE td_comptype VALUE &apos;INTF&apos;,
+    END OF object_types
+`</ITEM>
+   <ITEM CMPNAME="OBJ_LANGU" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="SYLANGU">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Language Key of Current Text Environment"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJ_NAME" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="SEOCLSNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object Type Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJ_TYPE" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class or interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJ_VERSION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="SEOVERSION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Version indicator (active/inactive)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="4">BEGIN OF r_doc_ids,
+      class       TYPE tr_docid,
+      interface   TYPE tr_docid,
+    END OF r_doc_ids
+`</ITEM>
+   <ITEM CMPNAME="TYPEGROUPS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TYPEGROUPS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s type pool used"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TYPES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TYPES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s types"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_OBJECT" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_al  LIKE LINE OF aliases.
+  DATA s_at LIKE LINE OF attributs.
+*  DATA s_ev LIKE LINE OF events.
+  FIELD-SYMBOLS &lt;ev&gt;    LIKE LINE OF events.
+*  DATA s_in LIKE LINE OF interfaces.
+  FIELD-SYMBOLS &lt;in&gt;    LIKE LINE OF interfaces.
+  DATA s_co  LIKE LINE OF &lt;in&gt;-components.
+  DATA s_ty  LIKE LINE OF types.
+  DATA s_tg  LIKE LINE OF typegroups.
+*  DATA s_me  LIKE LINE OF methods.
+  FIELD-SYMBOLS &lt;me&gt;    LIKE LINE OF methods.
+  DATA s_pa  LIKE LINE OF &lt;me&gt;-parameters.
+  DATA s_ex  LIKE LINE OF &lt;me&gt;-exceptions.
+  DATA s_dc  LIKE LINE OF deferred-classes.
+  DATA s_di  LIKE LINE OF deferred-interfaces.
+
+* ALIASES
+  MODIFY aliases FROM s_al TRANSPORTING version              &quot; Issue 75
+         WHERE NOT cmpname IS INITIAL OR cmpname IS INITIAL.
+
+* ATTRIBUTS
+  MODIFY attributs FROM s_at TRANSPORTING author createdon changedby changedon r3release version editorder &quot; Issue 75 / Issue 108
+         WHERE NOT cmpname IS INITIAL OR cmpname IS INITIAL.
+
+*DOCUMENTATION
+
+*EVENTS
+*  MODIFY events FROM s_ev TRANSPORTING author createdon changedby changedon r3release
+*         WHERE NOT cmpname IS INITIAL.
+  LOOP AT events ASSIGNING &lt;ev&gt;.
+    CLEAR: &lt;ev&gt;-author, &lt;ev&gt;-createdon, &lt;ev&gt;-changedby, &lt;ev&gt;-changedon, &lt;ev&gt;-r3release, &lt;ev&gt;-version, &lt;ev&gt;-editorder. &quot; Issue 75 / Issue 108
+    MODIFY &lt;ev&gt;-parameters FROM s_pa TRANSPORTING author createdon changedby changedon  version editorder             &quot; Issue 75 / Issue 108
+           WHERE NOT cmpname IS INITIAL OR cmpname IS INITIAL.
+* Issue 39
+*    MODIFY &lt;ev&gt;-exceptions FROM s_ex TRANSPORTING author createdon changedby changedon
+*           WHERE NOT cmpname IS INITIAL OR cmpname IS INITIAL.
+  ENDLOOP.
+
+*INTERFACES
+*  MODIFY interfaces FROM s_in TRANSPORTING author createdon changedby changedon version &quot; Issue 75
+*         WHERE NOT refclsname IS INITIAL.
+  LOOP AT interfaces ASSIGNING &lt;in&gt;.
+    CLEAR: &lt;in&gt;-author, &lt;in&gt;-createdon, &lt;in&gt;-changedby, &lt;in&gt;-changedon, &lt;in&gt;-version. &quot; Issue 75
+    MODIFY &lt;in&gt;-components FROM s_co TRANSPORTING version   &quot; Issue 75
+           WHERE NOT clsname IS INITIAL OR clsname IS INITIAL.
+  ENDLOOP.
+
+*METHODS
+*  MODIFY methods FROM s_me TRANSPORTING author createdon changedby changedon r3release
+*         WHERE NOT cmpname IS INITIAL.
+  LOOP AT methods ASSIGNING &lt;me&gt;.
+    CLEAR: &lt;me&gt;-author, &lt;me&gt;-createdon, &lt;me&gt;-changedby, &lt;me&gt;-changedon, &lt;me&gt;-r3release, &lt;me&gt;-version, &lt;me&gt;-editorder. &quot; Issue 75 / Issue 108
+    MODIFY &lt;me&gt;-parameters FROM s_pa TRANSPORTING author createdon changedby changedon version editorder              &quot; Issue 75 / Issue 108
+           WHERE NOT sconame IS INITIAL OR sconame IS INITIAL. &quot; Issue 22
+    MODIFY &lt;me&gt;-exceptions FROM s_ex TRANSPORTING author createdon changedby changedon version editorder              &quot; Issue 75 / Issue 108
+           WHERE NOT sconame IS INITIAL OR sconame IS INITIAL. &quot; Issue 22
+  ENDLOOP.
+
+*TYPEGROUPS
+  MODIFY typegroups FROM s_tg TRANSPORTING version             &quot; Issue 75
+         WHERE NOT clsname IS INITIAL OR clsname IS INITIAL.
+
+*TYPES
+  MODIFY types FROM s_ty TRANSPORTING author createdon changedby changedon r3release version &quot; editorder Issue 117 (preserve edit order) &quot; Issue 75 / Issue 108
+         WHERE NOT cmpname IS INITIAL OR cmpname IS INITIAL.
+
+*DEFERRED
+  MODIFY deferred-classes FROM s_dc TRANSPORTING version    &quot; Issue 75
+         WHERE NOT clsname IS INITIAL OR clsname IS INITIAL.
+  MODIFY deferred-interfaces FROM s_di TRANSPORTING version &quot; Issue 75
+         WHERE NOT clsname IS INITIAL OR clsname IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids-class.
+
+  _id-sign = &apos;I&apos;.
+  _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-class-header.     APPEND _id TO r_doc_ids-class.
+  _id-low = doc_ids-class-attribute.  APPEND _id TO r_doc_ids-class.
+  _id-low = doc_ids-class-method.     APPEND _id TO r_doc_ids-class.
+  _id-low = doc_ids-class-event.      APPEND _id TO r_doc_ids-class.
+  _id-low = doc_ids-class-type.       APPEND _id TO r_doc_ids-class.
+
+  _id-low = doc_ids-interface-header.     APPEND _id TO r_doc_ids-interface.    &quot; Issue 33 : Wrong Doc IDs
+  _id-low = doc_ids-interface-attribute.  APPEND _id TO r_doc_ids-interface.    &quot; Issue 33 : Wrong Doc IDs
+  _id-low = doc_ids-interface-method.     APPEND _id TO r_doc_ids-interface.    &quot; Issue 33 : Wrong Doc IDs
+  _id-low = doc_ids-interface-event.      APPEND _id TO r_doc_ids-interface.    &quot; Issue 33 : Wrong Doc IDs
+  _id-low = doc_ids-interface-type.       APPEND _id TO r_doc_ids-interface.    &quot; Issue 33 : Wrong Doc IDs</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEAR_TAGS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clear work tags"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR: obj_name, obj_version, obj_langu, obj_type.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="COMPLETE_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Complete FM Data from SAP data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_impl_detail LIKE LINE OF fm_data-impl_details.
+  FIELD-SYMBOLS:
+    &lt;m&gt; LIKE LINE OF fm_data-includes-methods.
+
+  CHECK NOT obj_name IS INITIAL.                            &quot; Issue 23
+
+  SELECT * INTO TABLE fm_data-class_desc
+    FROM seoclasstx
+    WHERE clsname = obj_name.                               &quot; Issue 23
+
+  SELECT * INTO TABLE fm_data-component_desc
+    FROM seocompotx
+    WHERE clsname = obj_name.                               &quot; Issue 23
+
+  SELECT * INTO TABLE fm_data-subcomponent_desc
+    FROM seosubcotx
+    WHERE clsname = obj_name.                               &quot; Issue 23
+
+* Issue 24 : Start
+  DELETE fm_data-class_desc WHERE descript IS INITIAL.
+  DELETE fm_data-component_desc WHERE descript IS INITIAL.
+  DELETE fm_data-subcomponent_desc WHERE descript IS INITIAL.
+* Issue 24 : End
+
+*  IF NOT fm_data-class-clsname IS INITIAL.                  &quot; Issue 23
+*    fm_data-includes = get_includes( fm_data-class-clsname ).
+*  ENDIF.
+
+* Issue 4
+*impl_details doesn&apos;t contains methods implemented when class is abstract
+* we check that all methods (comparing include) has it&apos;s entry.
+  LOOP AT fm_data-includes-methods ASSIGNING &lt;m&gt;
+          WHERE cpdkey-clsname = obj_name.                  &quot; Issue 23
+
+* Check if method is a classic method
+    READ TABLE fm_data-methods TRANSPORTING NO FIELDS
+         WITH KEY clsname = &lt;m&gt;-cpdkey-clsname
+                  cmpname = &lt;m&gt;-cpdkey-cpdname.
+    IF sy-subrc = 0.
+* OK Method exists as a method.
+      CONTINUE.
+    ENDIF.
+
+* Check if method is a redefinition
+    READ TABLE fm_data-redefinitions TRANSPORTING NO FIELDS
+         WITH KEY clsname = &lt;m&gt;-cpdkey-clsname
+               refclsname = fm_data-inheritance-refclsname
+                  mtdname = &lt;m&gt;-cpdkey-cpdname.
+    IF sy-subrc = 0.
+* OK Method exists as a method&apos;s redefinition.
+      CONTINUE.
+    ENDIF.
+
+* Check if method is a interface implementation
+    CLEAR s_impl_detail.
+    s_impl_detail-clsname = &lt;m&gt;-cpdkey-clsname.
+    SPLIT &lt;m&gt;-cpdkey-cpdname AT method_separator INTO s_impl_detail-refclsname s_impl_detail-mtdname.
+    IF s_impl_detail-mtdname IS INITIAL. &quot; no ~ in name
+* Need to add new method which is not possible.
+*Fatal Error : Method &amp;1 (&amp;2) is implemented but without any definition
+      MESSAGE a000(zaplink_object) WITH &lt;m&gt;-cpdkey-cpdname &lt;m&gt;-cpdkey-clsname.
+    ENDIF.
+
+    READ TABLE fm_data-impl_details TRANSPORTING NO FIELDS
+         WITH KEY clsname = s_impl_detail-clsname
+               refclsname = s_impl_detail-refclsname
+                  mtdname = s_impl_detail-mtdname.
+    IF sy-subrc = 0.
+* OK Method exists as a implemented method.
+      CONTINUE.
+    ENDIF.
+* Method&apos;s doesn&apos;t exist as interface implementation =&gt; insert data
+    s_impl_detail-version = &apos;1&apos;. APPEND s_impl_detail TO fm_data-impl_details.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FD_COMP_DESC" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Comp description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOCOMPOTX">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description component (full key)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DOCUMENTATION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_DOCS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documentation"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_ID">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _t     LIKE LINE OF texts.
+  DATA s_key  TYPE ts_doc_key.
+  FIELD-SYMBOLS:
+    &lt;d&gt;    LIKE LINE OF documentation,
+    &lt;dt&gt;   LIKE LINE OF &lt;d&gt;-texts,
+    &lt;desc&gt; LIKE LINE OF descriptions.
+
+  LOOP AT descriptions ASSIGNING &lt;desc&gt;
+       WHERE clsname = obj_name
+         AND cmpname = component.
+    _t-lang = &lt;desc&gt;-langu.      _t-text = &lt;desc&gt;-descript.
+*    CLEAR: _t-clsname, _t-cmpname. &quot; VERSION
+* Issue 33 : Documentation conencted to component
+    s_key-name = obj_name.
+    s_key-other = component.
+    READ TABLE documentation ASSIGNING &lt;d&gt;
+         WITH KEY object = s_key           &quot; Component name should be unique so no realy need to check ID
+                      id = id.
+    IF sy-subrc = 0.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = _t-lang.
+      IF sy-subrc = 0.   _t-_ = &lt;dt&gt;-_.   ENDIF.
+    ENDIF.
+    INSERT _t INTO TABLE texts.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FD_EXCEPTIONS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Exceptions"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="EXCEPTIONS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_EXCEPTIONS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Method&apos;s &amp; Event Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _ex  LIKE LINE OF exceptions.
+  FIELD-SYMBOLS:
+    &lt;ex&gt;  LIKE LINE OF fm_data-exceps.
+
+  LOOP AT fm_data-exceps ASSIGNING &lt;ex&gt;
+       WHERE clsname = obj_name
+         AND cmpname = component.
+    CLEAR: _ex.
+    _ex-hdr = &lt;ex&gt;.
+    _ex-texts = fd_subc_desc( descriptions = fm_data-subcomponent_desc
+                                 component = &lt;ex&gt;-cmpname
+                             sub_component = &lt;ex&gt;-sconame ).
+    CLEAR: _ex-clsname, _ex-cmpname, _ex-descript. &quot; VERSION
+    INSERT _ex INTO TABLE exceptions.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FD_PARAMETERS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Parameters"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PARAMETERS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_PARAMETERS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Method&apos;s &amp; Event parameters"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+DATA: _pa  LIKE LINE OF parameters.
+  FIELD-SYMBOLS:
+    &lt;pa&gt;  LIKE LINE OF fm_data-parameters.
+
+  LOOP AT fm_data-parameters ASSIGNING &lt;pa&gt;
+       WHERE clsname = obj_name
+         AND cmpname = component.
+    CLEAR: _pa.
+    _pa-hdr = &lt;pa&gt;.
+    _pa-texts = fd_subc_desc( descriptions = fm_data-subcomponent_desc
+                                 component = &lt;pa&gt;-cmpname
+                             sub_component = &lt;pa&gt;-sconame ).
+    CLEAR: _pa-clsname, _pa-cmpname, _pa-langu, _pa-descript. &quot; VERSION
+    INSERT _pa INTO TABLE parameters.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FD_SUBC_DESC" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Sub Comp description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOSUBCOTX"/>
+     <ITEM SCONAME="SUB_COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOSCONAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Subcomponent name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _t   LIKE LINE OF texts.
+  FIELD-SYMBOLS:
+    &lt;desc&gt; LIKE LINE OF descriptions.
+
+  LOOP AT descriptions ASSIGNING &lt;desc&gt;
+       WHERE clsname = obj_name
+         AND cmpname = component
+         AND sconame = sub_component.
+    _t-lang = &lt;desc&gt;-langu.      _t-text = &lt;desc&gt;-descript.
+*    CLEAR: _t-clsname, _t-cmpname, _t-sconame. &quot; VERSION
+    INSERT _t INTO TABLE texts.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FD_TEXT" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : object description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOCLASSTX">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description component (full key)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DOCUMENTATION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_DOCS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documentation"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_ID">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _t     LIKE LINE OF texts.
+  DATA s_key  TYPE ts_doc_key.
+  DATA s_txt  LIKE LINE OF texts.
+  FIELD-SYMBOLS:
+*    &lt;d&gt;    LIKE LINE OF documentation,
+    &lt;doc&gt;  LIKE LINE OF documentation,
+    &lt;dt&gt;   LIKE LINE OF &lt;doc&gt;-texts,
+    &lt;desc&gt; LIKE LINE OF descriptions.
+
+* Issue 33 : Documentation connected to text
+  LOOP AT descriptions ASSIGNING &lt;desc&gt;
+       WHERE clsname = classname.
+    s_txt-lang = &lt;desc&gt;-langu.      s_txt-text = &lt;desc&gt;-descript.
+*    CLEAR: s_txt-clsname. &quot; VERSION
+    s_key-name = obj_name.
+* Class documentation
+    READ TABLE documentation ASSIGNING &lt;doc&gt;
+         WITH KEY object = s_key.           &quot; Component name should be unique so no need to check ID
+    IF sy-subrc = 0.
+      READ TABLE &lt;doc&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_txt-lang.
+      IF sy-subrc = 0.    s_txt-_ = &lt;dt&gt;-_.     ENDIF.
+    ENDIF.
+    INSERT s_txt INTO TABLE texts.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FIX_INCLUDED_TYPE_POOL" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search for included type pools"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NEW_SOURCECODE" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="NEW_TYPEPOOLS" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+     <ITEM SCONAME="PUBLIC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X"/>
+     <ITEM SCONAME="SOURCECODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="TYPEPOOLS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_tabix TYPE sy-tabix.
+  DATA t_tokens TYPE STANDARD TABLE OF stokes.
+  DATA t_statments TYPE STANDARD TABLE OF sstmnt.
+  DATA s_tp     LIKE LINE OF NEW_TYPEPOOLS.
+  DATA d_flag TYPE abap_bool.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF new_sourcecode,
+    &lt;t&gt; LIKE LINE OF t_tokens,
+    &lt;n&gt; LIKE LINE OF t_tokens.
+
+  CHECK NOT sourcecode IS INITIAL.
+  new_sourcecode = sourcecode.
+
+  SCAN ABAP-SOURCE sourcecode
+                   TOKENS INTO t_tokens
+                   STATEMENTS INTO t_statments.
+
+  LOOP AT t_tokens ASSIGNING &lt;t&gt;
+    WHERE str CP &apos;TYPE-POOLS&apos;.
+    d_tabix = sy-tabix + 1.
+    READ TABLE t_tokens ASSIGNING &lt;n&gt; INDEX d_tabix.
+    CHECK sy-subrc = 0.
+    CHECK &lt;n&gt;-row = &lt;t&gt;-row.    &quot; TYPE-POOLS ABAP.
+    READ TABLE typepools TRANSPORTING NO FIELDS
+         WITH KEY typegroup = &lt;n&gt;-str
+                   explicit = abap_true.
+    CHECK sy-subrc &lt;&gt; 0 OR public IS INITIAL.
+    IF sy-subrc &lt;&gt; 0.
+* Type pool doesn&apos;t exist in class definition but is declared in the middle of sections
+      CLEAR s_tp.
+      s_tp-typegroup = &lt;n&gt;-str.
+      s_tp-tputype = 0.     &quot; Type group use                (TYPE-POOLS tp)
+      s_tp-explicit = abap_true.
+      s_tp-implicit = abap_false.
+      APPEND s_tp TO new_typepools.
+    ENDIF.
+* Line has to be commented
+    READ TABLE new_sourcecode ASSIGNING &lt;s&gt; INDEX &lt;n&gt;-row.
+    CONCATENATE &apos;*&apos; &lt;s&gt; &apos;&quot;Auto commented by ZAPLINK_OBJECT connector and added as Explicit type group&apos;(cmt) INTO &lt;s&gt;.
+    d_flag = abap_true.
+  ENDLOOP.
+
+  IF d_flag IS INITIAL. CLEAR new_sourcecode. ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes">U1&amp;FUNCTIONALITY&amp;
+ASConvert Function Module data to attribute of this class.
+ASThis method ensure the data transformation, removing every redundant
+  data
+U1&amp;PRECONDITION&amp;
+AS
+U1&amp;RESULT&amp;
+AS
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _at  LIKE LINE OF attributs.
+  DATA _ty  LIKE LINE OF types.
+  DATA _tg  LIKE LINE OF typegroups.
+  DATA _me  LIKE LINE OF methods.
+  DATA _al  LIKE LINE OF aliases.
+  DATA _ev  LIKE LINE OF events.
+  DATA _mk  TYPE seocpdkey.
+  DATA _dc  LIKE LINE OF deferred-classes.
+  DATA _di  LIKE LINE OF deferred-interfaces.
+  DATA id   TYPE doku_id.
+  FIELD-SYMBOLS:
+*    &lt;m_&gt;  LIKE LINE OF fm_data-includes-methods,
+    &lt;at&gt;  LIKE LINE OF fm_data-attributes,
+    &lt;al&gt;  LIKE LINE OF fm_data-aliases,
+    &lt;me&gt;  LIKE LINE OF fm_data-methods,
+    &lt;ev&gt;  LIKE LINE OF fm_data-events,
+    &lt;cd&gt;  LIKE LINE OF fm_data-clsdeferrds,
+    &lt;id&gt;  LIKE LINE OF fm_data-intdeferrds,
+    &lt;ty&gt;  LIKE LINE OF fm_data-types,
+    &lt;tu&gt;  LIKE LINE OF fm_data-typeusages.
+
+*TYPEPUSAGES  TYPE  SEOT_TYPEPUSAGES_R
+  LOOP AT fm_data-typeusages ASSIGNING &lt;tu&gt;
+          WHERE clsname = obj_name.
+    CLEAR _tg.
+    _tg-hdr = &lt;tu&gt;.
+
+    READ TABLE fm_data-clsdeferrds ASSIGNING &lt;cd&gt;
+         WITH TABLE KEY clsname = &lt;tu&gt;-clsname
+                      typegroup = &lt;tu&gt;-typegroup
+                        version = &lt;tu&gt;-version.
+    IF sy-subrc = 0.
+      _tg-defered = &lt;cd&gt;.
+    ENDIF.
+
+    READ TABLE fm_data-intdeferrds ASSIGNING &lt;id&gt;
+         WITH TABLE KEY clsname = &lt;tu&gt;-clsname
+                      typegroup = &lt;tu&gt;-typegroup
+                        version = &lt;tu&gt;-version.
+    IF sy-subrc = 0.
+      _tg-itf_def = &lt;id&gt;.
+    ENDIF.
+
+    CLEAR: _tg-clsname, _tg-defered-clsname, _tg-itf_def-clsname. &quot; VERSION
+    INSERT _tg INTO TABLE typegroups.
+  ENDLOOP.
+
+* ISSUE 2 : Begin
+*CLSDEFERRDS  TYPE  SEOT_CLSDEFERRDS_R
+  LOOP AT fm_data-clsdeferrds ASSIGNING &lt;cd&gt;
+       WHERE typegroup &lt;&gt; obj_name.               &quot; ISSUE 140 : No dependeciens with my-self
+    _dc = &lt;cd&gt;.
+    CLEAR: _dc-clsname.
+    INSERT _dc INTO TABLE deferred-classes.
+  ENDLOOP.
+
+*INTDEFERRDS  TYPE  SEOT_INTDEFERRDS_R
+  LOOP AT fm_data-intdeferrds ASSIGNING &lt;id&gt;
+      WHERE typegroup &lt;&gt; obj_name.                &quot; ISSUE 140 : No dependeciens with my-self
+    _di = &lt;id&gt;.
+    CLEAR: _di-clsname.
+    INSERT _di INTO TABLE deferred-interfaces.
+  ENDLOOP.
+* ISSUE 2 : End
+
+*ATTRIBUTES TYPE  SEOO_atTTRIBUTES_R
+*COMPONENT_DESC  TYPE  tt_SEOCOMPOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-attribute. ELSE. id = doc_ids-interface-attribute. ENDIF.
+  LOOP AT fm_data-attributes ASSIGNING &lt;at&gt;
+    WHERE clsname = obj_name.
+    CLEAR _at.
+    _at-hdr = &lt;at&gt;.
+    _at-_ = _at-typesrc. CLEAR _at-typesrc.                 &quot; Issue 68
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf IN _at-_ WITH cl_abap_char_utilities=&gt;newline. &quot; Issue 68
+    _at-texts = fd_comp_desc( descriptions = fm_data-component_desc
+                                        id = id
+                             documentation = fm_data-documentation
+                                 component = &lt;at&gt;-cmpname ).
+    CLEAR: _at-clsname, _at-langu, _at-descript. &quot; VERSION ?
+    CLEAR: _at-srcrow1, _at-srccolumn1, _at-srcrow2, _at-srccolumn2, _at-typesrc_leng. &quot; Issue 68
+    INSERT _at INTO TABLE attributs.
+  ENDLOOP.
+
+*METHODS  TYPE  SEOO_meETHODS_R
+*PARAMETERS TYPE  SEOS_paARAMETERS_R
+*EXCEPS TYPE  SEOS_exXCEPTIONS_R
+*SUBCOMPONENT_DESC type  tt_SEOSUBCOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-method. ELSE. id = doc_ids-interface-method. ENDIF.
+  LOOP AT fm_data-methods ASSIGNING &lt;me&gt;
+          WHERE clsname = obj_name.
+    CLEAR _me.
+    _me-hdr = &lt;me&gt;.
+
+    _me-texts = fd_comp_desc( descriptions = fm_data-component_desc
+                                        id = id
+                             documentation = fm_data-documentation
+                                 component = &lt;me&gt;-cmpname ).
+
+    _me-exceptions = fd_exceptions( fm_data = fm_data
+                                  component = &lt;me&gt;-cmpname ).
+
+    _me-parameters = fd_parameters( fm_data = fm_data
+                                  component = &lt;me&gt;-cmpname ).
+
+    CLEAR: _me-clsname, _me-langu, _me-descript. &quot; VERSION
+    INSERT _me INTO TABLE methods.
+  ENDLOOP.
+
+*EVENTS TYPE  SEOO_exVENTS_R
+*PARAMETERS TYPE  SEOS_paARAMETERS_R
+*EXCEPS TYPE  SEOS_exXCEPTIONS_R
+*SUBCOMPONENT_DESC type  tt_SEOSUBCOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-event. ELSE. id = doc_ids-interface-event. ENDIF.
+  LOOP AT fm_data-events ASSIGNING &lt;ev&gt;
+          WHERE clsname = obj_name.
+    CLEAR _ev.
+    _ev-hdr = &lt;ev&gt;.
+
+    _ev-texts = fd_comp_desc( descriptions = fm_data-component_desc
+                                        id = id
+                             documentation = fm_data-documentation
+                                 component = &lt;ev&gt;-cmpname ).
+
+    _ev-parameters = fd_parameters( fm_data = fm_data
+                                  component = &lt;ev&gt;-cmpname ).
+* No exception in event
+*    _ev-exceptions = fd_exceptions( fm_data = fm_data
+*                                  component = &lt;ev&gt;-cmpname ).
+
+    CLEAR: _ev-clsname, _ev-langu, _ev-descript. &quot; VERSION
+    INSERT _ev INTO TABLE events.
+  ENDLOOP.
+
+*TYPES  TYPE  SEOO_TYPES_R
+  IF obj_type = object_types-class. id = doc_ids-class-type. ELSE. id = doc_ids-interface-type. ENDIF.
+  LOOP AT fm_data-types ASSIGNING &lt;ty&gt;
+          WHERE clsname = obj_name.
+    CLEAR _ty.
+    _ty-hdr = &lt;ty&gt;.
+    _ty-_ = _ty-typesrc. CLEAR _ty-typesrc.                 &quot; Issue 68
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf IN _ty-_ WITH cl_abap_char_utilities=&gt;newline. &quot; Issue 68
+
+    _ty-texts = fd_comp_desc( descriptions = fm_data-component_desc
+                                        id = id
+                             documentation = fm_data-documentation
+                                 component = &lt;ty&gt;-cmpname ).
+
+    CLEAR: _ty-clsname, _ty-langu, _ty-descript. &quot; VERSION
+    CLEAR: _ty-srcrow1, _ty-srccolumn1, _ty-srcrow2, _ty-srccolumn2, _ty-typesrc_leng. &quot; Issue 68
+*    CLEAR: _ty-editorder.   &quot; Issue 68 like =&gt; Editorder is required to ensure interface creation will lead to the same code signature
+    INSERT _ty INTO TABLE types.
+  ENDLOOP.
+
+*ALIASES  TYPE  SEOO_atLIASES_R
+  LOOP AT fm_data-aliases ASSIGNING &lt;al&gt;
+          WHERE clsname = obj_name.
+    CLEAR _al.    _al-hdr = &lt;al&gt;.   CLEAR: _al-clsname. &quot; VERSION
+    INSERT _al INTO TABLE aliases.
+  ENDLOOP.
+
+* No use detected
+*EXPLORE_INHERITANCE  TYPE  SEOK_CLS_TYPEINFOS
+*EXPLORE_IMPLEMENTINGS  TYPE  SEOK_INT_TYPEINFOS
+*ENHANCEMENT_meETHODS  TYPE  ENHMETH_TABHEADER
+*ENHANCEMENT_atTTRIBUTES TYPE  ENHCLASSTABATTRIB
+*ENHANCEMENT_exVENTS TYPE  ENHCLASSTABEVENT
+*ENHANCEMENT_IMPLEMENTINGS  TYPE  ENHCLASSTABIMPLEMENTING</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMP_DESC" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Comp description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOCOMPOTX">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description component (full key)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DOCUMENTATION" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_DOCS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documentation"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_ID">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _t     LIKE LINE OF descriptions.
+  DATA _d     LIKE LINE OF documentation.
+  DATA _dt    LIKE LINE OF _d-texts.
+  DATA s_key  TYPE ts_doc_key.
+  FIELD-SYMBOLS:
+    &lt;t&gt;   LIKE LINE OF texts.
+
+* Issue 33 : Documentation conencted to component
+* Prepare documentaion if any.
+  _d-application = &apos;DOKU&apos;.
+  _d-id = id.
+  s_key-name = obj_name. s_key-other = component.
+  _d-object = s_key.
+  _d-langu = sy-langu.
+  _d-masterlang = abap_true.
+  _d-typ = &apos;E&apos;.
+  _d-dokform = &apos;S_DOCU_SHOW&apos;.
+  _d-dokstyle = &apos;S_DOCUS1&apos;.
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR _t.    _t-langu = &lt;t&gt;-lang.   _t-descript = &lt;t&gt;-text.    _t-clsname = obj_name.    _t-cmpname = component.
+    INSERT _t INTO TABLE descriptions.
+* Issue 33 : Documentation conencted to component
+    CHECK NOT &lt;t&gt;-_ IS INITIAL.
+    _dt-_ = &lt;t&gt;-_.    _dt-tdspras = &lt;t&gt;-lang.
+    INSERT _dt INTO TABLE _d-texts.
+  ENDLOOP.
+  IF NOT _d-texts IS INITIAL. INSERT _d INTO TABLE documentation. ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TD_EXCEPTIONS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Exceptions"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="EXCEPTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_EXCEPTIONS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Method&apos;s &amp; Event Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _ex  LIKE LINE OF fm_data-exceps.
+  FIELD-SYMBOLS:
+    &lt;ex&gt;  LIKE LINE OF exception,
+    &lt;t&gt;   LIKE LINE OF &lt;ex&gt;-texts.
+
+  LOOP AT exception ASSIGNING &lt;ex&gt;.
+
+    CLEAR: _ex.
+    _ex = &lt;ex&gt;-hdr.
+    CALL METHOD td_subc_desc
+      EXPORTING
+        sub_component = &lt;ex&gt;-sconame
+        component     = component
+        texts         = &lt;ex&gt;-texts
+      CHANGING
+        descriptions  = fm_data-subcomponent_desc.
+
+    CLEAR: _ex-clsname, _ex-cmpname. &quot; VERSION
+    _ex-clsname = obj_name.   _ex-cmpname = component.    _ex-langu = obj_langu.
+    READ TABLE &lt;ex&gt;-texts ASSIGNING &lt;t&gt;
+         WITH TABLE KEY lang = _ex-langu.
+    IF sy-subrc = 0.    _ex-descript = &lt;t&gt;-text.   ENDIF.
+    INSERT _ex INTO TABLE fm_data-exceps.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TD_PARAMETERS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Parameters"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PARAMETERS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_PARAMETERS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Method&apos;s &amp; Event parameters"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _pa  LIKE LINE OF fm_data-parameters.
+  FIELD-SYMBOLS:
+    &lt;pa&gt;  LIKE LINE OF parameters,
+    &lt;t&gt;   LIKE LINE OF &lt;pa&gt;-texts.
+
+  LOOP AT parameters ASSIGNING &lt;pa&gt;.
+    CLEAR: _pa.
+    _pa = &lt;pa&gt;-hdr.
+
+    CALL METHOD td_subc_desc
+      EXPORTING
+        sub_component = &lt;pa&gt;-sconame
+        component     = component
+        texts         = &lt;pa&gt;-texts
+      CHANGING
+        descriptions  = fm_data-subcomponent_desc.
+
+    _pa-clsname = obj_name.
+    _pa-cmpname = component.
+    _pa-langu = obj_langu.
+    READ TABLE &lt;pa&gt;-texts ASSIGNING &lt;t&gt;
+         WITH TABLE KEY lang = _pa-langu.
+    IF sy-subrc = 0.    _pa-descript = &lt;t&gt;-text.   ENDIF.
+    INSERT _pa INTO TABLE fm_data-parameters.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TD_SUBC_DESC" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : Sub Comp description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOSUBCOTX"/>
+     <ITEM SCONAME="SUB_COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOSCONAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Subcomponent name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _d   LIKE LINE OF descriptions.
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    _d-clsname = obj_name.    _d-cmpname = component.   _d-sconame = sub_component.
+    _d-langu = &lt;t&gt;-lang.     _d-descript = &lt;t&gt;-text.
+
+    INSERT _d INTO TABLE descriptions.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TD_TEXT" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes : object description"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DESCRIPTIONS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_SEOCLASSTX">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description component (full key)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DOCUMENTATION" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_DOCS"/>
+     <ITEM SCONAME="ID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_ID">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_LTEXTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Short description component (Langu key) + Documentation"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _d   LIKE LINE OF documentation.
+  DATA _dt  LIKE LINE OF _d-texts.
+  DATA _ct  LIKE LINE OF descriptions.
+  FIELD-SYMBOLS:
+    &lt;t&gt;   LIKE LINE OF texts.
+
+* Prepare documentaion if any.
+  _d-application = &apos;DOKU&apos;.
+  _d-id = id.
+  _d-object = classname.
+  _d-langu = sy-langu.
+  _d-masterlang = abap_true.
+  _d-typ = &apos;E&apos;.
+  _d-dokform = &apos;S_DOCU_SHOW&apos;.
+  _d-dokstyle = &apos;S_DOCUS1&apos;.
+* Issue 33 : Documentation connected to text
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR _ct.    _ct-langu = &lt;t&gt;-lang.   _ct-descript = &lt;t&gt;-text.    _ct-clsname = classname.
+    INSERT _ct INTO TABLE descriptions.
+
+    CHECK NOT &lt;t&gt;-_ IS INITIAL.
+    _dt-_ = &lt;t&gt;-_.    _dt-tdspras = &lt;t&gt;-lang.
+    INSERT _dt INTO TABLE _d-texts.
+  ENDLOOP.
+  IF NOT _d-texts IS INITIAL. INSERT _d INTO TABLE documentation. ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _id  LIKE LINE OF fm_data-impl_details.
+  DATA _at  LIKE LINE OF fm_data-attributes.
+  DATA _ty  LIKE LINE OF fm_data-types.
+  DATA _tg  LIKE LINE OF fm_data-typeusages.
+  DATA _me  LIKE LINE OF fm_data-methods.
+  DATA _al  LIKE LINE OF fm_data-aliases.
+  DATA _ev  LIKE LINE OF fm_data-events.
+  DATA _ms  LIKE LINE OF fm_data-method_sources.
+  DATA _dc  LIKE LINE OF fm_data-clsdeferrds.
+  DATA _di  LIKE LINE OF deferred-interfaces.
+  DATA tmp_me LIKE LINE OF methods.
+  DATA id   TYPE doku_id.
+  FIELD-SYMBOLS:
+    &lt;at&gt;  LIKE LINE OF attributs,
+    &lt;al&gt;  LIKE LINE OF aliases,
+    &lt;me&gt;  LIKE LINE OF methods,
+    &lt;ev&gt;  LIKE LINE OF events,
+    &lt;ct&gt;  LIKE LINE OF &lt;at&gt;-texts,
+    &lt;dc&gt;  LIKE LINE OF deferred-classes,
+    &lt;di&gt;  LIKE LINE OF deferred-interfaces,
+    &lt;ty&gt;  LIKE LINE OF types,
+    &lt;tu&gt;  LIKE LINE OF typegroups.
+
+********  maindata-textpool = zaplink_program=&gt;get_textpool( fm_data-includes-classpool ).
+
+* to handle version 1.0
+  APPEND LINES OF documentation TO fm_data-documentation.
+
+*TYPEPUSAGES  TYPE  SEOT_TYPEPUSAGES_R
+  LOOP AT typegroups ASSIGNING &lt;tu&gt;.
+    CLEAR _tg.
+    _tg = &lt;tu&gt;-hdr.
+
+    IF NOT &lt;tu&gt;-defered IS INITIAL.
+      &lt;tu&gt;-defered-clsname = &lt;tu&gt;-clsname.
+      &lt;tu&gt;-defered-typegroup = &lt;tu&gt;-typegroup.
+      &lt;tu&gt;-defered-version = &lt;tu&gt;-version.
+      APPEND &lt;tu&gt;-defered TO fm_data-clsdeferrds.
+    ENDIF.
+
+    IF NOT &lt;tu&gt;-itf_def IS INITIAL.
+      &lt;tu&gt;-itf_def-clsname = &lt;tu&gt;-clsname.
+      &lt;tu&gt;-itf_def-typegroup = &lt;tu&gt;-typegroup.
+      &lt;tu&gt;-itf_def-version = &lt;tu&gt;-version.
+      APPEND &lt;tu&gt;-itf_def TO fm_data-intdeferrds.
+    ENDIF.
+
+    _tg-clsname = obj_name.
+    INSERT _tg INTO TABLE fm_data-typeusages.
+  ENDLOOP.
+
+* ISSUE 2 : Begin
+*CLSDEFERRDS  TYPE  SEOT_CLSDEFERRDS_R
+  LOOP AT deferred-classes ASSIGNING &lt;dc&gt;.
+    CLEAR _dc. _dc = &lt;dc&gt;.
+    _dc-clsname = obj_name..
+    INSERT _dc INTO TABLE fm_data-clsdeferrds.
+  ENDLOOP.
+
+*INTDEFERRDS  TYPE  SEOT_INTDEFERRDS_R
+  LOOP AT deferred-interfaces ASSIGNING &lt;di&gt;.
+    CLEAR _di. _di = &lt;di&gt;.
+    _di-clsname = obj_name.
+    INSERT _di INTO TABLE fm_data-intdeferrds.
+  ENDLOOP.
+* ISSUE 2 : End
+
+*ATTRIBUTES TYPE  SEOO_atTTRIBUTES_R
+*COMPONENT_DESC  TYPE  tt_SEOCOMPOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-attribute. ELSE. id = doc_ids-interface-attribute. ENDIF.
+  LOOP AT attributs ASSIGNING &lt;at&gt;.
+    CLEAR _at.
+    _at = &lt;at&gt;-hdr.
+    _at-typesrc = &lt;at&gt;-_.                                   &quot; Issue 68
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline IN _at-typesrc WITH cl_abap_char_utilities=&gt;cr_lf.
+
+    CALL METHOD td_comp_desc
+      EXPORTING
+        component     = &lt;at&gt;-cmpname
+        texts         = &lt;at&gt;-texts
+        id            = id
+      CHANGING
+        documentation = fm_data-documentation
+        descriptions  = fm_data-component_desc.
+
+    _at-clsname = obj_name.
+    _at-langu = obj_langu.
+    READ TABLE &lt;at&gt;-texts ASSIGNING &lt;ct&gt;
+         WITH TABLE KEY lang = _at-langu.
+    IF sy-subrc = 0.    _at-descript = &lt;ct&gt;-text.      ENDIF.
+    INSERT _at INTO TABLE fm_data-attributes.
+  ENDLOOP.
+
+*METHODS  TYPE  SEOO_meETHODS_R
+*PARAMETERS TYPE  SEOS_paARAMETERS_R
+*EXCEPS TYPE  SEOS_exXCEPTIONS_R
+*SUBCOMPONENT_DESC type  tt_SEOSUBCOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-method. ELSE. id = doc_ids-interface-method. ENDIF.
+  LOOP AT methods ASSIGNING &lt;me&gt;.
+    CLEAR: _me, _ms.
+    _me = &lt;me&gt;-hdr.
+
+    CALL METHOD td_comp_desc
+      EXPORTING
+        component     = &lt;me&gt;-cmpname
+        texts         = &lt;me&gt;-texts
+        id            = id
+      CHANGING
+        documentation = fm_data-documentation
+        descriptions  = fm_data-component_desc.
+
+    CALL METHOD td_parameters
+      EXPORTING
+        component  = &lt;me&gt;-cmpname
+        PARAMETERS = &lt;me&gt;-parameters
+      CHANGING
+        fm_data    = fm_data.
+
+    CALL METHOD td_exceptions
+      EXPORTING
+        component = &lt;me&gt;-cmpname
+        exception = &lt;me&gt;-exceptions
+      CHANGING
+        fm_data   = fm_data.
+
+    tmp_me = &lt;me&gt;.
+    CLEAR: tmp_me-cmpname, tmp_me-source.
+    IF tmp_me IS INITIAL.
+      CONTINUE.  &quot; Interface implementation
+    ENDIF.
+
+    _ms-cpdname = &lt;me&gt;-cmpname.
+    _ms-source = zaplink_object=&gt;conv_abap_source2raw( &lt;me&gt;-source-_ ).
+    APPEND _ms TO fm_data-method_sources.
+
+    _me-clsname = obj_name.
+    _me-langu = obj_langu.
+    READ TABLE &lt;me&gt;-texts ASSIGNING &lt;ct&gt;
+         WITH TABLE KEY lang = _me-langu.
+    IF sy-subrc = 0.    _me-descript = &lt;ct&gt;-text.      ENDIF.
+    INSERT _me INTO TABLE fm_data-methods.
+  ENDLOOP.
+
+*EVENTS TYPE  SEOO_exVENTS_R
+*PARAMETERS TYPE  SEOS_paARAMETERS_R
+*EXCEPS TYPE  SEOS_exXCEPTIONS_R
+*SUBCOMPONENT_DESC type  tt_SEOSUBCOTX,
+  IF obj_type = object_types-class. id = doc_ids-class-event. ELSE. id = doc_ids-interface-event. ENDIF.
+  LOOP AT events ASSIGNING &lt;ev&gt;.
+    CLEAR _ev.
+    _ev = &lt;ev&gt;-hdr.
+    CALL METHOD td_comp_desc
+      EXPORTING
+        component     = &lt;ev&gt;-cmpname
+        texts         = &lt;ev&gt;-texts
+        id            = id
+      CHANGING
+        documentation = fm_data-documentation
+        descriptions  = fm_data-component_desc.
+
+    CALL METHOD td_parameters
+      EXPORTING
+        component  = &lt;ev&gt;-cmpname
+        PARAMETERS = &lt;ev&gt;-parameters
+      CHANGING
+        fm_data    = fm_data.
+
+    _ev-clsname = obj_name.
+    _ev-langu = obj_langu.
+    READ TABLE &lt;ev&gt;-texts ASSIGNING &lt;ct&gt;
+         WITH TABLE KEY lang = _ev-langu.
+    IF sy-subrc = 0.    _ev-descript = &lt;ct&gt;-text.      ENDIF.
+    INSERT _ev INTO TABLE fm_data-events.
+  ENDLOOP.
+
+*TYPES  TYPE  SEOO_TYPES_R
+  IF obj_type = object_types-class. id = doc_ids-class-type. ELSE. id = doc_ids-interface-type. ENDIF.
+  LOOP AT types ASSIGNING &lt;ty&gt;.
+    CLEAR _ty.
+    _ty = &lt;ty&gt;-hdr.
+    _ty-typesrc = &lt;ty&gt;-_.                                   &quot; Issue 68
+    REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline IN _ty-typesrc WITH cl_abap_char_utilities=&gt;cr_lf.
+
+    CALL METHOD me-&gt;td_comp_desc
+      EXPORTING
+        component     = &lt;ty&gt;-cmpname
+        texts         = &lt;ty&gt;-texts
+        id            = id
+      CHANGING
+        documentation = fm_data-documentation
+        descriptions  = fm_data-component_desc.
+
+    _ty-clsname = obj_name.
+    _ty-langu = obj_langu.
+    READ TABLE &lt;ty&gt;-texts ASSIGNING &lt;ct&gt;
+         WITH TABLE KEY lang = _ty-langu.
+    IF sy-subrc = 0.    _ty-descript = &lt;ct&gt;-text.      ENDIF.
+    INSERT _ty INTO TABLE fm_data-types.
+  ENDLOOP.
+
+*ALIASES  TYPE  SEOO_atLIASES_R
+  LOOP AT aliases ASSIGNING &lt;al&gt;.
+    CLEAR _al.
+    _al = &lt;al&gt;-hdr.
+
+*    CALL METHOD me-&gt;td_comp_desc                    &quot; not yet supported by SAP
+*      EXPORTING
+*        component     = &lt;al&gt;-cmpname
+*        texts         = &lt;al&gt;-texts
+*        id            = space
+*      CHANGING
+*        documentation = fm_data-documentation
+*        descriptions  = fm_data-component_desc.
+
+    _al-clsname = obj_name.
+    INSERT _al INTO TABLE fm_data-aliases.
+  ENDLOOP.
+
+* No use detected
+*EXPLORE_INHERITANCE  TYPE  SEOK_CLS_TYPEINFOS
+*EXPLORE_IMPLEMENTINGS  TYPE  SEOK_INT_TYPEINFOS
+*ENHANCEMENT_meETHODS  TYPE  ENHMETH_TABHEADER
+*ENHANCEMENT_atTTRIBUTES TYPE  ENHCLASSTABATTRIB
+*ENHANCEMENT_exVENTS TYPE  ENHCLASSTABEVENT
+*ENHANCEMENT_IMPLEMENTINGS  TYPE  ENHCLASSTABIMPLEMENTING</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+* Every thing should be done by SAP injection (data will be completed)
+**  DATA s_al  LIKE LINE OF aliases.
+*  DATA s_at LIKE LINE OF attributs.
+**  DATA s_ev LIKE LINE OF events.
+*  FIELD-SYMBOLS:
+*    &lt;ev&gt;    LIKE LINE OF events.
+*  DATA s_in LIKE LINE OF interfaces.
+*  DATA s_ty  LIKE LINE OF types.
+**  DATA s_tg  LIKE LINE OF typegroups.
+**  DATA s_me  LIKE LINE OF methods.
+*  FIELD-SYMBOLS:
+*    &lt;me&gt;    LIKE LINE OF methods.
+*  DATA s_pa  LIKE LINE OF &lt;me&gt;-parameters.
+*  DATA s_ex  LIKE LINE OF &lt;me&gt;-exceptions.
+*
+** ALIASES : OK
+** ATTRIBUTS
+*  MODIFY attributs FROM s_at TRANSPORTING author createdon changedby changedon r3release
+*         WHERE NOT cmpname IS INITIAL.
+*
+**DOCUMENTATION
+*
+**EVENTS
+**  MODIFY events FROM s_ev TRANSPORTING author createdon changedby changedon r3release
+**         WHERE NOT cmpname IS INITIAL.
+*  LOOP AT events ASSIGNING &lt;ev&gt;.
+*    CLEAR:
+*      &lt;ev&gt;-author,
+*      &lt;ev&gt;-createdon,
+*      &lt;ev&gt;-changedby,
+*      &lt;ev&gt;-changedon,
+*      &lt;ev&gt;-r3release.
+*    MODIFY &lt;me&gt;-parameters FROM s_pa TRANSPORTING author createdon changedby changedon
+*           WHERE NOT cmpname IS INITIAL.
+*    MODIFY &lt;me&gt;-exceptions FROM s_ex TRANSPORTING author createdon changedby changedon
+*           WHERE NOT cmpname IS INITIAL.
+*  ENDLOOP.
+*
+**INTERFACES
+*  MODIFY interfaces FROM s_in TRANSPORTING author createdon changedby changedon
+*         WHERE NOT refclsname IS INITIAL.
+*
+**METHODS
+**  MODIFY methods FROM s_me TRANSPORTING author createdon changedby changedon r3release
+**         WHERE NOT cmpname IS INITIAL.
+*  LOOP AT methods ASSIGNING &lt;me&gt;.
+*    CLEAR:
+*      &lt;me&gt;-author,
+*      &lt;me&gt;-createdon,
+*      &lt;me&gt;-changedby,
+*      &lt;me&gt;-changedon,
+*      &lt;me&gt;-r3release.
+*    MODIFY &lt;me&gt;-parameters FROM s_pa TRANSPORTING author createdon changedby changedon
+*           WHERE NOT cmpname IS INITIAL.
+*    MODIFY &lt;me&gt;-exceptions FROM s_ex TRANSPORTING author createdon changedby changedon
+*           WHERE NOT cmpname IS INITIAL.
+*  ENDLOOP.
+*
+**TYPEGROUPS : OK
+**TYPES
+*  MODIFY types FROM s_ty TRANSPORTING author createdon changedby changedon r3release
+*         WHERE NOT cmpname IS INITIAL.
+*
+**DEFERRED : OK</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="CMT">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY='&quot;Auto commented by ZAPLINK_OBJECT connector and added as Explicit type group' LENGTH="80 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOF" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOK" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOO" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOR" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOS" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOT" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MENUPAINTER" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MENUPAINTER_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu painter Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ALIAS_DATA" EXPOSURE="2" STATE="1" EDITORDER="30 " TYPTYPE="4">
+    BEGIN OF ts_alias_data.
+    INCLUDE TYPE seoo_alias_r AS hdr.
+    TYPES:
+        texts   TYPE tt_ltexts,     &quot; tt_seocompotx_l,
+      END OF ts_alias_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Alias definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ATTR_DATA" EXPOSURE="2" STATE="1" EDITORDER="32 " TYPTYPE="4">
+    BEGIN OF ts_attr_data.
+    INCLUDE TYPE seoo_attribute_r AS hdr.
+    TYPES:
+        texts   TYPE tt_ltexts,     &quot; tt_seocompotx_l,
+        _       TYPE td_abapsource,
+      END OF ts_attr_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Attribute definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMPONENT" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_component,
+      cmpname TYPE seoo_method_r-cmpname,
+    END OF ts_component
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component (Types, alias, method, attribute) definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CX_TEXT" EXPOSURE="2" STATE="1" EDITORDER="19 " TYPTYPE="4">BEGIN OF ts_cx_text,
+              cmpname   TYPE seoo_attribute_r-cmpname.
+    INCLUDE TYPE sotr_head AS hdr.
+    TYPES:
+        lhdr      TYPE sotr_headu,
+        texts     TYPE tt_sotr_texts,
+        longtexts TYPE tt_sotr_textus,
+      END OF ts_cx_text
+`</ITEM>
+   <ITEM CMPNAME="TS_DEFERRED" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">BEGIN OF ts_deferred,                   &quot; used to handle
+                    classes TYPE seot_clsdeferrds_w,      &quot; class * definition load
+                    interfaces TYPE seot_intdeferrds_r,   &quot; interface * load
+                  END OF ts_deferred
+`</ITEM>
+   <ITEM CMPNAME="TS_DOC_KEY" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_doc_key,                                    &quot; equiv DOKU_OBJ = CHAR 60
+      name       TYPE seoclsname,                           &quot; CHAR 30
+      other(30)  TYPE c,
+    END OF ts_doc_key
+`</ITEM>
+   <ITEM CMPNAME="TS_EVENT_DATA" EXPOSURE="2" STATE="1" EDITORDER="26 " TYPTYPE="4">
+    BEGIN OF ts_event_data.
+    INCLUDE TYPE seoo_event_r AS hdr.
+    TYPES:
+        texts         TYPE tt_ltexts,     &quot; tt_seocompotx_l,
+*      redefinition  TYPE seoredef,
+        parameters    TYPE tt_parameters,
+*        exceptions    TYPE tt_exceptions,
+*      _               TYPE ts_source,
+      END OF ts_event_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Event definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_EXCEP_DATA" EXPOSURE="2" STATE="1" EDITORDER="24 " TYPTYPE="4">
+    BEGIN OF ts_excep_data.
+    INCLUDE TYPE seos_exception_r AS hdr.
+    TYPES:
+        texts   TYPE tt_ltexts,   &quot; tt_seosubcotx_l,
+      END OF ts_excep_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Exception definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_INCLUDE" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="4">BEGIN OF ts_include,                                  &quot; Issue 82
+            name       TYPE program,
+            raw_source TYPE tt_abaprawsource,
+          END OF ts_include
+`</ITEM>
+   <ITEM CMPNAME="TS_INCLUDES" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="4">
+    BEGIN OF ts_includes,
+            classpool      TYPE ts_include,
+            pubsec         TYPE ts_include,
+            prisec         TYPE ts_include,
+            prosec         TYPE ts_include,
+            cl             TYPE ts_include,
+            ccimp          TYPE ts_include,
+            ccdef          TYPE ts_include,
+            ccmac          TYPE ts_include,
+            interfacepool  TYPE ts_include,
+            intfsec        TYPE ts_include,
+            localtestclass TYPE ts_include,                 &quot; Issue 82
+            methods        TYPE tt_meth_incs,
+          END OF ts_includes
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of Class&apos;s include with ABAP Code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_INTERFACE" EXPOSURE="2" STATE="1" EDITORDER="40 " TYPTYPE="4">BEGIN OF ts_interface.
+    INCLUDE TYPE seor_implementing_r AS hdr.  &quot; Méthodes redéfinies par relation d&apos;héritage
+    TYPES:
+        components TYPE tt_comp_impl,   &quot; Interface public attribute default value &amp; Method implementation
+*      attributes_redefinition TYPE tt_itf_default_values,   &quot; Interface public attribute default value
+      END OF ts_interface
+`</ITEM>
+   <ITEM CMPNAME="TS_METH_DATA" EXPOSURE="2" STATE="1" EDITORDER="28 " TYPTYPE="4">
+    BEGIN OF ts_meth_data.
+    INCLUDE TYPE seoo_method_r AS hdr.
+    TYPES:
+        texts         TYPE tt_ltexts,     &quot; tt_seocompotx_l,
+*      redefinition  TYPE ts_redefinition,
+        parameters    TYPE tt_parameters,
+        exceptions    TYPE tt_exceptions,
+        source        TYPE ts_sourceasstruc,
+      END OF ts_meth_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Method definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_METH_INC" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">BEGIN OF ts_meth_inc.                                 &quot; Issue 82
+    INCLUDE TYPE seop_method_w_include AS hdr.
+    TYPES:
+        raw_source TYPE tt_abaprawsource,
+      END OF ts_meth_inc
+`</ITEM>
+   <ITEM CMPNAME="TS_PARAM_DATA" EXPOSURE="2" STATE="1" EDITORDER="22 " TYPTYPE="4">
+    BEGIN OF ts_param_data.
+    INCLUDE TYPE seos_parameter_r AS hdr.
+    TYPES:
+        texts   TYPE tt_ltexts,     &quot; tt_seosubcotx_l,
+      END OF ts_param_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Parameter definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_REDEF_DATA" EXPOSURE="2" STATE="1" EDITORDER="38 " TYPTYPE="4">BEGIN OF ts_redef_data.
+    INCLUDE TYPE seoredef AS hdr.
+    TYPES:
+        source        TYPE ts_sourceasstruc,
+      END OF ts_redef_data
+`</ITEM>
+   <ITEM CMPNAME="TS_SEOCLASSTX" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">BEGIN OF ts_seoclasstx.
+    INCLUDE TYPE seoclasstx AS main.
+    TYPES:
+        documentation  TYPE ts_lang,
+      END OF ts_seoclasstx
+`</ITEM>
+   <ITEM CMPNAME="TS_SEOCOMPOTX" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_seocompotx.
+    INCLUDE TYPE seocompotx AS main.
+    TYPES:
+        documentation  TYPE ts_lang,
+      END OF ts_seocompotx
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description component (Langu key) + Documentation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SOURCES" EXPOSURE="2" STATE="1" EDITORDER="42 " TYPTYPE="4">
+    BEGIN OF ts_sources,
+                        classpool   TYPE  ts_sourceasstruc,
+                        local_types TYPE  ts_sourceasstruc,
+                        local_imp   TYPE  ts_sourceasstruc,
+                        macros      TYPE  ts_sourceasstruc,
+                        public      TYPE  ts_sourceasstruc,
+                        private     TYPE  ts_sourceasstruc,
+                        protected   TYPE  ts_sourceasstruc,
+                      END OF ts_sources
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class ABAP Source codes as structure"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TGRP_DATA" EXPOSURE="2" STATE="1" EDITORDER="36 " TYPTYPE="4">
+    BEGIN OF ts_tgrp_data.
+    INCLUDE TYPE seot_typepusage_r AS hdr.
+    TYPES:
+        defered TYPE seot_clsdeferrd_r,
+        itf_def TYPE seot_intdeferrd_r,
+      END OF ts_tgrp_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type pool used data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TYPE_DATA" EXPOSURE="2" STATE="1" EDITORDER="34 " TYPTYPE="4">
+    BEGIN OF ts_type_data.
+    INCLUDE TYPE seoo_type_r AS hdr.
+    TYPES:
+        texts   TYPE tt_ltexts,     &quot; tt_seocompotx_l,
+        _       TYPE td_abapsource,
+      END OF ts_type_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ALIAS" EXPOSURE="2" STATE="1" EDITORDER="31 " TYPTYPE="4">
+    tt_alias TYPE SORTED TABLE OF ts_alias_data WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s Aliases"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ATTRIBUTS" EXPOSURE="2" STATE="1" EDITORDER="33 " TYPTYPE="4">
+    tt_attributs TYPE SORTED TABLE OF ts_attr_data WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s attributes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_COMPONENTS" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_components TYPE SORTED TABLE OF ts_component WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component&apos;s list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_COMP_IMPL" EXPOSURE="2" STATE="1" EDITORDER="39 " TYPTYPE="4">tt_comp_impl TYPE SORTED TABLE OF ts_redef_data WITH UNIQUE KEY mtdname
+`</ITEM>
+   <ITEM CMPNAME="TT_CX_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="20 " TYPTYPE="4">tt_cx_texts TYPE SORTED TABLE OF ts_cx_text WITH UNIQUE KEY cmpname
+`</ITEM>
+   <ITEM CMPNAME="TT_EVENTS" EXPOSURE="2" STATE="1" EDITORDER="27 " TYPTYPE="4">
+    tt_events TYPE SORTED TABLE OF ts_event_data WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s Events"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_EXCEPTIONS" EXPOSURE="2" STATE="1" EDITORDER="25 " TYPTYPE="4">
+    tt_exceptions TYPE SORTED TABLE OF ts_excep_data WITH UNIQUE KEY sconame
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Method&apos;s &amp; Event Exceptions"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_INTERFACES" EXPOSURE="2" STATE="1" EDITORDER="41 " TYPTYPE="4">
+    tt_interfaces TYPE SORTED TABLE OF ts_interface WITH UNIQUE KEY refclsname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class interface use"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_METHODS" EXPOSURE="2" STATE="1" EDITORDER="29 " TYPTYPE="4">
+    tt_methods TYPE SORTED TABLE OF ts_meth_data WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s methods"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_METH_INCS" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="4">tt_meth_incs TYPE STANDARD TABLE OF ts_meth_inc WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_PARAMETERS" EXPOSURE="2" STATE="1" EDITORDER="23 " TYPTYPE="4">
+    tt_parameters TYPE SORTED TABLE OF ts_param_data WITH UNIQUE KEY sconame
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Method&apos;s &amp; Event parameters"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOCLASSTX" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_seoclasstx TYPE STANDARD TABLE OF seoclasstx WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOCLASSTX_S" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_seoclasstx_s TYPE SORTED TABLE OF ts_seoclasstx WITH UNIQUE KEY langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description class With unique Key"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOCOMPOTX" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    tt_seocompotx TYPE STANDARD TABLE OF seocompotx WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description component (full key)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOCOMPOTX_L" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">
+    tt_seocompotx_l TYPE SORTED TABLE OF ts_seocompotx WITH UNIQUE KEY langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description component (Langu key) + Documentation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOCOMPOTX_S" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    tt_seocompotx_s TYPE SORTED TABLE OF seocompotx WITH UNIQUE KEY cmpname langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description component (With unique Key)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOSUBCOTX" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">
+    tt_seosubcotx TYPE STANDARD TABLE OF seosubcotx WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description Sub component (full key)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOSUBCOTX_L" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">
+    tt_seosubcotx_l TYPE SORTED TABLE OF seosubcotx WITH UNIQUE KEY langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description Sub component (Langu key)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SEOSUBCOTX_S" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">
+    tt_seosubcotx_s TYPE SORTED TABLE OF seosubcotx WITH UNIQUE KEY cmpname sconame langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Short description Sub component (With unique Key)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SOTR_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="4">tt_sotr_texts TYPE SORTED TABLE OF sotr_text WITH UNIQUE KEY langu object
+`</ITEM>
+   <ITEM CMPNAME="TT_SOTR_TEXTUS" EXPOSURE="2" STATE="1" EDITORDER="18 " TYPTYPE="4">tt_sotr_textus TYPE STANDARD TABLE OF sotr_textu WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_TYPEGROUPS" EXPOSURE="2" STATE="1" EDITORDER="37 " TYPTYPE="4">
+    tt_typegroups TYPE SORTED TABLE OF ts_tgrp_data WITH UNIQUE KEY typegroup
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s type pool used"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" STATE="1" EDITORDER="35 " TYPTYPE="4">
+    tt_types TYPE SORTED TABLE OF ts_type_data WITH UNIQUE KEY cmpname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class&apos;s types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="21 " TYPTYPE="4">
+    BEGIN OF t_fm_data,
+*      name TYPE seoclsname,
+*      version TYPE seoversion,
+              class TYPE  vseoclass,
+              interface TYPE  vseointerf,
+              attributes  TYPE  seoo_attributes_r,
+              methods TYPE  seoo_methods_r,
+              events  TYPE  seoo_events_r,
+              types TYPE  seoo_types_r,
+              parameters  TYPE  seos_parameters_r,
+              exceps  TYPE  seos_exceptions_r,
+              implementings TYPE  seor_implementings_r,
+              inheritance TYPE  vseoextend,
+              redefinitions TYPE  seor_redefinitions_r,
+              impl_details  TYPE  seor_redefinitions_r,
+              friendships TYPE  seof_friendships_r,
+              typeusages TYPE  seot_typepusages_r,
+              clsdeferrds TYPE  seot_clsdeferrds_r,
+              intdeferrds TYPE  seot_intdeferrds_r,
+              comprisings TYPE  seor_comprisings_r,
+              explore_inheritance TYPE  seok_cls_typeinfos,
+              explore_implementings TYPE  seok_int_typeinfos,
+              explore_comprisings TYPE  seok_int_typeinfos,
+              aliases TYPE  seoo_aliases_r,
+              enhancement_methods TYPE  enhmeth_tabheader,
+              enhancement_attributes  TYPE  enhclasstabattrib,
+              enhancement_events  TYPE  enhclasstabevent,
+              enhancement_implementings TYPE  enhclasstabimplementing,
+              enhancement_comprisings TYPE  enhclasstabintfcompri,
+              class_desc  TYPE tt_seoclasstx,
+              component_desc  TYPE  tt_seocompotx,
+              subcomponent_desc TYPE  tt_seosubcotx,
+              includes TYPE ts_includes,
+* FOR SEO_CLASS_RESOLVE_INHERITANCE (Issue 128)
+              enhancement_premeth TYPE  enhmeth_tabkeys,
+              enhancement_postmeth TYPE  enhmeth_tabkeys,
+              enhancement_owrmeth TYPE  enhmeth_tabkeys,
+* FOR SEO_CLASS_CREATE_COMPLETE only
+              method_sources TYPE seo_method_source_table,
+              textspool   TYPE tt_txtp_textpools,
+              locals_def  TYPE  rswsourcet,
+              locals_imp  TYPE  rswsourcet,
+              locals_mac  TYPE  rswsourcet,
+              locals_tst  TYPE  rswsourcet,   &quot; Issue 82 : Test Class
+* FOR Exception class
+              exceptions_texts TYPE tt_cx_texts,
+* FOR Class dynpros
+              dynpros     TYPE tt_dynpros,
+* FOR Class MENU PAINTER
+              menupainter TYPE to_menupainter,
+* FOR documentation
+              documentation TYPE tt_docs,
+            END OF t_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

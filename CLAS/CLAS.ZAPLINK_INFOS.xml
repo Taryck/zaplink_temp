@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="3FA85158C2661257CD7FF7BA61803138" CODE_SIGNATURE="5FC2AF3A84467A69BD15E33A77137B59" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_INFOS" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink Informations">U1&amp;FUNCTIONALITY&amp;
+ASProvide informations on SAP system and ZAPLINK framework.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="FRAMEWORK_VERSION" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="FRAMEWORK_VERSION"/>
+   <ITEM CMPNAME="TD_CONNUUID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNUUID"/>
+   <ITEM CMPNAME="TD_CONNVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNVER"/>
+   <ITEM CMPNAME="TD_FRAMEWORKVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_FRAMEWORKVER"/>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_KIND"/>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_PACKAGES"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TS_COMPONENT" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPONENT"/>
+   <ITEM CMPNAME="TS_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPTYPE"/>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_COMPKEYS"/>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TYPES"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="CNX_PACKAGES" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_PACKAGES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connectors packages"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_CLASS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE"/>
+   <ITEM CMPNAME="C_INTERFACE" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE"/>
+   <ITEM CMPNAME="C_MSG_CLASS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE"/>
+   <ITEM CMPNAME="C_PROGRAM" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE"/>
+   <ITEM CMPNAME="C_TYPEGROUP" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE"/>
+   <ITEM CMPNAME="O_CX" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SAP" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TS_SAP"/>
+   <ITEM CMPNAME="ZAPLINK" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TS_ZL"/>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  data s_pack like LINE OF cnx_packages.
+
+  s_pack-sign = &apos;I&apos;.    s_pack-option = &apos;EQ&apos;.
+  s_pack-low = &apos;$TMP&apos;.      append s_pack to cnx_packages.
+  s_pack-low = &apos;ZAPLINK-CONNECTORS&apos;.      append s_pack to cnx_packages.
+  s_pack-low = &apos;ZAPLINK-CONNECTORS-MAIN&apos;.      append s_pack to cnx_packages.
+  s_pack-low = &apos;ZAPLINK-CONNECTORS-OTHERS&apos;.      append s_pack to cnx_packages.
+
+  c_class-type = &apos;CLAS&apos;.    c_class-kind = zaplink_connectors=&gt;get_typekind( c_class-type ).
+  c_interface-type = &apos;INTF&apos;.    c_interface-kind = zaplink_connectors=&gt;get_typekind( c_interface-type ).
+  c_program-type = &apos;PROG&apos;.    c_program-kind = zaplink_connectors=&gt;get_typekind( c_program-type ).
+  c_typegroup-type = &apos;TYPE&apos;.    c_typegroup-kind = zaplink_connectors=&gt;get_typekind( c_typegroup-type ).
+  c_msg_class-type = &apos;MSAG&apos;.    c_msg_class-kind = zaplink_connectors=&gt;get_typekind( c_msg_class-type ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E" MTDTYPE="2"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  me-&gt;get_sap_data( ).
+  me-&gt;get_zl_data( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SAP_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get SAP Data"/>
+    </TEXTS>
+    <SOURCE>`
+* FROM FUNC : STATUS_ANZEIGEN
+* Machine type
+  TYPES:
+    BEGIN OF ts_ver_tab,
+      line(80) TYPE c,
+    END OF ts_ver_tab.
+  DATA version_info TYPE STANDARD TABLE OF ts_ver_tab.
+  FIELD-SYMBOLS:
+    &lt;v&gt; LIKE LINE OF version_info.
+  TYPES:
+    BEGIN OF ts_ver_info,
+      name TYPE string,
+      value TYPE string,
+    END OF ts_ver_info.
+  DATA t_values_ver TYPE STANDARD TABLE OF ts_ver_info.
+  DATA s_value LIKE LINE OF t_values_ver.
+  DATA d_char(255) TYPE c.
+  DATA it_comptab    TYPE STANDARD TABLE OF spam_cvers.
+*  DATA it_components TYPE STANDARD TABLE OF comp_list_type.
+  DATA s_comp        LIKE LINE OF sap-_components.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF it_comptab.
+
+  DEFINE mac_read_val.
+    read table t_values_ver into s_value
+         with key name = &amp;1.
+    if sy-subrc = 0.    &amp;2 = s_value-value.   endif.
+  END-OF-DEFINITION.
+
+
+*CALL &apos;SAPCORE&apos; ID &apos;ID&apos; FIELD &apos;VERSION&apos;
+*               ID &apos;TABLE&apos; FIELD version_info-*sys*.
+  CALL &apos;SAPCORE&apos; ID &apos;ID&apos; FIELD &apos;VERSION&apos;
+                 ID &apos;TABLE&apos; FIELD version_info.
+  LOOP AT version_info ASSIGNING &lt;v&gt;.
+    CLEAR s_value.
+    s_value-name = &lt;v&gt;(21).   s_value-value = &lt;v&gt;+21.
+    APPEND s_value TO t_values_ver.
+  ENDLOOP.
+  mac_read_val:
+    &apos;SAP version&apos; sap-status-sap_ver,             &quot;#EC NOTEXT
+    &apos;operating system&apos; sap-status-os,             &quot;#EC NOTEXT
+    &apos;machine type&apos; sap-status-machine_type,       &quot;#EC NOTEXT
+    &apos;database system&apos; sap-status-db_sys,          &quot;#EC NOTEXT
+    &apos;kernel release&apos; sap-status-kernel,           &quot;#EC NOTEXT
+    &apos;database library&apos; sap-status-db_lib,         &quot;#EC NOTEXT
+    &apos;ABAP load version&apos; sap-status-abap_ver,      &quot;#EC NOTEXT
+    &apos;CUA load version&apos; sap-status-cua_ver.        &quot;#EC NOTEXT
+
+* Database name
+*  CALL FUNCTION &apos;DB_DBNAME&apos;
+*    IMPORTING
+*      dbname = status-database_name.
+** Database server
+*  CALL FUNCTION &apos;DB_DBHOST&apos;
+*    IMPORTING
+*      dbhost = status-database_host.
+** Database schema/owner
+*  CALL FUNCTION &apos;DB_DBSCHEMA&apos;
+*    IMPORTING
+*      dbschema = status-database_owner.
+* Database release
+  CALL FUNCTION &apos;DB_GET_RELEASE&apos;
+    IMPORTING
+      release = d_char.
+  sap-status-db_release = d_char.
+
+* Unicode information
+  IF cl_abap_char_utilities=&gt;charsize = 1.
+    sap-status-unicode = &apos;Yes&apos;(oui).
+  ELSE.
+    sap-status-unicode = &apos;No&apos;(non).
+  ENDIF.
+
+*  CALL FUNCTION &apos;UPG_GET_COMPONENT_RELEASES&apos;
+**   EXPORTING
+**     IV_COMPONENT                      = &apos;*&apos;
+**     IV_BUFFERED                       = &apos;X&apos;
+**   IMPORTING
+**     EV_COMPCNT                        =
+**     EV_BASISSTATE                     =
+*    TABLES
+*      tt_cvers                          = components_releases
+*    EXCEPTIONS
+*      no_release_found                  = 0
+*      component_release_not_found       = 0
+*      OTHERS                            = 0.
+*  IF sy-subrc &lt;&gt; 0.
+*    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+*            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+*  ENDIF.
+
+  CALL FUNCTION &apos;SPAM_READ_PAT03&apos;
+*   EXPORTING
+*     IV_PATCH_NAME                    = &apos;*&apos;
+*     IV_PATCH_TYPE                    = &apos;*&apos;
+*     IV_BASE_RELEASE                  = &apos;CURR&apos;
+*     IV_COMPONENT_ID                  = &apos;CURR&apos;
+*     IV_COMPONENT_RELEASE             = &apos;CURR&apos;
+*     IV_ADDON_ID                      = &apos;CURR&apos;
+*     IV_ADDON_RELEASE                 = &apos;CURR&apos;
+*     IV_ACTIV                         = &apos;X&apos;
+*     IV_ONLY_SUPP_PACKS               = &apos;X&apos;
+*     IV_RSTLAN_IO_MODE                = &apos; &apos;
+*   IMPORTING
+*     EV_PAT03_ENTRIES                 =
+    TABLES
+      tt_pat03_selected                = sap-_hot_packages
+    EXCEPTIONS
+      wrong_release_string             = 1
+      wrong_patch_type                 = 2
+      no_component_available           = 3
+      wrong_component_id_release       = 4
+      wrong_addon_id_release           = 5
+      OTHERS                           = 6.
+  IF sy-subrc &lt;&gt; 0.   clear sap-_hot_packages.    ENDIF.
+
+  SORT sap-_hot_packages BY component  ASCENDING
+                            addon_id   ASCENDING
+                            imple_date ASCENDING
+                            imple_time ASCENDING.
+
+* FROM (LSHSYO01) MODULE init OUTPUT.
+  CALL FUNCTION &apos;OCS_GET_INSTALLED_COMPS&apos;
+    TABLES
+      tt_comptab = it_comptab
+    EXCEPTIONS
+      OTHERS     = 0.
+  CALL FUNCTION &apos;OCS_SORT_COMPS_HIERARCHICAL&apos;
+    TABLES
+      tt_comptab = it_comptab
+    EXCEPTIONS
+      OTHERS     = 0.
+
+  LOOP AT it_comptab ASSIGNING &lt;c&gt;.
+    CLEAR s_comp.   s_comp-hdr = &lt;c&gt;.
+    IF sy-saprl &lt; &apos;701&apos;.                                    &quot; Issue 90
+      CALL FUNCTION &apos;OCS_GET_COMPONENT_STATE&apos;
+        EXPORTING
+          iv_component  = &lt;c&gt;-component
+        IMPORTING
+          ev_comp_rel             = s_comp-release
+          ev_comp_type            = s_comp-comp_type
+          ev_comp_level           = s_comp-level
+          ev_comp_spp_level       = s_comp-spp_level
+          ev_last_patch           = s_comp-high_package
+          ev_last_spp             = s_comp-high_spp
+          ev_comp_active          = s_comp-active
+          ev_comp_patchable       = s_comp-patchable
+          ev_is_subcomp           = s_comp-state
+*       ES_MASTERCOMP           =
+        EXCEPTIONS
+          unknown_component       = 1
+          OTHERS                  = 2.
+    ELSE.
+      CALL FUNCTION &apos;OCS_GET_COMPONENT_STATE&apos;
+        EXPORTING
+          iv_component  = &lt;c&gt;-component
+        IMPORTING
+          ev_comp_rel             = s_comp-release
+          ev_comp_type            = s_comp-comp_type
+          ev_comp_level           = s_comp-level
+*        ev_comp_spp_level       = s_comp-spp_level     &quot; Issue 90
+          ev_last_patch           = s_comp-high_package
+*        ev_last_spp             = s_comp-high_spp      &quot; Issue 90
+          ev_comp_active          = s_comp-active
+          ev_comp_patchable       = s_comp-patchable
+          ev_is_subcomp           = s_comp-state
+*       ES_MASTERCOMP           =
+        EXCEPTIONS
+          unknown_component       = 1
+          OTHERS                  = 2.
+    ENDIF.
+    IF sy-subrc = 0.    APPEND s_comp TO sap-_components.   ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_ZL_DATA" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get ZAPLink Data"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_comps      TYPE tt_compkeys.
+  DATA r_packages   TYPE tr_packages.
+  DATA s_package    LIKE LINE OF r_packages.
+  DATA s_comp       LIKE LINE OF zaplink-components.
+  DATA o_list       TYPE to_list.
+  DATA o_cnx        TYPE to_connector.
+  DATA o_raw        TYPE to_raw.
+  DATA o_ref        TYPE REF TO cl_abap_classdescr.
+  DATA o_comp       TYPE to_component.
+  DATA o_c_n        TYPE to_component.
+  DATA i_sign       TYPE ti_code_signature.
+  DATA s_cnx        LIKE LINE OF zaplink-connectors.
+  DATA s_subcomp    LIKE LINE OF s_cnx-_components.
+*  DATA t_connectors TYPE tt_zl_comps.
+  DATA _comp        TYPE ts_component.
+  DATA cnx_name     TYPE seoclskey.
+  DATA o_generator  TYPE to_generator.
+*  DATA o_cnxlist    TYPE to_list.
+  DATA d_classname  TYPE td_classname.
+  DATA o_cnxcomp    TYPE to_component.
+  DATA t_global_c   TYPE tt_zl_comps.
+  DATA t_commun_c   TYPE tt_zl_comps.
+  DATA d_cnx        LIKE LINE OF t_global_c.
+  DATA d_kind       TYPE td_transport_kind.
+  DATA _regex TYPE string.
+  FIELD-SYMBOLS:
+*    &lt;m&gt; LIKE LINE OF o_generator-&gt;messages,
+*    &lt;i&gt; LIKE LINE OF o_generator-&gt;includes,
+    &lt;st&gt; LIKE LINE OF o_cnx-&gt;supported_types,
+    &lt;x&gt; LIKE LINE OF zaplink-connectors,
+    &lt;sc&gt; LIKE LINE OF &lt;x&gt;-_components,
+    &lt;o&gt; LIKE LINE OF o_generator-&gt;all_components,
+    &lt;c&gt; LIKE LINE OF t_comps.
+
+* Framework
+  zaplink-framework_version = framework_version.
+
+* Connectors
+  o_list = zaplink_connectors_4inst=&gt;get_connectorlist( ).
+  o_list-&gt;select_default( zaplink_list=&gt;sel_actions-export ).
+
+* Initialize Interator
+  o_list-&gt;order_kind = zaplink_list=&gt;order_kinds-no_order.
+  o_list-&gt;init_sel_iter( ).
+  o_list-&gt;display_progress = abap_true.
+  o_c_n = o_list-&gt;get_next( ).
+  WHILE o_c_n IS BOUND.
+    o_comp = o_c_n.     o_c_n = o_list-&gt;get_next( ).
+    CLEAR: s_cnx, _comp.
+    _comp = o_comp-&gt;get_key( ).
+    d_kind = o_comp-&gt;get_typekind( ).
+    CREATE OBJECT o_cnx TYPE (_comp-name).
+    s_cnx-hdr = _comp.    s_cnx-uuid = o_cnx-&gt;uuid.     s_cnx-version = o_cnx-&gt;version.   s_cnx-supported_types = o_cnx-&gt;supported_types.
+    cnx_name-clsname = _comp-name.  s_cnx-signature = zaplink_object=&gt;get_class_signature( cnx_name ).
+
+    SELECT SINGLE devclass INTO s_cnx-devclass
+      FROM tadir
+      WHERE    pgmid = d_kind
+        AND   object = _comp-type
+        AND obj_name = _comp-name.
+
+    CREATE OBJECT o_generator.
+    o_generator-&gt;packages = cnx_packages.
+
+    d_classname = _comp-name.
+    o_generator-&gt;add_object( d_classname ).
+    LOOP AT o_generator-&gt;all_components ASSIGNING &lt;o&gt;.
+      CHECK &lt;o&gt;-type &lt;&gt; _comp-type OR &lt;o&gt;-name &lt;&gt; _comp-name.
+      CLEAR s_subcomp.    s_subcomp-name = &lt;o&gt;-name.    s_subcomp-type = &lt;o&gt;-type.    s_subcomp-devclass = &lt;o&gt;-devclass.
+      READ TABLE t_commun_c TRANSPORTING NO FIELDS
+           WITH TABLE KEY type = s_subcomp-type
+                          name = s_subcomp-name.
+      CHECK sy-subrc &lt;&gt; 0.    &quot; not commun comp
+      READ TABLE t_global_c TRANSPORTING NO FIELDS
+           WITH TABLE KEY type = s_subcomp-type
+                          name = s_subcomp-name.
+      IF sy-subrc = 0.
+        INSERT s_subcomp INTO TABLE t_commun_c.   &quot; component is present twice time on 2 differents connectors
+        CONTINUE.
+      ENDIF.
+
+      INSERT s_subcomp INTO TABLE s_cnx-_components.
+      CLEAR d_cnx. d_cnx-name = s_subcomp-name.   d_cnx-type = s_subcomp-type.
+      INSERT d_cnx INTO TABLE t_global_c.
+    ENDLOOP.
+
+* Force RAW data type
+    TRY.
+*        _regex = &apos;\\CLASS=&apos;.
+      CONCATENATE &apos;\\&apos; c_class-type &apos;=&apos; into _regex.
+      LOOP AT o_cnx-&gt;supported_types ASSIGNING &lt;st&gt;.
+        o_raw = o_cnx-&gt;create_new_raw( &lt;st&gt;-type ).
+        CHECK o_raw-&gt;raw IS BOUND.
+*        o_ref ?= cl_abap_typedescr=&gt;describe_by_object_ref( o_raw-&gt;raw ).
+*        CHECK o_ref IS BOUND.
+        CLEAR s_subcomp.    s_subcomp-name = cl_abap_classdescr=&gt;get_class_name( o_raw-&gt;raw ).    s_subcomp-type = c_class-type.
+        REPLACE FIRST OCCURRENCE OF REGEX _regex IN s_subcomp-name WITH ``.
+*        REPLACE FIRST OCCURRENCE OF REGEX &apos;\\CLASS=&apos; IN s_subcomp-name WITH ``.
+
+        SELECT SINGLE devclass INTO s_subcomp-devclass
+          FROM v_tralan
+          WHERE pgmid = c_class-kind
+            AND object = s_subcomp-type
+            AND obj_name = s_subcomp-name.
+        s_subcomp-raw_data_type = abap_true.
+        MODIFY TABLE s_cnx-_components FROM s_subcomp.
+        IF sy-subrc &lt;&gt; 0.   INSERT s_subcomp INTO TABLE s_cnx-_components.    ENDIF.
+        CLEAR d_cnx. d_cnx-name = s_subcomp-name.   d_cnx-type = s_subcomp-type.
+        INSERT d_cnx INTO TABLE t_global_c.
+      ENDLOOP.
+    ENDTRY.
+
+    IF NOT s_cnx IS INITIAL.  INSERT s_cnx INTO TABLE zaplink-connectors.   ENDIF.
+    CLEAR d_cnx. d_cnx-name = _comp-name.
+    IF NOT d_cnx IS INITIAL.  d_cnx-type = c_class-type.  INSERT d_cnx INTO TABLE t_global_c.   ENDIF.
+  ENDWHILE.
+
+* Remove missed commun components &amp; update component data
+  LOOP AT zaplink-connectors ASSIGNING &lt;x&gt;.
+    LOOP AT &lt;x&gt;-_components ASSIGNING &lt;sc&gt;
+            WHERE raw_data_type = abap_false.
+      READ TABLE t_commun_c TRANSPORTING NO FIELDS
+           WITH TABLE KEY type = &lt;sc&gt;-type
+                          name = &lt;sc&gt;-name.
+      CHECK sy-subrc = 0.                 &quot; component is a commun comp
+      DELETE TABLE &lt;x&gt;-_components FROM &lt;sc&gt;.
+    ENDLOOP.
+    LOOP AT &lt;x&gt;-_components ASSIGNING &lt;sc&gt;.
+      o_comp = zaplink_component_4inst=&gt;create_new( &lt;sc&gt;-hdr ).
+      CHECK o_comp IS BOUND.    o_cnx = o_comp-&gt;connector( ).
+      CHECK o_cnx IS BOUND.
+      CHECK o_cnx-&gt;do_exists( o_comp ) = abap_true.
+      TRY.
+          i_sign ?= o_cnx.
+          &lt;sc&gt;-signature = i_sign-&gt;get_signature( o_comp ).
+        CATCH cx_root.
+      ENDTRY.
+      DELETE TABLE t_commun_c FROM &lt;sc&gt;.
+    ENDLOOP.
+    DELETE TABLE t_commun_c
+           WITH TABLE KEY type = &lt;x&gt;-type
+                          name = &lt;x&gt;-name.
+  ENDLOOP.
+
+  s_package-sign = &apos;I&apos;. s_package-option = &apos;EQ&apos;.    s_package-low = &apos;ZAPLINK&apos;.
+  APPEND s_package TO r_packages.
+  t_comps = zaplink_tools=&gt;get_keys_from_package( packages = r_packages ).
+  SORT t_comps BY type name.
+  LOOP AT t_comps ASSIGNING &lt;c&gt;.
+    READ TABLE t_global_c TRANSPORTING NO FIELDS
+         WITH TABLE KEY type = &lt;c&gt;-type
+                        name = &lt;c&gt;-name.
+    IF sy-subrc = 0.
+      READ TABLE t_commun_c TRANSPORTING NO FIELDS
+           WITH TABLE KEY type = &lt;sc&gt;-type
+                          name = &lt;sc&gt;-name.
+      IF sy-subrc &lt;&gt; 0.
+        CONTINUE.
+      ENDIF.
+    ENDIF.
+    CLEAR s_comp.   s_comp-hdr = &lt;c&gt;.
+    o_comp = zaplink_component_4inst=&gt;create_new( &lt;c&gt; ).
+    CHECK o_comp IS BOUND.    o_cnx = o_comp-&gt;connector( ).
+    CHECK o_cnx IS BOUND.
+    CHECK o_cnx-&gt;do_exists( o_comp ) = abap_true.
+
+    d_kind = o_comp-&gt;get_typekind( ).
+    SELECT SINGLE devclass INTO s_comp-devclass
+      FROM tadir
+      WHERE    pgmid = d_kind
+        AND   object = &lt;c&gt;-type
+        AND obj_name = &lt;c&gt;-name.
+
+    TRY.
+        i_sign ?= o_cnx.
+      CATCH cx_root.
+    ENDTRY.
+    IF i_sign IS BOUND.   s_comp-signature = i_sign-&gt;get_signature( o_comp ).     ENDIF.
+
+    APPEND s_comp TO zaplink-components.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="NON">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="No" LENGTH="5 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="OUI">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Yes" LENGTH="5 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPES>
+   <ITEM CMPNAME="TD_CLASSNAME" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="1" TYPE="ZAPLINK_DEPENDENCIES_ANALYSER=&gt;TD_NAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TI_CODE_SIGNATURE" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="3" TYPE="ZAPLINK_CNX_EXT_CODE_SIGNATURE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink Connector Extension : Source Code Signature"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CONNECTOR" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink Connector interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_GENERATOR" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="3" TYPE="ZAPLINK_DEPENDENCIES_ANALYSER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink : Stand Alone Generator (local class&amp;intf)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink Components list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RAW component with data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMP_DETAIL" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    BEGIN OF ts_comp_detail.
+    INCLUDE TYPE spam_cvers AS hdr.
+    TYPES:
+         level        TYPE spam_fpdef-version,
+         high_package TYPE pat03-patch,
+         high_spp     TYPE pat03-patch,
+         spp_level    TYPE spam_fpdef-version,
+         state        TYPE comp_state,
+         active       TYPE spam_cvers-comp_type,
+         patchable    TYPE spam_cvers-comp_type,
+       END OF ts_comp_detail
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Components detailed informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SAP" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">BEGIN OF ts_sap,
+            status TYPE ts_status_info,
+            _hot_packages TYPE tt_hot_pack,
+            _components TYPE tt_comps,
+          END OF  ts_sap
+`</ITEM>
+   <ITEM CMPNAME="TS_STATUS_INFO" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_status_info,
+                    sap_ver              TYPE string,
+                    os                   TYPE string,
+                    machine_type         TYPE string,
+                    unicode              TYPE string,
+                    db_sys               TYPE string,
+                    db_release           TYPE string,
+                    db_lib               TYPE string,
+                    kernel               TYPE string,
+                    abap_ver             TYPE string,
+                    cua_ver              TYPE string,
+                  END OF ts_status_info
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="General Status Informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ZL" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">BEGIN OF ts_zl,
+            framework_version TYPE td_frameworkver,
+            components TYPE tt_zl_comps,
+            connectors TYPE tt_zl_cnx,
+          END OF  ts_zl
+`</ITEM>
+   <ITEM CMPNAME="TS_ZL_CNX" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">BEGIN OF ts_zl_cnx,
+          uuid               TYPE td_connuuid.
+    INCLUDE TYPE ts_zl_comp.
+    TYPES:
+          version            TYPE td_connver,
+          supported_types    TYPE tt_types,
+          _components        TYPE tt_zl_comps,
+        END OF ts_zl_cnx
+`</ITEM>
+   <ITEM CMPNAME="TS_ZL_COMP" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_zl_comp.
+    INCLUDE TYPE ts_compkey AS hdr.
+    TYPES:
+         devclass         TYPE string,
+         signature        TYPE string,
+         raw_data_type    TYPE abap_bool,        &quot; component that can&apos;t be removed
+       END OF ts_zl_comp
+`</ITEM>
+   <ITEM CMPNAME="TT_COMPS" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    tt_comps TYPE STANDARD TABLE OF ts_comp_detail WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Components informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_HOT_PACK" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    tt_hot_pack TYPE STANDARD TABLE OF pat03 WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Hot Packages informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ZL_CNX" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_zl_cnx TYPE SORTED TABLE OF ts_zl_cnx WITH UNIQUE KEY uuid
+`</ITEM>
+   <ITEM CMPNAME="TT_ZL_COMPS" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_zl_comps TYPE SORTED TABLE OF ts_zl_comp WITH UNIQUE KEY type name
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="8BF06B0484C1F8255810E769811AB560" CODE_SIGNATURE="184AECF6543041D470F4AFACC228D315" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_DOCV_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Documentation Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DOCUMENTATION
+ASDefine XML structure of a independent documentation &amp; general text
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TS_DOC" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_DOC"/>
+   <ITEM CMPNAME="TS_HEAD" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_HEAD"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_HEAD"/>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DOCUMENTATION" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="1" STATE="1">
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_DOC"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text LIKE LINE OF texts.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF fm_data-texts.
+
+  a0_maindata = fm_data-hdr.    a0_maindata-masterlang = a0_maindata-langu.   CLEAR a0_maindata-langu.
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.   s_text-langu = &lt;t&gt;-tdspras.   s_text-_ = &lt;t&gt;-_.   INSERT s_text INTO TABLE texts.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="1" STATE="1">
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_DOC"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text LIKE LINE OF fm_data-texts.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF texts.
+
+  fm_data-hdr = a0_maindata.    fm_data-hdr-langu = a0_maindata-masterlang. fm_data-hdr-masterlang = abap_true.
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.   s_text-tdspras = &lt;t&gt;-langu.   s_text-_ = &lt;t&gt;-_.   INSERT s_text INTO TABLE fm_data-texts.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TS_TEXT" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">begin of ts_text,
+        Langu type sy-langu,
+        _     type string,      &quot; Text
+      end of ts_text
+`</ITEM>
+   <ITEM CMPNAME="TT_RAWTEXT" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_rawtext TYPE STANDARD TABLE OF tline WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_TEXT" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tt_text TYPE STANDARD TABLE OF tline WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table of TLINE"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">tt_texts type SORTED TABLE OF ts_text with UNIQUE key langu
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

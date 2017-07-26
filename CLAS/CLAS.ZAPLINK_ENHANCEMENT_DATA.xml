@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="B1072467DEA756BF0C40255426009FD4" CODE_SIGNATURE="140CC7C298E546049628E419FA4AF8CB" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_ENHANCEMENT_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Base Class for Enhancement Data">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_BADI
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_CHECKBOX" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKBOX"/>
+   <ITEM CMPNAME="TS_SOURCEASSTRUC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_SOURCEASSTRUC"/>
+   <ITEM CMPNAME="TT_LTEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_LTEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS_2_DEL" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_LTEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Enhancement description Texts"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_ENHANCEMENT" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_CNX_EXT_CLEANER_4DATA" EXPOSURE="2" STATE="1" RELTYPE="1">
+    <COMPONENTS>
+     <ITEM MTDNAME="ANONYMIZE" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="UNANONYMIZE" MTDABSTRCT="X"/>
+    </COMPONENTS>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="SOTR_2_TEXTS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read SOTR to text table"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_SOTR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="SOTR IDs (Short &amp; Long)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_LTEXTS"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  TYPES:
+    BEGIN OF ts_lang,
+      lang       TYPE sotr_text-langu,
+    END OF ts_lang.
+  DATA tt_lang    TYPE STANDARD TABLE OF ts_lang WITH DEFAULT KEY.
+  DATA key        TYPE sotr_key.
+  DATA s_text     LIKE LINE OF results.
+  DATA sotr_text  TYPE sotr_text.
+  DATA btfr_str   TYPE btfr_string.
+  FIELD-SYMBOLS &lt;l&gt; LIKE LINE OF tt_lang.
+
+  SELECT langu INTO TABLE tt_lang
+    FROM sotr_text
+    WHERE concept = data-short
+      AND object = space.
+
+  SELECT langu APPENDING TABLE tt_lang
+    FROM sotr_textu
+    WHERE concept = data-long
+      AND object = space.
+
+  SORT tt_lang.     DELETE ADJACENT DUPLICATES FROM tt_lang.
+
+  LOOP AT tt_lang ASSIGNING &lt;l&gt;.
+    CLEAR s_text.
+* Short
+    IF data-short IS NOT INITIAL.
+      CLEAR: key, sotr_text.
+      key-concept = data-short.
+      CALL FUNCTION &apos;SOTR_READ_TEXT_WITH_KEY&apos;
+        EXPORTING
+          langu                  = &lt;l&gt;-lang
+*          CONTEXT                =
+          sotr_key               = key
+*          FLAG_CONTEXT           =
+        IMPORTING
+*       HEADER                 =
+          entry                  = sotr_text
+        EXCEPTIONS
+          no_entry_found         = 1
+          language_missing       = 0        &quot; Could exist only for long for this language
+          OTHERS                 = 3.
+      IF sy-subrc &lt;&gt; 0.
+        mac_raise_mf &apos;SOTR_READ_TEXT_WITH_KEY&apos; sy-subrc.
+      ELSE.
+        s_text-text = sotr_text-text.
+      ENDIF.
+    ENDIF.
+
+* Long
+    IF data-long IS NOT INITIAL.
+      CLEAR: btfr_str.
+      CALL FUNCTION &apos;BTFR_SELECT_SINGLE&apos;
+        EXPORTING
+          concept                   = data-long
+          langu                     = &lt;l&gt;-lang
+          flag_string               = abap_true
+          flag_system_context       = abap_false
+*         CONTEXT                   =
+        IMPORTING
+*         TEXT_WA                   =
+          string_wa                 = btfr_str
+*         HEADER                    =
+        EXCEPTIONS
+          concept_not_found         = 1
+          text_not_found            = 0     &quot; Could exist only for long for this language
+          OTHERS                    = 3.
+      IF sy-subrc &lt;&gt; 0.
+        mac_raise_mf &apos;BTFR_SELECT_SINGLE&apos; sy-subrc.
+      ELSE.
+        s_text-_ = btfr_str-text.
+      ENDIF.
+    ENDIF.
+
+    IF s_text IS NOT INITIAL.
+      s_text-lang = &lt;l&gt;.
+      INSERT s_text INTO TABLE results.
+    ENDIF.
+
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS_2_SOTR" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Write SOTR from text table"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SOTR" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_SOTR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="SOTR IDs (Short &amp; Long)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_LTEXTS"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _txt     TYPE string.
+  FIELD-SYMBOLS: &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    IF &lt;t&gt;-text IS NOT INITIAL.
+      _txt = &lt;t&gt;-text.
+      CALL FUNCTION &apos;BTFR_MAINTAIN_SINGLE_TEXT&apos;
+        EXPORTING
+*         PACKAGE                            =
+*         OBJECT_TYPE                        =
+          langu                              = &lt;t&gt;-lang
+          concept                            = sotr-short
+*         ALIAS                              =
+*         TRANSL_TYPE                        =
+*         FLAG_STRING                        =
+*         OPTIONS_EDITOR                     =
+*         OPTIONS_CHECK                      =
+*         FLAG_NO_CONTEXT                    =
+*         FLAG_DISPLAY                       =
+          flag_no_screen                     = abap_true
+*         FLAG_CALLED_FROM_EDIT_SCREEN       =
+          default_text                       = _txt
+          flag_correction_entry              = abap_false
+*         CORR_NUM                           =
+*         USE_KORRNUM_IMMEDIATEDLY           =
+*       IMPORTING
+*         FLAG_CANCELLED                     =
+*         HEADER                             =
+*         TEXT                               =
+*         STRING                             =
+        EXCEPTIONS
+          parameter_error                    = 1
+          text_not_found                     = 2
+          invalid_object_type                = 3
+          invalid_package                    = 4
+          header_diff_interface              = 5
+          invalid_tadir_entry                = 6
+          invalid_transl_type                = 7
+          invalid_concept                    = 8
+          OTHERS                             = 9.
+      IF sy-subrc &lt;&gt; 0.
+        mac_raise_mf &apos;BTFR_MAINTAIN_SINGLE_TEXT&apos; sy-subrc.
+      ENDIF.
+    ENDIF.
+    IF &lt;t&gt;-_ IS NOT INITIAL.
+      _txt = &lt;t&gt;-_.
+      CALL FUNCTION &apos;BTFR_MAINTAIN_SINGLE_TEXT&apos;
+        EXPORTING
+*         PACKAGE                            =
+*         OBJECT_TYPE                        =
+          langu                              = &lt;t&gt;-lang
+          concept                            = sotr-long
+*         ALIAS                              =
+*         TRANSL_TYPE                        =
+*         FLAG_STRING                        =
+*         OPTIONS_EDITOR                     =
+*         OPTIONS_CHECK                      =
+*         FLAG_NO_CONTEXT                    =
+*         FLAG_DISPLAY                       =
+          flag_no_screen                     = abap_true
+*         FLAG_CALLED_FROM_EDIT_SCREEN       =
+          default_text                       = _txt
+          flag_correction_entry              = abap_false
+*         CORR_NUM                           =
+*         USE_KORRNUM_IMMEDIATEDLY           =
+*       IMPORTING
+*         FLAG_CANCELLED                     =
+*         HEADER                             =
+*         TEXT                               =
+*         STRING                             =
+        EXCEPTIONS
+          parameter_error                    = 1
+          text_not_found                     = 2
+          invalid_object_type                = 3
+          invalid_package                    = 4
+          header_diff_interface              = 5
+          invalid_tadir_entry                = 6
+          invalid_transl_type                = 7
+          invalid_concept                    = 8
+          OTHERS                             = 9.
+      IF sy-subrc &lt;&gt; 0.
+        mac_raise_mf &apos;BTFR_MAINTAIN_SINGLE_TEXT&apos; sy-subrc.
+      ENDIF.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="SEEX" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_SOTR_CONCEPT" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="1" TYPE="SOTR_TEXT-CONCEPT"/>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZapLink Components list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MSG_COLL" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RAW component with data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SOTR" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    BEGIN OF ts_sotr,
+      short TYPE td_sotr_concept,
+      long  TYPE td_sotr_concept,
+    END OF ts_sotr
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="SOTR IDs (Short &amp; Long)"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

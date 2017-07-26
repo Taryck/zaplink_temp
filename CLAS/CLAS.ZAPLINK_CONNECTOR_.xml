@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="69F8678FA8828AF75B20279E86724C8F" CODE_SIGNATURE="B2CD3500FBACFE8B647421ACB3374C79" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_CONNECTOR_" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Zap Link Connector base implementation">U1&amp;FUNCTIONALITY&amp;
+ASDefault implementation of Interface ZAPLINK_CONNECTOR. The following
+  methods are implemented in this abstract object, but can be overrided :
+AS,,- GET_VALUES
+AS,,- IMPORT_TO_SAP
+AS,,- EXPORT_FROM_SAP
+ASAll other methods should be implemented when inheriting from this object
+  in order to be a public object.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CNX_EXT_CLEANER" REFCMPNAME="ANONYMIZE"/>
+   <ITEM CMPNAME="APPLICATION_LOG" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="APPLICATION_LOG"/>
+   <ITEM CMPNAME="BALLOG_OBJECT" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="BALLOG_OBJECT"/>
+   <ITEM CMPNAME="COMP_NODENAME" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="COMP_NODENAME"/>
+   <ITEM CMPNAME="CREATE_NEW_RAW" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="CREATE_NEW_RAW"/>
+   <ITEM CMPNAME="DELETE_FROM_SAP" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="DELETE_FROM_SAP"/>
+   <ITEM CMPNAME="DO_EXISTS" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="DO_EXISTS"/>
+   <ITEM CMPNAME="EXISTS" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="EXISTS"/>
+   <ITEM CMPNAME="EXPORT_FROM_SAP" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="EXPORT_FROM_SAP"/>
+   <ITEM CMPNAME="GET_VALUES" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="GET_VALUES"/>
+   <ITEM CMPNAME="IMPORT_TO_SAP" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="IMPORT_TO_SAP"/>
+   <ITEM CMPNAME="IS_SUPPORTED_VERSION" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="IS_SUPPORTED_VERSION"/>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="OPTIONS" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="OPTIONS"/>
+   <ITEM CMPNAME="READ_FROM_SAP" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="READ_FROM_SAP"/>
+   <ITEM CMPNAME="SUB_COMPONENT" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="SUB_COMPONENT"/>
+   <ITEM CMPNAME="SUPPORTED_TYPES" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="SUPPORTED_TYPES"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKSUM"/>
+   <ITEM CMPNAME="TD_CLASSNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CLASSNAME"/>
+   <ITEM CMPNAME="TD_COMPEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_COMPEXISTS"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_CONNCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_CONNCLASS"/>
+   <ITEM CMPNAME="TD_CONNEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_CONNEXISTS"/>
+   <ITEM CMPNAME="TD_CONNUUID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_CONNUUID"/>
+   <ITEM CMPNAME="TD_CONNVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TD_CONNVER"/>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DEVCLASS"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TD_EXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_EXISTS"/>
+   <ITEM CMPNAME="TD_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LANG"/>
+   <ITEM CMPNAME="TD_LIGHT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LIGHT"/>
+   <ITEM CMPNAME="TD_OBJ_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_OBJ_TYPE"/>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_KIND"/>
+   <ITEM CMPNAME="TD_TXTP_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_ID"/>
+   <ITEM CMPNAME="TD_TXTP_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_KIND"/>
+   <ITEM CMPNAME="TD_TXTP_LEN" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_LEN"/>
+   <ITEM CMPNAME="TD_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_TEXT"/>
+   <ITEM CMPNAME="TD_WITH_SUBCOMP" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_WITH_SUBCOMP"/>
+   <ITEM CMPNAME="TEXTPOOL_KINDS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TEXTPOOL_KINDS"/>
+   <ITEM CMPNAME="TI_CLEANNING" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TI_CLEANNING"/>
+   <ITEM CMPNAME="TI_CLEANNING_4DATA" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TI_CLEANNING_4DATA"/>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_COMPONENT"/>
+   <ITEM CMPNAME="TO_CONNECTOR" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_CONNECTOR"/>
+   <ITEM CMPNAME="TO_EZ_XML" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_EZ_XML"/>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_LIST"/>
+   <ITEM CMPNAME="TO_MSG_COLL" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_MSG_COLL"/>
+   <ITEM CMPNAME="TO_OPTIONS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_OPTIONS"/>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_RAW"/>
+   <ITEM CMPNAME="TO_RAW_BASE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_RAW_BASE"/>
+   <ITEM CMPNAME="TO_RAW_DATA" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_RAW_DATA"/>
+   <ITEM CMPNAME="TO_XML" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TO_XML"/>
+   <ITEM CMPNAME="TR_DLVUNIT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DLVUNIT"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_PACKAGES"/>
+   <ITEM CMPNAME="TR_TR" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_TR"/>
+   <ITEM CMPNAME="TS_BASE_ATTRIBUTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TS_BASE_ATTRIBUTS"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TS_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPTYPE"/>
+   <ITEM CMPNAME="TS_CONNDATA" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TS_CONNDATA"/>
+   <ITEM CMPNAME="TS_CONN_CLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_CLASS"/>
+   <ITEM CMPNAME="TS_CONN_DEF" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_DEF"/>
+   <ITEM CMPNAME="TS_DOC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_DOC"/>
+   <ITEM CMPNAME="TS_HEAD" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_HEAD"/>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_LANG"/>
+   <ITEM CMPNAME="TS_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXT"/>
+   <ITEM CMPNAME="TS_TXTP_TEXTPOOL" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXTPOOL"/>
+   <ITEM CMPNAME="TS_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TYPE"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_COMPKEYS"/>
+   <ITEM CMPNAME="TT_CONN_CLASSES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_CONN_CLASSES"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DYNPROS"/>
+   <ITEM CMPNAME="TT_FLOW_LOGIC" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_FLOW_LOGIC"/>
+   <ITEM CMPNAME="TT_RAWTEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_RAWTEXT"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTS"/>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="TT_TYPES"/>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CNX_EXT_CLEANER" REFCMPNAME="UNANONYMIZE"/>
+   <ITEM CMPNAME="UUID" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="UUID"/>
+   <ITEM CMPNAME="VERSION" EXPOSURE="2" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="VERSION"/>
+   <ITEM CMPNAME="WRITE_TO_SAP" EXPOSURE="2" CMPTYPE="1" REFCLSNAME="ZAPLINK_CONNECTOR" REFCMPNAME="WRITE_TO_SAP"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BALLOG_SUBOBJECT" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;CNX_COMMUN&apos;" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_NAME" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TD_CLASSNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_ACTIVATE" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="3" TYPE="ZAPLINK_ACTIVATE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink : Activate components"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Exception for connector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_TEXT_FIELDS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_SCRNTYPE"/>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_CNX_EXT_CLEANER" EXPOSURE="2" STATE="1" RELTYPE="1">
+    <COMPONENTS>
+     <ITEM MTDNAME="ANONYMIZE">
+      <SOURCE>`
+  DATA o_intf TYPE ti_cleanning_4data.
+* Must be call backward child to parent
+  CHECK object IS BOUND.
+  TRY.
+      TRY.
+          o_intf ?= object.
+        CATCH cx_sy_move_cast_error.    &quot; Auto anonymize can&apos;t be done
+      ENDTRY.
+      IF o_intf is bound.     o_intf-&gt;anonymize( ).     ENDIF.
+    CATCH zcx_zaplink INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.
+  TRY.
+      object-&gt;anonymize( ).
+    CATCH zcx_zaplink INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.</SOURCE>
+     </ITEM>
+     <ITEM MTDNAME="UNANONYMIZE">
+      <SOURCE>`
+  DATA o_intf TYPE ti_cleanning_4data.
+* Must be call backward child to parent
+  CHECK object IS BOUND.
+  TRY.
+      TRY.
+          o_intf ?= object.
+        CATCH cx_sy_move_cast_error.    &quot; Auto anonymize can&apos;t be done
+      ENDTRY.
+      IF o_intf IS BOUND.       o_intf-&gt;unanonymize( ).     ENDIF.
+    CATCH zcx_zaplink INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.
+  TRY.
+      object-&gt;unanonymize( ).
+    CATCH zcx_zaplink INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.</SOURCE>
+     </ITEM>
+    </COMPONENTS>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CNX_EXT_CODE_SIGNATURE" EXPOSURE="2" STATE="1" RELTYPE="1">
+    <COMPONENTS>
+     <ITEM MTDNAME="GET_SIGNATURE">
+      <SOURCE>`
+* Method implemented empty by default because most of SAP Component do not have source code.
+* This prevent connector using inheriting from this object to have to implement an empty method.</SOURCE>
+     </ITEM>
+    </COMPONENTS>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR" EXPOSURE="2" STATE="1" RELTYPE="1">
+    <COMPONENTS>
+     <ITEM MTDNAME="CREATE_NEW_RAW" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="DELETE_FROM_SAP" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="DO_EXISTS" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="EXPORT_FROM_SAP">
+      <SOURCE>`
+  DATA ez_xml          TYPE to_ez_xml.
+  DATA o_data          TYPE to_raw.
+
+  o_data = read_from_sap( component ).
+  IF o_data IS BOUND.
+    o_data-&gt;update_connector_data( me ).
+    CREATE OBJECT ez_xml.
+
+    TRY.
+        object = ez_xml-&gt;any2xml( any       = o_data
+                                  type      = comp_nodename ).
+      CATCH zcx_zaplink INTO o_cx.
+        mac_cascade_raise o_mycx o_cx.
+    ENDTRY.
+  ENDIF.</SOURCE>
+     </ITEM>
+     <ITEM MTDNAME="GET_VALUES">
+      <SOURCE>`
+  DATA _obj_type TYPE  euobj-id.
+  DATA _name TYPE td_compname.
+
+  _obj_type = type.
+
+  CALL FUNCTION &apos;REPOSITORY_INFO_SYSTEM_F4&apos;
+    EXPORTING
+      object_type           = _obj_type
+      object_name           = name
+      suppress_selection    = abap_true
+      use_alv_grid          = abap_false
+      without_personal_list = abap_false
+    IMPORTING
+      object_name_selected  = _name
+    EXCEPTIONS
+      cancel                = 1.
+  IF sy-subrc = 0.
+    name = _name.
+  ENDIF.</SOURCE>
+     </ITEM>
+     <ITEM MTDNAME="IMPORT_TO_SAP">
+      <SOURCE>`
+  DATA root_node TYPE REF TO if_ixml_node.
+  DATA o_raw_b   TYPE to_raw_base.
+  DATA o_raw     TYPE to_raw.
+  DATA _name     TYPE string.
+  DATA wa_flag   TYPE rs38l-head.
+  DATA ez_xml    TYPE to_ez_xml.
+  DATA o_cx      TYPE REF TO cx_root.
+  DATA t_bapiret TYPE bapirettab.
+  DATA f_is_wi TYPE abap_bool.
+  DATA t_handle TYPE bal_t_logh.
+  DATA s_profil TYPE bal_s_prof.
+  DATA s_choice TYPE bal_s_excm.
+
+  CHECK object IS BOUND.
+
+  TRY.
+      root_node = object-&gt;get_root_element( ).
+      IF NOT root_node IS BOUND.
+        _name = &apos;$NONE$&apos;(001).
+        RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+          EXPORTING
+            textid    = ZCX_ZL_CONNECTOR=&gt;invalid_xml
+            node_name = _name.
+      ENDIF.
+
+      _name = root_node-&gt;get_name( ).
+      IF _name &lt;&gt; comp_nodename.
+        RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+          EXPORTING
+            textid    = ZCX_ZL_CONNECTOR=&gt;invalid_xml
+            node_name = _name.
+      ENDIF.
+
+      TRY.
+          o_raw_b = zaplink_connectors=&gt;node_2_raw( root_node ).
+        CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+          RAISE EXCEPTION o_mycx.
+      ENDTRY.
+
+* Version handling to develop
+      IF is_supported_version( o_raw_b-&gt;version ) = abap_false.
+* Version &apos;&amp;CONN_VER&amp;&apos; is not (or no longer) suported by this connector.
+        RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+          EXPORTING
+            textid   = ZCX_ZL_CONNECTOR=&gt;unsuported_version
+            conn_ver = o_raw_b-&gt;version.
+      ENDIF.
+
+      o_raw = create_new_raw( o_raw_b-&gt;type ).
+      CREATE OBJECT ez_xml.
+      CALL METHOD ez_xml-&gt;xml2any
+        EXPORTING
+          xmldoc = object
+        CHANGING
+          any    = o_raw.
+      IF ez_xml-&gt;application_log-&gt;has_messages_of_msgt( id_msgty = &apos;W&apos;) = abap_true.
+*        CREATE OBJECT o_comp.   o_comp-&gt;set_type( o_raw_b-&gt;type ).    o_comp-&gt;set_name( o_raw_b-&gt;name ).
+*        mac_create_log o_msgs ballog_subobject space.   o_comp-&gt;set_msg_coll( o_msgs ).
+        application_log-&gt;add_from_instance( io_msglist = ez_xml-&gt;application_log
+                                     if_add_as_subnode = abap_true ).
+
+        APPEND application_log-&gt;md_handle TO t_handle.
+        CALL FUNCTION &apos;BAL_DSP_PROFILE_SINGLE_LOG_GET&apos;
+          IMPORTING
+            e_s_display_profile = s_profil
+          EXCEPTIONS
+            OTHERS              = 0.
+        s_profil-langu = sy-langu.
+* Error with &amp;1 &amp;2 : Confirm or abort this comp.
+        MESSAGE i010(zaplink_easyxml) WITH o_raw_b-&gt;type o_raw_b-&gt;name INTO s_profil-title.
+        s_profil-use_grid = s_profil-no_toolbar = s_profil-show_all = s_profil-cwidth_opt = abap_true.
+*        s_profil-tree_ontop = abap_false. = s_profil-pop_adjst = s_profil-tree_adjst
+* XML Errors for component &amp;1 &amp;2
+        MESSAGE i009(zaplink_easyxml) WITH o_raw_b-&gt;type o_raw_b-&gt;name INTO s_profil-grid_title-gridtitle.
+        s_profil-start_col = s_profil-start_row = 5.
+        s_profil-end_col = 120.
+        s_profil-end_row = 40.
+        s_profil-head_size = 10.
+
+* Issue 45
+        CALL FUNCTION &apos;BAL_DSP_LOG_DISPLAY&apos;
+          EXPORTING
+            i_s_display_profile    = s_profil
+            i_t_log_handle         = t_handle
+*           I_T_MSG_HANDLE         =
+*           I_S_LOG_FILTER         =
+*           I_S_MSG_FILTER         =
+*           I_T_LOG_CONTEXT_FILTER =
+*           I_T_MSG_CONTEXT_FILTER =
+            i_amodal               = abap_false
+*           I_SRT_BY_TIMSTMP       = &apos; &apos;
+          IMPORTING
+            e_s_exit_command       = s_choice
+          EXCEPTIONS
+            profile_inconsistent   = 1
+            internal_error         = 2
+            no_data_available      = 3
+            no_authority           = 4
+            OTHERS                 = 5.
+        IF sy-subrc &lt;&gt; 0 OR s_choice-continue IS INITIAL.
+          CREATE OBJECT o_mycx
+            EXPORTING
+              textid = ZCX_ZL_CONNECTOR=&gt;xml_error
+              type   = o_raw_b-&gt;type
+              name   = o_raw_b-&gt;name.
+          o_mycx-&gt;update( ).
+          RAISE EXCEPTION o_mycx.
+        ENDIF.
+      ENDIF.
+
+* Add to worklist
+*      wa_type = o_raw-&gt;type.
+*      wa_name = o_raw-&gt;name.
+      zaplink_tools=&gt;add_comp_to_working_area( type = o_raw-&gt;type
+                                               name = o_raw-&gt;name ).
+*      IF zaplink_tools=&gt;is_working_areable( o_raw-&gt;type ) = abap_true.
+*        CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+*          EXPORTING
+*            object                  = wa_type
+*            obj_name                = wa_name
+**            DELETED_FLAG            = &apos; &apos;
+*          IMPORTING
+*            object_inserted         = wa_flag
+*          EXCEPTIONS
+*            wrong_object_name       = 1
+*            OTHERS                  = 2.
+*        IF sy-subrc &lt;&gt; 0.
+*          mac_add_mf_and_raise &apos;RS_INSERT_INTO_WORKING_AREA&apos; sy-subrc.
+*        ENDIF.
+*      ELSE.   &quot; Security Remove old eroneous entries
+*        CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+*          EXPORTING
+*            object                        = wa_type
+*            obj_name                      = wa_name
+**            GLOBAL_CHECK                  = &apos; &apos;
+**            MODE                          = &apos;S&apos;
+*          IMPORTING
+*            object_is_work_item           = f_is_wi
+**             OBJECT_INACTIVE_VERSION       =
+*                  .
+*        IF f_is_wi = abap_true.   &quot; shouldn&apos;t be the case
+*          CALL FUNCTION &apos;RS_DELETE_FROM_WORKING_AREA&apos;
+*            EXPORTING
+*              object                         = wa_type
+*              obj_name                       = wa_name
+*              immediate                      = abap_true
+**              OWN_SET_ONLY                   = &apos; &apos;
+*              actualize_working_area         = abap_false
+**              ADJUST_OBJECT_INPUT_DATA       = &apos;X&apos;
+*                    .
+*        ENDIF.
+*      ENDIF.
+
+      components = write_to_sap( o_raw ).
+      IF components IS NOT BOUND.   CREATE OBJECT components.   ENDIF.
+*      o_c_in_l = components-&gt;search( o_comp ).
+*      IF o_c_in_l IS INITIAL.
+*        components-&gt;add( o_comp ).
+*      ELSE.
+*        o_msgs_2 = o_c_in_l-&gt;get_msg_coll( ).
+*        IF NOT o_msgs_2 IS INITIAL.   o_msgs-&gt;add_from_instance( io_msglist = o_msgs_2 ).   ENDIF.
+*        o_c_in_l-&gt;set_msg_coll( o_msgs ).
+*      ENDIF.
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+*    CATCH ZCX_ZAPLINK INTO o_zlcx.      &quot; Issue 93
+*      CREATE OBJECT o_mycx
+*        EXPORTING
+*          textid  = ZCX_ZAPLINK=&gt;system_error
+*          previous = o_zlcx.
+*      o_mycx-&gt;update( ).
+*      RAISE EXCEPTION o_mycx.
+    CATCH cx_root INTO o_cx.
+      CREATE OBJECT o_mycx
+        EXPORTING
+          textid   = zcx_zaplink=&gt;system_error
+          previous = o_cx.
+      o_mycx-&gt;update( ).
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+     </ITEM>
+     <ITEM MTDNAME="IS_SUPPORTED_VERSION" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="READ_FROM_SAP" MTDABSTRCT="X"/>
+     <ITEM MTDNAME="WRITE_TO_SAP" MTDABSTRCT="X"/>
+    </COMPONENTS>
+   </ITEM>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ACTIVE_COMPONENT" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Active specified component"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_is_work_i    TYPE abap_bool.
+  DATA d_is_inactiv   TYPE abap_bool.
+  DATA d_obj_name     TYPE e071-obj_name.
+  DATA d_type         TYPE e071-object.
+  DATA t_comps      TYPE zaplink_list=&gt;tt_compkeys.
+  DATA s_comp       LIKE LINE OF t_comps.
+
+  result = abap_false.
+  s_comp-name = d_obj_name = name.
+  s_comp-type = d_type = type.
+  CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+    EXPORTING
+      object                        = d_type
+      obj_name                      = d_obj_name
+*     GLOBAL_CHECK                  = &apos; &apos;
+*     MODE                          = &apos;S&apos;
+    IMPORTING
+      object_is_work_item           = d_is_work_i     &quot; My inactive object
+      object_inactive_version       = d_is_inactiv.
+  IF NOT d_is_work_i IS INITIAL OR NOT d_is_inactiv IS INITIAL.
+    IF NOT o_activate IS BOUND.
+      CREATE OBJECT o_activate.
+    ELSE.
+      o_activate-&gt;reset( ).
+    ENDIF.
+    APPEND s_comp TO t_comps.
+    o_activate-&gt;add_keys( t_comps ).
+    t_comps = o_activate-&gt;activate( ).
+    result = abap_true.
+    IF NOT t_comps IS INITIAL.      CLEAR result.     ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHECK_COMPONENT_LIST" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Check the component list for the presence of the object"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENTS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST"/>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_RAW"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+* First reported by Issue 92
+  DATA o_comp         TYPE to_component.
+
+  o_comp = object-&gt;get_component( abap_true ).
+  IF NOT components IS BOUND.   CREATE OBJECT components.   ENDIF.
+  TRY.
+      components-&gt;add( o_comp ).
+    CATCH zcx_zl_list.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_type LIKE LINE OF r_text_fields.
+  s_type-sign = &apos;I&apos;. s_type-option = &apos;EQ&apos;.
+  s_type-low = rpyty_dynp_ftype-text.       APPEND s_type TO r_text_fields.
+  s_type-low = rpyty_dynp_ftype-frame.      APPEND s_type TO r_text_fields.
+  s_type-low = rpyty_dynp_ftype-push.       APPEND s_type TO r_text_fields.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  class_name = zaplink_tools=&gt;get_clas_name( me ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_ABAPSOURCE2FLOWLOGIC" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Structured ABAP source to flow logic"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_FLOW_LOGIC"/>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  SPLIT source AT line_separator INTO TABLE result.
+  IF NOT result IS INITIAL.       &quot; remove first line separator
+    IF source(1) = line_separator.
+      DELETE result INDEX 1.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_ABAP_RAW2SOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Raw data to structured source data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;c&gt; LIKE LINE OF raw.
+
+  LOOP AT raw ASSIGNING &lt;c&gt;.
+    CONCATENATE result &lt;c&gt; INTO result SEPARATED BY line_separator. &quot; will start with line_sep better for XML display and required because get_value remove spaces
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_ABAP_SOURCE2RAW" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Structured source data to Raw data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  SPLIT source AT line_separator INTO TABLE result.
+  IF NOT result IS INITIAL.       &quot; remove first line separator
+    IF source(1) = line_separator.
+      DELETE result INDEX 1.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_FLOWLOGIC2ABAPSOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert flow logic table to ABAP Source"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_FLOW_LOGIC"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF raw.
+
+  LOOP AT raw ASSIGNING &lt;c&gt;.
+    CONCATENATE result &lt;c&gt; INTO result SEPARATED BY line_separator. &quot; will start with line_sep better for XML display and required because get_value remove spaces
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FUSION_TEXTPOOL" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Fusion 2 texts pool"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPLETION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Completion text pool"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="REsult text pool"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Main text pool"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;c&gt;  LIKE LINE OF completion,
+    &lt;ct&gt; LIKE LINE OF &lt;c&gt;-texts,
+    &lt;t&gt;  LIKE LINE OF source.
+
+  result = source.
+  LOOP AT result ASSIGNING &lt;t&gt;.
+    READ TABLE completion ASSIGNING &lt;c&gt;
+         WITH TABLE KEY id = &lt;t&gt;-id
+                       key = &lt;t&gt;-key.
+    CHECK sy-subrc = 0.
+    LOOP AT &lt;c&gt;-texts ASSIGNING &lt;ct&gt;.
+      READ TABLE &lt;t&gt;-texts TRANSPORTING NO FIELDS
+           WITH TABLE KEY langu = &lt;ct&gt;-langu.
+      CHECK sy-subrc &lt;&gt; 0.
+      INSERT &lt;ct&gt; INTO TABLE &lt;t&gt;-texts.
+    ENDLOOP.
+  ENDLOOP.
+  LOOP AT completion ASSIGNING &lt;c&gt;.
+    READ TABLE result ASSIGNING &lt;t&gt;
+         WITH TABLE KEY id = &lt;c&gt;-id
+                       key = &lt;c&gt;-key.
+    CHECK sy-subrc &lt;&gt; 0.
+    INSERT &lt;c&gt; INTO TABLE result.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_DYNPROS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get program Dynpros"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_DYNPROS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  SET EXTENDED CHECK OFF.
+  INCLUDE mseusbit. &quot; for c_type_dynp_select_norm, c_type_dynp_select_mod, c_type_dynp_select_incl
+  SET EXTENDED CHECK ON.
+*  DATA:
+*    BEGIN OF dynp_id,
+*      prog TYPE d020s-prog,
+*      dnum TYPE d020s-dnum,
+*    END OF dynp_id.
+  TYPES:
+    BEGIN OF t_dynpro,
+      prog TYPE d020s-prog,
+      dnum TYPE d020s-dnum,
+    END OF t_dynpro.
+  DATA t_dynpros TYPE SORTED TABLE OF t_dynpro WITH UNIQUE KEY dnum.
+  DATA header TYPE d020s.
+  DATA t_d021t TYPE SORTED TABLE OF d021t WITH UNIQUE KEY dynr fldn lang.
+  DATA t_container TYPE dycatt_tab.
+*  DATA t_fields TYPE STANDARD TABLE OF d021s.
+  DATA t_fields    TYPE dyfatc_tab.
+  DATA t_flowlogic TYPE tt_flow_logic.
+  DATA s_result LIKE LINE OF result.
+  DATA s_cont   LIKE LINE OF s_result-containers.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF t_container,
+    &lt;f&gt; LIKE LINE OF t_fields,
+    &lt;t&gt; LIKE LINE OF t_d021t,
+    &lt;r&gt; LIKE LINE OF t_dynpros.
+*    &lt;r&gt; LIKE LINE OF result.
+*  DATA s_field  LIKE LINE OF &lt;r&gt;-fields.
+  DATA s_field  LIKE LINE OF s_cont-fields.
+  DATA s_text   LIKE LINE OF s_field-texts.
+  DATA f_clear  TYPE abap_bool.
+
+*  SELECT * INTO CORRESPONDING FIELDS OF TABLE result
+  SELECT prog dnum INTO TABLE t_dynpros
+    FROM d020s
+    WHERE prog = program
+      AND type NOT IN (c_type_dynp_select_norm, c_type_dynp_select_mod, c_type_dynp_select_incl).
+
+  SELECT *
+    INTO TABLE t_d021t
+    FROM d021t
+    WHERE prog = program
+      AND dtxt &lt;&gt; space.
+
+*  loop at result assigning &lt;r&gt;.
+  LOOP AT t_dynpros ASSIGNING &lt;r&gt;.
+    CLEAR s_result.
+
+* Processing Dynpro #&amp;2 (&amp;1)
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE i500 WITH space space. ENDIF.
+    SET EXTENDED CHECK ON.
+    application_log-&gt;add_info( id_msgid = &apos;ZAPLINK&apos;
+                               id_msgno = &apos;500&apos;
+                               id_msgv1 = &lt;r&gt;-prog
+                               id_msgv2 = &lt;r&gt;-dnum ).
+
+    SELECT lang dtxt
+      INTO CORRESPONDING FIELDS OF TABLE s_result-texts
+      FROM d020t
+      WHERE prog = &lt;r&gt;-prog
+        AND dynr = &lt;r&gt;-dnum
+        AND dtxt &lt;&gt; space.
+
+*    dynp_id-prog = &lt;r&gt;-prog.
+*    dynp_id-dnum = &lt;r&gt;-dnum.
+*    IMPORT DYNPRO header t_fields t_flowlogic &lt;r&gt;-matchcodes ID dynp_id.
+*    IF sy-subrc &lt;&gt; 0.
+*    ENDIF.
+    CALL FUNCTION &apos;RPY_DYNPRO_READ&apos;
+      EXPORTING
+        progname                    = &lt;r&gt;-prog
+        dynnr                       = &lt;r&gt;-dnum
+*       SUPPRESS_EXIST_CHECKS       = &apos; &apos;
+*       SUPPRESS_CORR_CHECKS        = &apos; &apos;
+      IMPORTING
+        header                      = s_result-hdr
+      TABLES
+        containers                  = t_container
+        fields_to_containers        = t_fields
+        flow_logic                  = t_flowlogic
+        params                      = s_result-matchcodes
+      EXCEPTIONS
+        cancelled                   = 1
+        not_found                   = 2
+        permission_error            = 3
+        OTHERS                      = 4.
+    IF sy-subrc &lt;&gt; 0.
+    ENDIF.
+
+    LOOP AT t_container ASSIGNING &lt;c&gt;.
+      CLEAR s_cont.
+      IF &lt;c&gt;-type &lt;&gt; &apos;SCREEN&apos;.
+* Code from SAPLSIFP form I_CONT_TO_FIELD : LSIFPF11(1479-&gt;1493)
+* When importing dynpro and exporting again C_LINE_MIN or C_COLN_MIN are blank sometimes despite in source system they are set to 1
+* After analyzing both read and write dynpro it apears that when writing C_LINE_MIN is not transfered to ADEZ if C_RESIZE_V is initial
+* We have to set the set rule manualy to ensure that unmodified screen will be exported with the same data.
+        IF &lt;c&gt;-c_resize_v IS INITIAL.   CLEAR &lt;c&gt;-c_line_min.   ENDIF.
+        IF &lt;c&gt;-c_resize_h IS INITIAL.   CLEAR &lt;c&gt;-c_coln_min.   ENDIF.
+      ENDIF.
+      s_cont-hdr = &lt;c&gt;.
+      LOOP AT t_fields ASSIGNING &lt;f&gt;
+           WHERE cont_type = &lt;c&gt;-type
+             AND cont_name = &lt;c&gt;-name.
+        CLEAR: s_field, f_clear.
+        s_field-hdr = &lt;f&gt;.
+        CLEAR: s_field-cont_type, s_field-cont_name.
+        IF &lt;f&gt;-type IN r_text_fields.       &quot; field may have texts
+          LOOP AT t_d021t ASSIGNING &lt;t&gt;
+               WHERE dynr = &lt;r&gt;-dnum
+                 AND fldn = &lt;f&gt;-name.
+            CLEAR s_text.
+            s_text-langu = &lt;t&gt;-lang.
+            s_text-short_txt = &lt;t&gt;-dtxt.
+            INSERT s_text INTO TABLE s_field-texts.
+            IF &lt;t&gt;-dtxt = s_field-text. f_clear = abap_true. ENDIF.
+          ENDLOOP.
+          IF NOT s_field-texts IS INITIAL AND NOT s_field-text CO &apos;_&apos; AND f_clear = abap_true. CLEAR s_field-text. ENDIF.
+        ENDIF.
+        INSERT s_field INTO TABLE s_cont-fields.
+      ENDLOOP.
+      INSERT s_cont INTO TABLE s_result-containers.
+    ENDLOOP.
+
+    s_result-flow_logic-_ = conv_flowlogic2abapsource( t_flowlogic ).
+
+    CLEAR s_result-program.
+
+    INSERT s_result INTO TABLE result.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_MENUS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get program Menus"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_MENUPAINTER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu painter Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_fm_data TYPE zaplink_menupainter_data=&gt;ts_fm_data.
+  DATA d_state   TYPE progdir-state.
+  DATA rcode(5)  TYPE c.
+
+  d_state = &apos;I&apos;.      &quot; Inactive
+  PERFORM version_check IN PROGRAM saplsmpi USING program d_state CHANGING rcode.
+  IF sy-subrc &lt;&gt; 0 OR NOT rcode IS INITIAL.   d_state = &apos;A&apos;.    ENDIF.
+
+  CALL FUNCTION &apos;RS_CUA_INTERNAL_FETCH&apos;
+    EXPORTING
+      program                    = program
+*     LANGUAGE                   =
+      state                      = d_state
+*     WITH_SECOND_LANGUAGE       = &apos; &apos;
+    IMPORTING
+      adm                        = s_fm_data-header
+*      LANGU                      =
+*      AUTHOR                     =
+*      DATE                       =
+*      TIME                       =
+*      CAUTHOR                    =
+*      CDATE                      =
+*      CTIME                      =
+*      GDATE                      =
+*      GTIME                      =
+    TABLES
+      sta                        = s_fm_data-status
+      fun                        = s_fm_data-functions
+      men                        = s_fm_data-menus_det
+      mtx                        = s_fm_data-menus
+      act                        = s_fm_data-bars_det
+      but                        = s_fm_data-buttons_det
+      pfk                        = s_fm_data-keyboards
+      set                        = s_fm_data-stat_funcs
+      doc                        = s_fm_data-attributes
+      tit                        = s_fm_data-titles
+      biv                        = s_fm_data-ffuncs
+    EXCEPTIONS
+      not_found                  = 1
+      unknown_version            = 2
+      OTHERS                     = 3.
+  IF sy-subrc &lt;&gt; 0.
+    mac_add_mf_and_raise &apos;RS_CUA_INTERNAL_FETCH&apos; sy-subrc.
+  ELSEIF s_fm_data IS INITIAL.
+    EXIT.     &quot; No Menu
+  ENDIF.
+
+  SELECT *
+    INTO TABLE s_fm_data-texts
+    FROM rsmptexts
+    WHERE progname = program.
+
+  CREATE OBJECT result.
+  result-&gt;from_data( s_fm_data ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_PROG_RAWSOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get program RAW source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+*  DATA d_o_type TYPE  seu_objtyp.
+*  DATA d_o_name TYPE  seu_objkey.
+*  DATA d_object     TYPE e071-object.
+  DATA d_obj_name   TYPE e071-obj_name.
+  DATA d_is_work_i  TYPE abap_bool.
+  DATA d_is_inactiv TYPE abap_bool.
+*  DATA d_prog       TYPE progdir-name.
+
+*  d_is_inactiv = &apos;_&apos;.
+*  CALL FUNCTION &apos;RS_PROGNAME_SPLIT&apos;
+*    EXPORTING
+*      progname_with_namespace           = program
+**   IMPORTING
+**     NAMESPACE                         =
+**     PROGNAME_WITHOUT_NAMESPACE        =
+**     FUGR_IS_NAME                      =
+**     FUGR_IS_RESERVED_NAME             =
+**     FUGR_IS_FUNCTIONPOOL_NAME         =
+**     FUGR_IS_INCLUDE_NAME              =
+**     FUGR_IS_FUNCTIONMODULE_NAME       =
+**     FUGR_IS_HIDDEN_NAME               =
+**     FUGR_GROUP                        =
+**     FUGR_INCLUDE_NUMBER               =
+**     FUGR_SUFFIX                       =
+**     FUGR_IS_RESERVED_EXIT_NAME        =
+**     SLDB_IS_RESERVED_NAME             =
+**     SLDB_LOGDB_NAME                   =
+**     MST_IS_RESERVED_NAME              =
+**     TYPE_IS_RESERVED_NAME             =
+**     TYPE_NAME                         =
+**     MENU_IS_RESERVED_NAME             =
+**     MENU_NAME                         =
+**     CLASS_IS_RESERVED_NAME            =
+**     CLASS_IS_NAME                     =
+**     CLASS_NAME                        =
+**     CLASS_IS_METHOD_NAME              =
+**     CLASS_METHOD_NAME                 =
+**     CNTX_IS_RESERVED_NAME             =
+*    EXCEPTIONS
+*      delimiter_error                   = 1
+*      OTHERS                            = 2.
+*  IF sy-subrc &lt;&gt; 0.
+** MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+**         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+*  ENDIF.
+*
+*  CALL METHOD cl_wb_source_req_dispatcher=&gt;get_object_from_sourcename
+*    EXPORTING
+*      p_source_name       = program
+*    IMPORTING
+*      p_object_type       = d_o_type
+*      p_object_name       = d_o_name
+*    EXCEPTIONS
+*      no_objecttype_found = 1
+*      OTHERS              = 2.
+*  IF sy-subrc = 0.
+*CALL METHOD cl_wb_cleditor=&gt;convert_type_and_name
+*  EXPORTING
+*    object_type   =
+*    mtdkey        =
+*    section_limu  =
+*  IMPORTING
+*    limu          =
+*    incname       =
+*    cpname        =
+*    objtype       =
+*    extension     =
+*  EXCEPTIONS
+*    not_converted = 1
+*    others        = 2
+*        .
+*IF sy-subrc &lt;&gt; 0.
+** MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+**            WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+*ENDIF.
+*
+*    CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+*      EXPORTING
+*        object                        = d_object
+*        obj_name                      = d_obj_name
+**     GLOBAL_CHECK                  = &apos; &apos;
+**     MODE                          = &apos;S&apos;
+*      IMPORTING
+**     OBJECT_IS_WORK_ITEM           =
+*        object_inactive_version       = d_is_inactiv.
+*  ENDIF.
+
+* Issue 73 : Detecting when inactive version exists
+  d_obj_name = program.
+  CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+    EXPORTING
+      object                        = &apos;REPS&apos;
+      obj_name                      = d_obj_name
+*     GLOBAL_CHECK                  = &apos; &apos;
+*     MODE                          = &apos;S&apos;
+    IMPORTING
+      object_is_work_item           = d_is_work_i     &quot; My inactive object
+      object_inactive_version       = d_is_inactiv.
+
+* Backup solution not very efficient
+*  IF d_is_inactiv = &apos;_&apos;.
+*    SELECT SINGLE program INTO d_prog
+*      FROM progdir
+*      WHERE name = program
+*       AND state = &apos;I&apos;.
+*    IF sy-subrc = 0.
+*      d_is_inactiv = abap_true.
+*    ELSE.
+*      CLEAR d_is_inactiv.
+*    ENDIF.
+*  ENDIF.
+
+  IF NOT d_is_work_i IS INITIAL OR NOT d_is_inactiv IS INITIAL.
+    READ REPORT program INTO result STATE &apos;I&apos;.
+  ELSE.
+    sy-subrc = 4.
+  ENDIF.
+  IF sy-subrc &lt;&gt; 0.
+    READ REPORT program INTO result STATE &apos;A&apos;.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_PROG_SOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get program source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Program Name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA code TYPE tt_abaprawsource.
+
+  code = get_prog_rawsource( program ).
+  result = conv_abap_raw2source( code ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_PROG_TEXTPOOL" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get program Texts pool"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_textpool TYPE STANDARD TABLE OF textpool.
+  DATA t_langlist TYPE instlang.
+  TYPES:
+    BEGIN OF ts_text,
+      id      TYPE  textpoolid,
+      key	    TYPE  textpoolky,
+      langu   TYPE spras,
+      entry	  TYPE textpooltx,
+      length  TYPE textpoolln,
+    END OF ts_text.
+  DATA: t_texts TYPE STANDARD TABLE OF ts_text.
+  DATA _text LIKE LINE OF t_texts.
+  DATA _textpool LIKE LINE OF result.
+  DATA _tpool LIKE LINE OF _textpool-texts.
+  FIELD-SYMBOLS:
+    &lt;l&gt; LIKE LINE OF t_langlist,
+    &lt;t&gt; LIKE LINE OF t_textpool.
+
+  CALL FUNCTION &apos;RS_TEXTLOG_GET_PARAMETERS&apos;
+    CHANGING
+      installed_languages = t_langlist.
+
+  LOOP AT t_langlist ASSIGNING &lt;l&gt;.
+    READ TEXTPOOL program INTO t_textpool LANGUAGE &lt;l&gt;.
+    CHECK sy-subrc = 0.
+    _text-langu = &lt;l&gt;.
+    LOOP AT t_textpool ASSIGNING &lt;t&gt;.
+      _text-id = &lt;t&gt;-id.
+      _text-key = &lt;t&gt;-key.
+      _text-entry = &lt;t&gt;-entry.
+      _text-length = &lt;t&gt;-length.
+      APPEND _text TO t_texts.
+    ENDLOOP.
+  ENDLOOP.
+
+  SORT t_texts BY id key langu.
+  DELETE ADJACENT DUPLICATES FROM t_texts COMPARING id key langu.
+
+  LOOP AT t_texts INTO _text.
+    AT NEW key. &quot; ID
+      CLEAR _textpool.
+      _textpool-id = _text-id.
+      _textpool-key = _text-key.
+    ENDAT.
+    AT NEW langu.
+      CLEAR _tpool.
+      _tpool-langu = _text-langu.
+    ENDAT.
+
+    _tpool-entry = _text-entry.
+    _tpool-length = _text-length.
+
+    AT END OF langu.
+      APPEND _tpool TO _textpool-texts.
+    ENDAT.
+    AT END OF key.
+      APPEND _textpool TO result.
+    ENDAT.
+
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_TYPE_FROM_XML" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get component type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_XML"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA root_node TYPE REF TO if_ixml_node.
+  DATA o_raw     TYPE to_raw_base.
+  DATA _name     TYPE string.
+
+  CHECK object IS BOUND.
+
+  root_node = object-&gt;get_root_element( ).
+  IF NOT root_node IS BOUND.
+    _name = &apos;$NONE$&apos;(001).
+    RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+      EXPORTING
+         textid    = ZCX_ZL_CONNECTOR=&gt;invalid_xml
+         node_name = _name.
+  ENDIF.
+
+  _name = root_node-&gt;get_name( ).
+  IF _name &lt;&gt; comp_nodename.
+    RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+      EXPORTING
+        textid   = ZCX_ZL_CONNECTOR=&gt;invalid_xml
+        node_name = _name.
+  ENDIF.
+
+*  TRY.
+      o_raw = zaplink_connectors=&gt;node_2_raw( root_node ).
+      result = o_raw-&gt;type.
+*    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+*      RAISE EXCEPTION o_mycx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_BASE_ATTRIBUTS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Build default Connector Base Attributs"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ATTRIBUTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_BASE_ATTRIBUTS"/>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_desc    TYPE REF TO cl_abap_typedescr.
+  DATA string    TYPE string.
+  DATA _name     TYPE tadir-obj_name.
+  DATA _type     TYPE tadir-object.
+  DATA _kind     TYPE tadir-pgmid.
+
+  o_desc = cl_abap_typedescr=&gt;describe_by_object_ref( p_object_ref = me ).
+  string = o_desc-&gt;get_relative_name( ).
+
+*  TRY.
+      _name = attributs-name = component-&gt;get_name( ).
+      _type = component-&gt;get_type( ).
+*    CATCH ZCX_ZAPLINK INTO o_cx.
+*      mac_cascade_raise o_mycx o_cx.
+*  ENDTRY.
+  attributs-class = string.
+  attributs-version = me-&gt;version.
+
+  _kind = zaplink_connectors=&gt;get_typekind( _type ).
+
+  CALL FUNCTION &apos;TRINT_TADIR_QUERY&apos;
+    EXPORTING
+      iv_pgmid           = _kind
+      iv_object          = _type
+      iv_obj_name        = _name
+    IMPORTING
+*     EV_OBJECT          =
+*     EV_SRCSYSTEM       =
+*     EV_AUTHOR          =
+*     EV_GENFLAG         =
+*     EV_EXIST           =
+      ev_devclass        = attributs-devclass.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_DYNPROS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="set program Dynpros"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DYNPROS" CMPTYPE="1" TYPTYPE="1" TYPE="TT_DYNPROS"/>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  INCLUDE mseusbit. &quot; for c_type_dynp_select_norm, c_type_dynp_select_mod, c_type_dynp_select_incl
+  DATA:
+    BEGIN OF dynp_id,
+      prog TYPE d020s-prog,
+      dnum TYPE d020s-dnum,
+    END OF dynp_id.
+  DATA header   TYPE rpy_dyhead.
+  DATA t_flowlogic TYPE tt_flow_logic.
+*  DATA t_dp_txt TYPE d020t-dtxt.
+  DATA t_containers TYPE dycatt_tab.
+  DATA s_cont  LIKE LINE OF t_containers.
+  DATA t_fields TYPE dyfatc_tab.
+  DATA s_field LIKE LINE OF t_fields.
+  DATA t_descs TYPE SORTED TABLE OF d020t WITH UNIQUE KEY prog dynr.
+  DATA s_desc LIKE LINE OF t_descs.
+  DATA t_texts TYPE SORTED TABLE OF d021t WITH UNIQUE KEY prog dynr fldn lang.
+  DATA s_text LIKE LINE OF t_texts.
+  DATA f_fill TYPE abap_bool.
+  FIELD-SYMBOLS:
+    &lt;r&gt; LIKE LINE OF dynpros,
+    &lt;l&gt; LIKE LINE OF &lt;r&gt;-texts,
+    &lt;c&gt; LIKE LINE OF &lt;r&gt;-containers,
+    &lt;f&gt; LIKE LINE OF &lt;c&gt;-fields,
+    &lt;t&gt; LIKE LINE OF &lt;f&gt;-texts.
+
+  CLEAR o_mycx.
+  LOOP AT dynpros ASSIGNING &lt;r&gt;.
+    CLEAR: header, t_containers, t_fields, t_texts, t_descs.
+    header = &lt;r&gt;-hdr.
+    header-program = program.
+
+* Processing Dynpro #&amp;2 (&amp;1)
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE i500 WITH space space. ENDIF.
+    SET EXTENDED CHECK ON.
+    application_log-&gt;add_info( id_msgid = &apos;ZAPLINK&apos;
+                               id_msgno = &apos;500&apos;
+                               id_msgv1 = header-program
+                               id_msgv2 = header-screen ).
+
+* Texts
+    LOOP AT &lt;r&gt;-texts ASSIGNING &lt;l&gt;.
+      CLEAR s_desc.
+      MOVE-CORRESPONDING &lt;l&gt; TO s_desc.
+      INSERT s_desc INTO TABLE t_descs.
+    ENDLOOP.
+
+    t_flowlogic = conv_abapsource2flowlogic( &lt;r&gt;-flow_logic-_ ).
+    LOOP AT &lt;r&gt;-containers ASSIGNING &lt;c&gt;.
+      CLEAR s_cont.
+      s_cont = &lt;c&gt;-hdr.
+      LOOP AT &lt;c&gt;-fields ASSIGNING &lt;f&gt;.
+        s_field = &lt;f&gt;-hdr.
+        s_field-cont_type = &lt;c&gt;-type.
+        s_field-cont_name = &lt;c&gt;-name.
+        IF s_field-text IS INITIAL. f_fill = abap_true. ELSE. f_fill = abap_false. ENDIF.    &quot; protect data
+        LOOP AT &lt;f&gt;-texts ASSIGNING &lt;t&gt;.
+          IF f_fill = abap_true AND ( sy-tabix = 1 OR &lt;t&gt;-langu = sy-langu ). s_field-text = &lt;t&gt;-short_txt. ENDIF.
+          CLEAR s_text.
+          s_text-prog = header-program.
+          s_text-dynr = header-screen.
+          s_text-fldn = &lt;f&gt;-name.
+          s_text-lang = &lt;t&gt;-langu.
+          s_text-dtxt = &lt;t&gt;-short_txt.
+          INSERT s_text INTO TABLE t_texts.
+        ENDLOOP.
+        INSERT s_field INTO TABLE t_fields.
+      ENDLOOP.
+      INSERT s_cont INTO TABLE t_containers.
+    ENDLOOP.
+*    CALL FUNCTION &apos;RS_SCRP_DYNPRO_CHECK&apos;
+*      TABLES
+*        fieldlist            = &lt;r&gt;-fields
+*        flowlogic            = t_flowlogic
+*        params               = &lt;r&gt;-matchcodes
+*      CHANGING
+*        header               = header
+*      EXCEPTIONS
+*        damaged_but_repaired = 0
+*        damaged              = 2
+*        OTHERS               = 3.
+*    IF sy-subrc &lt;&gt; 0.
+*      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;RS_SCRP_DYNPRO_CHECK&apos;
+*                                                  subrc = sy-subrc
+*                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+*      application_log-&gt;add_symsg( ).
+*      application_log-&gt;add_exception( o_mycx ).
+*      continue.
+*    endif.
+    SORT t_containers BY element_of name.
+    CALL FUNCTION &apos;RPY_DYNPRO_INSERT&apos;
+      EXPORTING
+*       SUPPRESS_CORR_CHECKS           = &apos; &apos;
+*       CORRNUM                        = &apos; &apos;
+        suppress_exist_checks          = abap_true
+*       SUPPRESS_GENERATE              = &apos; &apos;
+*       SUPPRESS_DICT_SUPPORT          = &apos; &apos;
+*       SUPPRESS_EXTENDED_CHECKS       = &apos; &apos;
+        header                         = header
+*       USE_CORRNUM_IMMEDIATEDLY       = &apos; &apos;
+*       SUPPRESS_COMMIT_WORK           = &apos; &apos;
+      TABLES
+        containers                     = t_containers
+        fields_to_containers           = t_fields
+        flow_logic                     = t_flowlogic
+        params                         = &lt;r&gt;-matchcodes
+      EXCEPTIONS
+        cancelled                      = 1
+        already_exists                 = 2
+        program_not_exists             = 3
+        not_executed                   = 4
+        missing_required_field         = 5
+        illegal_field_value            = 6
+        field_not_allowed              = 7
+        not_generated                  = 8
+        illegal_field_position         = 9
+        OTHERS                         = 10.
+    IF sy-subrc &lt;&gt; 0.
+*      TRY.
+          o_mycx ?= zcx_zaplink=&gt;create_from_mf_cx( funcname = &apos;RPY_DYNPRO_INSERT&apos;
+                                                       subrc = sy-subrc
+                                                   classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+*        CATCH ZCX_ZAPLINK INTO o_cx.
+*          mac_cascade_raise o_mycx o_cx.
+*      ENDTRY.
+      application_log-&gt;add_symsg( ).
+      application_log-&gt;add_exception( o_mycx ).
+      CONTINUE.
+    ENDIF.
+    MODIFY d020t FROM TABLE t_descs.
+    MODIFY d021t FROM TABLE t_texts.
+*    CALL FUNCTION &apos;RPY_DYNPRO_INSERT_NATIVE&apos;
+*      EXPORTING
+**     SUPPRESS_CORR_CHECKS           = &apos; &apos;
+**     CORRNUM                        = &apos; &apos;
+*        header                         = header
+*        dynprotext                     = d_dp_txt
+**     SUPPRESS_EXIST_CHECKS          = &apos; &apos;
+**     USE_CORRNUM_IMMEDIATEDLY       = &apos; &apos;
+**     SUPPRESS_COMMIT_WORK           = &apos; &apos;
+*      TABLES
+*        fieldlist                      = &lt;r&gt;-fields
+*        flowlogic                      = t_flowlogic
+*        params                         = &lt;r&gt;-matchcodes
+*      EXCEPTIONS
+*        cancelled                      = 1
+*        already_exists                 = 2
+*        program_not_exists             = 3
+*        not_executed                   = 4
+*        OTHERS                         = 5.
+*    IF sy-subrc &lt;&gt; 0.
+*      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;RPY_DYNPRO_INSERT_NATIVE&apos;
+*                                                  subrc = sy-subrc
+*                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+*      application_log-&gt;add_symsg( ).
+*      application_log-&gt;add_exception( o_mycx ).
+*    ENDIF.
+  ENDLOOP.
+  IF o_mycx IS BOUND.   RAISE EXCEPTION o_mycx.   ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_MENUS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set program Menus"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="MENUS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_MENUPAINTER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu painter Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_fm_data TYPE zaplink_menupainter_data=&gt;ts_fm_data.
+  DATA d_trkey   TYPE trkey.
+  DATA d_lang    TYPE sy-langu.
+
+  CHECK menus IS BOUND.
+  s_fm_data = menus-&gt;to_data( program ).
+
+  d_trkey-obj_type = &apos;PROG&apos;.
+  d_trkey-sub_name = d_trkey-obj_name = program.
+  d_trkey-sub_type = &apos;CUAD&apos;.
+  d_lang = s_fm_data-header-mod_langu.
+  IF d_lang IS INITIAL.   d_lang = sy-langu.    ENDIF.
+
+  CALL FUNCTION &apos;RS_CUA_INTERNAL_WRITE&apos;
+    EXPORTING
+      program   = program
+      language  = d_lang
+      tr_key    = d_trkey
+      adm       = s_fm_data-header
+      state     = &apos;I&apos;
+    TABLES
+      sta       = s_fm_data-status
+      fun       = s_fm_data-functions
+      men       = s_fm_data-menus_det
+      mtx       = s_fm_data-menus
+      act       = s_fm_data-bars_det
+      but       = s_fm_data-buttons_det
+      pfk       = s_fm_data-keyboards
+      set       = s_fm_data-stat_funcs
+      doc       = s_fm_data-attributes
+      tit       = s_fm_data-titles
+      biv       = s_fm_data-ffuncs
+    EXCEPTIONS
+      not_found = 1
+      OTHERS    = 2.
+  IF sy-subrc &lt;&gt; 0.
+    mac_add_mf_and_raise &apos;RS_CUA_INTERNAL_WRITE&apos; sy-subrc.
+  ENDIF.
+
+  DELETE FROM rsmptexts WHERE progname = program.
+  MODIFY rsmptexts FROM TABLE s_fm_data-texts.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_PROG_RAWSOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set program RAW source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  INSERT REPORT program FROM raw STATE &apos;I&apos;.
+  IF sy-subrc = 0.
+    INSERT REPORT program FROM raw STATE &apos;A&apos;.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_PROG_SOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set program source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE"/>
+    </PARAMETERS>
+    <SOURCE>`
+DATA _raw TYPE tt_abaprawsource.
+
+  _raw = conv_abap_source2raw( source ).
+  set_prog_rawsource( program = program
+                          raw = _raw ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_PROG_TEXTPOOL" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set program Texts pool"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+     <ITEM SCONAME="TEXTPOOL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  TYPES:
+    BEGIN OF ts_text,
+      langu   TYPE spras,
+      id      TYPE  textpoolid,
+      key	    TYPE  textpoolky,
+      entry	  TYPE textpooltx,
+      length  TYPE textpoolln,
+    END OF ts_text.
+  DATA t_textpool TYPE STANDARD TABLE OF textpool.
+  DATA: t_texts TYPE STANDARD TABLE OF ts_text.
+  DATA _text LIKE LINE OF t_texts.
+  DATA _textpool LIKE LINE OF t_textpool.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF textpool,
+    &lt;l&gt; LIKE LINE OF &lt;t&gt;-texts.
+
+  LOOP AT textpool ASSIGNING &lt;t&gt;.
+    _text-id = &lt;t&gt;-id.
+    _text-key = &lt;t&gt;-key.
+    LOOP AT &lt;t&gt;-texts ASSIGNING &lt;l&gt;.
+      _text-langu = &lt;l&gt;-langu.
+      _text-entry = &lt;l&gt;-entry.
+      _text-length = &lt;l&gt;-length.
+      APPEND _text TO t_texts.
+    ENDLOOP.
+  ENDLOOP.
+
+  SORT t_texts BY langu id key.
+  DELETE ADJACENT DUPLICATES FROM t_texts COMPARING langu id key.
+
+  LOOP AT t_texts INTO _text.
+    AT NEW langu. &quot; ID
+      CLEAR: t_textpool, _textpool.
+    ENDAT.
+
+    _textpool-id = _text-id.
+    _textpool-key = _text-key.
+    _textpool-entry = _text-entry.
+    _textpool-length = _text-length.
+    APPEND _textpool TO t_textpool.
+
+    AT END OF langu.
+      INSERT textpool program FROM t_textpool LANGUAGE _text-langu STATE &apos;I&apos;.   &quot; Issue 68
+      INSERT textpool program FROM t_textpool LANGUAGE _text-langu STATE &apos;A&apos;.   &quot; Issue 68
+    ENDAT.
+
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="001">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="$NONE$" LENGTH="6 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="RPYTY" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MENUPAINTER" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MENUPAINTER_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu painter Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_SCRNTYPE" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tr_scrntype TYPE RANGE OF scrntype
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of Screen Field type"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

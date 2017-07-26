@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="9A50ADC77BA58932EEAE121274519101" CODE_SIGNATURE="BBBC3CD497DE1D16B27024F47A102ECE" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_EASYXML_4CNX" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_EASYXML"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="EZXML for Connector">U1&amp;FUNCTIONALITY&amp;
+ASIs a specialized version of ZAPLINK_EASYXML that detected RAW object on
+  XML file. RAW object are first read (commun part) to determine which
+  connector have to build this version and call the right connector RAW
+  object constructor.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" MTDNAME="READ_OBJECT">
+    <SOURCE>`
+  DATA o_raw_base TYPE to_raw_base.
+  DATA o_as_raw   TYPE to_raw.
+  DATA data_type  TYPE string.
+  DATA o_conn     TYPE to_connector.
+  DATA _cx        TYPE REF TO cx_root.
+  DATA o_cx_cnx   TYPE REF TO zcx_zl_connector.
+  DATA f_newobj   TYPE abap_bool.
+  DATA o_raw      TYPE to_raw.
+
+  CHECK object IS BOUND OR typedesc IS BOUND.
+
+  IF NOT object IS BOUND.
+
+    data_type = typedesc-&gt;get_relative_name( ).     f_newobj = abap_true.
+    TRY.
+        CREATE OBJECT object TYPE (data_type).
+      CATCH cx_root INTO _cx.
+        CALL METHOD application_log-&gt;add_exception
+          EXPORTING
+            exception = _cx.
+        EXIT.
+    ENDTRY.
+
+*  ELSE.
+  ENDIF.    &quot; for ZL_OBJECT in ZL_TRANSACTION where ZL_OBJECT could be program, transaction or Class
+* In such case object is not bound and typedesc is bound.
+
+  TRY.
+      o_as_raw ?= object.
+    CATCH cx_root.
+  ENDTRY.
+
+  IF o_as_raw IS BOUND. &quot; object inherited from o_raw_base
+    TRY.                  &quot; =&gt; Create real data type
+        o_raw_base = zaplink_connectors=&gt;node_2_raw( xml_node ).
+        o_conn = zaplink_connectors=&gt;create_connector( connuuid = o_raw_base-&gt;connector ).
+        o_raw = o_conn-&gt;create_new_raw( type = o_raw_base-&gt;type ).
+* Warning : object type should be compatible because will mapped in calling method READ_ANY using CAST that might failed with downard cast.
+        IF NOT f_newobj IS INITIAL.
+          object = o_raw.                   &quot; Object was not created when calling this method
+        ELSE.
+          o_as_raw-&gt;copy_as( o_raw ).     &quot; Map each fields
+        ENDIF.
+      CATCH zcx_zl_connector INTO o_cx_cnx.
+        CALL METHOD application_log-&gt;add_exception
+          EXPORTING
+            exception = o_cx_cnx.
+        EXIT.
+    ENDTRY.
+  ENDIF.
+
+*  ENDIF.
+
+  CALL METHOD super-&gt;read_object
+    EXPORTING
+      xml_node = xml_node
+      typedesc = typedesc
+    CHANGING
+      object   = object.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPES>
+   <ITEM CMPNAME="TO_CONNECTOR" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAP Link Connector interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RAW component with data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW_BASE" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_RAW_BASE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Base RAW component without data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

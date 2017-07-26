@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="26A0E966D796B573BFFE4D4F46A6A4B0" CODE_SIGNATURE="CAF4B7D4466A7D17EBB5A4C65823D4D0" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_AVAR_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_CHECKPOINTS_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Data for variant for Check Point Group">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_FUNCTION_GROUP
+ASDefine XML structure of a Function group
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFINITIONS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_DEFINITIONS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant list of definitions"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DESCRIPTIONS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_LTEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Description texts"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SEPARATOR" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;~&apos;" TYPTYPE="1" TYPE="CHAR01">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Separator for variant name"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_CHECKPOINTS" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR: a0_maindata-create_user,  a0_maindata-create_date.
+*ACT_USER
+*ACT_DATE
+*ACT_TIME</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_def      LIKE LINE OF definitions.
+  DATA s_desc     LIKE LINE OF descriptions.
+  FIELD-SYMBOLS:
+    &lt;d&gt; LIKE LINE OF fm_data-descriptions,
+    &lt;m&gt; LIKE LINE OF fm_data-modes.
+
+*  a0_maindata = fm_data-header.
+*  CLEAR: a0_maindata-devclass_txt, a0_maindata-masterlang_txt, a0_maindata-component_txt.
+  LOOP AT fm_data-descriptions ASSIGNING &lt;d&gt;.
+    CLEAR s_desc.   s_desc-lang = &lt;d&gt;-langu.     s_desc-text = &lt;d&gt;-descript.   INSERT s_desc INTO TABLE descriptions.
+  ENDLOOP.
+
+  LOOP AT fm_data-modes ASSIGNING &lt;m&gt;.
+    CLEAR s_def.    s_def-type = &lt;m&gt;-object.    s_def-name = &lt;m&gt;-name.    s_def-activation = conv_mode2activation( &lt;m&gt;-actmode ).    INSERT s_def INTO TABLE definitions.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="KEY_2_NAME" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Key to Name (E071 Entrie)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Checkpoint Variant Key structure"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_COMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  IF data-user IS INITIAL.
+    result = data-name.
+  ELSE.
+    CONCATENATE data-name separator data-user INTO result.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NAME_2_KEY" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Name (E071 Entrie) to Key"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Checkpoint Variant Key structure"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  SPLIT data AT separator INTO result-name result-user.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_mode     LIKE LINE OF fm_data-modes.
+  DATA s_desc     LIKE LINE OF fm_data-descriptions.
+  FIELD-SYMBOLS:
+    &lt;d&gt; LIKE LINE OF descriptions,
+    &lt;s&gt; LIKE LINE OF definitions.
+
+  LOOP AT descriptions ASSIGNING &lt;d&gt;.
+    CLEAR s_desc.   s_desc-langu = &lt;d&gt;-lang.     s_desc-descript = &lt;d&gt;-text.   INSERT s_desc INTO TABLE fm_data-descriptions.
+  ENDLOOP.
+
+  LOOP AT definitions ASSIGNING &lt;s&gt;.
+    CLEAR s_mode.     s_mode-object = &lt;s&gt;-type.   s_mode-name = &lt;s&gt;-name.   s_mode-actmode = conv_activation2mode( &lt;s&gt;-activation ).    INSERT s_mode INTO TABLE fm_data-modes.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TS_DEFINITION" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_definition,
+      type    TYPE td_comptype,
+      name    type td_compname.
+  INCLUDE TYPE ts_activation AS activation.
+  TYPES:
+    END OF ts_definition
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant single definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+      header          TYPE aab_var_prop,     &quot; aab_var_sfields,
+      descriptions    TYPE STANDARD TABLE OF aab_var_propt WITH DEFAULT KEY,
+      modes           TYPE aab_var_obj_act_tab,
+    END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+  INCLUDE TYPE aab_var_sfields.
+  TYPES:
+    END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_NAME" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_name,
+      name    TYPE aab_var_name,
+      user    TYPE aab_var_local,
+    END OF ts_name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant keys"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DEFINITIONS" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_definitions TYPE SORTED TABLE OF ts_definition WITH UNIQUE KEY type name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant list of definitions"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

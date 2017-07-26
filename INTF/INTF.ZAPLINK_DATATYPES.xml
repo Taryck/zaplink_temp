@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4314778E0C2646C20FB1FB58D4447540" CODE_SIGNATURE="15B995167C2643A45910E9E4FA753EF2" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_DATATYPES" TYPE="INTF" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" RELEASE="1" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Zap Link : simple data types (no objects)">U1&amp;MEANING&amp;
+ASInterface that define all &quot;simple&quot; (non object) types.
+U1&amp;USE&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="ACTIONS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF actions,
+      delete_file  TYPE td_action VALUE &apos;D&apos;,                &quot;#EC NOTEXT
+      export       TYPE td_action VALUE &apos;E&apos;,                &quot;#EC NOTEXT
+      import       TYPE td_action VALUE &apos;I&apos;,                &quot;#EC NOTEXT
+      uninstall    TYPE td_action VALUE &apos;U&apos;,                &quot;#EC NOTEXT
+      unreplicable TYPE td_action VALUE &apos;K&apos;,                &quot;#EC NOTEXT
+      none         TYPE td_action VALUE space,
+      activated    TYPE td_action VALUE &apos;A&apos;,                &quot;#EC NOTEXT
+      not_active   TYPE td_action VALUE &apos;N&apos;,                &quot;#EC NOTEXT
+    END OF actions
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Possible actions of the Framework"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="BALLOG_OBJECT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;ZAPLINK&apos;" TYPTYPE="1" TYPE="BALOBJ_D">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Object Name (Application Code)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="COMP_NODENAME" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;ZL_OBJECT&apos;" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Name of the node in XML that belongs to component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFAULT_SUB_COMPONENT_LEVEL" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="SUB_COMPONENT-WITH_MINE" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Default Sub Component level"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXISTS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF exists,
+      exists     TYPE td_exists VALUE abap_true,
+      not_exists TYPE td_exists VALUE abap_false,
+    END OF exists
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do exists"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXT_SEP" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;.&apos;" TYPTYPE="1" TYPE="C">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Extension Separator"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FILE_EXT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;xml&apos;" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Extracted Files extension"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FRAMEWORK_VERSION" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;0.0.009+&apos;" TYPTYPE="1" TYPE="TD_FRAMEWORKVER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Frameqork version"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE" TYPTYPE="1" TYPE="ABAP_CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line separator Code =&gt; String"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUB_COMPONENT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF sub_component,
+      without_any   TYPE td_with_subcomp VALUE &apos;0&apos;,         &quot;#EC NOTEXT
+      with_mine     TYPE td_with_subcomp VALUE &apos;3&apos;,         &quot;#EC NOTEXT
+      with_required TYPE td_with_subcomp VALUE &apos;6&apos;,         &quot;#EC NOTEXT
+      with_all      TYPE td_with_subcomp VALUE &apos;9&apos;,         &quot;#EC NOTEXT
+    END OF sub_component
+`</ITEM>
+   <ITEM CMPNAME="TEXTPOOL_KINDS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF textpool_kinds,
+      prog_title  TYPE td_txtp_kind VALUE &apos;R&apos;, &quot;#EC NOTEXT R - Program title
+      list_title  TYPE td_txtp_kind VALUE &apos;T&apos;, &quot;#EC NOTEXT T - List Title: Titlebar
+      list_header TYPE td_txtp_kind VALUE &apos;H&apos;, &quot;#EC NOTEXT H 001 to 004 List header: Column headings
+      text_symbol TYPE td_txtp_kind VALUE &apos;I&apos;, &quot;#EC NOTEXT I Text symbol identifier Text symbol text
+      parameters  TYPE td_txtp_kind VALUE &apos;S&apos;, &quot;#EC NOTEXT S Name of a parameter or selection criterion Selection text
+    END OF textpool_kinds
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Text pool possible kinds"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <DEFERRED>
+   <CLASSES>
+    <ITEM TYPEGROUP="CL_ABAP_CHAR_UTILITIES" TPUTYPE="1" IMPLICIT="X"/>
+   </CLASSES>
+  </DEFERRED>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" STATE="1" EDITORDER="22 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_ACTION" EXPOSURE="2" STATE="1" EDITORDER="32 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Selection Action : Export, Import, Uninstall"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CHECKBOX" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Boolean : for check box only"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="1" TYPE="MD5_FIELDS-HASH">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="MD5 Checksum String"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CLASSNAME" EXPOSURE="2" STATE="1" EDITORDER="35 " TYPTYPE="1" TYPE="SEOCLSNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Object/Interface name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMPADD_DATA" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component Additional Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMPEXISTS" EXPOSURE="2" STATE="1" EDITORDER="36 " TYPTYPE="1" TYPE="TD_EXISTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component Exists ?"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" STATE="1" EDITORDER="40 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMPTEXT" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="1" TYPE="KO100-TEXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object Type as long text"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" STATE="1" EDITORDER="41 " TYPTYPE="1" TYPE="TADIR-OBJECT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object Type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONNCLASS" EXPOSURE="2" STATE="1" EDITORDER="37 " TYPTYPE="1" TYPE="TD_CLASSNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector class name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONNEXISTS" EXPOSURE="2" STATE="1" EDITORDER="38 " TYPTYPE="1" TYPE="TD_EXISTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Exists ?"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONNUUID" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="1" TYPE="GUID_16">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="GUID in &apos;RAW&apos; format for connector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONNVER" EXPOSURE="2" STATE="1" EDITORDER="33 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Version"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONTNAME" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Container Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONTVER" EXPOSURE="2" STATE="1" EDITORDER="18 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Container Version"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="1" TYPE="TADIR-DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Package"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="2" STATE="1" EDITORDER="70 " TYPTYPE="1" TYPE="DOKU_ID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Document class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_EXISTS" EXPOSURE="2" STATE="1" EDITORDER="34 " TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Exists Flag"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FILENAME" EXPOSURE="2" STATE="1" EDITORDER="19 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FILETYPE" EXPOSURE="2" STATE="1" EDITORDER="20 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FRAMEWORKVER" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="FrameWork Version"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_LANG" EXPOSURE="2" STATE="1" EDITORDER="59 " TYPTYPE="1" TYPE="SPRAS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Language Key"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_LIGHT" EXPOSURE="2" STATE="1" EDITORDER="31 " TYPTYPE="1" TYPE="ICON_L4">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Icon with output length 4"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_OBJ_TYPE" EXPOSURE="2" STATE="1" EDITORDER="39 " TYPTYPE="1" TYPE="ABAP_ABSTYPENAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object type string"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_ORDERKIND" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Kind of order (Sort) : Bottom-up Top-down or none"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" STATE="1" EDITORDER="24 " TYPTYPE="1" TYPE="PROGRAMM">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Program Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_SOFTCOMP" EXPOSURE="2" STATE="1" EDITORDER="50 " TYPTYPE="1" TYPE="TDEVC-DLVUNIT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of software components (Home, ....)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_SRCSYSTEM" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="1" TYPE="TADIR-SRCSYSTEM">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Source system"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_SUBSTITUTIONKIND" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Devclass substitution Kind"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="1" TYPE="KO100-PGMID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program ID in Requests and Tasks"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TRANSPORT_REQUEST" EXPOSURE="2" STATE="1" EDITORDER="21 " TYPTYPE="1" TYPE="E070-TRKORR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Request/Task"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TXTP_ID" EXPOSURE="2" STATE="1" EDITORDER="63 " TYPTYPE="1" TYPE="TEXTPOOLKY">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Text element key (number/selection name)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TXTP_KIND" EXPOSURE="2" STATE="1" EDITORDER="62 " TYPTYPE="1" TYPE="TEXTPOOLID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP/4 text pool ID (selection text/numbered text)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TXTP_LEN" EXPOSURE="2" STATE="1" EDITORDER="61 " TYPTYPE="1" TYPE="TEXTPOOLLN">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Reserved length for text (with language reserve)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TXTP_TEXT" EXPOSURE="2" STATE="1" EDITORDER="60 " TYPTYPE="1" TYPE="TEXTPOOLTX">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Language-dependent text in ABAP/4 text pool"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TYPEORDER" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="1" TYPE="I">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Order/Rank of component type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_TYPE_AS_TEXT" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="1" TYPE="KO100-TEXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object type as Text"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_WITH_SUBCOMP" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="1" TYPE="ZAPLINK_SUBCOMPONENT_LEVEL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub Component level"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_XML" EXPOSURE="2" STATE="1" EDITORDER="30 " TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="XML Object (Object)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_AUTHOR" EXPOSURE="2" STATE="1" EDITORDER="48 " TYPTYPE="4">
+    tr_author TYPE RANGE OF tadir-author
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of author (person reponsible of the component)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_COMPNAME" EXPOSURE="2" STATE="1" EDITORDER="47 " TYPTYPE="4">
+    tr_compname TYPE RANGE OF tadir-obj_name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of component name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_COMPTYPE" EXPOSURE="2" STATE="1" EDITORDER="46 " TYPTYPE="4">
+    tr_comptype TYPE RANGE OF td_comptype
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of component types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_DLVUNIT" EXPOSURE="2" STATE="1" EDITORDER="51 " TYPTYPE="4">
+    tr_dlvunit TYPE RANGE OF tdevc-dlvunit
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of Software Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="2" STATE="1" EDITORDER="80 " TYPTYPE="4">
+    tr_docid TYPE RANGE OF td_doc_id
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of ID"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="2" STATE="1" EDITORDER="45 " TYPTYPE="4">
+    tr_packages TYPE RANGE OF tadir-devclass
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of package"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_SRCSYSTEM" EXPOSURE="2" STATE="1" EDITORDER="49 " TYPTYPE="4">
+    tr_srcsystem TYPE RANGE OF tadir-srcsystem
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of source system"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_TR" EXPOSURE="2" STATE="1" EDITORDER="44 " TYPTYPE="4">
+    tr_tr TYPE RANGE OF td_transport_request
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of Transport Requests"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_BASE_ATTRIBUTS" EXPOSURE="2" STATE="1" EDITORDER="52 " TYPTYPE="4">
+    BEGIN OF ts_base_attributs,
+        name     TYPE td_compname,
+        class    TYPE td_connclass,
+        devclass TYPE td_devclass,
+        version  TYPE td_connver,
+      END OF ts_base_attributs
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector base attributs (you could add yours)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" STATE="1" EDITORDER="42 " TYPTYPE="4">
+    BEGIN OF ts_compkey,
+      type TYPE td_comptype,
+      name TYPE td_compname,
+    END OF ts_compkey
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component Key (unique)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMPONENT" EXPOSURE="2" STATE="1" EDITORDER="81 " TYPTYPE="4">
+    BEGIN OF ts_component,
+          type TYPE td_comptype,
+          name TYPE td_compname,
+        END OF ts_component
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component Key as structure"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMPTYPE" EXPOSURE="2" STATE="1" EDITORDER="91 " TYPTYPE="4">
+    BEGIN OF ts_comptype,
+      type  TYPE td_comptype,
+      kind  TYPE td_transport_kind,
+    END OF ts_comptype
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type &amp; Kind"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CONNDATA" EXPOSURE="2" STATE="1" EDITORDER="68 " TYPTYPE="4">
+    BEGIN OF ts_conndata,
+      zsl_name      TYPE td_compname,         &quot; component name
+      zsl_connector TYPE td_connclass,        &quot; Connector class name
+      zsl_version   TYPE td_connver,          &quot; Connector version
+    END OF ts_conndata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CONN_CLASS" EXPOSURE="2" STATE="1" EDITORDER="53 " TYPTYPE="4">
+    BEGIN OF ts_conn_class,
+      uuid      TYPE td_connuuid,
+      classname TYPE td_connclass,
+      devclass  TYPE td_devclass,
+      END OF ts_conn_class
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector info"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CONN_DEF" EXPOSURE="2" STATE="1" EDITORDER="55 " TYPTYPE="4">
+    BEGIN OF ts_conn_def,
+          object        TYPE ko100-object,
+          text          TYPE ko100-text,
+          default_class TYPE td_connclass,
+          classes       TYPE tt_conn_classes,
+        END OF ts_conn_def
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type&apos;s connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CONTDATA" EXPOSURE="2" STATE="1" EDITORDER="69 " TYPTYPE="4">
+    BEGIN OF ts_contdata,
+          name TYPE td_contname,
+        END OF ts_contdata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Container base informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_DIRECTORY" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">
+    BEGIN OF ts_directory,
+* TADIR
+*      PGMID Type TADIR-PGMID,
+*      OBJECT Type TADIR-OBJECT,
+*      OBJ_NAME Type TADIR-OBJ_NAME,
+      korrnum TYPE tadir-korrnum,
+      srcsystem TYPE td_srcsystem,
+      author TYPE tadir-author,
+      srcdep TYPE tadir-srcdep,
+      devclass TYPE td_devclass,
+      genflag TYPE tadir-genflag,
+      edtflag TYPE tadir-edtflag,
+*      CPROJECT Type TADIR-CPROJECT,
+      masterlang TYPE tadir-masterlang,
+*      VERSID Type TADIR-VERSID,
+      paknocheck TYPE tadir-paknocheck,
+      objstablty TYPE tadir-objstablty,
+      component TYPE tadir-component,
+      crelease TYPE tadir-crelease,
+*      delflag TYPE tadir-delflag,
+      translttxt TYPE tadir-translttxt,
+* E071
+      trkorr TYPE e070-trkorr,
+    END OF ts_directory
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="TADIR informations to reproduce directory entries"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_DOC" EXPOSURE="2" STATE="1" EDITORDER="78 " TYPTYPE="4">BEGIN OF ts_doc.
+  INCLUDE TYPE ts_head AS hdr.
+  TYPES:
+      texts TYPE SORTED TABLE OF ts_lang WITH UNIQUE KEY tdspras,
+    END OF ts_doc
+`</ITEM>
+   <ITEM CMPNAME="TS_DYNPRO" EXPOSURE="2" STATE="1" EDITORDER="89 " TYPTYPE="4">
+    BEGIN OF ts_dynpro.
+*  INCLUDE TYPE d020s AS hdr.
+  INCLUDE TYPE rpy_dyhead AS hdr.
+  TYPES:
+      texts      TYPE tt_dyntexts,
+      flow_logic TYPE ts_sourceasstruc,
+      matchcodes TYPE tt_matchcodes,
+      containers TYPE tt_dynp_containers,
+*      fields TYPE tt_fields,
+    END OF ts_dynpro
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DYNPro data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_DYNP_CONT" EXPOSURE="2" STATE="1" EDITORDER="84 " TYPTYPE="4">BEGIN OF ts_dynp_cont.
+*  INCLUDE TYPE d021s AS hdr.
+  INCLUDE TYPE rpy_dycatt AS hdr.       &quot; dycatt_tab
+  TYPES:
+      fields  TYPE tt_fields,
+    END OF ts_dynp_cont
+`</ITEM>
+   <ITEM CMPNAME="TS_FIELD" EXPOSURE="2" STATE="1" EDITORDER="82 " TYPTYPE="4">BEGIN OF ts_field.
+*  INCLUDE TYPE d021s AS hdr.
+  INCLUDE TYPE rpy_dyfatc AS hdr.     &quot; dyfatc_tab
+  TYPES:
+      texts TYPE tt_texts,
+    END OF ts_field
+`</ITEM>
+   <ITEM CMPNAME="TS_HEAD" EXPOSURE="2" STATE="1" EDITORDER="72 " TYPTYPE="4">BEGIN OF ts_head,   &quot; from DOKHL
+        application TYPE tdobject,
+        id          TYPE doku_id,
+        object      TYPE doku_obj,
+        langu       TYPE doku_langu,
+        masterlang  TYPE dokil-masterlang,
+        typ	        TYPE doku_typ,
+        dokform	    TYPE tdformnew,
+        dokstyle    TYPE tdstyle,
+        selfdef     TYPE dokil-selfdef,
+      END OF ts_head
+`</ITEM>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" STATE="1" EDITORDER="73 " TYPTYPE="4">BEGIN OF ts_lang.   &quot; from DOKHL
+  INCLUDE TYPE thead AS head.
+  TYPES:
+      state       TYPE dokhl-dokstate,
+      _           TYPE string,      &quot; Long Text
+    END OF ts_lang
+`</ITEM>
+   <ITEM CMPNAME="TS_LTEXT" EXPOSURE="2" STATE="1" EDITORDER="76 " TYPTYPE="4">BEGIN OF ts_ltext,
+      lang       TYPE spras,
+      text       TYPE string,
+      _          TYPE string,     &quot; Long text
+    END OF ts_ltext
+`</ITEM>
+   <ITEM CMPNAME="TS_SOURCEASSTRUC" EXPOSURE="2" STATE="1" EDITORDER="23 " TYPTYPE="4">BEGIN OF ts_sourceasstruc,
+      _ TYPE td_abapsource,
+    END OF ts_sourceasstruc
+`</ITEM>
+   <ITEM CMPNAME="TS_STATMENT" EXPOSURE="2" STATE="1" EDITORDER="27 " TYPTYPE="1" TYPE="SSTMNT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Description of an ABAP/4 Source Analysis Statement"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TEXT" EXPOSURE="2" STATE="1" EDITORDER="74 " TYPTYPE="4">BEGIN OF ts_text,
+      langu      TYPE spras,
+      short_txt	 TYPE string,
+      long_txt   TYPE ts_lang,
+    END OF ts_text
+`</ITEM>
+   <ITEM CMPNAME="TS_TOKEN" EXPOSURE="2" STATE="1" EDITORDER="26 " TYPTYPE="1" TYPE="STOKES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="String Description of a Token in ABAP Source Analysis"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TXTP_TEXT" EXPOSURE="2" STATE="1" EDITORDER="64 " TYPTYPE="4">BEGIN OF ts_txtp_text,
+        langu   TYPE td_lang,
+        entry	  TYPE td_txtp_text,
+        length  TYPE td_txtp_len,
+      END OF ts_txtp_text
+`</ITEM>
+   <ITEM CMPNAME="TS_TXTP_TEXTPOOL" EXPOSURE="2" STATE="1" EDITORDER="66 " TYPTYPE="4">BEGIN OF ts_txtp_textpool,
+        id    TYPE  td_txtp_kind,
+        key	  TYPE  td_txtp_id,
+        texts TYPE  tt_txtp_texts,
+      END OF ts_txtp_textpool
+`</ITEM>
+   <ITEM CMPNAME="TS_TYPE" EXPOSURE="2" STATE="1" EDITORDER="57 " TYPTYPE="4">
+    BEGIN OF ts_type,
+      type TYPE td_comptype,
+    END OF ts_type
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" STATE="1" EDITORDER="25 " TYPTYPE="1" TYPE="RSWSOURCET">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source table"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="2" STATE="1" EDITORDER="43 " TYPTYPE="4">
+    tt_compkeys TYPE STANDARD TABLE OF ts_compkey WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of component keys"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_CONN_CLASSES" EXPOSURE="2" STATE="1" EDITORDER="54 " TYPTYPE="4">
+    tt_conn_classes TYPE SORTED TABLE OF ts_conn_class WITH UNIQUE KEY uuid
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of connector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" STATE="1" EDITORDER="79 " TYPTYPE="4">
+    tt_docs TYPE STANDARD TABLE OF ts_doc WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" STATE="1" EDITORDER="90 " TYPTYPE="4">
+    tt_dynpros TYPE SORTED TABLE OF ts_dynpro WITH UNIQUE KEY screen
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DYNPros data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DYNP_CONTAINERS" EXPOSURE="2" STATE="1" EDITORDER="85 " TYPTYPE="4">tt_dynp_containers TYPE SORTED TABLE OF ts_dynp_cont WITH NON-UNIQUE KEY name
+`</ITEM>
+   <ITEM CMPNAME="TT_DYNTEXTS" EXPOSURE="2" STATE="1" EDITORDER="88 " TYPTYPE="4">tt_dyntexts TYPE SORTED TABLE OF d020t WITH UNIQUE KEY lang
+`</ITEM>
+   <ITEM CMPNAME="TT_FIELDS" EXPOSURE="2" STATE="1" EDITORDER="83 " TYPTYPE="4">
+    tt_fields TYPE SORTED TABLE OF ts_field WITH NON-UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DYNPro field list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_FLOW_LOGIC" EXPOSURE="2" STATE="1" EDITORDER="86 " TYPTYPE="4">
+    tt_flow_logic TYPE STANDARD TABLE OF rpy_dyflow WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DYNPro flow logic"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_GENSETC" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tt_gensetc TYPE STANDARD TABLE OF gensetc WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Generation Set for ABAP Objects and BSP Applications"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_LTEXTS" EXPOSURE="2" STATE="1" EDITORDER="77 " TYPTYPE="4">tt_ltexts TYPE SORTED TABLE OF ts_ltext WITH UNIQUE KEY lang
+`</ITEM>
+   <ITEM CMPNAME="TT_MATCHCODES" EXPOSURE="2" STATE="1" EDITORDER="87 " TYPTYPE="4">
+    tt_matchcodes TYPE STANDARD TABLE OF rpy_dypara WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DYNPro Match codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_RAWTEXT" EXPOSURE="2" STATE="1" EDITORDER="71 " TYPTYPE="4">tt_rawtext TYPE STANDARD TABLE OF tline WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_STATMENTS" EXPOSURE="2" STATE="1" EDITORDER="29 " TYPTYPE="4">
+    tt_statments  TYPE STANDARD TABLE OF sstmnt
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Statement list in source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="75 " TYPTYPE="4">tt_texts TYPE SORTED TABLE OF ts_text WITH UNIQUE KEY langu
+`</ITEM>
+   <ITEM CMPNAME="TT_TOKENS" EXPOSURE="2" STATE="1" EDITORDER="28 " TYPTYPE="4">
+    tt_tokens     TYPE STANDARD TABLE OF stokes
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Tokens list in source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" STATE="1" EDITORDER="67 " TYPTYPE="4">tt_txtp_textpools TYPE SORTED TABLE OF ts_txtp_textpool WITH UNIQUE KEY id KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_TXTP_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="65 " TYPTYPE="4">tt_txtp_texts TYPE SORTED TABLE OF ts_txtp_text WITH UNIQUE KEY langu
+`</ITEM>
+   <ITEM CMPNAME="TT_TYPELIST" EXPOSURE="2" STATE="1" EDITORDER="56 " TYPTYPE="4">
+    tt_typelist TYPE SORTED TABLE OF ts_conn_def WITH UNIQUE KEY object
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of all connectors / component type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" STATE="1" EDITORDER="58 " TYPTYPE="4">
+    tt_types TYPE SORTED TABLE OF ts_type WITH UNIQUE KEY type
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of supported types"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

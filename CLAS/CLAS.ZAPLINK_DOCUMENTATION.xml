@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="D8A35E22E8C2A1F25CAEC21B43F003C6" CODE_SIGNATURE="03215816851B630466BF459D5A8AD82B" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_DOCUMENTATION" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_CONNECTOR_"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_CONNECTOR_" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink - Documentation tools">U1&amp;FUNCTIONALITY&amp;
+ASIs a connector for :
+AS- DOCT : General Text
+AS- DOCV : Independent Documentation
+U1&amp;RELATIONS&amp;
+ASIs part of ZAP Link Framework as Official Connector.
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AShttps://code.google.com/p/zaplink/wiki/Connector
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BALLOG_SUBOBJECT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;CNX_DOCUMENTATION&apos;" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="LOG" EXPOSURE="2" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_MSG_COLL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Statit log"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="NODE_NAME" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;DOCS&apos;" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Node name for documentaiton"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUPPORTEDTYPES" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF supportedtypes,                                  &quot;#EC NOTEXT
+      general           TYPE td_comptype VALUE &apos;DOCT&apos;,    &quot; General Text
+      Indep             TYPE td_comptype VALUE &apos;DOCV&apos;,    &quot; Documentation (Independent)
+    END OF supportedtypes
+`</ITEM>
+   <ITEM CMPNAME="_UUID" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;3D34954BEABE5F12E1000000AC120173&apos;" TYPTYPE="1" TYPE="TD_CONNUUID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UUID for connector Message class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_VER" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1.0&apos;" TYPTYPE="1" TYPE="TD_CONNVER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Version"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.
+
+DEFINE lmac_add_mf_and_raise.
+  o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &amp;1
+                                               subrc = &amp;2
+                                           classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+  log-&gt;add_symsg( ).
+  log-&gt;add_exception( o_mycx ).
+  raise exception o_mycx.
+END-OF-DEFINITION.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  mac_create_log log ballog_subobject space.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA type LIKE LINE OF supported_types.
+
+  super-&gt;constructor( ).
+  mac_create_log application_log ballog_subobject space.
+  type-type = supportedtypes-general. INSERT type INTO TABLE supported_types.
+  type-type = supportedtypes-indep.   INSERT type INTO TABLE supported_types.
+
+  uuid = _uuid.
+  version = _ver.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DOCU_GET" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get documentation"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DOCU" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKIL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Index for Documentation Table DOKH"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="HEAD" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_HEAD"/>
+     <ITEM SCONAME="LANG" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_LANG"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _text  TYPE tt_rawtext.
+
+  TRY.
+    head-id = docu-id.
+    head-object = docu-object.
+    head-masterlang = docu-masterlang.
+    head-langu = docu-langu.
+    head-typ = docu-typ.
+    head-selfdef = docu-selfdef.
+    IF docu-selfdef = space.
+      CALL FUNCTION &apos;DOCU_GET&apos;
+        EXPORTING
+*       EXTEND_EXCEPT                = &apos; &apos;
+          id                           = docu-id
+          langu                        = docu-langu
+          object                       = docu-object
+          typ                          = docu-typ
+          version                      = docu-version
+          version_active_or_last       = &apos;A&apos;
+*         PRINT_PARAM_GET              = &apos;X&apos;
+        IMPORTING
+          dokstate                     = lang-state
+*         DOKTITLE                     =
+          head                         = lang-head
+*        doktyp                       = head-typ
+        TABLES
+          line                         = _text
+        EXCEPTIONS
+          no_docu_on_screen            = 1
+          no_docu_self_def             = 2
+          no_docu_temp                 = 3
+          ret_code                     = 4
+          OTHERS                       = 5.
+      IF sy-subrc &lt;&gt; 0.
+        lmac_add_mf_and_raise &apos;DOCU_GET&apos; sy-subrc.
+      ENDIF.
+      lang-_ = raw2string( _text ).
+      head-application = lang-tdobject.
+      head-dokform = lang-tdform.
+      head-dokstyle = lang-tdstyle.
+      CLEAR:
+        lang-tdobject,
+        lang-tdname,
+        lang-tdid,
+        lang-tdform,
+        lang-tdstyle.
+    ENDIF.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <PARAMETERS>
+     <ITEM SCONAME="IDS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Range of ID"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_OBJ">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documentation Object"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="T_DOCS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_DOCS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documents"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _obj   TYPE RANGE OF doku_obj.
+  DATA my_obj LIKE LINE OF _obj.
+  DATA docs   TYPE STANDARD TABLE OF dokil WITH DEFAULT KEY.
+  DATA doc    LIKE LINE OF t_docs.
+  DATA _lang  LIKE LINE OF doc-texts.
+  FIELD-SYMBOLS:
+    &lt;d&gt; LIKE LINE OF docs.
+
+  IF ids IS INITIAL.
+    EXIT.
+  ENDIF.
+
+  my_obj-sign = &apos;I&apos;. my_obj-option = &apos;CP&apos;.
+  my_obj-low = object. APPEND my_obj TO _obj.
+
+  SELECT * INTO TABLE docs
+    FROM dokil
+    WHERE id IN ids
+      AND object IN _obj.
+
+  IF docs IS INITIAL.
+    EXIT.
+  ENDIF.
+
+  reset( ).
+
+  SORT docs BY id object masterlang DESCENDING langu.
+
+  LOOP AT docs ASSIGNING &lt;d&gt;.
+    AT NEW object. &quot; ID + OBJECT
+      CLEAR doc.
+      CALL METHOD docu_get
+        EXPORTING
+          docu = &lt;d&gt;
+        IMPORTING
+          head = doc-hdr
+          lang = _lang.
+    ENDAT.
+
+    IF _lang IS INITIAL.
+      CALL METHOD docu_get
+        EXPORTING
+          docu   = &lt;d&gt;
+        IMPORTING
+*          head   = _head
+          lang   = _lang.
+    ENDIF.
+    IF NOT _lang IS INITIAL.
+      CLEAR: _lang-tdversion, _lang-tdfuser, _lang-tdfdate, _lang-tdftime, _lang-tdluser, _lang-tdldate, _lang-tdltime.   &quot; Issue 68 : Remove useless data
+      INSERT _lang INTO TABLE doc-texts.
+      CLEAR _lang.
+    ENDIF.
+
+    AT END OF object. &quot; ID + OBJECT
+      APPEND doc TO t_docs.
+    ENDAT.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SINGLE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <PARAMETERS>
+     <ITEM SCONAME="IDS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_DOC_ID"/>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DOKU_OBJ">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documentation Object"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_DOC">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA r_ids  TYPE tr_docid.
+  DATA my_id  LIKE LINE OF r_ids.
+  DATA t_docs TYPE tt_docs.
+
+  my_id-sign = &apos;I&apos;. my_id-option = &apos;EQ&apos;.    my_id-low = ids. APPEND my_id TO r_ids.
+  t_docs = get( ids = r_ids
+             object = object ).
+  IF NOT t_docs IS INITIAL.   READ TABLE t_docs INTO result INDEX 1.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NAME_2_MASK" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Component name to mask depending of component type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_NAME_MASK"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  CASE type.
+    WHEN supportedtypes-general. result-id = &apos;TX&apos;.    result-object = name.
+    WHEN supportedtypes-indep.   result = name.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RAW2STRING" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RawTexts to String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_RAWTEXT"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+FIELD-SYMBOLS &lt;l&gt; LIKE LINE OF raw.
+  DATA str TYPE string.
+
+  LOOP AT raw ASSIGNING &lt;l&gt;.
+    str = &lt;l&gt;.
+    IF string IS INITIAL.
+      string = str.
+    ELSE.
+      CONCATENATE string line_separator str INTO string.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RESET" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Reset Bal Log"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA object	TYPE balobj_d.
+  DATA subobject  TYPE balsubobj.
+  DATA ext_id	TYPE balnrext.
+
+  IF NOT log IS BOUND.    EXIT.   ENDIF.
+
+  object = zaplink_connector=&gt;ballog_object.
+  subobject	= &apos;DOCT&apos;.
+*  CONCATENATE sy-uname sy-datum sy-uzeit INTO ext_id SEPARATED BY space.
+*01    Create
+*02    Change
+*03    Display
+*04    Modify (Direct Input: Create/Change)
+*06    Delete
+*11    Create defaults
+*12    Change defaults
+*13    Display defaults
+  CALL METHOD log-&gt;init
+    EXPORTING
+      id_object      = object
+      id_subobject   = subobject
+      id_extnumber   = ext_id
+      auto_upd_custo = abap_true
+      id_activity    = zaplink_message_collector=&gt;actions-create
+    EXCEPTIONS
+      error          = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+* ignore
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Define documentation"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="T_DOCS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_DOCS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Documents"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _text  TYPE tt_rawtext.
+  DATA _dokil TYPE dokil.
+  DATA _head  TYPE thead.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF t_docs,
+    &lt;t&gt; LIKE LINE OF &lt;o&gt;-texts.
+
+  IF t_docs IS INITIAL.
+    EXIT. &quot;nothing to do
+  ENDIF.
+
+  LOOP AT t_docs ASSIGNING &lt;o&gt;.
+    _dokil-id = &lt;o&gt;-id.
+    _dokil-object = &lt;o&gt;-object.
+    _dokil-selfdef = &lt;o&gt;-selfdef.
+
+    CALL FUNCTION &apos;DOCU_SELFDEF_WRITE&apos;
+      EXPORTING
+        object_id   = _dokil-id
+        object_name = _dokil-object
+        selfdef     = _dokil-selfdef
+      EXCEPTIONS
+        not_deleted = 1
+        OTHERS      = 2.
+    IF sy-subrc &lt;&gt; 0.
+      lmac_add_mf_and_raise &apos;DOCU_SELFDEF_WRITE&apos; sy-subrc.
+    ENDIF.
+    LOOP AT &lt;o&gt;-texts ASSIGNING &lt;t&gt;.
+      _text = string2raw( &lt;t&gt;-_  ).
+      _head = &lt;t&gt;-head.
+*    head-application = lang-tdobject.
+*    head-dokform = lang-tdform.
+*    head-dokstyle = lang-tdstyle.
+      _head-tdobject = &lt;o&gt;-application.
+      _head-tdname = &lt;o&gt;-object.
+      _head-tdid = &lt;o&gt;-id.
+      _head-tdform = &lt;o&gt;-dokform.
+      _head-tdstyle = &lt;o&gt;-dokstyle.
+
+      IF &lt;o&gt;-selfdef IS INITIAL.
+        CALL FUNCTION &apos;DOCU_UPDATE&apos;
+          EXPORTING
+*       ACTCLASS            = &apos; &apos;
+            head                = _head
+*       NO_MASTERLANG       = &apos; &apos;
+            state               = &lt;t&gt;-state
+            typ                 = &lt;o&gt;-typ
+            version             = 0
+          TABLES
+            line                = _text.
+      ENDIF.
+    ENDLOOP.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_SINGLE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_DOC">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Document"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_docs TYPE tt_docs.
+
+  append data to t_docs.
+  set( t_docs ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STRING2RAW" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="String to RawTexts"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_RAWTEXT"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+SPLIT string AT LINE_SEPARATOR
+        INTO TABLE raw.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~CREATE_NEW_RAW">
+    <SOURCE>`
+  DATA o_doc TYPE to_doc.
+
+  CREATE OBJECT object.
+  CASE type.
+    WHEN supportedtypes-general or supportedtypes-indep.
+      CREATE OBJECT o_doc.
+      object-&gt;raw = o_doc.
+    WHEN OTHERS.
+      CLEAR object.
+      mac_raise_type_not_supported me-&gt;class_name type.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DELETE_FROM_SAP">
+    <SOURCE>`
+  DATA pool     TYPE rs38l-area.
+  DATA type     TYPE td_comptype.
+  DATA name     TYPE td_compname.
+  DATA s_mask   TYPE ts_name_mask.
+  DATA d_ori_modified TYPE c.
+  DATA d_doc_type TYPE doku_typ.
+  DATA s_dokil  TYPE dokil.
+  DATA s_head   TYPE thead.
+
+  TRY.
+    type = component-&gt;get_type( ).
+    name = component-&gt;get_name( ).
+    CASE type.
+      WHEN supportedtypes-general OR supportedtypes-indep.
+        CASE type.
+          WHEN supportedtypes-general. s_mask-id = &apos;TX&apos;.    s_mask-object = name. &quot; Issue 60
+          WHEN supportedtypes-indep.   s_mask = name.
+        ENDCASE.
+* FROM MSDCUI01 : MODULE d0100_get_docuobject (583)
+        CALL FUNCTION &apos;EXT_MODIFY_ORIGINAL_CHECK&apos;
+          EXPORTING
+            p_id                = s_mask-id
+            p_object            = s_mask-object
+          IMPORTING
+            p_original_modified = d_ori_modified
+          EXCEPTIONS
+            OTHERS              = 1.
+        IF d_ori_modified = abap_true.&quot;Modi. vorh.
+          d_doc_type = &apos;M&apos;.
+        ELSEIF s_mask-id = &apos;FU&apos; OR s_mask-id = &apos;FX&apos;.
+          d_doc_type = &apos;T&apos;.
+        ELSE.
+          d_doc_type = &apos;E&apos;.
+        ENDIF.
+
+        SELECT SINGLE * INTO s_dokil
+          FROM dokil
+          WHERE id = s_mask-id
+            AND object = s_mask-object
+            AND typ = d_doc_type
+            AND masterlang = abap_true.
+        IF sy-subrc &lt;&gt; 0.
+          SELECT SINGLE * INTO s_dokil
+            FROM dokil
+            WHERE id = s_mask-id
+              AND object = s_mask-object
+              AND typ = d_doc_type.
+        ENDIF.
+
+        s_head-tdid     = s_mask-id.
+        s_head-tdname   = s_mask-object.
+        s_head-tdspras  = s_dokil-langu.
+
+        CALL FUNCTION &apos;ENQUEUE_ESDOC&apos;
+          EXPORTING
+*             MODE_DOKHL           = &apos;E&apos;
+            id     = s_dokil-id
+            object = s_dokil-object
+            langu  = s_dokil-langu
+            typ    = s_dokil-typ
+*             _SCOPE               = &apos;2&apos;
+*             _WAIT                = &apos; &apos;
+          EXCEPTIONS
+            foreign_lock         = 1
+            system_failure       = 2
+            OTHERS               = 3.
+        IF sy-subrc &lt;&gt; 0.
+          mac_add_mf_and_raise &apos;ENQUEUE_ESDOC&apos; sy-subrc.
+        ENDIF.
+
+        CALL FUNCTION &apos;DOCU_DELETE&apos;
+          EXPORTING
+*             ACTCLASS              = &apos; &apos;
+*             DELETE_RAW_ONLY       = &apos; &apos;
+            head                  = s_head
+            typ                   = d_doc_type
+            version               = s_dokil-version.
+*        IF sy-subrc &lt;&gt; 0.
+*          mac_add_mf_and_raise &apos;DOCU_DELETE&apos; sy-subrc.
+*        ENDIF.
+        CALL FUNCTION &apos;DEQUEUE_ESDOC&apos;
+         EXPORTING
+*             MODE_DOKHL         = &apos;E&apos;
+*             _SCOPE             = &apos;3&apos;
+            id     = s_dokil-id
+            object = s_dokil-object
+            langu  = s_dokil-langu
+            typ    = s_dokil-typ.
+
+        SELECT SINGLE * INTO s_dokil
+          FROM dokil
+          WHERE id = s_mask-id
+            AND object = s_mask-object
+            AND typ = d_doc_type.
+        IF sy-subrc &lt;&gt; 0.   result = abap_true.   ENDIF.
+
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.
+* Issue 137 =&gt; Remove from Working Area
+  zaplink_tools=&gt;remove_comp_from_working_area( type = type
+                                                name = name ).</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DO_EXISTS">
+    <SOURCE>`
+  DATA type     TYPE td_comptype.
+  DATA s_mask   TYPE ts_name_mask.
+  DATA d_name   TYPE td_compname.
+
+  exists = me-&gt;exists-not_exists.
+
+  TRY.
+    type = component-&gt;get_type( ).
+    CASE type.
+      WHEN supportedtypes-general OR supportedtypes-indep..
+        d_name = component-&gt;get_name( ).
+        s_mask = name_2_mask( type = type    name = d_name ).
+        SELECT SINGLE id INTO s_mask-id
+          FROM dokil
+          WHERE     id = s_mask-id
+            AND object = s_mask-object.
+        IF sy-subrc = 0.    exists = me-&gt;exists-exists.   ENDIF.
+*          CALL FUNCTION &apos;DOCU_INIT&apos;
+*            EXPORTING
+*              id            = s_mask-id
+*              langu         =
+*              object        = s_mask-object
+*              typ           =
+*            IMPORTING
+**             FOUND         =
+*              XDOKIL        = s_dokil.
+*          IF not s_dokil is INITIAL.    exists = me-&gt;exists-exists.   ENDIF.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~IS_SUPPORTED_VERSION">
+    <SOURCE>`
+  result = abap_false.
+  if version = _ver.    result = abap_true.   endif.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~READ_FROM_SAP">
+    <SOURCE>`
+  DATA o_data   TYPE to_doc.
+  DATA d_name   TYPE td_compname.
+  DATA type     TYPE td_comptype.
+  DATA s_mask   TYPE ts_name_mask.
+  DATA s_doc    TYPE ts_doc.
+
+  TRY.
+    type = component-&gt;get_type( ).
+    CREATE OBJECT object.
+    object-&gt;set_component( component ).
+    CASE type.
+      WHEN supportedtypes-general OR supportedtypes-indep.
+        d_name = component-&gt;get_name( ).
+        s_mask = name_2_mask( type = type    name = d_name ).
+        s_doc = get_single( ids = s_mask-id
+                         object = s_mask-object ).
+
+        CREATE OBJECT o_data.
+        o_data-&gt;from_data( s_doc ).
+        CLEAR: o_data-&gt;a0_maindata-id, o_data-&gt;a0_maindata-object.
+        object-&gt;raw = o_data.
+      WHEN OTHERS.
+        CLEAR object.
+        mac_raise_type_not_supported me-&gt;class_name type.
+    ENDCASE.
+    object-&gt;update_connector_data( me ).                    &quot; Issue 66
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~WRITE_TO_SAP">
+    <SOURCE>`
+  DATA o_data   TYPE to_doc.
+  DATA o_comp   TYPE to_component.
+  DATA s_mask   TYPE ts_name_mask.
+  DATA s_doc    TYPE ts_doc.
+
+  TRY.
+      CASE object-&gt;type.
+        WHEN supportedtypes-general OR supportedtypes-indep.
+          o_data ?= object-&gt;raw.
+          CASE object-&gt;type.
+            WHEN supportedtypes-general. s_mask-id = &apos;TX&apos;.    s_mask-object = object-&gt;name.
+            WHEN supportedtypes-indep.   s_mask = object-&gt;name.
+          ENDCASE.
+          o_data-&gt;a0_maindata-id = s_mask-id.   o_data-&gt;a0_maindata-object = s_mask-object.
+          s_doc = o_data-&gt;to_data( ).
+          set_single( s_doc ).
+          CREATE OBJECT o_comp.
+          o_comp-&gt;set_type( object-&gt;type ).   o_comp-&gt;set_name( object-&gt;name ).
+          CREATE OBJECT components.
+          components-&gt;add( o_comp ).
+        WHEN OTHERS.
+          mac_raise_type_not_supported me-&gt;class_name object-&gt;type.
+      ENDCASE.
+      check_component_list( EXPORTING     object = object
+                             CHANGING components = components ). &quot; Issue 92
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      ROLLBACK WORK.
+      RAISE EXCEPTION o_mycx.
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      ROLLBACK WORK.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_DOC" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_DOCV_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Data for documentation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LOG" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_NAME_MASK" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">BEGIN OF ts_name_mask,
+      ID 	    TYPE DOKIL-ID,
+      OBJECT  TYPE DOKIL-OBJECT,
+    END OF ts_name_mask
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

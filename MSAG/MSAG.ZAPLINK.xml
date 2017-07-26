@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="58FC02971646845A6F232A7C379094D0" CONNECTOR="1FAC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK" TYPE="MSAG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA MASTERLANG="E" RESPUSER="TBENSIAL"/>
+  <MESSAGES>
+   <ITEM MSGNR="000" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Processing (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="001" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Controling existence of (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="002" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Succesfully exported (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="003" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to export (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="004" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Succesfully imported (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="005" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to import (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="006" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Succesfully deleted (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="007" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to delete (&amp;1) &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="008" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to import (&amp;1) &amp;2 : Dependencie (&amp;3) &amp;4 is missing"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="050" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="There is no ZAPLink connector installed for object type &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="051" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component (&amp;1) &apos;&amp;2&apos; already exists. Select it to overwrite"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="052" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component (&amp;1) &apos;&amp;2&apos; does not exists."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="053" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Changes made on both (file/SAP) for Object &apos;&amp;2&apos; (&amp;1) =&gt; Manual ajustment"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="054" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="No component was selected with this parameters"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="055" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="General failure in Connector : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="056" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Unauthorized for object &apos;&amp;1&apos; (&amp;2)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="057" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Object &apos;&amp;1&apos; (&amp;2) can&apos;t be found"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="058" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Object &apos;&amp;1&apos; (&amp;2) is allready locked"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="059" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Class &apos;&amp;1&apos; loaded twice."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="060" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Type &apos;&amp;1&apos; is not assigned to a ZAPLINK connector">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASType &apos;&amp;MSGV1&amp;&apos; is not assigned to a ZAPLINK connector and is not a known
+  SAP object type (see transaction SE01).
+U1&amp;SYSTEM_RESPONSE&amp;
+AS
+U1&amp;WHAT_TO_DO&amp;
+ASCheck that the object type is correct. If it&apos;s a &quot;pseudo&quot; object type,
+  check that you have a connector for this object type.
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="061" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Connector(&amp;1)/type(&amp;2) can&apos;t be instancied due to exception &apos;&amp;3&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="062" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Class &apos;&amp;1&apos; for type &apos;&amp;2&apos; is not a valid connector. Check class &apos;&amp;3&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="063" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Invalid XML : Root node should be &apos;ZL_OBJECT&apos; and not &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="064" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Version &apos;&amp;1&apos; is not (or no longer) supported by the connector &apos;&amp;3&apos;(&amp;2)."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="065" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Type &apos;&amp;1&apos; is not supported by this connector &apos;&amp;2&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="066" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Class &apos;&amp;1&apos; and &apos;&amp;2&apos; have the same UUID : &apos;&amp;3&apos;."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="067" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="XML Error on component (&amp;1) &amp;2 =&gt; User abort"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="068" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Can&apos;t set Exception to the provided object type : &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="069" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Can&apos;t set Message Collector to the provided object type : &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="070" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Can&apos;t set sub-components list to the provided object type : &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="071" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Can&apos;t import on this mandant : Either productive or locked for changes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="100" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="at &amp;2(&amp;1) line &amp;3"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="101" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT='Exception &amp;1 &quot;&amp;2&quot; occurs in &amp;3 !'/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="102" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="at &amp;1 line &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="103" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="See transaction SLG1 with : &amp;1 / &amp;2 (&amp;3)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="104" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &apos;&amp;1&apos; has occured"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="105" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Framework General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="106" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="107" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Container General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="108" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="File General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="109" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="GUI General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="110" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component list General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="111" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Options General failure : &amp;1"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="150" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to add component (&amp;1) &apos;&amp;2&apos;."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="151" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Failed to add components list. Due to exception &apos;&amp;CX_NAME&amp;&apos;."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="152" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Circular dependencies in container"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="200" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Openning file &apos;&amp;1&apos; on local machine"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="201" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Openning file &apos;&amp;1&apos; on ABAP Server"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="202" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &apos;&amp;1&apos; while searching in &apos;&amp;2&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="203" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &apos;&amp;1&apos; while saving file &apos;&amp;2&apos; (&amp;3)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="204" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Filename is mandatory. Please provide a valid filename"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="205" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &apos;&amp;1&apos; while loading file &apos;&amp;2&apos; (&amp;3)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="206" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="FileType &apos;&amp;1&apos; is invalid. Type can only be &apos;S&apos; OR &apos;L&apos;">
+      <LONG_TXT TDFRELES="700" TDLRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASFileType &apos;&amp;MSGV1&amp;&apos; is invalid.
+U1&amp;SYSTEM_RESPONSE&amp;
+ASAction failed
+U1&amp;WHAT_TO_DO&amp;
+ASPlease provide either:
+B1&apos;S&apos; for server file or
+B1&apos;L&apos; for local file
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="207" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Filename &apos;&amp;1&apos; is invalid. Please provide a valid filename for filetype &amp;2"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="208" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="FileKind &apos;&amp;1&apos; is invalid. Type can only be &apos; &apos; OR &apos;Z&apos;">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASFileKind &apos;&amp;MSGV1&amp;&apos; is invalid.
+U1&amp;SYSTEM_RESPONSE&amp;
+ASAction failed
+U1&amp;WHAT_TO_DO&amp;
+ASProvide kind either:
+B1&apos; &apos; for &quot;normal&quot; files
+B1&apos;Z&apos; for zipped files
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="209" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Dialog canceled by user"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="210" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Exception &apos;&amp;1&apos; while deleting file &apos;&amp;2&apos; (&amp;3)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="250" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Object name is mandatory. Please provide a valid object name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="251" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Object type is mandatory. Please provide a valid object type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="252" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Container name is mandatory. Please provide a container name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="253" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Dialog canceled by user"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="254" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="The substitution kind &apos;&amp;1&apos; is invalid for options &quot;&amp;2&quot;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="255" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Option for &quot;&amp;2&quot; : a &amp;2 is required for substitution kind &apos;&amp;1&apos;"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="300" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component (&amp;1) &apos;&amp;2&apos; already in the collection"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="301" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="The selection action &amp;1 is invalid."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="302" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="GET_NEXT has been called without initialize a iterator.">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASThe selection action &amp;MSGV1&amp; is invalid.
+U1&amp;SYSTEM_RESPONSE&amp;
+ASAction failed
+U1&amp;WHAT_TO_DO&amp;
+ASPlease choose only select-action in ZAPLINK_COMPLIST=&gt;SEL_ACTIONS
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="303" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component (&amp;1) &apos;&amp;2&apos; not found in the collection"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="500" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Processing Dynpro #&amp;2 (&amp;1)"/>
+    </TEXTS>
+   </ITEM>
+  </MESSAGES>
+  <TEXTS>
+   <ITEM LANGU="E" SHORT_TXT="Message for exception class ZAPLINK_CX &amp; sons"/>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

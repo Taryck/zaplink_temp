@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4ADAA8A18F16383B53D7E42B05934C85" CODE_SIGNATURE="613C9145128B59DAA3127DA866DFA2FA" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_SXCI_DATA" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_BADI_DATA"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_BADI_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="BADI Implementation data">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_BADI
+ASDefine XML structure of a BADI Implementation
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="BADI Def Main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FILTER" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_FILTER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filter informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="IMPLEMENTATION" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TO_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="implementation Object"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_BADI" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="ANONYMIZE">
+    <SOURCE>`
+* Issue 81
+  DATA o_conn    TYPE to_connector.
+  DATA o_cleaner TYPE REF TO zaplink_cnx_ext_cleaner.
+  CLEAR: a0_maindata-uname, a0_maindata-udate, a0_maindata-utime,a0_maindata-aname, a0_maindata-adate, a0_maindata-atime.
+  IF implementation IS BOUND.
+    o_conn = zaplink_connectors=&gt;create_connector( type = implementation-&gt;type
+                                               connuuid = implementation-&gt;connector ).
+    TRY.
+        o_cleaner ?= o_conn.
+        o_cleaner-&gt;anonymize( implementation ).
+      CATCH cx_root.
+    ENDTRY.
+  ENDIF.
+*  TRY.
+  super-&gt;anonymize( ).
+*    CATCH zaplink_cx_connector INTO o_mycx.
+*      RAISE EXCEPTION o_mycx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="FROM_DATA">
+    <SOURCE>`
+  def_name = fm_data-implementation-exit_name.
+
+  CALL METHOD super-&gt;from_data
+    EXPORTING
+      fm_data = fm_data.
+
+  a0_maindata-main = fm_data-implementation.
+  a0_maindata-mast_langu = fm_data-mast_langu.
+  filter-enhanceable = fm_data-impl_w_filter.
+  filter-datatype = fm_data-filter_datatype.
+  filter-values = fm_data-filter_values.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="TO_DATA">
+    <SOURCE>`
+def_name = a0_maindata-exit_name.
+
+* Warning recieving (will reset FM_DATA)
+  CALL METHOD super-&gt;to_data
+    RECEIVING
+      fm_data = fm_data.
+
+  fm_data-implementation = a0_maindata-main.
+  fm_data-mast_langu = a0_maindata-mast_langu.
+*  READ TABLE a0_maindata-texts INTO _t
+*       WITH TABLE KEY langu = a0_maindata-langu.
+*  IF sy-subrc = 0.
+*    fm_data-implementation-descript = _t-descript.
+*  ENDIF.
+
+*CLASS_DESC  TYPE tt_SEOCLASSTX,
+*  fm_data-class_desc = a0_maindata-texts.
+*  _t-clsname = a0_maindata-clsname.
+*  MODIFY fm_data-class_desc FROM _t TRANSPORTING clsname WHERE clsname &lt;&gt; _t-clsname.
+
+  fm_data-impl_w_filter = filter-enhanceable.
+  fm_data-filter_datatype = filter-datatype.
+  fm_data-filter_values = filter-values.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="SEEX" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TS_FILTER" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_filter,
+      enhanceable TYPE rsexscrn-flt_ext,
+      datatype TYPE	rsexscrn-flt_type,
+*      Object   TYPE REF TO CL_BADI_FLT_VALUES_ALV,
+*  data FILTER_VALUES type SEEX_FILTER_TABLE .
+      values TYPE seex_filter_table,
+    END OF ts_filter
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filter informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+  INCLUDE TYPE impl_data AS main.
+  TYPES:
+      mast_langu  TYPE  sy-langu,
+    END OF ts_maindata
+    <TEXTS>
+     <ITEM LANG="E" TEXT="BADI Def Main data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

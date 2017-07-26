@@ -1,0 +1,1718 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="F9D0FD55E475A4D010389194B12750B6" CODE_SIGNATURE="77954DBB3EEE354F6F27CD2221EED416" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_LIST" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZapLink Components list">U1&amp;FUNCTIONALITY&amp;
+ASList of component with
+B1Type &amp; Name
+B1Connector if exists
+B1Action
+B1Kind (R3TR or LIMU)
+B1...
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="SEL_ACTIONS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="ACTIONS"/>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKSUM"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_LIGHT" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LIGHT"/>
+   <ITEM CMPNAME="TD_ORDERKIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ORDERKIND"/>
+   <ITEM CMPNAME="TD_SEL_ACTION" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ACTION"/>
+   <ITEM CMPNAME="TD_TYPE_AS_TEXT" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TYPE_AS_TEXT"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_COMPKEYS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="ALV_CONF" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_ALV_CONFS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ALV configuration"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ALV_H_TABLES" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF alv_h_tables,
+      header    TYPE slis_tabname VALUE &apos;HDR&apos;,
+      item      TYPE slis_tabname VALUE &apos;ITM&apos;,
+    END OF alv_h_tables
+`</ITEM>
+   <ITEM CMPNAME="CALLBACK_PROGRAM" EXPOSURE="2" STATE="1" ATTDECLTYP="1" ATTVALUE="&apos;ZAPLINK_LIST&apos;" TYPTYPE="1" TYPE="SY-REPID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Callback program for ALV Grid"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DISPLAY_PROGRESS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Display SAPGUI progress indication while iterating"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="IS_CONFIRMED" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Selection has been confirmed"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ITERATOR_TYPES" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF iterator_types,
+      all       TYPE td_iterator_type VALUE &apos;A&apos;,
+      selected  TYPE td_iterator_type VALUE &apos;S&apos;,
+    END OF iterator_types
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Types of Iterator"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="LIGHTS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF lights,
+      no            TYPE td_light VALUE icon_light_out,
+      red           TYPE td_light VALUE icon_red_light,
+      yellow        TYPE td_light VALUE icon_yellow_light,
+      green         TYPE td_light VALUE icon_green_light,
+      export        TYPE td_light VALUE icon_arrow_left,
+      import        TYPE td_light VALUE icon_arrow_right,
+      uninst        TYPE td_light VALUE icon_delete,
+      active        TYPE td_light VALUE icon_activate,
+      inactive      TYPE td_light VALUE icon_deactivate,
+      rep_error     TYPE td_light VALUE icon_message_error_small,   &quot; ICON_STATUS_CRITICAL ICON_ALERT ICON_MESSAGE_CRITICAL_SMALL
+      delete_file   type td_light value ICON_BOOKING_STOP,    &quot; ICON_BEN_TERMINATION ICON_TERMINATED_ORG_UNIT ICON_TERMINATED_TASK ICON_MESSAGE_ORPHANED &quot; ICON_CLOSED_FOLDER_ORPHANED doesn&apos;t exist on all SAP Systems :-(
+    END OF lights
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Lights icons"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ORDER_KIND" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TD_ORDERKIND">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Order kind"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ORDER_KINDS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    begin of ORDER_KINDS,
+      no_order  type td_orderkind value space,
+      install   type td_orderkind value &apos;B&apos;,  &quot; Bottom up
+      uninstall type td_orderkind value &apos;T&apos;,  &quot; Top down
+    end of ORDER_KINDS
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT='List of possible &quot;order kind&quot;'/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_EXCEPTION" STATE="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for List"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PF_STATUS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;PF_STATUS_SET &apos;" TYPTYPE="1" TYPE="SLIS_FORMNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="PF status set Formname"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PF_STATUS_NO_ACTIONS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;PF_STATUS_NO_ACTION &apos;" TYPTYPE="1" TYPE="SLIS_FORMNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="PF status set Formname"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_CURSORS" STATE="1" TYPTYPE="1" TYPE="TT_CURSORS"/>
+   <ITEM CMPNAME="USER_COMMAND" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;USER_COMMAND_USER&apos;" TYPTYPE="1" TYPE="SLIS_FORMNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="User comand Formname"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_ALLCOMP" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_ALLCOMPLIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All Component list index"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_INDEX" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_COMPLIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component list index"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_ITERATOR_COUNT" STATE="1" TYPTYPE="1" TYPE="SY-TABIX">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Index of Internal Tables"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_ITERATOR_TABIX" STATE="1" TYPTYPE="1" TYPE="SY-TABIX">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Index of Internal Tables"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_ITERATOR_TYPE" STATE="1" TYPTYPE="1" TYPE="TD_ITERATOR_TYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Iterator type : all, selected, ...."/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <DYNPROS>
+   <ITEM SCREEN="0100" LANGUAGE="E" DESCRIPT="test screen" TYPE="N" NEXTSCREEN="0100" LINES="027" COLUMNS="120">
+    <TEXTS>
+     <ITEM LANG="E" DTXT="test screen"/>
+    </TEXTS>
+    <FLOW_LOGIC>`
+PROCESS BEFORE OUTPUT.
+* MODULE STATUS_0100.
+*
+PROCESS AFTER INPUT.
+* MODULE USER_COMMAND_0100.</FLOW_LOGIC>
+    <CONTAINERS>
+     <ITEM TYPE="SCREEN" NAME="SCREEN">
+      <FIELDS>
+       <ITEM TYPE="OKCODE" TEXT="____________________" LENGTH="020" VISLENGTH="020" HEIGHT="001" FORMAT="CHAR" INPUT_FLD="X"/>
+      </FIELDS>
+     </ITEM>
+    </CONTAINERS>
+   </ITEM>
+  </DYNPROS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add component to list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _idx  LIKE LINE OF _index.
+  DATA _comp LIKE LINE OF _allcomp.
+
+  CHECK comp IS BOUND.
+  _idx = search_index( comp ).
+  IF _idx-o_comp IS BOUND.
+* Component &apos;&amp;name&amp;&apos; (&amp;type&amp;) already in the collection
+    RAISE EXCEPTION TYPE zcx_zl_comp_already_exists
+      EXPORTING
+        type = _idx-key-type
+        name = _idx-key-name.
+  ENDIF.
+
+  _idx-o_comp = comp.
+  INSERT _idx INTO TABLE _index.
+  MOVE-CORRESPONDING _idx TO _comp. INSERT _comp INTO TABLE _allcomp.
+  _add_subcomp( comp ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_KEYS" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add&amp;Create components from a key list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_COMPKEYS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Raw list of Components Keys"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp   TYPE to_component.
+  DATA o_cx_comp TYPE REF TO ZCX_ZL_COMPONENT.
+  DATA _list    TYPE tt_compkeys.
+  FIELD-SYMBOLS:
+    &lt;k&gt; LIKE LINE OF _list.
+
+  TRY.
+      _list = data.
+      SORT _list.
+      DELETE ADJACENT DUPLICATES FROM _list.
+      DELETE _list WHERE table_line IS INITIAL.
+
+      LOOP AT _list ASSIGNING &lt;k&gt;.
+        TRY.
+            o_comp = zaplink_component=&gt;create_new( &lt;k&gt; ).
+          CATCH ZCX_ZL_COMPONENT INTO o_cx_comp.
+* Action failed due to exception &apos;&amp;CX_NAME&amp;&apos;
+            CREATE OBJECT o_mycx
+              EXPORTING
+                textid   = zcx_zl_list=&gt;zcx_zl_list
+                previous = o_cx_comp.
+            o_mycx-&gt;update( ).
+            RAISE EXCEPTION o_mycx.
+        ENDTRY.
+        add( o_comp ).
+      ENDLOOP.
+    CATCH zcx_zl_list INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_LIST" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Merge new components from a list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_allcomp   TYPE	tt_allcomplist.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT data-&gt;_index ASSIGNING &lt;i&gt;.
+    READ TABLE _index TRANSPORTING NO FIELDS
+               WITH TABLE KEY key = &lt;i&gt;-key.
+    IF sy-subrc = 0.
+* Already exist here
+      CONTINUE.
+    ENDIF.
+    t_allcomp = data-&gt;_allcomp.
+    DELETE t_allcomp WHERE o_comp &lt;&gt; &lt;i&gt;-o_comp.
+    INSERT &lt;i&gt; INTO TABLE _index.
+    INSERT LINES OF t_allcomp INTO TABLE _allcomp.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHANGE_SELECTION" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Change selection list"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA alv TYPE td_alv.
+
+  CHECK sy-batch IS INITIAL.
+
+  alv = conv_to_alv( ).
+
+  PERFORM set_list IN PROGRAM zaplink_list USING me.
+*  PERFORM show_list IN PROGRAM zaplink_list using alv_conf-simple-layout alv_conf-simple-fields alv-headers.
+  CALL FUNCTION &apos;REUSE_ALV_GRID_DISPLAY&apos;
+    EXPORTING
+      i_callback_program       = callback_program
+      i_callback_pf_status_set = pf_status
+      i_callback_user_command  = user_command
+      i_grid_title             = &apos;Select objects&apos;(lst)
+      it_fieldcat              = alv_conf-simple-fields
+      is_layout                = alv_conf-simple-layout
+    TABLES
+      t_outtab                 = alv-headers
+    EXCEPTIONS
+      OTHERS                   = 0.
+
+  PERFORM clear_list IN PROGRAM zaplink_list.
+  IF is_confirmed IS INITIAL.
+    unselect_all( ).
+  ELSE.
+    update_from_alv( alv ).
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA field_s   LIKE LINE OF alv_conf-simple-fields.
+  DATA field_h   LIKE LINE OF alv_conf-hierar-fields.
+  DATA i_pos     TYPE i VALUE 0. &quot; position d&apos;affichage des champs
+  DATA t_desc    TYPE REF TO cl_abap_typedescr.
+  DATA st_desc   TYPE REF TO cl_abap_structdescr.
+  DATA o_elem    TYPE REF TO cl_abap_elemdescr.
+  DATA list      TYPE tt_alv.
+  DATA line      LIKE LINE OF list.
+  DATA text_name TYPE string.
+  DATA i_len     TYPE i.
+  DATA d_hex     TYPE x.                                    &quot; Issue 76
+  DATA d_char(2) TYPE c.
+  CONSTANTS fn_sel TYPE string VALUE &apos;SELECT&apos;.
+  FIELD-SYMBOLS:
+    &lt;t&gt; TYPE ANY,
+    &lt;c&gt; LIKE LINE OF st_desc-&gt;components.
+
+* Macro definition
+  DEFINE m_fieldcat_s.
+    clear field_s.
+    field_s-fieldname = &amp;1.
+    field_s-seltext_m = field_s-seltext_l = &amp;2.
+    append field_s to alv_conf-simple-fields.
+  END-OF-DEFINITION.
+
+  DEFINE m_fieldcat_h.
+    clear field_h.
+    field_h-row_pos   = 1.
+    field_h-tabname   = &amp;1.
+    field_h-col_pos   = i_pos.
+    field_h-fieldname = &amp;2.
+    field_h-seltext_m = field_h-seltext_l = &amp;3.
+    field_h-intlen  = field_h-outputlen = field_h-ddic_outputlen = &amp;4.
+    field_h-datatype = &apos;CHAR&apos;.
+    case field_h-fieldname.
+      when &apos;NAME&apos;.
+        field_h-key = abap_true.
+      when &apos;TYPE&apos;.
+        field_h-key = abap_true.
+      when &apos;SELECT&apos;.
+        field_h-input = abap_true.
+        field_h-checkbox = abap_true.
+      when &apos;MSG&apos;.
+        field_h-row_pos   = 2.
+        field_h-col_pos   = 1.
+    endcase.
+    append field_h to alv_conf-hierar-fields.
+  END-OF-DEFINITION.
+
+*==============================================
+*==========     ALV : Simple    ===============
+*==============================================
+
+* Not working :-(
+*  CALL FUNCTION &apos;REUSE_ALV_FIELDCATALOG_MERGE&apos;
+*    EXPORTING
+*      i_program_name     = &apos;ZAPLINK_LIST==================CP&apos;
+*      i_internal_tabname = &apos;LIST&apos;
+*      i_inclname         = &apos;ZAPLINK_LIST==================CM005&apos;
+*      i_bypassing_buffer = &apos;X&apos;
+*    CHANGING
+*      ct_fieldcat        = alv_conf-simple-fields.
+
+  t_desc = cl_abap_structdescr=&gt;describe_by_data( line ).
+
+  CHECK t_desc-&gt;kind = cl_abap_structdescr=&gt;kind_struct.
+  st_desc ?= t_desc.
+
+  LOOP AT st_desc-&gt;components ASSIGNING &lt;c&gt;.
+* Issue 76 : Start
+*    text_name = i_pos = sy-tabix.
+*    CONDENSE text_name NO-GAPS.
+    i_pos = sy-tabix.
+    d_hex = i_pos.
+    WRITE d_hex TO d_char.
+    text_name = d_char+1.
+* Issue 76 : end
+    CONCATENATE &apos;TEXT-NF&apos; text_name INTO text_name.
+    ASSIGN (text_name) TO &lt;t&gt;.
+    IF sy-subrc = 0.
+      text_name = &lt;t&gt;.
+    ELSE.
+      text_name = &lt;c&gt;-name.
+    ENDIF.
+
+    CLEAR i_len.
+    ASSIGN COMPONENT &lt;c&gt;-name OF STRUCTURE line TO &lt;t&gt;.
+    IF sy-subrc = 0.
+      t_desc = cl_abap_structdescr=&gt;describe_by_data( &lt;t&gt; ).
+      IF t_desc-&gt;kind = cl_abap_structdescr=&gt;kind_elem.
+        o_elem ?= t_desc.
+        IF o_elem-&gt;output_length = 0.
+          CASE &lt;c&gt;-name.
+            WHEN &apos;NAME&apos;.
+              i_len = 30.
+            WHEN &apos;MSG&apos;.
+              i_len = 80.
+            WHEN OTHERS.
+              i_len = 50.
+          ENDCASE.
+        ELSE.
+          i_len = o_elem-&gt;output_length.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+    IF i_len IS INITIAL. i_len = &lt;c&gt;-length. ENDIF.
+
+    m_fieldcat_s &lt;c&gt;-name text_name.
+    m_fieldcat_h alv_h_tables-header &lt;c&gt;-name text_name i_len.
+    m_fieldcat_h alv_h_tables-item &lt;c&gt;-name text_name i_len.
+
+  ENDLOOP.
+
+  alv_conf-simple-layout-box_fieldname     = fn_sel.
+  alv_conf-simple-layout-f2code            = &apos;MYPICK&apos; .
+  alv_conf-simple-layout-colwidth_optimize = &apos;X&apos;.
+*  alv_conf-layout-lights_fieldname  = &apos;STATUS&apos;.
+
+  DELETE alv_conf-simple-fields WHERE fieldname = alv_conf-simple-layout-box_fieldname
+                                   OR fieldname = &apos;ID&apos;
+                                   OR fieldname = &apos;EXPAND&apos;.
+
+*  alv_conf-hierar-layout-zebra = &apos;X&apos;.
+  alv_conf-hierar-layout-expand_fieldname = &apos;EXPAND&apos;.
+  alv_conf-hierar-layout-box_fieldname     = fn_sel.
+  alv_conf-hierar-layout-allow_switch_to_list = abap_true.
+  DELETE alv_conf-hierar-fields WHERE fieldname = &apos;ID&apos;
+                                   OR ( fieldname = fn_sel AND tabname = alv_h_tables-item )
+                                   OR fieldname = alv_conf-hierar-layout-expand_fieldname.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEAR" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clear component list"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR:
+      display_progress,
+      _allcomp,
+      _index,
+      o_exception,
+      t_cursors,
+      _iterator_count,
+      _iterator_tabix,
+      _iterator_type.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLONE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clone (copy) component&apos;s list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp TYPE to_component.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  TRY.
+      CREATE OBJECT result.
+
+      LOOP AT _index ASSIGNING &lt;i&gt;.
+        o_comp = &lt;i&gt;-o_comp-&gt;clone( ).
+        result-&gt;add( o_comp ).
+        If &lt;i&gt;-selected = abap_true.    result-&gt;select( o_comp ).    endif.
+      ENDLOOP.
+    CATCH ZCX_ZAPLINK.
+      CLEAR result.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="COMP_TO_ALV" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert component to ALV data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="O_COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_ALV">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ALV informations"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SELECTED" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Is selected"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _key     TYPE ts_compkey.
+  DATA d_action TYPE td_sel_action.
+  DATA o_cx     TYPE REF TO cx_root.
+
+  _key = o_comp-&gt;_get_key( ).
+  result-type = _key-type.
+  result-name = _key-name.
+
+  d_action = o_comp-&gt;get_action( ).
+  CASE d_action.
+    WHEN sel_actions-delete_file.
+      result-action = lights-delete_file.
+    WHEN sel_actions-import.
+      result-action = lights-import.
+    WHEN sel_actions-export.
+      result-action = lights-export.
+    WHEN sel_actions-uninstall.
+      result-action = lights-uninst.
+    WHEN sel_actions-activated.
+      result-action = lights-active.
+    WHEN sel_actions-not_active.
+      result-action = lights-inactive.
+    WHEN sel_actions-unreplicable.
+      result-action = lights-rep_error.
+  ENDCASE.
+
+  result-typ_txt = zaplink_connectors=&gt;type2text( result-type ).
+
+  IF o_comp-&gt;_connector-exists = zaplink_component=&gt;connexists-not_exists.
+    result-connector = lights-red.
+    result-status = lights-no.
+* There is no ZAPLink connector installed for object type &apos;&amp;1&apos;
+    MESSAGE e050 WITH result-type INTO result-msg.
+  ELSE.
+    result-connector = lights-green.
+    result-checksum = o_comp-&gt;get_checksum( ).
+    result-code_signature = o_comp-&gt;get_code_signature( ).
+    result-devclass = o_comp-&gt;get_devclass( ).
+    result-srcsystem = o_comp-&gt;get_src_sys( ).
+    o_cx = o_comp-&gt;get_exception( ).
+
+    result-status = lights-green.
+
+    CASE d_action.
+      WHEN sel_actions-import.
+        IF o_comp-&gt;_exists = zaplink_connector=&gt;exists. &quot; AND selected = abap_true.
+          result-status = lights-yellow.
+          CLEAR result-select.
+* Object &apos;&amp;2&apos; (&amp;1) already exists. Select it to overwrite
+          MESSAGE e051 WITH result-type result-name INTO result-msg.
+        ELSEIF o_cx IS BOUND.
+          result-status = lights-yellow.
+          result-msg = o_cx-&gt;get_text( ).
+        ENDIF.
+      WHEN sel_actions-export.
+        IF o_comp-&gt;_exists &lt;&gt; zaplink_connector=&gt;exists. &quot; AND selected = abap_true.
+          CLEAR result-select.
+          result-status = lights-red.
+* Object &apos;&amp;2&apos; (&amp;1) does not exists.
+          MESSAGE e052 WITH result-type result-name INTO result-msg.
+        ELSEIF o_cx IS BOUND.
+          result-status = lights-yellow.
+          result-msg = o_cx-&gt;get_text( ).
+        ENDIF.
+      WHEN sel_actions-uninstall.
+        IF o_comp-&gt;_exists &lt;&gt; zaplink_connector=&gt;exists. &quot; AND selected = abap_true.
+          CLEAR result-select.
+          result-status = lights-red.
+* Object &apos;&amp;2&apos; (&amp;1) does not exists.
+          MESSAGE e052 WITH result-type result-name INTO result-msg.
+        ELSEIF o_cx IS BOUND.
+          result-status = lights-yellow.
+          result-msg = o_cx-&gt;get_text( ).
+        ENDIF.
+      WHEN sel_actions-unreplicable.
+        result-status = lights-red.
+* Changes made on both (file&amp;SAP) for Object &apos;&amp;2&apos; (&amp;1) =&gt; Manual ajustment
+        MESSAGE e053 WITH result-type result-name INTO result-msg.
+      WHEN OTHERS.
+    ENDCASE.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_TO_ALV" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create ALV table from collection"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_ALV">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ALV informations"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="W_ITEM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="With Items"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+  DATA _line  LIKE LINE OF result-headers.
+  DATA s_item LIKE LINE OF result-items.
+  DATA o_list TYPE to_me.
+  DATA o_comp TYPE to_component.
+
+  TRY.
+
+    LOOP AT _index ASSIGNING &lt;i&gt;.
+      _line = comp_to_alv( o_comp = &lt;i&gt;-o_comp
+                         selected = &lt;i&gt;-selected ).
+      CALL FUNCTION &apos;GUID_CREATE&apos;
+        IMPORTING
+          ev_guid_16 = _line-id.
+
+      _line-select = &lt;i&gt;-selected.
+      IF NOT w_item IS INITIAL.
+        o_list = &lt;i&gt;-o_comp-&gt;get_subcomponents( ).
+        IF o_list IS BOUND.
+          _line-expand = abap_true.
+        ENDIF.
+      ENDIF.
+
+      APPEND _line TO result-headers.
+
+      IF NOT w_item IS INITIAL.
+        CHECK o_list IS BOUND.
+        o_list-&gt;display_progress = abap_false.
+        o_list-&gt;init_iter( ).
+        o_comp = o_list-&gt;get_next( ).
+        WHILE o_comp IS BOUND.
+          s_item = comp_to_alv( o_comp = o_comp
+                              selected = &lt;i&gt;-selected ).
+          o_comp = o_list-&gt;get_next( ).
+          s_item-id = _line-id.
+          s_item-select = _line-expand.
+          APPEND s_item TO result-items.
+        ENDWHILE.
+      ENDIF.
+    ENDLOOP.
+
+    mac_def_catch ZCX_ZL_LIST.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DISPLAY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Display list content"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA alv        TYPE td_alv.
+  DATA s_keyinfo  TYPE slis_keyinfo_alv.
+
+  s_keyinfo-header01 = s_keyinfo-item01 = &apos;ID&apos;.
+
+  alv = conv_to_alv( abap_true ).
+
+  CALL FUNCTION &apos;REUSE_ALV_HIERSEQ_LIST_DISPLAY&apos;
+    EXPORTING
+*     I_INTERFACE_CHECK              = &apos; &apos;
+      i_callback_program             = callback_program
+      i_callback_pf_status_set       = pf_status_no_actions
+      i_callback_user_command        = user_command
+      is_layout                      = alv_conf-hierar-layout
+      it_fieldcat                    = alv_conf-hierar-fields
+*     IT_EXCLUDING                   =
+*     IT_SPECIAL_GROUPS              =
+*     IT_SORT                        =
+*     IT_FILTER                      =
+*     IS_SEL_HIDE                    =
+*     I_SCREEN_START_COLUMN          = 0
+*     I_SCREEN_START_LINE            = 0
+*     I_SCREEN_END_COLUMN            = 0
+*     I_SCREEN_END_LINE              = 0
+*     I_DEFAULT                      = &apos;X&apos;
+*     I_SAVE                         = &apos; &apos;
+*     IS_VARIANT                     =
+*     IT_EVENTS                      =
+*     IT_EVENT_EXIT                  =
+      i_tabname_header               = alv_h_tables-header
+      i_tabname_item                 = alv_h_tables-item
+*     I_STRUCTURE_NAME_HEADER        =
+*     I_STRUCTURE_NAME_ITEM          =
+      is_keyinfo                     = s_keyinfo
+*     IS_PRINT                       =
+*     IS_REPREP_ID                   =
+*     I_BYPASSING_BUFFER             =
+*     I_BUFFER_ACTIVE                =
+*     IR_SALV_HIERSEQ_ADAPTER        =
+*     IT_EXCEPT_QINFO                =
+*     I_SUPPRESS_EMPTY_DATA          = ABAP_FALSE
+*   IMPORTING
+*     E_EXIT_CAUSED_BY_CALLER        =
+*     ES_EXIT_CAUSED_BY_USER         =
+    TABLES
+      t_outtab_header                = alv-headers
+      t_outtab_item                  = alv-items
+    EXCEPTIONS
+      program_error                  = 1
+      OTHERS                         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_COUNT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get number of component in list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="IS_SELECTED" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="count only selected component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="I">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Number of component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  IF is_selected IS INITIAL.
+    result = LINES( _index ).
+  ELSE.
+    LOOP AT _index TRANSPORTING NO FIELDS WHERE selected = abap_true. ADD 1 TO result. ENDLOOP.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_KEYS" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Return components as a key list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Raw list of Components Keys"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;k&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;k&gt;.
+    APPEND &lt;k&gt;-key TO result.
+  ENDLOOP.
+  SORT result.    DELETE ADJACENT DUPLICATES FROM result.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_NEXT" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Iterator Get next"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA component TYPE ts_compkey.
+  DATA msg       TYPE string.
+  DATA _pos      TYPE i.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF t_cursors.
+
+*  CHECK _iterator_end = abap_false.
+  CHECK _iterator_tabix &lt; _iterator_count.
+
+  CASE _iterator_type.
+    WHEN iterator_types-selected.
+    WHEN iterator_types-all.
+    WHEN OTHERS.
+* GET_NEXT has been called without initialize a iterator.
+      RAISE EXCEPTION TYPE ZCX_ZL_LIST
+                 EXPORTING textid = ZCX_ZL_LIST=&gt;iterator_not_initialize.
+  ENDCASE.
+
+  ADD 1 TO _iterator_tabix.
+  READ TABLE t_cursors INDEX _iterator_tabix ASSIGNING &lt;i&gt;.
+  ASSERT sy-subrc = 0.
+*  IF sy-subrc &lt;&gt; 0.
+** should not happend
+*    RAISE EXCEPTION TYPE ZCX_ZL_LIST
+*               EXPORTING textid = ZCX_ZL_LIST=&gt;system_error.
+*  ENDIF.
+
+  result = &lt;i&gt;-o_comp.
+
+* Display progression
+  IF display_progress = abap_true.
+    component = result-&gt;_get_key( ).
+    IF sy-batch = abap_true.
+* Processing object : &amp;2 (&amp;1)
+      MESSAGE i000 WITH component-type component-name.
+    ELSE.
+* Processing object : &amp;2 (&amp;1)
+      MESSAGE i000 WITH component-type component-name INTO msg.
+      IF _iterator_count &gt; 0.
+        _pos = 100 * _iterator_tabix / _iterator_count.
+      ELSE.
+        _pos = _iterator_tabix.
+      ENDIF.
+      CALL FUNCTION &apos;SAPGUI_PROGRESS_INDICATOR&apos;
+        EXPORTING
+          percentage = _pos
+          text       = msg.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="HAS_ANY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search components into all component list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_allcomp TYPE tt_allcomplist.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF _allcomp.
+
+  t_allcomp = list-&gt;_allcomp.
+
+  DELETE ADJACENT DUPLICATES FROM t_allcomp COMPARING key.
+
+  result = abap_false.
+  LOOP AT t_allcomp ASSIGNING &lt;c&gt;.
+    READ TABLE _allcomp TRANSPORTING NO FIELDS
+         WITH TABLE KEY key = &lt;c&gt;-key.
+    IF sy-subrc = 0.
+      result = abap_true.
+      EXIT.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INIT_ITER" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Initialize Iterator on all component of the list"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_cursor LIKE LINE OF t_cursors.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  CLEAR: _iterator_tabix, _iterator_count, t_cursors.    &quot; Issue 30
+  _iterator_type = iterator_types-all.
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    MOVE-CORRESPONDING &lt;i&gt; TO s_cursor.
+    IF order_kind &lt;&gt; order_kinds-no_order.
+      s_cursor-order = zaplink_connectors=&gt;get_typeorder( &lt;i&gt;-key-type ).
+    ENDIF.
+    APPEND s_cursor TO t_cursors.
+  ENDLOOP.
+  CASE order_kind.
+    WHEN order_kinds-install.
+      SORT t_cursors BY order key.
+    WHEN order_kinds-uninstall.
+      SORT t_cursors BY order DESCENDING key.
+    WHEN OTHERS.
+      SORT t_cursors BY key.
+  ENDCASE.
+  DESCRIBE TABLE t_cursors LINES _iterator_count.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INIT_SEL_ITER" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Initialize Iterator on selected component"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_cursor LIKE LINE OF t_cursors.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  CLEAR: _iterator_tabix, _iterator_count, t_cursors.    &quot; Issue 30
+  _iterator_type = iterator_types-selected.
+  LOOP AT _index ASSIGNING &lt;i&gt;
+       WHERE selected = abap_true.
+    MOVE-CORRESPONDING &lt;i&gt; TO s_cursor.
+    IF order_kind &lt;&gt; order_kinds-no_order.
+      s_cursor-order = zaplink_connectors=&gt;get_typeorder( &lt;i&gt;-key-type ).
+    ENDIF.
+    APPEND s_cursor TO t_cursors.
+  ENDLOOP.
+  CASE order_kind.
+    WHEN order_kinds-install.
+      SORT t_cursors BY order key.
+    WHEN order_kinds-uninstall.
+      SORT t_cursors BY order DESCENDING key.
+    WHEN OTHERS.
+      SORT t_cursors BY key.
+  ENDCASE.
+  DESCRIBE TABLE t_cursors LINES _iterator_count.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_EMPTY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is the list empty"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  IF _index IS INITIAL.   result = abap_true.   ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_INCLUDED" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search components into all component list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_allcomp TYPE tt_allcomplist.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF _allcomp.
+
+  t_allcomp = list-&gt;_allcomp.
+
+  DELETE ADJACENT DUPLICATES FROM t_allcomp COMPARING key.
+
+  result = abap_true.
+  LOOP AT t_allcomp ASSIGNING &lt;c&gt;.
+    READ TABLE _allcomp TRANSPORTING NO FIELDS
+         WITH TABLE KEY key = &lt;c&gt;-key.
+    IF sy-subrc &lt;&gt; 0.
+      result = abap_false.
+      EXIT.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_SELECTED" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is this component selected ?"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _idx LIKE LINE OF _index.
+
+  _idx = search_index( comp ).
+  IF _idx-selected IS NOT INITIAL.
+    result = abap_true.
+  ELSE.
+    result = abap_false.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="KEEP_COMMUN_LIST" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Keep only component in commun with an other list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    READ TABLE data-&gt;_index TRANSPORTING NO FIELDS
+               WITH TABLE KEY key = &lt;i&gt;-key.
+    IF sy-subrc &lt;&gt; 0.
+      DELETE _index.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REFRESH" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Refresh component&apos;s list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_list TYPE tt_complist.
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF t_list.
+
+  t_list = _index.
+  clear( ).
+  LOOP AT t_list ASSIGNING &lt;i&gt;.
+    add( &lt;i&gt;-o_comp ).
+    IF &lt;i&gt;-selected = abap_true.    select( &lt;i&gt;-o_comp ).    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REMOVE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove component from list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _idx LIKE LINE OF _index.
+
+  TRY.
+      _idx = search_index( comp ).
+    CATCH ZCX_ZL_LIST INTO o_exception.
+      RAISE EXCEPTION o_exception.
+  ENDTRY.
+
+  DELETE _allcomp WHERE o_comp = _idx-o_comp.
+  DELETE TABLE _index FROM _idx.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REMOVE_LIST" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove component to list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT data-&gt;_index ASSIGNING &lt;i&gt;.
+    TRY.
+        remove( &lt;i&gt;-o_comp ).
+      CATCH ZCX_ZL_LIST INTO o_exception.
+    ENDTRY.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REVERSE_SELECTION" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Reverse the selection"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+  LOOP AT _index ASSIGNING &lt;i&gt;. IF &lt;i&gt;-selected is INITIAL.   &lt;i&gt;-selected = abap_true.   else.   clear &lt;i&gt;-selected.   endif.  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SEARCH" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search component into list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _idx LIKE LINE OF _index.
+
+  _idx = search_index( comp ).
+  IF NOT _idx-o_comp IS BOUND.
+* not a real exception.
+* Component &apos;&amp;NAME&amp;&apos; (&amp;TYPE&amp;) not found in the collection
+*    RAISE EXCEPTION TYPE ZCX_ZL_LIST
+*               EXPORTING textid = ZCX_ZL_LIST=&gt;not_found
+*                           type = _idx-key-type
+*                           name = _idx-key-name.
+    exit.
+  ENDIF.
+
+  result = _idx-o_comp.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SEARCH_INDEX" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search component into list &amp; get index"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_COMPLIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component list index"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _key TYPE ts_compkey.
+
+  CHECK comp IS BOUND.
+  _key = comp-&gt;_get_key( ).
+
+  READ TABLE _index INTO result
+             WITH TABLE KEY key = _key.
+  IF sy-subrc &lt;&gt; 0.
+    result-key = _key.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select the component"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  TRY.
+      _select( comp = comp
+              value = abap_true ).
+    CATCH ZCX_ZL_LIST INTO o_exception.
+      RAISE EXCEPTION o_exception.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECTION_AS_LIST" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create new list with only selected components"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZapLink Components list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp TYPE to_component.
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+
+  TRY.
+      CREATE OBJECT result.
+
+      LOOP AT _index ASSIGNING &lt;i&gt; WHERE selected = abap_true.
+
+        o_comp = &lt;i&gt;-o_comp-&gt;clone( ).
+        result-&gt;add( o_comp ).
+*        If &lt;i&gt;-selected = abap_true.    result-&gt;select( o_comp ).    endif.
+      ENDLOOP.
+    CATCH ZCX_ZAPLINK.
+      CLEAR result.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_ALL" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select all components from list"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_idx LIKE LINE OF _index.
+
+  s_idx-selected = abap_true.   MODIFY _index FROM s_idx TRANSPORTING selected WHERE selected &lt;&gt; s_idx-selected.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_BY_ACTION" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select components from list depending on actions"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA action TYPE td_sel_action.
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    CLEAR &lt;i&gt;-selected.
+    action = &lt;i&gt;-o_comp-&gt;get_action( ).
+    CASE action.
+      WHEN sel_actions-export OR sel_actions-import OR sel_actions-uninstall OR sel_actions-delete_file.
+        &lt;i&gt;-selected = abap_true.
+    ENDCASE.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_DEFAULT" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select default components from list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SEL_ACTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_SEL_ACTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Selection Action : Export, Import, Uninstall"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  TRY.
+      CASE sel_action.
+        WHEN sel_actions-export.
+          select_export( ).
+        WHEN sel_actions-import.
+          select_import( ).
+        WHEN sel_actions-uninstall.
+          select_uninstall( ).
+        WHEN OTHERS.
+          RAISE EXCEPTION TYPE ZCX_ZL_LIST
+                     EXPORTING textid = ZCX_ZL_LIST=&gt;invalid_action
+                           sel_action = sel_action.
+      ENDCASE.
+    CATCH ZCX_ZL_LIST INTO o_exception.
+      RAISE EXCEPTION o_exception.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_EXPORT" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select components from list able to be exported"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    CLEAR &lt;i&gt;-selected.
+    IF &lt;i&gt;-o_comp-&gt;_connector-exists = zaplink_component=&gt;connexists-exists.
+      &lt;i&gt;-o_comp-&gt;set_action( sel_actions-export ).
+      IF &lt;i&gt;-o_comp-&gt;_exists = zaplink_connector=&gt;exists.    &lt;i&gt;-selected = abap_true.   ENDIF.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_IMPORT" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select components from list able to be imported"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    CLEAR &lt;i&gt;-selected.
+    IF &lt;i&gt;-o_comp-&gt;_connector-exists = zaplink_component=&gt;connexists-exists.
+      &lt;i&gt;-o_comp-&gt;set_action( sel_actions-import ).
+      IF &lt;i&gt;-o_comp-&gt;_exists = zaplink_connector=&gt;exists-not_exists.    &lt;i&gt;-selected = abap_true.   ENDIF.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SELECT_UNINSTALL" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select components from list able to be uninstalled"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;i&gt; LIKE LINE OF _index.
+
+  LOOP AT _index ASSIGNING &lt;i&gt;.
+    CLEAR &lt;i&gt;-selected.
+    IF &lt;i&gt;-o_comp-&gt;_connector-exists = zaplink_component=&gt;connexists-exists.
+      &lt;i&gt;-o_comp-&gt;set_action( sel_actions-uninstall ).
+      IF &lt;i&gt;-o_comp-&gt;_exists = zaplink_connector=&gt;exists.     &lt;i&gt;-selected = abap_true.     ENDIF.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNSELECT" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unselect the component"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  TRY.
+      _select( comp = comp
+              value = abap_false ).
+    CATCH ZCX_ZL_LIST INTO o_exception.
+      RAISE EXCEPTION o_exception.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNSELECT_ALL" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unselect all components from list"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_idx LIKE LINE OF _index.
+
+  s_idx-selected = abap_false.   MODIFY _index FROM s_idx TRANSPORTING selected WHERE selected &lt;&gt; s_idx-selected.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UPDATE_FROM_ALV" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Update selection from ALV"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ALV">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ALV data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;a&gt; LIKE LINE OF data-headers,
+    &lt;i&gt; LIKE LINE OF _index.
+  DATA _key TYPE ts_compkey.
+
+  LOOP AT data-headers ASSIGNING &lt;a&gt;.
+    _key-type = &lt;a&gt;-type.
+    _key-name = &lt;a&gt;-name.
+    READ TABLE _index ASSIGNING &lt;i&gt;
+         WITH KEY key = _key.
+    IF sy-subrc = 0.
+      IF NOT &lt;a&gt;-select IS INITIAL.
+        &lt;i&gt;-selected = abap_true.
+      ELSE.
+        &lt;i&gt;-selected = abap_false.
+      ENDIF.
+    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_ADD_SUBCOMP" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add sub components"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_list TYPE to_me.
+  DATA o_sub  TYPE to_me.
+  DATA _comp LIKE LINE OF _allcomp.
+
+  CHECK data IS BOUND.
+  TRY.
+      o_list = data-&gt;get_subcomponents( ).
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.
+  CHECK o_list IS BOUND.
+
+  LOOP AT o_list-&gt;_allcomp INTO _comp.
+    _comp-as_sub = abap_true.
+    _comp-o_comp = data.
+    INSERT _comp INTO TABLE _allcomp.
+  ENDLOOP.
+
+  LOOP AT o_list-&gt;_allcomp INTO _comp.    &quot; Issue 102
+    _add_subcomp( _comp-o_comp ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_SELECT" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Select the component ?"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="VALUE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_LIST" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _idx LIKE LINE OF _index.
+
+  _idx = search_index( comp ).
+  IF NOT _idx-o_comp IS BOUND.
+* Component &apos;&amp;NAME&amp;&apos; (&amp;TYPE&amp;) not found in the collection
+    RAISE EXCEPTION TYPE ZCX_ZL_LIST
+               EXPORTING textid = ZCX_ZL_LIST=&gt;not_found
+                           type = _idx-key-type
+                           name = _idx-key-name.
+  ENDIF.
+
+  _idx-selected = value.
+  MODIFY TABLE _index FROM _idx TRANSPORTING selected.
+
+  IF sy-subrc &lt;&gt; 0.
+    RAISE EXCEPTION TYPE ZCX_ZL_LIST
+               EXPORTING textid = ZCX_ZL_LIST=&gt;system_error
+                           type = _idx-key-type
+                           name = _idx-key-name.
+  ENDIF.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="LST">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Select objects" LENGTH="14 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF1">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Act." LENGTH="4 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF2">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Type" LENGTH="4 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF3">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Type description" LENGTH="20 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF4">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Component name" LENGTH="20 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF5">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="CNX" LENGTH="4 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF6">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Status" LENGTH="6 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF7">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Message" LENGTH="20 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF8">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Package" LENGTH="20 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NF9">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="SysID" LENGTH="5 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NFA">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Checksum" LENGTH="32 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NFB">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Code&apos;s Signature" LENGTH="32 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SLIS" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_ALV" EXPOSURE="1" STATE="1" EDITORDER="12 " TYPTYPE="4">BEGIN OF td_alv,
+      headers TYPE tt_alv,
+      items   TYPE tt_alv,
+    END OF td_alv
+`</ITEM>
+   <ITEM CMPNAME="TD_ALVID" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="1" TYPE="GUID_16"/>
+   <ITEM CMPNAME="TD_ITERATOR_TYPE" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Iterator type : all, selected, ...."/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZL_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ME" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZapLink Components list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ALLCOMPLIST" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    BEGIN OF ts_allcomplist,
+    key      TYPE ts_compkey,
+    o_comp   TYPE to_component,
+    as_sub   TYPE abap_bool,
+  END OF ts_allcomplist
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All Component list index line"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ALV" EXPOSURE="1" STATE="1" EDITORDER="10 " TYPTYPE="4">
+    BEGIN OF ts_alv,
+      action     TYPE td_light, &quot;type pools ICON
+      type       TYPE td_comptype,
+      typ_txt    TYPE td_type_as_text,
+      name       TYPE td_compname,
+      connector  TYPE td_light, &quot;type pools ICON
+      status     TYPE td_light, &quot;type pools ICON
+      msg        TYPE string,
+      devclass   TYPE tadir-devclass,
+      srcsystem  TYPE tadir-srcsystem,
+      checksum   TYPE td_checksum,
+      code_signature  TYPE td_checksum,
+* Not displayed fields
+      select     TYPE flag,
+      id         TYPE td_alvid,
+      expand     TYPE flag,
+  END OF ts_alv
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ALV line"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ALV_CONF" EXPOSURE="1" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_alv_conf,
+        fields TYPE slis_t_fieldcat_alv,
+        layout TYPE slis_layout_alv,
+      END OF ts_alv_conf
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ALV configuration"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ALV_CONFS" EXPOSURE="1" STATE="1" EDITORDER="9 " TYPTYPE="4">BEGIN OF ts_alv_confs,
+      simple TYPE ts_alv_conf,
+      hierar TYPE ts_alv_conf,
+      END OF ts_alv_confs
+`</ITEM>
+   <ITEM CMPNAME="TS_COMPLIST" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    BEGIN OF ts_complist,
+    key      TYPE ts_compkey,
+    o_comp   TYPE to_component,
+    selected TYPE abap_bool,
+  END OF ts_complist
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component list index"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CURSOR" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_cursor,
+    key      TYPE ts_compkey,
+    o_comp   TYPE to_component,
+    order    TYPE i,
+  END OF ts_cursor
+`</ITEM>
+   <ITEM CMPNAME="TT_ALLCOMPLIST" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    tt_allcomplist TYPE SORTED TABLE OF ts_allcomplist WITH NON-UNIQUE KEY KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All Components (main and sub)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ALV" EXPOSURE="1" STATE="1" EDITORDER="11 " TYPTYPE="4">
+    tt_alv TYPE STANDARD TABLE OF ts_alv WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ALV table"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_COMPLIST" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    tt_complist TYPE SORTED TABLE OF ts_complist WITH UNIQUE KEY KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component list index"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_CURSORS" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_cursors TYPE STANDARD TABLE OF ts_cursor WITH DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

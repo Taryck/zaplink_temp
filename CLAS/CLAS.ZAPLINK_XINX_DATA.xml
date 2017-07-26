@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="639628C9339CFCFF35DD15168E41C3C5" CODE_SIGNATURE="316B3F490141EBEB70FCB63019E4E94D" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_XINX_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Table Index (SE11) Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DICTIONARY
+ASDefine XML structure of a Table or Structure
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF doc_ids,
+      header TYPE td_doc_id VALUE &apos;TB&apos;,
+    END OF doc_ids
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FIELDS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_FIELDS"/>
+   <ITEM CMPNAME="O_CX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DICTIONARY" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_XINX_RAW" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS ZAPLINK_DOCUMENTATION DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR: a0_maindata-as4user, a0_maindata-as4date, a0_maindata-as4time.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-header. APPEND _id TO r_doc_ids.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF texts.
+  DATA s_field LIKE LINE OF fields.
+  DATA d_str   TYPE string.
+  DATA s_key   TYPE ts_idx_key.
+  FIELD-SYMBOLS:
+    &lt;f&gt; LIKE LINE OF fm_data-fields,
+    &lt;d&gt; LIKE LINE OF fm_data-docs,
+    &lt;dt&gt; LIKE LINE OF &lt;d&gt;-texts,
+    &lt;t&gt; LIKE LINE OF fm_data-texts.
+
+  a0_maindata = fm_data-header.
+  s_key-table = a0_maindata-sqltab.   s_key-index = a0_maindata-indexname.
+  CLEAR: a0_maindata-sqltab, a0_maindata-indexname.
+
+* Texts
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-langu = &lt;t&gt;-ddlanguage.
+    s_text-short_txt = &lt;t&gt;-ddtext.
+    READ TABLE fm_data-docs ASSIGNING &lt;d&gt;
+         WITH KEY id = doc_ids-header
+              object = s_key.
+    IF sy-subrc = 0.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_text-langu.
+      IF sy-subrc = 0.
+        s_text-long_txt = &lt;dt&gt;.
+        CLEAR s_text-long_txt-tdspras.
+      ENDIF.
+    ENDIF.
+    INSERT s_text INTO TABLE texts.
+  ENDLOOP.
+
+* fields
+  LOOP AT fm_data-fields ASSIGNING &lt;f&gt;
+          WHERE sqltab = s_key-table
+         AND indexname = s_key-index.
+    CLEAR s_field.    s_field = &lt;f&gt;.       CLEAR: s_field-sqltab, s_field-indexname.
+    INSERT s_field INTO TABLE fields.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="KEY_2_NAME" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Key to Name (E071 Entrie)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_IDX_KEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Index Key structure"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_obj_name TYPE  e071-obj_name.
+
+  CALL FUNCTION &apos;DD_DD_TO_E071&apos;
+    EXPORTING
+      type                = zaplink_dictionary=&gt;supportedtypes-ext_index
+      name                = data-table
+      id                  = data-index
+    IMPORTING
+*     PGMID               =
+*     OBJECT              =
+      obj_name            = d_obj_name
+    EXCEPTIONS
+      illegal_input       = 1
+      OTHERS              = 2.
+  IF sy-subrc &lt;&gt; 0.
+    mac_raise_mf &apos;DD_DD_TO_E071&apos; sy-subrc.
+  ELSE.
+    result = d_obj_name.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NAME_2_KEY" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Name (E071 Entrie) to Key"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_IDX_KEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Index Key structure"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_obj_name TYPE  e071-obj_name.
+
+  d_obj_name = data.
+  CALL FUNCTION &apos;DD_E071_TO_DD&apos;
+    EXPORTING
+      object              = zaplink_dictionary=&gt;supportedtypes-ext_index
+      obj_name            = d_obj_name
+    IMPORTING
+*      TYPE                =
+      name                = result-table
+      id                  = result-index
+    EXCEPTIONS
+      illegal_input       = 1
+      OTHERS              = 2.
+  IF sy-subrc &lt;&gt; 0.
+    mac_raise_mf &apos;DD_DD_TO_E071&apos; sy-subrc.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF fm_data-texts.
+  DATA s_field LIKE LINE OF fm_data-fields.
+  data s_doc   like LINE OF fm_data-docs.
+  DATA s_key   TYPE ts_idx_key.
+  FIELD-SYMBOLS:
+    &lt;f&gt;  LIKE LINE OF fields,
+    &lt;d&gt;  LIKE LINE OF fm_data-docs,
+    &lt;t&gt;  LIKE LINE OF texts.
+  data s_dtxt like LINE OF &lt;d&gt;-texts.
+
+  fm_data-header = a0_maindata.
+  s_key-table = a0_maindata-sqltab.   s_key-index = a0_maindata-indexname.
+
+* Texts
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-sqltab = fm_data-header-sqltab.
+    s_text-indexname = fm_data-header-indexname.
+    s_text-ddlanguage = &lt;t&gt;-langu.
+    s_text-as4local = &apos;A&apos;. &quot; Active
+    s_text-as4vers = &apos;0000&apos;. &quot; Active
+    s_text-ddtext = &lt;t&gt;-short_txt.
+    INSERT s_text INTO TABLE fm_data-texts.
+    IF NOT &lt;t&gt;-long_txt IS INITIAL.
+      IF fm_data-docs IS INITIAL.
+        s_doc-application = &apos;DOKU&apos;.
+        s_doc-id = doc_ids-header.
+        s_doc-object = s_key.
+        s_doc-langu = &lt;t&gt;-langu.
+        s_doc-masterlang = abap_true.
+        s_doc-typ = &apos;E&apos;.
+        s_doc-dokform = &apos;S_DOCU_SHOW&apos;.
+        s_doc-dokstyle = &apos;S_DOCUS1&apos;.
+        INSERT s_doc INTO TABLE fm_data-docs.
+      ENDIF.
+      READ TABLE fm_data-docs ASSIGNING &lt;d&gt; INDEX 1.
+      s_dtxt = &lt;t&gt;-long_txt.
+      s_dtxt-tdspras = &lt;t&gt;-langu.
+      INSERT s_dtxt INTO TABLE &lt;d&gt;-texts.
+    ENDIF.
+  ENDLOOP.
+
+* fields
+  LOOP AT fields ASSIGNING &lt;f&gt;.
+    CLEAR s_field.      s_field = &lt;f&gt;.      s_field-sqltab = s_key-table.   s_field-indexname = s_key-index.
+    INSERT s_field INTO TABLE fm_data-fields.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+* DO pour type doc
+                header        TYPE dd12v,
+                texts         TYPE tt_dd12t,
+                fields        TYPE tt_dd17v,
+                docs          TYPE tt_docs,
+              END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_IDX_KEY" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    BEGIN OF ts_idx_key,
+        table  TYPE tabname,
+        index  TYPE indexid,
+      END OF ts_idx_key
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Index Key structure"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="1" TYPE="DD12V">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="General Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD12T" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_dd12t TYPE STANDARD TABLE OF dd12t WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD17V" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">tt_dd17v TYPE STANDARD TABLE OF dd17v WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_FIELDS" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_fields TYPE SORTED TABLE OF dd17v WITH UNIQUE KEY position
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

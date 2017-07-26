@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="E00711F6992BAFD443D3873885263FFA" CODE_SIGNATURE="D21DB82630C02D31912557FAFCE682DB" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZCX_ZAPLINK" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="CX_STATIC_CHECK"/>
+  <ITEM TYPE="INTF" NAME="IF_T100_MESSAGE"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-ERR_HANDLING" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" CATEGORY="40" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S" MSG_ID="ZAPLINK">
+   <INHERITANCE REFCLSNAME="CX_STATIC_CHECK" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class">U1&amp;FUNCTIONALITY&amp;
+ASZAPLink framework root exception class. All Exception classes raised
+  from the framework inherit from this class. Have a look to each method
+  for more details.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TEXTID_MSG" EXPOSURE="1" REFCLSNAME="IF_T100_MESSAGE" REFCMPNAME="T100KEY"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="CX_NAME" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="STRING"/>
+   <ITEM CMPNAME="EXT_ID" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="BALNREXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: External ID"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MESSAGES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="O_MSG_COLL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJECT" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="BALOBJ_D">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Object Name (Application Code)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUBOBJECT" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SYSTEMSTACK" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="ABAP_CALLSTACK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="System Stack of the exception call"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_CX_LIST" EXPOSURE="2" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_CX_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Exceptions list"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <DEFERRED>
+   <INTERFACES>
+    <ITEM TYPEGROUP="IF_T100_MESSAGE" TPUTYPE="2" EXPLICIT="X"/>
+   </INTERFACES>
+  </DEFERRED>
+  <EXCEPTIONS_TEXTS>
+   <ITEM CMPNAME="BAL_LOG" EDITORDER="1 ">
+    <MESSAGE CLASS="ZAPLINK" NUMBER="103" ATTRIBUT_1="OBJECT" ATTRIBUT_2="SUBOBJECT" ATTRIBUT_3="EXT_ID"/>
+   </ITEM>
+   <ITEM CMPNAME="SYSTEM_ERROR" EDITORDER="3 ">
+    <MESSAGE CLASS="ZAPLINK" NUMBER="104" ATTRIBUT_1="CX_NAME"/>
+   </ITEM>
+   <ITEM CMPNAME="ZCX_ZAPLINK" EDITORDER="2 ">
+    <MESSAGE CLASS="ZAPLINK" NUMBER="105" ATTRIBUT_1="CX_NAME"/>
+   </ITEM>
+  </EXCEPTIONS_TEXTS>
+  <FRIENDS>
+   <ITEM STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="IF_T100_MESSAGE" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _exceptions TYPE REF TO CL_OO_CLASS_RELATIONS.
+  DATA s_list      LIKE LINE OF _cx_list.
+  DATA t_list      LIKE STANDARD TABLE OF s_list.
+  FIELD-SYMBOLS:
+*    &lt;im_cl&gt; LIKE LINE OF _exceptions-&gt;implementing_classes,
+    &lt;s_cl&gt; LIKE LINE OF _exceptions-&gt;subclasses.
+
+  CLEAR _cx_list.
+* Interface use
+  CREATE OBJECT _exceptions
+    EXPORTING
+      clsname      = &apos;ZCX_ZAPLINK&apos;
+*      w_superclasses = seox_true
+*      w_subclasses = seox_true
+*      w_references = seox_true
+*      w_redefinitions = seox_true
+*      w_eventhandler = seox_true
+*      w_implementings = seox_true
+     EXCEPTIONS
+       is_interface = 1
+       not_existing = 0  &quot; For installer ignore not existing class
+       others       = 3.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+               WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+  check _exceptions is bound.
+
+*  LOOP AT _exceptions-&gt;implementing_classes ASSIGNING &lt;im_cl&gt;
+*          WHERE exposure &lt;&gt; &apos;0&apos;   &quot; Private
+*            AND version = &apos;1&apos;     &quot; Active
+*            AND state &lt;&gt; &apos;0&apos;      &quot; Only modeled
+*            .
+*    CLEAR s_list. s_list-class = &lt;im_cl&gt;-clsname. APPEND s_list TO t_list.
+*  ENDLOOP.
+
+  LOOP AT _exceptions-&gt;subclasses ASSIGNING &lt;s_cl&gt;
+          WHERE state &lt;&gt; &apos;0&apos;      &quot; Only modeled
+            AND version = &apos;1&apos;     &quot; Active
+            .
+    CLEAR s_list. s_list-class = &lt;s_cl&gt;-clsname. APPEND s_list TO t_list.
+  ENDLOOP.
+
+  SORT t_list BY class.
+  DELETE ADJACENT DUPLICATES FROM t_list.
+  _cx_list = t_list.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_PROGNAME" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Program Name"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTEXT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEU_OBJKEY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Context : Parent object"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJECT_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEU_OBJKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="WB Request: Key for Object in Development Environment"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_SOURCE_DEF">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Source definition (type &amp; name)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA p_wb_request	TYPE REF TO cl_wb_request.
+  DATA p_ex_request	TYPE REF TO cl_wb_request.
+  DATA p_wb_source_req_dispatcher TYPE REF TO cl_wb_source_req_dispatcher.
+  DATA kind TYPE  seoclsname.
+
+  CREATE OBJECT p_wb_source_req_dispatcher.
+
+  CREATE OBJECT p_wb_request
+    EXPORTING
+      p_object_type                = &apos;P&apos;
+      p_object_name                = object_name
+      p_operation                  = &apos;DISPLAY&apos;
+*      p_in_new_window              = wn_same_window
+*      p_object_state               =
+*      p_lazy_start                 = to_immediate_start
+    EXCEPTIONS
+      illegal_object_type          = 1
+      illegal_operation            = 2
+      illegal_new_window_parameter = 3
+      OTHERS                       = 4.
+  IF sy-subrc &lt;&gt; 0.
+    source-str = source-name = object_name.
+    EXIT.
+  ENDIF.
+
+  CALL METHOD p_wb_source_req_dispatcher-&gt;if_wb_decision_class~get_tool_for_request
+    EXPORTING
+      p_wb_request            = p_wb_request
+    IMPORTING
+      p_execution_request     = p_ex_request
+      p_toolname              = kind
+    EXCEPTIONS
+      no_tool_found           = 1
+      object_not_found        = 2
+      operation_not_supported = 3
+      OTHERS                  = 4.
+  IF sy-subrc &lt;&gt; 0.
+    source-str = source-name = object_name.
+    EXIT.
+  ENDIF.
+
+  IF NOT p_ex_request IS BOUND.
+    p_ex_request = p_wb_request.
+  ENDIF.
+
+  source-name = p_ex_request-&gt;object_name.
+  IF NOT context IS INITIAL.
+    REPLACE FIRST OCCURRENCE OF context IN source-name WITH ` `.
+    CONDENSE source-name.
+  ENDIF.
+
+  SELECT SINGLE singular INTO source-type_txt
+    FROM euobjt
+    WHERE spras = sy-langu
+      AND type = p_ex_request-&gt;object_type.
+  IF sy-subrc &lt;&gt; 0.
+    SELECT SINGLE singular INTO source-type_txt
+      FROM euobjt
+      WHERE spras = &apos;E&apos;
+        AND type = p_ex_request-&gt;object_type.
+    IF sy-subrc &lt;&gt; 0.
+      SELECT SINGLE singular INTO source-type_txt
+        FROM euobjt
+        WHERE type = p_ex_request-&gt;object_type.
+    ENDIF.
+  ENDIF.
+  IF sy-subrc = 0.
+    CONCATENATE source-type_txt source-name INTO source-str SEPARATED BY space.
+  ELSE.
+    source-str = source-name.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_FROM_APPLICATION_LOG" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create Exception from application log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CX_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception Class name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="MESSAGE_COLLECTOR" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="O_MSG_COLL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PREV_CX" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION" PARVALUE="BAL_LOG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key for Logical Object in the OTR"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  result = _create_cx( cx_name = cx_name
+                        textid = textid ).
+  result-&gt;systemstack_up( ).  &quot; remove this method from stack
+
+  result-&gt;messages = message_collector.
+  result-&gt;previous = prev_cx.
+
+  result-&gt;update( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_FROM_METHOD_CX" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create Exception from Method Exception (non class exception)">U1&amp;FUNCTIONALITY&amp;
+ASGenerate an exception class based on the exception number of the method.
+  The method is defined with :
+B1Method&apos;s name
+B1Object definition, which is either :
+B2Class/Interface name
+B2Instanced object (class)
+ASThe exception name retrieves in the method is store in attribute CX_NAME
+  of the exception class.
+U1&amp;PRECONDITION&amp;
+ASException number in the method call must be in alphabetical order, not
+  in pattern order (which is the SE24 order). Otherwise Exception name
+  won&apos;t be the right one. Exception &quot;OTHERS&quot; should always be the last
+  exception number.
+U1&amp;RESULT&amp;
+ASA exception class based on the CLASSNAME value (ZAPLINK_CX if leaved
+  blank) is generated with CX_NAME filled with the name of the exception
+  in the method.
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="OBJECT" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Name of Function Module"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="CLASS_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="CX_CLASSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception class name inherited from ZAPLINK_CX"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="METHOD" CMPTYPE="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Method name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SUBRC" CMPTYPE="1" TYPTYPE="1" TYPE="SY-SUBRC">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ASSUMING exception are in the exact order of the MF def."/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION" PARVALUE="SYSTEM_ERROR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key for Logical Object in the OTR"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_desc   TYPE REF TO cl_abap_objectdescr.
+  DATA t_excep  TYPE abap_excpdescr_tab.
+  FIELD-SYMBOLS:
+    &lt;m&gt; LIKE LINE OF o_desc-&gt;methods,
+    &lt;e&gt; LIKE LINE OF &lt;m&gt;-exceptions.
+
+  result = _create_cx( cx_name = cx_classname
+                        textid = textid ).
+  result-&gt;systemstack_up( ).  &quot; remove this method from stack
+
+  CHECK class IS BOUND OR NOT class_name IS INITIAL.
+
+  IF class IS BOUND.
+    o_desc ?= cl_abap_objectdescr=&gt;describe_by_object_ref( class ).
+  ELSE.
+    o_desc ?= cl_abap_objectdescr=&gt;describe_by_name( class_name ).
+  ENDIF.
+
+  TRANSLATE method TO UPPER CASE.
+  READ TABLE o_desc-&gt;methods ASSIGNING &lt;m&gt;
+       WITH TABLE KEY name = method.
+  ASSERT sy-subrc = 0.
+  ASSERT subrc &gt;= 1 AND subrc &lt;= LINES( &lt;m&gt;-exceptions ).
+  t_excep = &lt;m&gt;-exceptions.   SORT t_excep.
+  READ TABLE t_excep ASSIGNING &lt;e&gt; INDEX subrc.
+  ASSERT sy-subrc = 0.
+  result-&gt;cx_name = &lt;e&gt;-name.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_FROM_MF_CX" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create Exception from Module Function Exception">U1&amp;FUNCTIONALITY&amp;
+ASGenerate an exception class based on the exception number of the
+  function module.
+ASThe exception name retrieves in the function module is store in
+  attribute CX_NAME of the exception class.
+U1&amp;PRECONDITION&amp;
+ASException number in the function module call must be in the exact order
+  in the function module definition.
+U1&amp;RESULT&amp;
+ASA exception class based on the CLASSNAME value (ZAPLINK_CX if leaved
+  blank) is generated with CX_NAME filled with the name of the exception
+  in function module.
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception class name inherited from ZAPLINK_CX"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FUNCNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RS38L-NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Name of Function Module"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SUBRC" CMPTYPE="1" TYPTYPE="1" TYPE="SY-SUBRC">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ASSUMING exception are in the exact order of the MF def."/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION" PARVALUE="SYSTEM_ERROR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key for Logical Object in the OTR"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CONSTANTS c_cx_kind TYPE funct-kind VALUE &apos;X&apos;. &quot; Exception
+
+  DATA _funcname      TYPE rs38l-name.
+  DATA lt_ptfdir      TYPE STANDARD TABLE OF tfdir WITH DEFAULT KEY.
+  DATA lt_ptftit      TYPE STANDARD TABLE OF tftit WITH DEFAULT KEY.
+  DATA lt_pfunct      TYPE STANDARD TABLE OF funct WITH DEFAULT KEY.
+  DATA lt_penlfdir    TYPE STANDARD TABLE OF enlfdir WITH DEFAULT KEY.
+  DATA lt_ptrdir      TYPE STANDARD TABLE OF trdir WITH DEFAULT KEY.
+  DATA lt_pfupararef  TYPE STANDARD TABLE OF sfupararef WITH DEFAULT KEY.
+  DATA lt_uincl       TYPE STANDARD TABLE OF abaptxt255 WITH DEFAULT KEY.
+  DATA _cx            TYPE to_exception.
+  DATA _subrc         TYPE sy-subrc.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF lt_pfunct,
+    &lt;p&gt; LIKE LINE OF lt_pfupararef.
+
+  _funcname = funcname.
+  TRANSLATE _funcname TO UPPER CASE.                      &quot;#EC SYNTCHAR
+
+  result = _create_cx( cx_name = classname
+                        textid = textid ).
+  result-&gt;systemstack_up( ).  &quot; remove this method from stack
+
+  CALL FUNCTION &apos;FUNC_GET_OBJECT&apos;
+    EXPORTING
+      funcname           = _funcname
+*     R3STATE            = &apos;A&apos;
+    TABLES
+      ptfdir             = lt_ptfdir
+      ptftit             = lt_ptftit
+      pfunct             = lt_pfunct
+      penlfdir           = lt_penlfdir
+      ptrdir             = lt_ptrdir
+      pfupararef         = lt_pfupararef
+      uincl              = lt_uincl
+*     VSMODISRC          =
+*     VSMODILOG          =
+    EXCEPTIONS
+      function_not_exist = 1
+      version_not_found  = 2
+      OTHERS             = 3.
+  IF sy-subrc &lt;&gt; 0.
+    _cx = create_from_mf_cx( funcname = &apos;FUNC_GET_OBJECT&apos;
+                                subrc = sy-subrc ).
+    result-&gt;previous = _cx.
+    result-&gt;textid_msg = ZCX_ZAPLINK=&gt;system_error.
+    EXIT.
+  ENDIF.
+
+  DELETE lt_pfunct WHERE kind &lt;&gt; c_cx_kind.
+  DELETE lt_pfupararef WHERE paramtype &lt;&gt; c_cx_kind.
+
+  READ TABLE lt_pfupararef ASSIGNING &lt;p&gt;
+       WITH KEY pposition = subrc.
+  IF sy-subrc &lt;&gt; 0.
+    _subrc = subrc - 1.
+    READ TABLE lt_pfupararef ASSIGNING &lt;p&gt;
+         WITH KEY pposition = _subrc.
+    IF sy-subrc = 0.
+      result-&gt;cx_name = &apos;OTHERS&apos;.   &quot; #EC NOTEXT
+      EXIT.
+    ENDIF.
+  ENDIF.
+  ASSERT ID zaplink CONDITION &lt;p&gt; IS ASSIGNED.     CHECK &lt;p&gt; IS ASSIGNED.
+*  IF NOT &lt;p&gt; IS ASSIGNED.
+*    RAISE EXCEPTION TYPE ZCX_ZAPLINK
+*          EXPORTING textid = ZCX_ZAPLINK=&gt;system_error.
+*  ENDIF.
+
+  result-&gt;cx_name = &lt;p&gt;-parameter.
+  READ TABLE lt_pfunct ASSIGNING &lt;t&gt;
+       WITH KEY parameter = &lt;p&gt;-parameter
+                    spras = sy-langu.
+  IF &lt;t&gt; IS ASSIGNED. IF &lt;t&gt;-stext IS INITIAL.     UNASSIGN &lt;t&gt;.      ENDIF. ENDIF.
+  IF NOT &lt;t&gt; IS ASSIGNED.
+    READ TABLE lt_pfunct ASSIGNING &lt;t&gt;
+         WITH KEY parameter = &lt;p&gt;-parameter
+                      spras = &apos;E&apos;.
+    IF &lt;t&gt; IS ASSIGNED. IF &lt;t&gt;-stext IS INITIAL.     UNASSIGN &lt;t&gt;.      ENDIF. ENDIF.
+  ENDIF.
+  IF NOT &lt;t&gt; IS ASSIGNED.
+    READ TABLE lt_pfunct ASSIGNING &lt;t&gt;
+         WITH KEY parameter = &lt;p&gt;-parameter.
+    IF &lt;t&gt; IS ASSIGNED. IF &lt;t&gt;-stext IS INITIAL.     UNASSIGN &lt;t&gt;.      ENDIF. ENDIF.
+  ENDIF.
+  IF &lt;t&gt; IS ASSIGNED.
+    CONCATENATE result-&gt;cx_name &apos;(&apos; &lt;t&gt;-stext &apos;)&apos; INTO result-&gt;cx_name.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_FROM_SYMSG" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create Exception from SY Msg message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception class name inherited from ZAPLINK_CX"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION" PARVALUE="SYSTEM_ERROR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key for Logical Object in the OTR"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  result = _create_cx( cx_name = classname
+                        textid = textid ).
+  result-&gt;systemstack_up( ).  &quot; remove this method from stack
+
+  MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+             WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4 INTO result-&gt;cx_name.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SOURCE_POSITION_AS_STRING" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Returns Position in Source Text as string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="STR" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+  str = source_position_as_string( me ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_EXCEPTION_TEXT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do the exception has the text ID"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception has this Text ID"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception ID : Message or GUID"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  If textid_msg = textid.     result = abap_true.   endif.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="LOAD_SYSTEMSTACK" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Load systemstack into exception"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FORCE_RELOAD" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Force reload of System Stack"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  IF systemstack IS INITIAL OR force_reload = abap_true.
+    CALL FUNCTION &apos;SYSTEM_CALLSTACK&apos;
+*     EXPORTING
+*       MAX_LEVEL          = 0
+      IMPORTING
+*       ET_CALLSTACK       =
+        callstack          = systemstack.
+    systemstack_up( ).   &quot; Remove load systemstack
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SOURCE_POSITION_AS_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Returns Position in Source as string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EXCEPTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CX_ROOT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Abstract Superclass for All Global Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="STR" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Position as String"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _pos TYPE ts_source_pos.
+*  DATA _key TYPE seu_objkey.
+*  DATA _prog TYPE ts_source_def.
+*  DATA _include TYPE ts_source_def.
+
+  CALL METHOD exception-&gt;get_source_position
+    IMPORTING
+      program_name = _pos-mainprogram
+      include_name = _pos-include
+      source_line  = _pos-line.
+
+  str = STACK_POSITION_AS_STRING( _pos ).
+*  _key = _pos-mainprogram. _prog = conv_progname( _key ).
+*  IF _pos-mainprogram = _pos-include.
+*    MESSAGE i002 WITH _prog-str _pos-line INTO str.
+*  ELSE.
+*    _key = _pos-include.     _include = conv_progname( object_name = _key   context = _prog-name ).
+*    MESSAGE i000 WITH _prog-str _include-str _pos-line INTO str.
+*  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STACK_POSITION_AS_STRING" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Returns Stack Position in Source as string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_SOURCE_POS"/>
+     <ITEM SCONAME="STR" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Position as String"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _key TYPE seu_objkey.
+  DATA _prog TYPE ts_source_def.
+  DATA _include TYPE ts_source_def.
+
+  _key = source-mainprogram. _prog = conv_progname( _key ).
+  IF source-mainprogram = source-include.
+    MESSAGE i102 WITH _prog-str source-line INTO str.
+  ELSE.
+    _key = source-include.     _include = conv_progname( object_name = _key   context = _prog-name ).
+    MESSAGE i100 WITH _prog-str _include-str source-line INTO str.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SYSTEMSTACK_UP" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clear last entry from systemstack of the exception"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FORCE_RELOAD" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Force reload of System Stack"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CHECK systemstack IS NOT INITIAL.   DELETE systemstack INDEX 1.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UPDATE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Màj parameters"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA desc TYPE REF TO cl_abap_objectdescr.
+
+* BAl_log
+  IF messages IS BOUND.
+    object = messages-&gt;object.
+    subobject = messages-&gt;subobject.
+    ext_id = messages-&gt;ext_id.
+    messages-&gt;store( ).
+  ENDIF.
+
+* cx_name
+  IF cx_name IS INITIAL AND previous IS BOUND.
+    desc ?= cl_abap_objectdescr=&gt;describe_by_object_ref( previous ).
+    cx_name = desc-&gt;absolute_name.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="WRITE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Write exception as text"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _exceptions  TYPE STANDARD TABLE OF string.
+  DATA _msg         TYPE string.
+  DATA _pos         TYPE string.
+  DATA _cx          TYPE REF TO cx_root.
+  DATA _order       TYPE STANDARD TABLE OF string.
+  DATA _offset      TYPE string.
+  DATA _messages    TYPE bapirettab.
+  DATA _light       TYPE icon_d.
+  DATA t_stack      TYPE abap_callstack.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF t_stack,
+    &lt;e&gt; LIKE LINE OF _exceptions.
+
+  _cx = me.
+  WHILE _cx IS BOUND.
+    _msg = _cx-&gt;get_text( ).
+*    if not _cx-&gt;systemstack is INITIAL.   t_stack = _cx-&gt;systemstack.   endif.
+    _pos = ZCX_ZAPLINK=&gt;source_position_as_string( _cx ).
+    CONCATENATE _msg _pos INTO _msg SEPARATED BY space.
+    APPEND _msg TO _exceptions.
+    _cx = _cx-&gt;previous.
+  ENDWHILE.
+
+  LOOP AT _exceptions ASSIGNING &lt;e&gt;.
+    INSERT &lt;e&gt; INTO _order INDEX 1.
+  ENDLOOP.
+  FREE _exceptions.
+*ICON_ARROW_RIGHT
+*ICON_WF_LINK
+*ICON_PDIR_FOREWARD
+*ICON_PDIR_FOREWARD_SWITCH
+*ICON_CONNECT
+*ICON_TREND_UNCHANGED
+*ICON_PAGE_RIGHT
+  LOOP AT _order ASSIGNING &lt;e&gt;.
+    IF sy-tabix = 1.
+      WRITE:/ icon_message_critical_small AS ICON, &lt;e&gt;.
+    ELSE.
+      CONCATENATE ` ` _offset INTO _offset.
+      WRITE:/ _offset, icon_arrow_right AS ICON, &lt;e&gt;.
+    ENDIF.
+  ENDLOOP.
+  CONCATENATE ` ` _offset INTO _offset.
+  LOOP AT t_stack ASSIGNING &lt;s&gt;.
+    _msg = stack_position_as_string( &lt;s&gt; ).
+    WRITE:/ _offset, icon_stack AS ICON, _msg.
+  ENDLOOP.
+  IF me-&gt;messages IS BOUND.   messages-&gt;write( _offset ).   ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_CREATE_CX" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create Exception from class name"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CX_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Exception class name inherited from ZAPLINK_CX"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_EXCEPTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key for Logical Object in the OTR"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA f_exists TYPE abap_bool.
+
+  IF NOT cx_name IS INITIAL.
+    READ TABLE _cx_list TRANSPORTING NO FIELDS
+         WITH TABLE KEY class = cx_name.
+    IF sy-subrc = 0.
+      f_exists = abap_true.
+    ELSE.
+      f_exists = abap_false.
+    ENDIF.
+    TRY.
+        CREATE OBJECT result
+          TYPE
+            (cx_name)
+          EXPORTING
+            textid    = textid.
+      CATCH cx_root INTO o_cx.
+        ASSERT f_exists = abap_false.
+*        IF f_exists = abap_true.
+*          mac_cascade_raise o_mycx o_cx.
+*        ENDIF.
+    ENDTRY.
+  ENDIF.
+
+  IF result IS NOT BOUND.
+    CREATE OBJECT result
+      EXPORTING
+        textid = textid.
+  ENDIF.
+  result-&gt;load_systemstack( ).
+  result-&gt;systemstack_up( ).  &quot; remove this method from stack</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="ICON" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="O_MSG_COLL" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="SCX_T100KEY">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Exception ID : Message or GUID"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="CX_ROOT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Abstract Superclass for All Global Exceptions"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CX" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">BEGIN OF ts_cx,
+        class TYPE seoclsname,
+      END OF ts_cx
+`</ITEM>
+   <ITEM CMPNAME="TS_SOURCE_DEF" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    BEGIN OF ts_source_def,
+          type_txt TYPE euobjt-singular,
+          name TYPE	seu_objkey,
+          str TYPE string,
+        END OF ts_source_def
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Source definition (type &amp; name)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SOURCE_POS" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="1" TYPE="ABAP_CALLSTACK_LINE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Source position"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_CX_LIST" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_cx_list TYPE HASHED TABLE OF ts_cx WITH UNIQUE KEY class
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

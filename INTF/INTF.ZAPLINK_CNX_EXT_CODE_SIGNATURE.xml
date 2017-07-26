@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="320FDDBB02EF28FFC939619C330B97BB" CODE_SIGNATURE="F2C73B173F1A1428512148FFDC56B0EE" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_CNX_EXT_CODE_SIGNATURE" TYPE="INTF" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-INTERFACES" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink Connector Extension : Source Code Signature">U1&amp;MEANING&amp;
+ASInterface for Code&apos;s signature
+U1&amp;USE&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKSUM"/>
+  </ALIASES>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" STATE="1"/>
+  </INTERFACES>
+  <METHODS>
+   <ITEM CMPNAME="GET_SIGNATURE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Source code Signature of component">U1&amp;FUNCTIONALITY&amp;
+ASExtend connector features, when usefull, to provide a ABAP source code
+  signature. If source code is modified (ignoring comment change,
+  blanks....) then code signature should change.
+U1&amp;PRECONDITION&amp;
+AS
+U1&amp;RESULT&amp;
+AS
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="SAP Component"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_CHECKSUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Source Code Signature (Checksum)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

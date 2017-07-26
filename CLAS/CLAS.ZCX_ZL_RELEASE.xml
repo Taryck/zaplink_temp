@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="A0430B2C227DF6BE569B521BB54A01C5" CODE_SIGNATURE="8998770B59FA9199F939CA056B482435" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZCX_ZL_RELEASE" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZCX_ZAPLINK"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-ERR_HANDLING" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" CATEGORY="40" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK_DEVTOOLS">
+   <INHERITANCE REFCLSNAME="ZCX_ZAPLINK" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink Framework : Exception for release process"/>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="MASTER_PROGRAM" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Master program name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TARGET_PROGRAM" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Target program name"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <EXCEPTIONS_TEXTS>
+   <ITEM CMPNAME="GENERATION_FAILED" EDITORDER="1 ">
+    <MESSAGE CLASS="ZAPLINK_DEVTOOLS" NUMBER="017" ATTRIBUT_1="TARGET_PROGRAM" ATTRIBUT_2="MASTER_PROGRAM"/>
+   </ITEM>
+  </EXCEPTIONS_TEXTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+ </RAW>
+</ZL_OBJECT>

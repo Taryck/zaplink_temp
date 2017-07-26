@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="D7F2C441949FBD469B921D4D0047549F" CODE_SIGNATURE="2F3BC6BBFF9D1164F36B3F99C273F68C" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_ENHO_DATA" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_ENHANCEMENT_DATA"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_ENHANCEMENT_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Data for Enhancement Implementation">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_BADI
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TS_HEADER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Enhancement Composite Header Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="BADI_IMPLEMENTATIONS" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_BADI_IMPLS"/>
+   <ITEM CMPNAME="CLASS_IMPLEMENTATION" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TS_CLIF_IMPL"/>
+   <ITEM CMPNAME="FUNCTION_GROUP_IMPLEMENTATION" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="ENHFUGRDATA"/>
+   <ITEM CMPNAME="HOOK_IMPLEMENTATIONS" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_HOOK_IMPLS"/>
+   <ITEM CMPNAME="INTERFACE_IMPLEMENTATION" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TS_CLIF_IMPL"/>
+   <ITEM CMPNAME="WEB_DYNPRO_IMPLEMENTATION" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="ENHWDYN"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_ENHANCEMENT" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLIF_SAP2INT" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Class/Interface SAP to Internal"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INT_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_CLIF_IMPL"/>
+     <ITEM SCONAME="SAP_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ENHCLASSMETHDATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Enhancements for a Class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_line   LIKE LINE OF int_data-sources.
+  DATA s_attr   LIKE LINE OF int_data-attributes.
+  DATA s_pre_m  LIKE LINE OF int_data-pre_methodes.
+  DATA s_pos_m  LIKE LINE OF int_data-post_methodes.
+  DATA s_save   LIKE LINE OF int_data-save_enhincinx.
+  DATA s_n_met  LIKE LINE OF int_data-new_methodes.
+  DATA s_m_inc  LIKE LINE OF int_data-methodes_includes.
+  DATA s_event  LIKE LINE OF int_data-events.
+*  DATA s_pmeth  LIKE LINE OF int_data-implementings.
+  DATA s_impl   LIKE LINE OF int_data-implementings.
+  DATA s_ow_me  LIKE LINE OF int_data-overwrite_methodes.
+  DATA s_types  LIKE LINE OF int_data-types.
+  FIELD-SYMBOLS:
+    &lt;e&gt; LIKE LINE OF sap_data-enh_events,
+    &lt;m&gt; LIKE LINE OF int_data-methodes,
+    &lt;i&gt; LIKE LINE OF sap_data-enh_methsources.
+  DATA s_param  LIKE LINE OF &lt;m&gt;-enhparams.
+  DATA s_ev_pa  LIKE LINE OF s_event-parameters.
+
+  int_data-name = sap_data-clsname.
+
+  int_data-attributes = sap_data-enh_attributes.
+  MODIFY int_data-attributes FROM s_attr TRANSPORTING clsname WHERE clsname = int_data-name.
+
+  int_data-methodes = sap_data-enh_methodes.
+  LOOP AT int_data-methodes ASSIGNING &lt;m&gt;.
+    MODIFY &lt;m&gt;-enhparams FROM s_param TRANSPORTING clsname WHERE clsname = int_data-name.
+  ENDLOOP.
+  int_data-pre_methodes = sap_data-enh_premethodes.
+  MODIFY int_data-pre_methodes FROM s_pre_m TRANSPORTING methkey-clsname WHERE methkey-clsname = int_data-name.
+
+  int_data-post_methodes = sap_data-enh_postmethodes.
+  MODIFY int_data-post_methodes FROM s_pos_m TRANSPORTING methkey-clsname WHERE methkey-clsname = int_data-name.
+
+  int_data-save_enhincinx = sap_data-save_enhincinx.
+  MODIFY int_data-save_enhincinx FROM s_save TRANSPORTING enhname WHERE enhname = a0_maindata-enhspot.
+
+  int_data-new_methodes = sap_data-enh_newmethodes.
+  MODIFY int_data-new_methodes FROM s_n_met TRANSPORTING methkey-clsname WHERE methkey-clsname = int_data-name.
+
+  LOOP AT sap_data-enh_methsources ASSIGNING &lt;i&gt;.
+    CLEAR s_line.
+    s_line-name = &lt;i&gt;-cpdname.
+    s_line-redefine = &lt;i&gt;-redefine.
+    s_line-source-_ = zaplink_enhancement=&gt;conv_abap_raw2source( &lt;i&gt;-source ).
+    INSERT s_line INTO TABLE int_data-sources.
+  ENDLOOP.
+
+  int_data-methodes_includes = sap_data-enh_methincludes.
+*  MODIFY int_data-methodes_includes FROM s_m_inc TRANSPORTING clsname
+*         WHERE clsname = int_data-name.
+
+  LOOP AT sap_data-enh_events ASSIGNING &lt;e&gt;.
+    CLEAR s_event.
+    s_event-hdr = &lt;e&gt;-event_header.
+    CLEAR s_event-clsname.
+    s_event-parameters = &lt;e&gt;-event_param.
+    MODIFY s_event-parameters FROM s_ev_pa TRANSPORTING clsname cmpname
+                              WHERE clsname = int_data-name AND cmpname = s_event-cmpname.
+    INSERT s_event INTO TABLE int_data-events.
+  ENDLOOP.
+
+  int_data-implementings = sap_data-enh_implementings.
+  MODIFY int_data-implementings FROM s_impl TRANSPORTING clsname WHERE clsname = int_data-name.
+
+  int_data-overwrite_methodes = sap_data-enh_owrmethodes.
+  MODIFY int_data-overwrite_methodes FROM s_ow_me TRANSPORTING methkey-clsname WHERE methkey-clsname = int_data-name.
+
+  int_data-types = sap_data-enh_types.
+  MODIFY int_data-types FROM s_types TRANSPORTING clsname WHERE clsname = int_data-name.
+
+  int_data-implementation_source-_ = zaplink_enhancement=&gt;conv_abap_raw2source( sap_data-enh_eimpsource ).
+  int_data-access_pri_pro = sap_data-enh_access_pri_pro.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Composite Enhancement Spot definition"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_badi_impl    LIKE LINE OF badi_implementations.
+  DATA s_txt          TYPE ts_sotr.
+*  DATA s_clif_impl    LIKE LINE OF class_implementation.
+  DATA s_hook_impl    LIKE LINE OF hook_implementations.
+  FIELD-SYMBOLS:
+    &lt;table&gt;       LIKE class_implementation,
+*    &lt;clif_impl&gt;   LIKE LINE OF data-clif_impl,
+    &lt;hook_impl&gt;   LIKE LINE OF data-hook_impl-enh,
+    &lt;badi_impl&gt;   LIKE LINE OF data-badi_impl-admin-impl_data.
+
+  a0_maindata-scr = data-header-scr.
+  MOVE-CORRESPONDING data-header-hdr TO a0_maindata-scr.
+  CLEAR a0_maindata-scr-state.
+  a0_maindata-enhspot = data-header-hdr-enhname.
+  a0_maindata-texts = sotr_2_texts( data-header-text_ids ).
+  a0_maindata-add-type = data-header-hdr-type.
+  a0_maindata-add-tool_type = data-header-hdr-enhtooltype.
+  a0_maindata-add-upgrade = data-header-hdr-upgrade.
+
+* List of type from table ENHTOOLS.
+  CASE a0_maindata-add-tool_type.
+    WHEN zaplink_enhancement=&gt;tooltypes-badi.
+      LOOP AT data-badi_impl-admin-impl_data ASSIGNING &lt;badi_impl&gt;.
+        CLEAR s_badi_impl.
+        s_badi_impl-main = &lt;badi_impl&gt;.
+        s_txt-short = s_badi_impl-impl_shorttext_id.
+        s_txt-long = s_badi_impl-impl_longtext_id.
+        s_badi_impl-texts = sotr_2_texts( s_txt ).
+        CLEAR: s_badi_impl-spot_name, s_badi_impl-impl_name,
+               s_badi_impl-impl_shorttext_id, s_badi_impl-impl_shorttext, s_badi_impl-impl_longtext_id.
+        INSERT s_badi_impl INTO TABLE badi_implementations.
+      ENDLOOP.
+    WHEN zaplink_enhancement=&gt;tooltypes-class OR zaplink_enhancement=&gt;tooltypes-interface.
+      IF a0_maindata-add-tool_type = zaplink_enhancement=&gt;tooltypes-class.
+        ASSIGN class_implementation TO &lt;table&gt;.
+        class_implementation = clif_sap2int( data-clif_impl ).
+*        clear class_implementation-ENH_ATTRIBUTES-CLSNAME. =&quot;CL_IWP_SWITCH_CHECK&quot;
+*        clear class_implementation-ENH_OWRMETHODES-CLSNAME. =&quot;CL_IWP_SWITCH_CHECK&quot;
+      ELSEIF a0_maindata-add-tool_type = zaplink_enhancement=&gt;tooltypes-interface.
+        ASSIGN interface_implementation TO &lt;table&gt;.
+        interface_implementation = clif_sap2int( data-clif_impl ).
+      ELSE.
+        ASSERT 1 = 0.
+      ENDIF.
+*      LOOP AT data-clif_impl ASSIGNING &lt;clif_impl&gt;.
+*        CLEAR s_impl.
+*        s_clif_impl-main = &lt;clif_impl&gt;.
+*        s_txt-short = s_clif_impl-impl_shorttext_id.
+*        s_txt-long = s_clif_impl-impl_longtext_id.
+*        s_clif_impl-texts = sotr_2_texts( s_txt ).
+**        CLEAR: s_impl-spot_name, s_impl-impl_shorttext_id, s_impl-impl_shorttext, s_impl-impl_longtext_id.
+*        INSERT s_clif_impl INTO TABLE &lt;table&gt;.
+*      ENDLOOP.
+    WHEN zaplink_enhancement=&gt;tooltypes-function_group.
+      function_group_implementation = data-fugr_impl.
+    WHEN zaplink_enhancement=&gt;tooltypes-hook.
+*      LOOP AT data-hook_impl-enh ASSIGNING &lt;hook_impl&gt;.
+*        CLEAR s_hook_impl.
+*        s_hook_impl-main = &lt;hook_impl&gt;.
+*        s_txt-short = s_hook_impl-impl_shorttext_id.
+*        s_txt-long = s_hook_impl-impl_longtext_id.
+*        s_hook_impl-texts = sotr_2_texts( s_txt ).
+**        CLEAR: s_badi_impl-spot_name, s_badi_impl-impl_shorttext_id, s_badi_impl-impl_shorttext, s_badi_impl-impl_longtext_id.
+*        INSERT s_hook_impl INTO TABLE hook_implementations.
+*      ENDLOOP.
+*      hook_implementations = data-hook_impl.
+      IF data-hook_impl-admin-org_obj_name &lt;&gt; data-hook_impl-admin-org_main_name.
+        BREAK-POINT.
+      ENDIF.
+      CLEAR s_hook_impl.
+      s_hook_impl-main = data-hook_impl-admin.
+      IF s_hook_impl-main-org_obj_name = s_hook_impl-main-org_main_name AND
+         s_hook_impl-main-org_obj_type = s_hook_impl-main-org_main_type.
+        CLEAR: s_hook_impl-main-org_main_name, s_hook_impl-main-org_main_type.
+      ENDIF.
+      CLEAR s_hook_impl-main-programname.
+*      CLEAR s_hook_impl-main-HOOK_IMPLS-ID.    Convert source to string
+      s_hook_impl-enhancement = data-hook_impl-enh.
+*        s_txt-short = s_hook_impl-impl_shorttext_id.
+*        s_txt-long = s_hook_impl-impl_longtext_id.
+*        s_hook_impl-texts = sotr_2_texts( s_txt ).
+**        CLEAR: s_badi_impl-spot_name, s_badi_impl-impl_shorttext_id, s_badi_impl-impl_shorttext, s_badi_impl-impl_longtext_id.
+      INSERT s_hook_impl INTO TABLE hook_implementations.
+    WHEN zaplink_enhancement=&gt;tooltypes-web_dynpro.
+      web_dynpro_implementation = data-wdyn_impl.
+  ENDCASE.
+  CLEAR a0_maindata-enhspot.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Composite Enhancement Spot definition"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+*  fm_data-header = a0_maindata-main.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_ENHANCEMENT_DATA" MTDNAME="ZAPLINK_CNX_EXT_CLEANER_4DATA~ANONYMIZE">
+    <SOURCE>`
+  CLEAR a0_maindata-createdon.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_ENHANCEMENT_DATA" MTDNAME="ZAPLINK_CNX_EXT_CLEANER_4DATA~UNANONYMIZE"/>
+  </REDEFINITIONS>
+  <TYPES>
+   <ITEM CMPNAME="TO_COMP_ENH" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="3" TYPE="CL_ENH_SPOT_COMPOSITE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Enhancement Spot Composite"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_BADI" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="4">BEGIN OF ts_badi,   &quot; both data from CL_ENH_TOOL_BADI_IMPL
+              admin  TYPE enh_badi_main,
+              enh    TYPE enh_badi_impl_it,
+            END OF ts_badi
+`</ITEM>
+   <ITEM CMPNAME="TS_BADI_IMPL" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="4">BEGIN OF ts_badi_impl.
+    INCLUDE TYPE enh_badi_impl_data AS main.
+    TYPES:
+        texts TYPE tt_ltexts,
+      END OF ts_badi_impl
+`</ITEM>
+   <ITEM CMPNAME="TS_CLIF_IMPL" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">BEGIN OF ts_clif_impl,
+        name                    TYPE seoclsname,
+        attributes              TYPE enhclasstabattrib,
+        methodes                TYPE enhmethtab,
+        pre_methodes            TYPE enhmeth_tabkeys,
+        post_methodes	          TYPE enhmeth_tabkeys,
+        save_enhincinx          TYPE enhincinx_it,
+        new_methodes            TYPE enhnewmeth_tab,
+        sources	                TYPE tt_meth_src,
+        methodes_includes	      TYPE enhnewmeth_tabincl,
+        events                  TYPE tt_events,     &quot; enhevent_tab,
+        implementings	          TYPE enhclasstabimplementing,
+        overwrite_methodes      TYPE enhmeth_tabkeys,
+        types	                  TYPE enhtype_tab,
+        implementation_source   TYPE ts_sourceasstruc,
+        access_pri_pro          TYPE td_checkbox,
+      END OF ts_clif_impl
+`</ITEM>
+   <ITEM CMPNAME="TS_COMP_ENH_SPOT" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">BEGIN OF ts_comp_enh_spot,
+                name TYPE enhspotcompositename,
+                zl_object TYPE to_raw,
+              END OF ts_comp_enh_spot
+`</ITEM>
+   <ITEM CMPNAME="TS_EVENT" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">BEGIN OF ts_event.
+      include type ENHCLASSEVENT as hdr.
+  types:
+        parameters TYPE ENHEVENTTABPARAM,
+      END OF ts_event
+`</ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+      header      TYPE ts_fm_hdr,
+      badi_impl   TYPE ts_badi,
+      fugr_impl   TYPE enhfugrdata,
+      clif_impl   TYPE enhclassmethdata,
+      wdyn_impl   TYPE enhwdyn,
+      hook_impl   TYPE ts_hook,
+    END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Composite Enhancement Spot definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FM_HDR" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">BEGIN OF ts_fm_hdr.
+    INCLUDE TYPE enh_dy_spot AS scr.
+    TYPES:
+        hdr       TYPE enhheader,
+        text_ids  TYPE ts_sotr,
+      END OF ts_fm_hdr
+`</ITEM>
+   <ITEM CMPNAME="TS_HEADER" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_header.
+    INCLUDE TYPE enh_dy_spot AS scr.
+    INCLUDE TYPE ts_header_add AS add.
+    TYPES:
+        texts TYPE tt_ltexts,
+      END OF ts_header
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="BAdI Main Data in Enhancement"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_HEADER_ADD" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">BEGIN OF ts_header_add,
+          type        TYPE enhheader-type,
+          tool_type   TYPE enhheader-enhtooltype,
+*      STATE       type
+          upgrade     TYPE enhheader-upgrade,
+        END OF ts_header_add
+`</ITEM>
+   <ITEM CMPNAME="TS_HOOK" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">BEGIN OF ts_hook,   &quot; both data from CL_ENH_TOOL_HOOK_IMPL
+              admin  TYPE enh_hook_admin,
+              enh    TYPE enhincinx_it,
+            END OF ts_hook
+`</ITEM>
+   <ITEM CMPNAME="TS_HOOK_IMPL" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">BEGIN OF ts_hook_impl.
+    INCLUDE TYPE enh_hook_admin AS main.
+    TYPES:
+        texts TYPE tt_ltexts,
+        enhancement TYPE enhincinx_it,
+      END OF ts_hook_impl
+`</ITEM>
+   <ITEM CMPNAME="TS_METH_SRC" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_meth_src,
+        name      TYPE seocpdname,
+        redefine  TYPE td_checkbox,
+        source    TYPE ts_sourceasstruc,
+      END OF ts_meth_src
+`</ITEM>
+   <ITEM CMPNAME="TT_BADI_IMPLS" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="4">tt_badi_impls TYPE SORTED TABLE OF ts_badi_impl WITH UNIQUE KEY badi_name impl_name
+`</ITEM>
+   <ITEM CMPNAME="TT_EVENTS" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_events TYPE SORTED TABLE OF ts_event WITH UNIQUE KEY CMPNAME
+`</ITEM>
+   <ITEM CMPNAME="TT_HOOK_IMPLS" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">tt_hook_impls TYPE SORTED TABLE OF ts_hook_impl WITH UNIQUE KEY org_obj_type org_obj_name
+`</ITEM>
+   <ITEM CMPNAME="TT_METH_SRC" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_meth_src TYPE SORTED TABLE OF ts_meth_src WITH UNIQUE KEY name
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

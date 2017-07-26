@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="FE0210190B5A2A50E60A40E4FAE2933D" CODE_SIGNATURE="BD571DB40693C53E7D8384DE99E77F82" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_TABL_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Table (SE11) Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DICTIONARY
+ASDefine XML structure of a Table or Structure
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CONTENT" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table&apos;s content"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF doc_ids,
+      header TYPE td_doc_id VALUE &apos;TB&apos;,
+    END OF doc_ids
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FIELDS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_FIELDS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Fields of the Table"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="INDEXES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_INDEXES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Indexes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DICTIONARY" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS ZAPLINK_DOCUMENTATION DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF indexes,
+    &lt;t&gt; LIKE LINE OF texts.
+
+  CLEAR: a0_maindata-as4user, a0_maindata-as4date, a0_maindata-as4time,
+         a0_maindata-technical_settings-as4user, a0_maindata-technical_settings-as4date, a0_maindata-technical_settings-as4time.
+  LOOP AT texts ASSIGNING &lt;t&gt;.    CLEAR: &lt;t&gt;-long_txt-tdfuser, &lt;t&gt;-long_txt-tdfdate, &lt;t&gt;-long_txt-tdftime.    ENDLOOP.
+  LOOP AT indexes ASSIGNING &lt;i&gt;.    &lt;i&gt;-zl_object-&gt;anonymize( ).    ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-header. APPEND _id TO r_doc_ids.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_INDEX" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert data to data for index"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Module Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Module data for indexes"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_index LIKE LINE OF result.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF fm_data-indexes.
+
+  LOOP AT fm_data-indexes ASSIGNING &lt;i&gt;.
+    CLEAR s_index.    s_index-header = &lt;i&gt;.
+    s_index-fields = fm_data-idx_fields.    DELETE s_index-fields WHERE indexname &lt;&gt; &lt;i&gt;-indexname.
+    s_index-texts = fm_data-idx_texts.    DELETE s_index-texts WHERE indexname &lt;&gt; &lt;i&gt;-indexname.
+    s_index-docs = fm_data-docs.
+    APPEND s_index TO result.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_INDEXES" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Index data to data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Module Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="INDEXES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Module data for indexes"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_index LIKE LINE OF fm_data-indexes.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF indexes.
+
+  LOOP AT indexes ASSIGNING &lt;i&gt;.
+    CLEAR s_index.    s_index = &lt;i&gt;-header.       APPEND s_index TO fm_data-indexes.
+    APPEND LINES OF &lt;i&gt;-fields TO fm_data-idx_fields.
+    APPEND LINES OF &lt;i&gt;-texts  TO fm_data-idx_texts.
+    APPEND LINES OF &lt;i&gt;-docs   TO fm_data-docs.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF texts.
+  DATA s_field LIKE LINE OF fields.
+  DATA s_sh_f  LIKE LINE OF s_field-search_help-fields.
+  DATA s_fk_f  LIKE LINE OF s_field-forein_key-fields.
+  DATA s_f_txt LIKE LINE OF s_field-texts.
+  DATA s_index LIKE LINE OF indexes.
+*  DATA s_idx_f LIKE LINE OF s_index-fields.
+  DATA d_str   TYPE string.
+  DATA t_index TYPE tt_fm_data.
+  DATA s_field_edit TYPE ts_field_editable.
+  FIELD-SYMBOLS:
+    &lt;f&gt; LIKE LINE OF fm_data-fields,
+    &lt;ft&gt; LIKE LINE OF fm_data-fields_texts,
+    &lt;s&gt; LIKE LINE OF fm_data-search_helps,
+    &lt;sf&gt; LIKE LINE OF fm_data-sh_fields,
+    &lt;k&gt; LIKE LINE OF fm_data-forein_keys,
+    &lt;ff&gt; LIKE LINE OF fm_data-fk_fields,
+    &lt;id&gt; LIKE LINE OF t_index,
+    &lt;i&gt; LIKE LINE OF fm_data-indexes,
+    &lt;if&gt; LIKE LINE OF fm_data-idx_fields,
+    &lt;d&gt; LIKE LINE OF fm_data-docs,
+    &lt;dt&gt; LIKE LINE OF &lt;d&gt;-texts,
+    &lt;t&gt; LIKE LINE OF fm_data-texts.
+  DATA p_table TYPE REF TO data.
+  DATA s_dep  LIKE LINE OF _dependencies.
+  FIELD-SYMBOLS:
+    &lt;tc&gt; TYPE STANDARD TABLE,
+    &lt;cl&gt; TYPE any,
+    &lt;mandt&gt; TYPE sy-mandt.
+
+  a0_maindata-hdr = fm_data-header.
+  a0_maindata-technical_settings = fm_data-tech.
+  CLEAR: a0_maindata-technical_settings-tabname,
+         a0_maindata-technical_settings-as4local,
+         a0_maindata-technical_settings-as4vers.
+
+* Texts
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-langu = &lt;t&gt;-ddlanguage.
+    s_text-short_txt = &lt;t&gt;-ddtext.
+    READ TABLE fm_data-docs ASSIGNING &lt;d&gt;
+         WITH KEY id = doc_ids-header
+              object = a0_maindata-tabname.
+    IF sy-subrc = 0.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_text-langu.
+      IF sy-subrc = 0.
+        s_text-long_txt = &lt;dt&gt;.
+        CLEAR s_text-long_txt-tdspras.
+      ENDIF.
+    ENDIF.
+    INSERT s_text INTO TABLE texts.
+  ENDLOOP.
+
+* fields
+  LOOP AT fm_data-fields ASSIGNING &lt;f&gt;
+          WHERE tabname = a0_maindata-tabname
+            AND adminfield = 0.                 &quot; Issue 143 : &quot;Nesting depth for includes&quot; = 0 no include.
+
+* Issue 143 : Dependencies
+    IF &lt;f&gt;-fieldname = &apos;.INCLUDE&apos;.
+      s_dep-type = zaplink_dictionary=&gt;supportedtypes-table.
+      s_dep-name = &lt;f&gt;-precfield.
+      APPEND s_dep TO _dependencies.
+    ELSEIF &lt;f&gt;-rollname IS NOT INITIAL.
+      s_dep-type = zaplink_dictionary=&gt;supportedtypes-data_element.
+      s_dep-name = &lt;f&gt;-rollname.
+      APPEND s_dep TO _dependencies.
+    ENDIF.
+* Issue 143 : End
+
+* Issue 141 : Take only required fields
+    CLEAR: s_field, s_field_edit, s_dep.
+* No longer transfert all fields
+*    s_field-hdr = &lt;f&gt;.      CLEAR: s_field-tabname.
+    MOVE-CORRESPONDING &lt;f&gt; TO s_field_edit.                 &quot; Keep only field that user can edit =&gt; usefull to create table nothing more
+    MOVE-CORRESPONDING s_field_edit TO s_field-hdr.
+    IF s_field-rollname IS NOT INITIAL.
+      CLEAR: s_field-datatype, s_field-leng, s_field-decimals.
+    ENDIF.
+* Issue 141 : END
+
+* Texts
+    LOOP AT fm_data-fields_texts ASSIGNING &lt;ft&gt;
+            WHERE tabname = &lt;f&gt;-tabname
+            AND fieldname = &lt;f&gt;-fieldname.
+      CLEAR s_f_txt.
+      s_f_txt-langu = &lt;ft&gt;-ddlanguage.
+      s_f_txt-short_txt = &lt;ft&gt;-ddtext.
+      INSERT s_f_txt INTO TABLE s_field-texts.
+    ENDLOOP.
+
+* Search help
+    LOOP AT fm_data-search_helps ASSIGNING &lt;s&gt;
+            WHERE tabname = &lt;f&gt;-tabname
+            AND fieldname = &lt;f&gt;-fieldname.
+      IF s_field-search_help IS NOT INITIAL. sy-subrc = sy-tabix / 0. ENDIF.    &quot; should not append
+      s_field-search_help-hdr = &lt;s&gt;.      CLEAR: s_field-search_help-tabname, s_field-search_help-fieldname.
+      LOOP AT fm_data-sh_fields ASSIGNING &lt;sf&gt;
+              WHERE tabname = &lt;s&gt;-tabname
+              AND fieldname = &lt;s&gt;-fieldname
+               AND shlpname = &lt;s&gt;-shlpname.
+        CLEAR s_sh_f.     s_sh_f = &lt;sf&gt;.    CLEAR: s_sh_f-tabname, s_sh_f-fieldname, s_sh_f-shlpname.
+        IF s_sh_f-shtable = a0_maindata-tabname.    CLEAR: s_sh_f-shtable.    IF s_sh_f-shfield = s_field-fieldname.    CLEAR: s_sh_f-shfield. ENDIF. ENDIF.
+        INSERT s_sh_f INTO TABLE s_field-search_help-fields.
+      ENDLOOP.
+    ENDLOOP.
+
+* Foreign Keys
+    LOOP AT fm_data-forein_keys ASSIGNING &lt;k&gt;
+            WHERE tabname = &lt;f&gt;-tabname
+            AND fieldname = &lt;f&gt;-fieldname.
+      IF s_field-forein_key IS NOT INITIAL. sy-subrc = sy-tabix / 0. ENDIF.    &quot; should not append
+      s_field-forein_key-hdr = &lt;k&gt;.      CLEAR: s_field-forein_key-tabname, s_field-forein_key-fieldname, s_field-checktable.
+      LOOP AT fm_data-fk_fields ASSIGNING &lt;ff&gt;
+              WHERE tabname = &lt;k&gt;-tabname
+              AND fieldname = &lt;k&gt;-fieldname
+             AND checktable = &lt;k&gt;-checktable.
+        CLEAR s_fk_f.     s_fk_f = &lt;ff&gt;.    CLEAR: s_fk_f-tabname, s_fk_f-fieldname, s_fk_f-checktable.
+        IF s_fk_f-fortable = a0_maindata-tabname.    CLEAR: s_fk_f-fortable.    IF s_fk_f-forkey = s_field-fieldname.    CLEAR: s_fk_f-forkey. ENDIF. ENDIF.
+        INSERT s_fk_f INTO TABLE s_field-forein_key-fields.
+      ENDLOOP.
+    ENDLOOP.
+
+    INSERT s_field INTO TABLE fields.
+  ENDLOOP.
+
+* Issue 143 : clean duplicates
+  SORT _dependencies. DELETE ADJACENT DUPLICATES FROM _dependencies.
+
+* indexes
+  t_index = conv_index( fm_data ).
+  SORT t_index BY header-indexname.
+  LOOP AT t_index ASSIGNING &lt;id&gt;.
+    CLEAR s_index.
+    CREATE OBJECT s_index-zl_object
+      EXPORTING
+        fm_data = &lt;id&gt;.
+    APPEND s_index TO indexes.
+  ENDLOOP.
+*  LOOP AT fm_data-indexes ASSIGNING &lt;i&gt;
+*          WHERE sqltab = a0_maindata-tabname.
+*    CLEAR s_index.      s_index-hdr = &lt;i&gt;.      CLEAR: s_index-sqltab.
+*    CONCATENATE &lt;i&gt;-sqltab &apos;~&apos; &lt;i&gt;-indexname INTO d_str.
+*    IF d_str = s_index-dbindex. CLEAR s_index-dbindex. ENDIF.     &quot; clear default naming convention
+*
+** fields
+*    LOOP AT fm_data-idx_fields ASSIGNING &lt;if&gt;
+*            WHERE sqltab = &lt;i&gt;-sqltab
+*           AND indexname = &lt;i&gt;-indexname.
+*      CLEAR s_idx_f.    s_idx_f = &lt;if&gt;.       CLEAR: s_idx_f-sqltab, s_idx_f-indexname.
+*      INSERT s_idx_f INTO TABLE s_index-fields.
+*    ENDLOOP.
+*
+*    INSERT s_index INTO TABLE indexes.
+*  ENDLOOP.
+
+* Table content
+  IF fm_data-with_content = abap_true AND fm_data-header-tabclass &lt;&gt; &apos;INTTAB&apos;.    &quot; skip for structures
+    TRY.
+        CREATE DATA content TYPE STANDARD TABLE OF (a0_maindata-tabname).
+        ASSIGN content-&gt;* TO &lt;tc&gt;.
+        ASSERT sy-subrc = 0.
+        SELECT *
+          FROM (a0_maindata-tabname)
+          INTO TABLE &lt;tc&gt;.
+        IF NOT &lt;tc&gt; IS INITIAL.
+* Remove mandant information if exists
+          READ TABLE fm_data-fields ASSIGNING &lt;f&gt;
+              WITH KEY tabname = a0_maindata-tabname
+                       keyflag = abap_true
+                      datatype = &apos;CLNT&apos;.   &quot; Mandant
+          IF sy-subrc = 0.
+            LOOP AT &lt;tc&gt; ASSIGNING &lt;cl&gt;.
+              ASSIGN COMPONENT &lt;f&gt;-fieldname OF STRUCTURE &lt;cl&gt; TO &lt;mandt&gt;.
+              ASSERT sy-subrc = 0.
+              CLEAR &lt;mandt&gt;.
+            ENDLOOP.
+          ENDIF.
+        ENDIF.
+      CATCH cx_sy_create_data_error.
+    ENDTRY.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF fm_data-texts.
+  DATA s_doc   LIKE LINE OF fm_data-docs.
+  DATA s_dtxt  LIKE LINE OF s_doc-texts.
+  DATA s_idx_f LIKE LINE OF fm_data-idx_fields.
+  DATA s_field LIKE LINE OF fm_data-fields.
+  DATA s_f_txt LIKE LINE OF fm_data-fields_texts.
+  DATA s_sh    LIKE LINE OF fm_data-search_helps.
+  DATA s_sh_f  LIKE LINE OF fm_data-sh_fields.
+  DATA s_fk    LIKE LINE OF fm_data-forein_keys.
+  DATA s_fk_f  LIKE LINE OF fm_data-fk_fields.
+  DATA t_index TYPE tt_fm_data.
+  DATA s_index LIKE LINE OF t_index.
+  FIELD-SYMBOLS:
+    &lt;i&gt;  LIKE LINE OF indexes,
+*    &lt;if&gt; LIKE LINE OF &lt;i&gt;-fields,
+    &lt;f&gt;  LIKE LINE OF fields,
+    &lt;ft&gt; LIKE LINE OF &lt;f&gt;-texts,
+    &lt;sf&gt; LIKE LINE OF &lt;f&gt;-search_help-fields,
+    &lt;ff&gt; LIKE LINE OF &lt;f&gt;-forein_key-fields,
+    &lt;d&gt;  LIKE LINE OF fm_data-docs,
+    &lt;t&gt;  LIKE LINE OF texts.
+
+  fm_data-header = a0_maindata-hdr.
+  IF NOT a0_maindata-technical_settings IS INITIAL.         &quot; Issue 84
+    fm_data-tech = a0_maindata-technical_settings.
+    fm_data-tech-tabname = fm_data-header-tabname.
+    fm_data-tech-as4local = &apos;A&apos;.
+    fm_data-tech-as4vers = &apos;0000&apos;.
+  ENDIF.
+
+* Texts
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-tabname = fm_data-header-tabname.
+    s_text-ddlanguage = &lt;t&gt;-langu.
+    s_text-as4local = &apos;A&apos;. &quot; Active
+    s_text-as4vers = &apos;0000&apos;. &quot; Active
+    s_text-ddtext = &lt;t&gt;-short_txt.
+    INSERT s_text INTO TABLE fm_data-texts.
+    IF NOT &lt;t&gt;-long_txt IS INITIAL.
+      IF fm_data-docs IS INITIAL.
+        s_doc-application = &apos;DOKU&apos;.
+        s_doc-id = doc_ids-header.
+        s_doc-object = fm_data-header-tabname.
+        s_doc-langu = &lt;t&gt;-langu.
+        s_doc-masterlang = abap_true.
+        s_doc-typ = &apos;E&apos;.
+        s_doc-dokform = &apos;S_DOCU_SHOW&apos;.
+        s_doc-dokstyle = &apos;S_DOCUS1&apos;.
+        INSERT s_doc INTO TABLE fm_data-docs.
+      ENDIF.
+      READ TABLE fm_data-docs ASSIGNING &lt;d&gt; INDEX 1.
+      s_dtxt = &lt;t&gt;-long_txt.
+      s_dtxt-tdspras = &lt;t&gt;-langu.
+      INSERT s_dtxt INTO TABLE &lt;d&gt;-texts.
+    ENDIF.
+  ENDLOOP.
+
+* indexes
+  LOOP AT indexes ASSIGNING &lt;i&gt;.
+    s_index = &lt;i&gt;-zl_object-&gt;to_data( ).
+    APPEND s_index TO t_index.
+  ENDLOOP.
+  conv_indexes( EXPORTING indexes = t_index
+                 CHANGING fm_data = fm_data ).
+*  LOOP AT indexes ASSIGNING &lt;i&gt;.
+*    CLEAR s_index.      s_index = &lt;i&gt;-hdr.      s_index-sqltab = a0_maindata-tabname.
+*    IF s_index-dbindex IS INITIAL. CONCATENATE s_index-sqltab &apos;~&apos; s_index-indexname INTO s_index-dbindex. ENDIF.     &quot; retrieve default naming convention
+*    INSERT s_index INTO TABLE fm_data-indexes.
+*
+** fields
+*    LOOP AT &lt;i&gt;-fields ASSIGNING &lt;if&gt;.
+*      CLEAR s_idx_f.    s_idx_f = &lt;if&gt;.       s_idx_f-sqltab = s_index-sqltab. s_idx_f-indexname = s_index-indexname.
+*      INSERT s_idx_f INTO TABLE fm_data-idx_fields.
+*    ENDLOOP.
+*  ENDLOOP.
+
+* fields
+  LOOP AT fields ASSIGNING &lt;f&gt;.
+    CLEAR s_field.      s_field = &lt;f&gt;-hdr.      s_field-tabname = a0_maindata-tabname.
+
+* Texts
+    LOOP AT &lt;f&gt;-texts ASSIGNING &lt;ft&gt;.
+      CLEAR s_f_txt.    s_f_txt-ddlanguage = &lt;ft&gt;-langu.    s_f_txt-ddtext = &lt;ft&gt;-short_txt.    s_f_txt-tabname = s_field-tabname.    s_f_txt-fieldname = s_field-fieldname.
+      INSERT s_f_txt INTO TABLE fm_data-fields_texts.
+    ENDLOOP.
+
+* Search help
+    IF NOT &lt;f&gt;-search_help IS INITIAL.
+      CLEAR s_sh.   s_sh = &lt;f&gt;-search_help-hdr.   s_sh-tabname = s_field-tabname.   s_sh-fieldname = s_field-fieldname.
+      INSERT s_sh INTO TABLE fm_data-search_helps.
+      LOOP AT &lt;f&gt;-search_help-fields ASSIGNING &lt;sf&gt;.
+        CLEAR s_sh_f.     s_sh_f = &lt;sf&gt;.    s_sh_f-tabname = s_sh-tabname.    s_sh_f-fieldname = s_sh-fieldname.    s_sh_f-shlpname = s_sh-shlpname.
+        IF s_sh_f-shtable IS INITIAL. s_sh_f-shtable = a0_maindata-tabname.    IF s_sh_f-shfield IS INITIAL. s_sh_f-shfield = &lt;f&gt;-fieldname.    ENDIF. ENDIF.
+        INSERT s_sh_f INTO TABLE fm_data-sh_fields.
+      ENDLOOP.
+    ENDIF.
+
+* Foreign Keys
+    IF NOT &lt;f&gt;-forein_key IS INITIAL.
+      CLEAR s_fk.   s_fk = &lt;f&gt;-forein_key-hdr.   s_fk-tabname = s_field-tabname.   s_fk-fieldname = s_field-fieldname.
+      INSERT s_fk INTO TABLE fm_data-forein_keys.
+      s_field-checktable = s_fk-checktable.
+      LOOP AT &lt;f&gt;-forein_key-fields ASSIGNING &lt;ff&gt;.
+        CLEAR s_fk_f.     s_fk_f = &lt;ff&gt;.    s_fk_f-tabname = s_fk-tabname.   s_fk_f-fieldname = s_fk-fieldname.   s_fk_f-checktable = s_fk-checktable.
+        IF s_fk_f-fortable IS INITIAL.    s_fk_f-fortable = a0_maindata-tabname.    IF s_fk_f-forkey IS INITIAL.  s_fk_f-forkey = s_field-fieldname.   ENDIF. ENDIF.
+        INSERT s_fk_f INTO TABLE fm_data-fk_fields.
+      ENDLOOP.
+    ENDIF.
+    INSERT s_field INTO TABLE fm_data-fields.
+  ENDLOOP.
+
+* Content
+  IF NOT content IS INITIAL.
+    fm_data-with_content = abap_true.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_INDEX" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="3" TYPE="ZAPLINK_XINX_RAW"/>
+   <ITEM CMPNAME="TS_FIELD" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="4">
+    BEGIN OF ts_field.
+            INCLUDE TYPE dd03p AS hdr.
+    TYPES:
+        texts       TYPE tt_texts,
+        search_help TYPE ts_search_help,
+        forein_key  TYPE ts_forein_key,
+      END OF ts_field
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All table field data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FIELD_EDITABLE" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="4">
+    BEGIN OF ts_field_editable,
+        fieldname  TYPE dd03p-fieldname,
+        position   TYPE dd03p-position,
+        keyflag    TYPE dd03p-keyflag,
+        checktable TYPE dd03p-checktable,
+        reftable   TYPE dd03p-reftable,
+        precfield  TYPE dd03p-precfield,
+        reffield   TYPE dd03p-reffield,
+        notnull    TYPE dd03p-notnull,
+        groupname  TYPE dd03p-groupname,
+        rollname   TYPE dd03p-rollname,
+        datatype   TYPE dd03p-datatype,
+        leng       TYPE dd03p-leng,
+        decimals   TYPE dd03p-decimals,
+        signflag   TYPE dd03p-signflag,
+      END OF ts_field_editable
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table&apos;s field that are edited (that define the field)">U1&amp;MEANING&amp;
+ASThis structure contains only field that are editable by user when
+  creating a table or a structure.
+ASTherefore this might be the only fields required to rebuild the
+  structure/table.
+ASXML data still DD03P structure in order to keep backward compatibility
+  and allow adjustment to this structure in case of some fields have been
+  missed.
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+* DO pour type doc
+                  header        TYPE dd02v,
+                  tech          TYPE dd09v,
+                  texts         TYPE tt_dd02t,
+                  docs          TYPE tt_docs,
+                  fields        TYPE tt_dd03p,
+                  fields_texts  TYPE tt_dd03t,
+                  forein_keys   TYPE tt_dd08v,      &quot; Header
+                  fk_fields     TYPE tt_dd05m,
+                  indexes       TYPE tt_dd12v,
+                  idx_texts     TYPE tt_dd12t,
+                  idx_fields    TYPE tt_dd17v,
+                  search_helps  TYPE tt_dd35v,
+                  sh_fields     TYPE tt_dd36m,
+                  with_content  TYPE abap_bool,     &quot; With table content
+                END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FOREIN_KEY" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">BEGIN OF ts_forein_key.
+            INCLUDE TYPE dd08v AS hdr.
+    TYPES:
+        fields TYPE SORTED TABLE OF dd05m WITH UNIQUE KEY primpos,
+      END OF ts_forein_key
+`</ITEM>
+   <ITEM CMPNAME="TS_INDEX" EXPOSURE="2" STATE="1" EDITORDER="18 " TYPTYPE="4">BEGIN OF ts_index,
+          zl_object TYPE to_index ,
+          END OF ts_index
+`</ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="20 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+            INCLUDE TYPE dd02v AS hdr.
+*    INCLUDE TYPE dd09v AS tech.
+*    types:
+*      BEGIN OF ts_dd09v_light,
+** required fields of dd09V
+*        TABKAT TABKAT  CHAR  2 0 Size category
+*        TABART TABART  CHAR  5 0 Data class in technical settings
+*        PUFFERUNG  PUFFERUNG CHAR  1 0 Buffering type indicator
+*        SCHFELDANZ SCHFELDANZ  NUMC  3 0 No. of key fields for generic buffers
+*        PROTOKOLL  DDPROTOCOL  CHAR  1 0 Log data changes
+*        SPEICHPUFF SPEICHPUFF  CHAR  1 0 Flag for the storage type in the buffer
+*        AS4USER  AS4USER CHAR  12  0 Last Changed by
+*        AS4DATE  AS4DATE DATS  8 0 Date of Last Change
+*        AS4TIME  AS4TIME TIMS  6 0 Last changed at
+*        TRANSPFLAG DDTRANSP  CHAR  1 0 Convert to transparent table or maintain transparency
+*        RESERVE  DDRESERVE CHAR  1 0 Reserved field in the ABAP Dictionary
+*        UEBERSETZ  UEBERSETZ CHAR  1 0 Flag whether table is relevant for translation
+*        ACTFLAG  ACTFLAG CHAR  1 0 Activation flag
+*        BUFALLOW BUFALLOW  CHAR  1 0 Indicator for buffering allowed/not allowed
+*        JAVAONLY DDJAVAONLY  CHAR  1 0 Write access only with JAVA
+*      END OF ts_dd09v_light .
+*    INCLUDE TYPE ts_dd09v_light AS tech.
+    TYPES:
+        technical_settings TYPE dd09v,
+      END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="General Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SEARCH_HELP" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">BEGIN OF ts_search_help.
+            INCLUDE TYPE dd35v AS hdr.
+    TYPES:
+        fields TYPE SORTED TABLE OF dd36m WITH UNIQUE KEY shlpfield,
+      END OF ts_search_help
+`</ITEM>
+   <ITEM CMPNAME="TT_DD02T" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">
+    tt_dd02t TYPE SORTED TABLE OF dd02t WITH UNIQUE KEY ddlanguage
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD02T"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD03P" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tt_dd03p TYPE STANDARD TABLE OF dd03p WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD03P"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD03T" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">
+    tt_dd03t TYPE SORTED TABLE OF dd03t WITH UNIQUE KEY fieldname ddlanguage
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD03T"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD05M" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tt_dd05m TYPE STANDARD TABLE OF dd05m WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD05M"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD08V" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_dd08v TYPE STANDARD TABLE OF dd08v WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD08V"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD12T" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_dd12t TYPE STANDARD TABLE OF dd12t WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD12T"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD12V" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    tt_dd12v TYPE STANDARD TABLE OF dd12v WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD12V"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD17V" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    tt_dd17v TYPE STANDARD TABLE OF dd17v WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD17V"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD35V" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    tt_dd35v TYPE STANDARD TABLE OF dd35v WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD35V"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD36M" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    tt_dd36m TYPE STANDARD TABLE OF dd36m WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Standard Table of DD36M"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_FIELDS" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="4">
+    tt_fields TYPE SORTED TABLE OF ts_field WITH UNIQUE KEY position
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of fields"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_FM_DATA" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">tt_fm_data TYPE STANDARD TABLE OF zaplink_xinx_data=&gt;ts_fm_data WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_INDEXES" EXPOSURE="2" STATE="1" EDITORDER="19 " TYPTYPE="4">tt_indexes TYPE STANDARD TABLE OF ts_index WITH DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

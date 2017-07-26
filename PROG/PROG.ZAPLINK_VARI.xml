@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="3E5F3F357D54705C52F6219A22F044E3" CODE_SIGNATURE="25A38A791D67C6AE849DE60F9ADCAF80" CONNECTOR="AAAD0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_VARI" TYPE="PROG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA EDTX="X" VARCL="X" SUBC="S" RSTAT="K" RMAND="200" RLOAD="E" FIXPT="X" UCCHECK="X"/>
+  <SOURCE>`
+*&amp;---------------------------------------------------------------------*
+*&amp; Subroutine Pool   ZAPLINK_VARI
+*&amp;---------------------------------------------------------------------*
+PROGRAM  zaplink_vari.
+
+TYPE-POOLS: abap.
+* Because might be include for standalone versions type and data name must be more unique
+TYPES to_vari_object TYPE REF TO zaplink_program.
+*TYPES to_vari_cx TYPE REF TO zaplink_cx.
+DATA o_vari_prog TYPE to_vari_object.
+*DATA o_vari_cx   TYPE to_vari_cx.
+*DATA s_vari_text TYPE string.
+
+*DEFINE mac_raise.
+*  s_text = &amp;1.
+*  create object o_vari_cx
+*    exporting
+*      textid = zaplink_cx=&gt;system_error
+**        previous =
+**        messages =
+**        object =
+**        subobject =
+**        prev_cx =
+**        ext_id =
+**        _cx_list =
+*      cx_name = s_vari_text.
+*  raise exception o_vari_cx.
+*END-OF-DEFINITION.
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  check_vari_form_exists
+*&amp;---------------------------------------------------------------------*
+FORM check_vari_form_exists  CHANGING ok TYPE abap_bool.
+  ok = abap_true.
+ENDFORM.                    &quot;check_vari_form_exists
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  set_object
+*&amp;---------------------------------------------------------------------*
+FORM set_object USING object TYPE to_vari_object
+*              RAISING zaplink_cx
+  .
+*  ASSERT ID ZAPLINK CONDITION o_prog IS BOUND.
+  CHECK o_vari_prog IS NOT BOUND.
+*  IF o_prog IS BOUND.
+*    mac_raise text-sko.
+*  ENDIF.
+  o_vari_prog = object.
+ENDFORM.                    &quot;set_object
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  clear_object
+*&amp;---------------------------------------------------------------------*
+FORM clear_object USING object TYPE to_vari_object
+*                RAISING zaplink_cx
+  .
+*  ASSERT ID ZAPLINK CONDITION o_VARI_prog &lt;&gt; object.
+  CHECK o_vari_prog = object.
+*  IF o_prog &lt;&gt; object.
+*    mac_raise text-cko.
+*  ENDIF.
+  CLEAR o_vari_prog.
+ENDFORM.                    &quot;clear_object
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  get_val
+*&amp;---------------------------------------------------------------------*
+FORM get_val_p USING p_param value(p_text) p_subrc
+*             RAISING zaplink_cx
+  .
+  DATA l_value TYPE string.
+*  ASSERT ID ZAPLINK CONDITION NOT o_prog IS BOUND.
+  CHECK o_vari_prog IS BOUND.
+*  IF NOT o_prog IS BOUND.
+*    mac_raise text-nse.
+*  ENDIF.
+  CHECK NOT p_param IS INITIAL.
+  l_value = p_param.
+  o_vari_prog-&gt;get_param_value( l_value ).
+ENDFORM.                    &quot;get_val
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  get_val_S
+*&amp;---------------------------------------------------------------------*
+FORM get_val_s TABLES p_selopt                              &quot;#EC *
+                USING p_sign p_option p_low p_high
+                      p_desc STRUCTURE rsselint p_subrc
+*              RAISING zaplink_cx
+  .
+*  ASSERT ID ZAPLINK CONDITION NOT o_prog IS BOUND.
+  CHECK o_vari_prog IS BOUND.
+*  IF NOT o_prog IS BOUND.
+*    mac_raise text-nse.
+*  ENDIF.
+  o_vari_prog-&gt;get_selectoption_value( p_selopt[] ).
+
+ENDFORM.                    &quot;get_val_s
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  set_val_p
+*&amp;---------------------------------------------------------------------*
+FORM set_val_p USING p_param value(p_text) p_subrc
+*             RAISING zaplink_cx
+  .
+  DATA l_value TYPE string.
+*  ASSERT ID ZAPLINK CONDITION NOT o_prog IS BOUND.
+  CHECK o_vari_prog IS BOUND.
+*  IF NOT o_prog IS BOUND.
+*    mac_raise text-nse.
+*  ENDIF.
+  l_value = o_vari_prog-&gt;set_param_value( ).
+*  CHECK NOT l_value IS INITIAL.    &quot; always set value : Clearing (blank in variant) default not null value
+  p_param = l_value.
+ENDFORM.                    &quot;set_val_p
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  set_val_s
+*&amp;---------------------------------------------------------------------*
+FORM set_val_s TABLES p_selopt                              &quot;#EC *
+                USING p_sign p_option p_low p_high
+                      p_desc STRUCTURE rsselint p_subrc
+*              RAISING zaplink_cx
+  .
+  DATA t_value  TYPE zaplink_program=&gt;tr_so_value.
+  FIELD-SYMBOLS:
+    &lt;v&gt; LIKE LINE OF t_value.
+
+*  ASSERT ID ZAPLINK CONDITION NOT o_prog IS BOUND.
+  CHECK o_vari_prog IS BOUND.
+*  IF NOT o_prog IS BOUND.
+*    mac_raise text-nse.
+*  ENDIF.
+  t_value = o_vari_prog-&gt;set_selectoption_value( ).
+  refresh p_selopt.       &quot; always set value : Clearing (blank in variant) default not null value
+  LOOP AT t_value ASSIGNING &lt;v&gt;.
+    CLEAR p_selopt.   MOVE-CORRESPONDING &lt;v&gt; TO p_selopt.   APPEND p_selopt.
+  ENDLOOP.
+
+ENDFORM.                    &quot;set_val_s</SOURCE>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="CKO">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Object to clear are not the same" LENGTH="50 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="NSE">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Object is not set" LENGTH="50 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SKO">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Object already defined" LENGTH="50 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="R">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Subroutine Pool for variant" LENGTH="27 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+ </RAW>
+</ZL_OBJECT>

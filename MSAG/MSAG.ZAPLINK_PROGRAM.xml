@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="7123A6AD0A700BC5E05C585CD1FBD1C2" CONNECTOR="1FAC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_PROGRAM" TYPE="MSAG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA MASTERLANG="E" RESPUSER="TBENSIAL"/>
+  <MESSAGES>
+   <ITEM MSGNR="000" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Error &amp;1 on FORM import_var_selc : Screen part for &amp;2(&amp;3)">
+      <LONG_TXT TDFRELES="700" TDLRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASLOAD REPORT P_REPORT PART &apos;SSCR&apos; return subrc &lt;&gt; 0 in perform
+  load_sscr(rsdbrunt) event after a GENERATE REPORT P_REPORT
+U1&amp;SYSTEM_RESPONSE&amp;
+AS
+U1&amp;WHAT_TO_DO&amp;
+ASCheck that the report is OK, compile it if necessary.
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="001" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Error &amp;1 on FORM import_var_selc : Data part for &amp;2(&amp;3)">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASIMPORT ... FROM DATABASE VARI(VB) return a subrc &lt;&gt; 0 in PERFORM
+  IMPORT_VARIANT_STATIC(RSDBSPVD).
+U1&amp;SYSTEM_RESPONSE&amp;
+AS
+U1&amp;WHAT_TO_DO&amp;
+ASCheck the report and his variants.
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="002" APPLICATION="DOKU" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Error &amp;1,&amp;2 on FORM %_import_vari_clnt for &amp;3(&amp;4)">
+      <LONG_TXT TDFRELES="700" TDLINESIZE="072">U1&amp;CAUSE&amp;
+ASFORM %_import_vari_clnt in the report is an auto generated form that
+  source code can&apos;t be viewed.
+ASYou might have miss something with calling parameters, try to debug MF
+  RS_VARIANT_CONTENTS.
+U1&amp;SYSTEM_RESPONSE&amp;
+AS
+U1&amp;WHAT_TO_DO&amp;
+AS
+U1&amp;SYS_ADMIN&amp;
+AS</LONG_TXT>
+     </ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM MSGNR="003" SELFDEF="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Can&apos;t insert variant &apos;&amp;2&apos; for program &apos;&amp;1&apos;, because don&apos;t exist as active"/>
+    </TEXTS>
+   </ITEM>
+  </MESSAGES>
+  <TEXTS>
+   <ITEM LANGU="E" SHORT_TXT="Message class for connector : ZAPLINK_PROGRAM"/>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

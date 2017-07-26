@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="AF2A414B29EAD23D60781AE916168214" CODE_SIGNATURE="AC6074D9CAC0746630195FA880391795" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_MENUPAINTER_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Menu painter Data">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_PROGRAM
+ASDefine XML structure of a Menu painter, that is used in Programs and
+  Objects.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AShttp://help.sap.com/saphelp_nw04/Helpdata/EN/9f/dba99935c111d1829f0000e8
+= 29fbfe/content.htm
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BAR" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="GUI_FUNC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Bar Menu code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFAULT_BAR" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="GUI_FUNC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Default Bar Menu code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFAULT_FUNCTION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="GUI_FUNC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Default function Menu code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF doc_ids,
+      header TYPE td_doc_id VALUE &apos;DO&apos;,
+    END OF doc_ids
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FUNCTION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="GUI_FUNC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function&apos;s Menu code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FUNCTIONS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_FUNCTIONS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Functions"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="KEY_SETTINGS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_KEYBOARDS"/>
+   <ITEM CMPNAME="MASTER_LANG" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="SPRSL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Master Language"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MENU" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="GUI_FUNC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MENU_BARS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_BARS"/>
+   <ITEM CMPNAME="MENU_LIST" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_MENUS"/>
+   <ITEM CMPNAME="OBJ_TYPES" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF obj_types,   &quot; FROM Include RSMPECON
+      menu      TYPE mp_o_type VALUE &apos;M&apos;,
+      function  TYPE mp_o_type VALUE &apos;F&apos;,
+      title     TYPE mp_o_type VALUE &apos;T&apos;,
+      menu_bar  TYPE mp_o_type VALUE &apos;A&apos;,
+      key_set   TYPE mp_o_type VALUE &apos;P&apos;,  &quot; Function Key Setting
+      button    TYPE mp_o_type VALUE &apos;B&apos;,  &quot; Pushbutton settings
+      status    TYPE mp_o_type VALUE &apos;C&apos;,
+      separator TYPE mp_o_type VALUE &apos;S&apos;,
+      icon      TYPE mp_o_type VALUE &apos;I&apos;,
+      program   TYPE mp_o_type VALUE &apos;D&apos;,
+      dynpro    TYPE mp_o_type VALUE &apos;E&apos;,
+      text      TYPE mp_o_type VALUE &apos;Z&apos;,
+      context   TYPE mp_o_type VALUE &apos;X&apos;,
+      symbolbar TYPE mp_o_type VALUE &apos;Y&apos;,
+    END OF obj_types
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu Painter: Standards maintenance: Object type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range : Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="STATUS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_STATUS"/>
+   <ITEM CMPNAME="TEXT_TYPES" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF text_types,
+      object      TYPE mp_txttype VALUE &apos;M&apos;,
+      icon        TYPE mp_txttype VALUE &apos;I&apos;,
+      quick_info  TYPE mp_txttype VALUE &apos;Q&apos;,
+      tech_info   TYPE mp_txttype VALUE &apos;T&apos;,  &quot; Technical Information
+    END OF text_types
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu Painter: Text type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TITLES" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_TITLES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Title bars"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS zaplink_documentation DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+*  FIELD-SYMBOLS:
+*    &lt;t&gt; like LINE OF texts.
+*
+*  clear: a0_maindata-AS4USER, a0_maindata-AS4DATE, a0_maindata-AS4TIME.
+*  loop at texts ASSIGNING &lt;t&gt;.
+*    clear: &lt;t&gt;-LONG_TXT-TDFUSER, &lt;t&gt;-LONG_TXT-TDFDATE, &lt;t&gt;-LONG_TXT-TDFTIME.
+*  endloop.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-header. APPEND _id TO r_doc_ids.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_tmp   TYPE tt_atrt.
+  DATA t_attr  TYPE SORTED TABLE OF rsmpe_atrt WITH UNIQUE KEY obj_code sub_code obj_type.
+  DATA s_attr  LIKE LINE OF t_attr.
+  DATA t_tmp_m TYPE tt_mnlt.
+  DATA t_menus TYPE SORTED TABLE OF rsmpe_mnlt WITH UNIQUE KEY code.
+  DATA s_mnu   LIKE LINE OF t_menus.
+  DATA s_title LIKE LINE OF titles.
+  DATA s_func  LIKE LINE OF functions.
+  DATA s_statu LIKE LINE OF status.
+  DATA s_s_fu  LIKE LINE OF s_statu-functions.
+  DATA s_menu  LIKE LINE OF menu_list.
+  DATA s_m_det LIKE LINE OF s_menu-composition.
+  DATA s_bar   LIKE LINE OF menu_bars.
+  DATA s_b_det LIKE LINE OF s_bar-composition.
+  DATA s_key   LIKE LINE OF key_settings.
+  DATA s_k_det LIKE LINE OF s_key-keys.
+  DATA s_but   LIKE LINE OF s_key-pushbuttons.
+  DATA s_u_det LIKE LINE OF s_but-composition.
+  FIELD-SYMBOLS:
+    &lt;k&gt;  LIKE LINE OF key_settings,
+    &lt;at&gt; LIKE LINE OF fm_data-attributes,
+    &lt;bd&gt; LIKE LINE OF fm_data-bars_det,
+    &lt;kb&gt; LIKE LINE OF fm_data-keyboards,
+    &lt;bu&gt; LIKE LINE OF fm_data-buttons_det,
+    &lt;sf&gt; LIKE LINE OF fm_data-stat_funcs,
+    &lt;st&gt; LIKE LINE OF fm_data-status,
+    &lt;mn&gt; LIKE LINE OF fm_data-menus,
+    &lt;md&gt; LIKE LINE OF fm_data-menus_det,
+    &lt;fu&gt; LIKE LINE OF fm_data-functions,
+    &lt;ti&gt; LIKE LINE OF fm_data-titles.
+
+  bar = fm_data-header-actcode.
+  menu = fm_data-header-mencode.
+  function = fm_data-header-pfkcode.
+  default_bar = fm_data-header-defaultact.
+  default_function = fm_data-header-defaultpfk.
+  master_lang = fm_data-header-mod_langu.
+
+  LOOP AT fm_data-titles ASSIGNING &lt;ti&gt;.
+    CLEAR s_title.
+    MOVE-CORRESPONDING &lt;ti&gt; TO s_title-hdr.
+    s_title-texts = get_texts( texts = fm_data-texts
+                            obj_type = obj_types-title
+                            obj_code = s_title-code
+                            sub_code = space
+                            texttype = text_types-tech_info ).
+    INSERT s_title INTO TABLE titles.
+  ENDLOOP.
+
+  LOOP AT fm_data-functions ASSIGNING &lt;fu&gt;.
+    CLEAR s_func.
+    MOVE-CORRESPONDING &lt;fu&gt; TO s_func-hdr.
+    s_func-texts = get_func_texts( texts = fm_data-texts
+                                obj_code = s_func-code
+                                sub_code = s_func-textno ).
+    INSERT s_func INTO TABLE functions.
+  ENDLOOP.
+
+  t_tmp_m = fm_data-menus.
+  SORT t_tmp_m                                   BY code.
+  DELETE ADJACENT DUPLICATES FROM t_tmp_m COMPARING code.
+  t_menus = t_tmp_m.
+* Security Menu bars without name are not in attributes tables.
+  LOOP AT fm_data-menus_det ASSIGNING &lt;md&gt;.
+    READ TABLE t_menus TRANSPORTING NO FIELDS
+         WITH TABLE KEY code = &lt;md&gt;-code.
+    IF sy-subrc &lt;&gt; 0.
+      CLEAR s_mnu.        s_mnu-code = &lt;md&gt;-code.
+      INSERT s_mnu INTO TABLE t_menus.
+    ENDIF.
+  ENDLOOP.
+  LOOP AT t_menus ASSIGNING &lt;mn&gt;.
+    CLEAR s_menu.
+    MOVE-CORRESPONDING &lt;mn&gt; TO s_menu-hdr.
+    s_menu-texts = get_texts( texts = fm_data-texts
+                           obj_type = obj_types-menu
+                           obj_code = s_menu-code
+                           sub_code = space
+                           texttype = text_types-object ).
+    LOOP AT fm_data-menus_det ASSIGNING &lt;md&gt;
+            WHERE code = &lt;mn&gt;-code.
+      CLEAR s_m_det.
+      MOVE-CORRESPONDING &lt;md&gt; TO s_m_det.
+      CLEAR: s_m_det-code.
+      INSERT s_m_det INTO TABLE s_menu-composition.
+    ENDLOOP.
+    INSERT s_menu INTO TABLE menu_list.
+  ENDLOOP.
+
+  t_tmp = fm_data-attributes.
+  SORT t_tmp                                   BY obj_code sub_code obj_type.
+  DELETE ADJACENT DUPLICATES FROM t_tmp COMPARING obj_code sub_code obj_type.
+  t_attr = t_tmp.
+* Security Menu bars without name are not in attributes tables.
+  LOOP AT fm_data-bars_det ASSIGNING &lt;bd&gt;.
+    READ TABLE t_attr TRANSPORTING NO FIELDS
+         WITH TABLE KEY obj_code = &lt;bd&gt;-code
+                        sub_code = space
+                        obj_type = obj_types-menu_bar.
+    IF sy-subrc &lt;&gt; 0.
+      CLEAR s_attr.        s_attr-obj_type = obj_types-menu_bar.         s_attr-obj_code = &lt;bd&gt;-code.
+      INSERT s_attr INTO TABLE t_attr.
+    ENDIF.
+  ENDLOOP.
+* Security keyboars without name are not in attributes tables.
+  LOOP AT fm_data-keyboards ASSIGNING &lt;kb&gt;.
+    READ TABLE t_attr TRANSPORTING NO FIELDS
+         WITH TABLE KEY obj_code = &lt;kb&gt;-code
+                        sub_code = space
+                        obj_type = obj_types-key_set.
+    IF sy-subrc &lt;&gt; 0.
+      CLEAR s_attr.        s_attr-obj_type = obj_types-key_set.         s_attr-obj_code = &lt;kb&gt;-code.
+      INSERT s_attr INTO TABLE t_attr.
+    ENDIF.
+  ENDLOOP.
+* Security button without name are not in attributes tables.
+  LOOP AT fm_data-buttons_det ASSIGNING &lt;bu&gt;.
+    READ TABLE t_attr TRANSPORTING NO FIELDS
+         WITH TABLE KEY obj_code = &lt;bu&gt;-pfk_code
+                        sub_code = &lt;bu&gt;-code
+                        obj_type = obj_types-button.
+    IF sy-subrc &lt;&gt; 0.
+      CLEAR s_attr.        s_attr-obj_type = obj_types-button.         s_attr-obj_code = &lt;bu&gt;-pfk_code.     s_attr-sub_code = &lt;bu&gt;-code.
+      INSERT s_attr INTO TABLE t_attr.
+    ENDIF.
+  ENDLOOP.
+
+  LOOP AT t_attr ASSIGNING &lt;at&gt;.
+    CASE &lt;at&gt;-obj_type.
+      WHEN obj_types-menu_bar.
+        CLEAR s_bar.        MOVE-CORRESPONDING &lt;at&gt; TO s_bar-hdr.
+        s_bar-texts = get_texts( texts = fm_data-texts
+                              obj_type = obj_types-menu_bar
+                              obj_code = s_bar-obj_code
+                              sub_code = space
+                              texttype = text_types-tech_info ).
+        LOOP AT fm_data-bars_det ASSIGNING &lt;bd&gt;
+                WHERE code = &lt;at&gt;-obj_code.
+          CLEAR s_b_det.        MOVE-CORRESPONDING &lt;bd&gt; TO s_b_det.         CLEAR: s_b_det-code.
+          INSERT s_b_det INTO TABLE s_bar-composition.
+        ENDLOOP.
+        CLEAR s_bar-obj_type.
+        INSERT s_bar INTO TABLE menu_bars.
+      WHEN obj_types-key_set.
+        CLEAR s_key.          MOVE-CORRESPONDING &lt;at&gt; TO s_key-hdr.
+        s_key-texts = get_texts( texts = fm_data-texts
+                              obj_type = obj_types-key_set
+                              obj_code = s_key-obj_code
+                              sub_code = space
+                              texttype = text_types-tech_info ).
+        LOOP AT fm_data-keyboards ASSIGNING &lt;kb&gt;
+                WHERE code = &lt;at&gt;-obj_code.
+          CLEAR s_k_det.          MOVE-CORRESPONDING &lt;kb&gt; TO s_k_det.       CLEAR: s_k_det-code.
+          INSERT s_k_det INTO TABLE s_key-keys.
+        ENDLOOP.
+        CLEAR s_key-obj_type.
+        INSERT s_key INTO TABLE key_settings.
+      WHEN obj_types-button.
+        READ TABLE key_settings ASSIGNING &lt;k&gt;
+             WITH TABLE KEY obj_code = &lt;at&gt;-obj_code.
+        IF sy-subrc &lt;&gt; 0.
+          WRITE:/ &apos;button without key&apos;, &lt;at&gt;-obj_code.
+        ELSE.
+          CLEAR s_but.        MOVE-CORRESPONDING &lt;at&gt; TO s_but-hdr.
+          s_but-texts = get_texts( texts = fm_data-texts
+                                obj_type = obj_types-button
+                                obj_code = s_but-obj_code
+                                sub_code = s_but-sub_code
+                                texttype = text_types-tech_info ).
+          LOOP AT fm_data-buttons_det ASSIGNING &lt;bu&gt;
+                  WHERE pfk_code = &lt;at&gt;-obj_code
+                    AND code = &lt;at&gt;-sub_code.
+            CLEAR s_u_det.        MOVE-CORRESPONDING &lt;bu&gt; TO s_u_det.       CLEAR: s_u_det-pfk_code, s_u_det-code.
+            INSERT s_u_det INTO TABLE s_but-composition.
+          ENDLOOP.
+          CLEAR: s_but-obj_type, s_but-obj_code.
+          INSERT s_but INTO TABLE &lt;k&gt;-pushbuttons.
+        ENDIF.
+    ENDCASE.
+  ENDLOOP.
+
+  LOOP AT fm_data-status ASSIGNING &lt;st&gt;.
+    CLEAR s_statu.     MOVE-CORRESPONDING &lt;st&gt; TO s_statu-hdr.
+    s_statu-texts = get_texts( texts = fm_data-texts
+                            obj_type = obj_types-status
+                            obj_code = s_statu-code
+                            sub_code = space
+                            texttype = text_types-tech_info ).
+    LOOP AT fm_data-stat_funcs ASSIGNING &lt;sf&gt;
+            WHERE status = &lt;st&gt;-code.
+      s_s_fu = &lt;sf&gt;-function.
+      INSERT s_s_fu INTO TABLE s_statu-functions.
+    ENDLOOP.
+    INSERT s_statu INTO TABLE status.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_FUNC_TEXTS" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Function texts"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJ_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_CODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Function code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_MP_FTEXTS"/>
+     <ITEM SCONAME="SUB_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter. Function key code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_STEXTS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt LIKE LINE OF result.
+  FIELD-SYMBOLS:
+    &lt;r&gt; LIKE LINE OF result,
+    &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;
+       WHERE obj_type = obj_types-function
+         AND obj_code = obj_code
+         AND sub_code = sub_code.
+    READ TABLE result ASSIGNING &lt;r&gt;
+         WITH TABLE KEY langu = &lt;t&gt;-sprsl.
+    IF sy-subrc &lt;&gt; 0.
+      s_txt-langu = &lt;t&gt;-sprsl.
+      INSERT s_txt INTO TABLE result.
+      READ TABLE result ASSIGNING &lt;r&gt;
+           WITH TABLE KEY langu = &lt;t&gt;-sprsl.
+      IF sy-subrc &lt;&gt; 0.
+* Not possible ==&gt; will dump
+      ENDIF.
+    ENDIF.
+
+    CASE &lt;t&gt;-texttype.
+      WHEN text_types-object.
+        &lt;r&gt;-text = &lt;t&gt;-text.
+      WHEN text_types-icon.
+        &lt;r&gt;-icon = &lt;t&gt;-text.
+      WHEN text_types-quick_info.
+        &lt;r&gt;-info = &lt;t&gt;-text.
+      WHEN OTHERS.
+* Erro handling
+    ENDCASE.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_TEXTS" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get texts for Object_type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJ_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_CODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Function code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJ_TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_TYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Standards maintenance: Object type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_MP_TEXTS"/>
+     <ITEM SCONAME="SUB_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter. Function key code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_STEXTS"/>
+     <ITEM SCONAME="TEXTTYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-TEXTTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Text type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt LIKE LINE OF result.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;
+       WHERE obj_type = obj_type
+         AND obj_code = obj_code
+         AND sub_code = sub_code
+         AND texttype = texttype.
+    s_txt-langu = &lt;t&gt;-sprsl.
+    s_txt-text = &lt;t&gt;-text.
+    INSERT s_txt INTO TABLE result.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_FUNC_TEXTS" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set Function texts"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJ_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_CODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Function code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_STEXTS"/>
+     <ITEM SCONAME="SUB_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter. Function key code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_MP_FTEXTS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt LIKE LINE OF result.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    clear s_txt.
+    s_txt-obj_type = obj_types-function.
+    s_txt-obj_code = obj_code.
+    s_txt-sub_code = sub_code.
+    s_txt-sprsl = &lt;t&gt;-langu.
+    s_txt-texttype = text_types-object.     s_txt-text = &lt;t&gt;-text.      if not s_txt-text is INITIAL. INSERT s_txt INTO TABLE result. endif.
+    s_txt-texttype = text_types-icon.       s_txt-text = &lt;t&gt;-icon.      if not s_txt-text is INITIAL. INSERT s_txt INTO TABLE result. endif.
+    s_txt-texttype = text_types-quick_info. s_txt-text = &lt;t&gt;-info.      if not s_txt-text is INITIAL. INSERT s_txt INTO TABLE result. endif.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_TEXTS" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Set texts from texts data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJ_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_CODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Function code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJ_TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-OBJ_TYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Standards maintenance: Object type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_STEXTS"/>
+     <ITEM SCONAME="SUB_CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter. Function key code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXTS" CMPTYPE="1" TYPTYPE="1" TYPE="TT_MP_TEXTS"/>
+     <ITEM SCONAME="TEXTTYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RSMPTEXTS-TEXTTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Menu Painter: Text type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt LIKE LINE OF result.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF texts.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    s_txt-obj_type = obj_type.
+    s_txt-obj_code = obj_code.
+    s_txt-sub_code = sub_code.
+    s_txt-texttype = texttype.
+    s_txt-sprsl = &lt;t&gt;-langu.
+    s_txt-text = &lt;t&gt;-text.
+    INSERT s_txt INTO TABLE result.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PROGRAM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_title LIKE LINE OF fm_data-titles.
+  DATA s_func  LIKE LINE OF fm_data-functions.
+  DATA s_statu LIKE LINE OF fm_data-status.
+  DATA s_s_fu  LIKE LINE OF fm_data-stat_funcs.
+  DATA s_menu  LIKE LINE OF fm_data-menus.
+  DATA s_m_det LIKE LINE OF fm_data-menus_det.
+  DATA s_attr  LIKE LINE OF fm_data-attributes.
+  DATA s_b_det LIKE LINE OF fm_data-bars_det.
+  DATA s_k_det LIKE LINE OF fm_data-keyboards.
+  DATA s_but   LIKE LINE OF fm_data-buttons_det.
+  DATA s_text  LIKE LINE OF fm_data-texts.
+  DATA d_lang  TYPE sy-langu.
+  FIELD-SYMBOLS:
+    &lt;mb&gt; LIKE LINE OF menu_bars,
+    &lt;bc&gt; LIKE LINE OF &lt;mb&gt;-composition,
+    &lt;ks&gt; LIKE LINE OF key_settings,
+    &lt;kk&gt; LIKE LINE OF &lt;ks&gt;-keys,
+    &lt;pb&gt; LIKE LINE OF &lt;ks&gt;-pushbuttons,
+    &lt;pc&gt; LIKE LINE OF &lt;pb&gt;-composition,
+    &lt;st&gt; LIKE LINE OF status,
+    &lt;sf&gt; LIKE LINE OF &lt;st&gt;-functions,
+    &lt;mn&gt; LIKE LINE OF menu_list,
+    &lt;md&gt; LIKE LINE OF &lt;mn&gt;-composition,
+    &lt;fu&gt; LIKE LINE OF functions,
+    &lt;ti&gt; LIKE LINE OF titles,
+    &lt;tl&gt; LIKE LINE OF &lt;fu&gt;-texts,
+    &lt;t&gt;  LIKE LINE OF &lt;st&gt;-texts.
+
+  fm_data-header-actcode = bar.
+  fm_data-header-mencode = menu.
+  fm_data-header-pfkcode = function.
+  fm_data-header-defaultact = default_bar.
+  fm_data-header-defaultpfk = default_function.
+  fm_data-header-mod_langu = d_lang = master_lang.
+  IF d_lang IS INITIAL.  d_lang = sy-langu.    ENDIF.
+
+  LOOP AT titles ASSIGNING &lt;ti&gt;.
+    CLEAR s_title.        MOVE-CORRESPONDING &lt;ti&gt;-hdr TO s_title.
+    INSERT s_title INTO TABLE fm_data-titles.
+    CALL METHOD set_texts
+      EXPORTING
+        obj_type = obj_types-title
+        obj_code = s_title-code
+        sub_code = space
+        texttype = text_types-tech_info
+        texts    = &lt;ti&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+  ENDLOOP.
+
+  LOOP AT functions ASSIGNING &lt;fu&gt;.
+    CLEAR s_func.     MOVE-CORRESPONDING &lt;fu&gt;-hdr TO s_func.
+    READ TABLE &lt;fu&gt;-texts ASSIGNING &lt;tl&gt; WITH TABLE KEY langu = d_lang.
+    IF sy-subrc = 0.    s_func-fun_text = &lt;tl&gt;-text.  s_func-icon_text = &lt;tl&gt;-icon.  s_func-info_text = &lt;tl&gt;-info.  ENDIF.    &quot; Issue 116
+
+    INSERT s_func INTO TABLE fm_data-functions.
+    CALL METHOD set_func_texts
+      EXPORTING
+        obj_code = s_func-code
+        sub_code = s_func-textno
+        texts    = &lt;fu&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+  ENDLOOP.
+
+  LOOP AT menu_list ASSIGNING &lt;mn&gt;.
+    CLEAR s_menu.     MOVE-CORRESPONDING &lt;mn&gt;-hdr TO s_menu.
+    INSERT s_menu INTO TABLE fm_data-menus.
+    CALL METHOD set_texts
+      EXPORTING
+        obj_type = obj_types-menu
+        obj_code = s_menu-code
+        sub_code = space
+        texttype = text_types-object
+        texts    = &lt;mn&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+    LOOP AT &lt;mn&gt;-composition ASSIGNING &lt;md&gt;.
+      CLEAR s_m_det.      MOVE-CORRESPONDING &lt;md&gt; TO s_m_det.       s_m_det-code = &lt;mn&gt;-code.
+      INSERT s_m_det INTO TABLE fm_data-menus_det.
+    ENDLOOP.
+  ENDLOOP.
+
+* Menu Bars
+  LOOP AT menu_bars ASSIGNING &lt;mb&gt;.
+    CLEAR s_attr.         MOVE-CORRESPONDING &lt;mb&gt;-hdr TO s_attr.    s_attr-obj_type = obj_types-menu_bar.
+    READ TABLE &lt;mb&gt;-texts ASSIGNING &lt;t&gt; WITH TABLE KEY langu = d_lang.
+    IF sy-subrc = 0.    s_attr-int_note = &lt;t&gt;-text.  ENDIF.
+    INSERT s_attr INTO TABLE fm_data-attributes.
+    CALL METHOD set_texts
+      EXPORTING
+        obj_type = obj_types-menu_bar
+        obj_code = s_attr-obj_code
+        sub_code = space
+        texttype = text_types-tech_info
+        texts    = &lt;mb&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+    LOOP AT &lt;mb&gt;-composition ASSIGNING &lt;bc&gt;.
+      CLEAR s_b_det.      MOVE-CORRESPONDING &lt;bc&gt; TO s_b_det.       s_b_det-code = &lt;mb&gt;-obj_code.
+      INSERT s_b_det INTO TABLE fm_data-bars_det.
+    ENDLOOP.
+  ENDLOOP.
+
+* Key settings
+  LOOP AT key_settings ASSIGNING &lt;ks&gt;.
+    CLEAR s_attr.         MOVE-CORRESPONDING &lt;ks&gt;-hdr TO s_attr.    s_attr-obj_type = obj_types-key_set.
+    READ TABLE &lt;ks&gt;-texts ASSIGNING &lt;t&gt; WITH TABLE KEY langu = d_lang.
+    IF sy-subrc = 0.    s_attr-int_note = &lt;t&gt;-text.  ENDIF.
+    INSERT s_attr INTO TABLE fm_data-attributes.
+    CALL METHOD set_texts
+      EXPORTING
+        obj_type = obj_types-key_set
+        obj_code = s_attr-obj_code
+        sub_code = space
+        texttype = text_types-tech_info
+        texts    = &lt;ks&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+    LOOP AT &lt;ks&gt;-keys ASSIGNING &lt;kk&gt;.
+      CLEAR s_k_det.      MOVE-CORRESPONDING &lt;kk&gt; TO s_k_det.       s_k_det-code = &lt;ks&gt;-obj_code.
+      INSERT s_k_det INTO TABLE fm_data-keyboards.
+    ENDLOOP.
+    LOOP AT &lt;ks&gt;-pushbuttons ASSIGNING &lt;pb&gt;.
+      CLEAR s_attr.       MOVE-CORRESPONDING &lt;pb&gt; TO s_attr.        s_attr-obj_type = obj_types-button.       s_attr-obj_code = &lt;ks&gt;-obj_code.
+      READ TABLE &lt;pb&gt;-texts ASSIGNING &lt;t&gt; WITH TABLE KEY langu = d_lang.
+      IF sy-subrc = 0.    s_attr-int_note = &lt;t&gt;-text.  ENDIF.
+      INSERT s_attr INTO TABLE fm_data-attributes.
+      CALL METHOD set_texts
+        EXPORTING
+          obj_type = obj_types-button
+          obj_code = s_attr-obj_code
+          sub_code = s_attr-sub_code
+          texttype = text_types-tech_info
+          texts    = &lt;pb&gt;-texts
+        CHANGING
+          RESULT   = fm_data-texts.
+      LOOP AT &lt;pb&gt;-composition ASSIGNING &lt;pc&gt;.
+        CLEAR s_but.      MOVE-CORRESPONDING &lt;pc&gt; TO s_but.         s_but-pfk_code = &lt;ks&gt;-obj_code.        s_but-code = &lt;pb&gt;-sub_code.
+        INSERT s_but INTO TABLE fm_data-buttons_det.
+      ENDLOOP.
+    ENDLOOP.
+  ENDLOOP.
+
+  LOOP AT status ASSIGNING &lt;st&gt;.
+    CLEAR s_statu.        MOVE-CORRESPONDING &lt;st&gt;-hdr TO s_statu.
+    READ TABLE &lt;st&gt;-texts ASSIGNING &lt;t&gt; WITH TABLE KEY langu = d_lang.
+    IF sy-subrc = 0.    s_statu-int_note = &lt;t&gt;-text.  ENDIF.
+    INSERT s_statu INTO TABLE fm_data-status.
+    CALL METHOD set_texts
+      EXPORTING
+        obj_type = obj_types-status
+        obj_code = s_statu-code
+        sub_code = space
+        texttype = text_types-tech_info
+        texts    = &lt;st&gt;-texts
+      CHANGING
+        RESULT   = fm_data-texts.
+    LOOP AT &lt;st&gt;-functions ASSIGNING &lt;sf&gt;.
+      CLEAR s_s_fu.     s_s_fu-status = &lt;st&gt;-code.      s_s_fu-function = &lt;sf&gt;.
+      INSERT s_s_fu INTO TABLE fm_data-stat_funcs.
+    ENDLOOP.
+  ENDLOOP.
+
+  s_text-progname = program.
+  MODIFY fm_data-texts FROM s_text TRANSPORTING progname WHERE progname &lt;&gt; program.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TS_ATTRIBUTE" EXPOSURE="2" STATE="1" EDITORDER="22 " TYPTYPE="4">BEGIN OF ts_attribute.
+    INCLUDE TYPE rsmpe_atr AS hdr.
+    TYPES:
+        texts TYPE tt_mp_texts,
+      END OF ts_attribute
+`</ITEM>
+   <ITEM CMPNAME="TS_BAR" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="4">BEGIN OF ts_bar.
+    INCLUDE TYPE rsmpe_atr AS hdr.
+    TYPES:
+        texts        TYPE tt_mp_texts,
+        composition  TYPE tt_bar_details,
+      END OF ts_bar
+`</ITEM>
+   <ITEM CMPNAME="TS_BUTTON" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="4">BEGIN OF ts_button.
+    INCLUDE TYPE rsmpe_atr AS hdr.
+    TYPES:
+        texts        TYPE tt_mp_texts,
+        composition  TYPE tt_button_details,
+      END OF ts_button
+`</ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="39 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+          header        TYPE rsmpe_adm,
+          status        TYPE tt_stat,
+          functions     TYPE tt_funt,
+          menus_det     TYPE tt_men,
+          menus         TYPE tt_mnlt,
+          bars_det      TYPE tt_act,
+          buttons_det   TYPE tt_but,
+          keyboards     TYPE tt_pfk,
+          stat_funcs    TYPE tt_staf,
+          attributes    TYPE tt_atrt,
+          titles        TYPE tt_titt,
+          ffuncs        TYPE tt_buts,
+          texts         TYPE tt_stexts,
+        END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FUNCTION" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">BEGIN OF ts_function.
+    INCLUDE TYPE rsmpe_fun AS hdr.
+    TYPES:
+        texts         TYPE tt_mp_ftexts,
+      END OF ts_function
+`</ITEM>
+   <ITEM CMPNAME="TS_KEYBOARD" EXPOSURE="2" STATE="1" EDITORDER="20 " TYPTYPE="4">BEGIN OF ts_keyboard.
+    INCLUDE TYPE rsmpe_atr AS hdr.
+    TYPES:
+        texts        TYPE tt_mp_texts,
+        keys         TYPE tt_keyssettings,
+        pushbuttons  TYPE tt_buttons,
+      END OF ts_keyboard
+`</ITEM>
+   <ITEM CMPNAME="TS_MENU" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">BEGIN OF ts_menu.
+    INCLUDE TYPE rsmpe_mnl AS hdr.
+    TYPES:
+        texts        TYPE tt_mp_texts,
+        composition  TYPE tt_menu_details,
+      END OF ts_menu
+`</ITEM>
+   <ITEM CMPNAME="TS_MP_FTEXT" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">BEGIN OF ts_mp_ftext,
+          langu TYPE rsmptexts-sprsl,
+          text  TYPE rsmptexts-text,
+          icon  TYPE rsmptexts-text,
+          info  TYPE rsmptexts-text,
+        END OF ts_mp_ftext
+`</ITEM>
+   <ITEM CMPNAME="TS_MP_TEXT" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_mp_text,
+          langu TYPE rsmptexts-sprsl,
+          text  TYPE rsmptexts-text,
+*    types:
+*      begin of ts_menu.
+*        include TYPE rsmpe_mnl as hdr.
+*    types:
+*        texts type tt_mp_texts,
+*      end of ts_menu.
+*    TYPES:
+*      tt_mtexts TYPE STANDARD TABLE OF t WITH unique KEY code .
+        END OF ts_mp_text
+`</ITEM>
+   <ITEM CMPNAME="TS_STATUS" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">BEGIN OF ts_status.
+    INCLUDE TYPE rsmpe_sta AS hdr.
+    TYPES:
+        texts TYPE tt_mp_texts,
+        functions TYPE tt_funcs,
+      END OF ts_status
+`</ITEM>
+   <ITEM CMPNAME="TS_TITLE" EXPOSURE="2" STATE="1" EDITORDER="24 " TYPTYPE="4">BEGIN OF ts_title.
+    INCLUDE TYPE rsmpe_tit AS hdr.
+    TYPES:
+        texts TYPE tt_mp_texts,
+      END OF ts_title
+`</ITEM>
+   <ITEM CMPNAME="TT_ACT" EXPOSURE="2" STATE="1" EDITORDER="31 " TYPTYPE="4">tt_act TYPE STANDARD TABLE OF rsmpe_act WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_ATRT" EXPOSURE="2" STATE="1" EDITORDER="35 " TYPTYPE="4">tt_atrt TYPE STANDARD TABLE OF rsmpe_atrt WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_ATTRIBUTES" EXPOSURE="2" STATE="1" EDITORDER="23 " TYPTYPE="4">tt_attributes TYPE SORTED TABLE OF ts_attribute WITH UNIQUE KEY obj_type obj_code sub_code
+`</ITEM>
+   <ITEM CMPNAME="TT_BARS" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="4">tt_bars TYPE SORTED TABLE OF ts_bar WITH UNIQUE KEY obj_code
+`</ITEM>
+   <ITEM CMPNAME="TT_BAR_DETAILS" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">tt_bar_details TYPE SORTED TABLE OF rsmpe_act WITH UNIQUE KEY no
+`</ITEM>
+   <ITEM CMPNAME="TT_BUT" EXPOSURE="2" STATE="1" EDITORDER="32 " TYPTYPE="4">tt_but TYPE STANDARD TABLE OF rsmpe_but WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_BUTS" EXPOSURE="2" STATE="1" EDITORDER="37 " TYPTYPE="4">tt_buts TYPE STANDARD TABLE OF rsmpe_buts WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_BUTTONS" EXPOSURE="2" STATE="1" EDITORDER="18 " TYPTYPE="4">tt_buttons TYPE SORTED TABLE OF ts_button WITH UNIQUE KEY sub_code
+`</ITEM>
+   <ITEM CMPNAME="TT_BUTTON_DETAILS" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="4">tt_button_details TYPE SORTED TABLE OF rsmpe_but WITH UNIQUE KEY no
+`</ITEM>
+   <ITEM CMPNAME="TT_FFUNCS" EXPOSURE="2" STATE="1" EDITORDER="26 " TYPTYPE="4">tt_ffuncs TYPE SORTED TABLE OF rsmpe_buts WITH UNIQUE KEY obj_code sub_code
+`</ITEM>
+   <ITEM CMPNAME="TT_FUNCS" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_funcs TYPE SORTED TABLE OF gui_func WITH UNIQUE KEY table_line
+`</ITEM>
+   <ITEM CMPNAME="TT_FUNCTIONS" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">tt_functions TYPE SORTED TABLE OF ts_function WITH UNIQUE KEY code textno
+`</ITEM>
+   <ITEM CMPNAME="TT_FUNT" EXPOSURE="2" STATE="1" EDITORDER="28 " TYPTYPE="4">tt_funt TYPE STANDARD TABLE OF rsmpe_funt WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_KEYBOARDS" EXPOSURE="2" STATE="1" EDITORDER="21 " TYPTYPE="4">tt_keyboards TYPE SORTED TABLE OF ts_keyboard WITH UNIQUE KEY obj_code
+`</ITEM>
+   <ITEM CMPNAME="TT_KEYSSETTINGS" EXPOSURE="2" STATE="1" EDITORDER="19 " TYPTYPE="4">tt_keyssettings TYPE SORTED TABLE OF rsmpe_pfk WITH UNIQUE KEY pfno
+`</ITEM>
+   <ITEM CMPNAME="TT_MEN" EXPOSURE="2" STATE="1" EDITORDER="29 " TYPTYPE="4">tt_men TYPE STANDARD TABLE OF rsmpe_men WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_MENUS" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">tt_menus TYPE SORTED TABLE OF ts_menu WITH UNIQUE KEY code
+`</ITEM>
+   <ITEM CMPNAME="TT_MENU_DETAILS" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">tt_menu_details TYPE SORTED TABLE OF rsmpe_men WITH UNIQUE KEY no
+`</ITEM>
+   <ITEM CMPNAME="TT_MNLT" EXPOSURE="2" STATE="1" EDITORDER="30 " TYPTYPE="4">tt_mnlt TYPE STANDARD TABLE OF rsmpe_mnlt WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_MP_FTEXTS" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_mp_ftexts TYPE SORTED TABLE OF ts_mp_ftext WITH UNIQUE KEY langu
+`</ITEM>
+   <ITEM CMPNAME="TT_MP_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_mp_texts TYPE SORTED TABLE OF ts_mp_text WITH UNIQUE KEY langu
+`</ITEM>
+   <ITEM CMPNAME="TT_PFK" EXPOSURE="2" STATE="1" EDITORDER="33 " TYPTYPE="4">tt_pfk TYPE STANDARD TABLE OF rsmpe_pfk WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_STAF" EXPOSURE="2" STATE="1" EDITORDER="34 " TYPTYPE="4">tt_staf TYPE STANDARD TABLE OF rsmpe_staf WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_STAT" EXPOSURE="2" STATE="1" EDITORDER="27 " TYPTYPE="4">tt_stat TYPE STANDARD TABLE OF rsmpe_stat WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_STATUS" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">tt_status TYPE SORTED TABLE OF ts_status WITH UNIQUE KEY code
+`</ITEM>
+   <ITEM CMPNAME="TT_STEXTS" EXPOSURE="2" STATE="1" EDITORDER="38 " TYPTYPE="4">tt_stexts TYPE SORTED TABLE OF rsmptexts WITH UNIQUE KEY obj_type obj_code sub_code texttype sprsl
+`</ITEM>
+   <ITEM CMPNAME="TT_TITLES" EXPOSURE="2" STATE="1" EDITORDER="25 " TYPTYPE="4">tt_titles TYPE SORTED TABLE OF ts_title WITH UNIQUE KEY code
+`</ITEM>
+   <ITEM CMPNAME="TT_TITT" EXPOSURE="2" STATE="1" EDITORDER="36 " TYPTYPE="4">tt_titt TYPE STANDARD TABLE OF rsmpe_titt WITH DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

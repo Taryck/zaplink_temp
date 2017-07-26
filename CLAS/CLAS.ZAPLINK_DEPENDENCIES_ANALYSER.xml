@@ -1,0 +1,2647 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="1B23C6FDEA3885193017358E1E6B64FC" CODE_SIGNATURE="6C91883A58E724BBC73AA354A61B3236" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_DEPENDENCIES_ANALYSER" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink : Dependencies analyser for SA generator">U1&amp;FUNCTIONALITY&amp;
+ASTools used to maps dependencies of :
+AS,,- Programs
+AS,,- Classes
+AS,,- Interfaces
+ASTo build a &quot;standalone&quot; version with every class, interface and include
+  in the right order to compile.
+ASThis tools is used to build the ZAPLink installer used to install the
+  framework. This tools is not part of the framework.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="1" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DEVCLASS"/>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+   <ITEM CMPNAME="TD_SOFTCOMP" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_SOFTCOMP"/>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_KIND"/>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_KERNEL_TYPES" REFCMPNAME="TO_COMPONENT"/>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_KERNEL_TYPES" REFCMPNAME="TO_RAW"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TS_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPTYPE"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="ALL_COMPONENTS" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_COMPS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All components required"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CIRCULAR_CONTEXT" STATE="1" TYPTYPE="1" TYPE="TT_CONTEXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CIRCULAR_REF_ON" STATE="1" TYPTYPE="1" TYPE="TD_NAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface where circular ref"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CLASSES" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_SOURCES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Classes/interfaces codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CONTEXT" STATE="1" TYPTYPE="1" TYPE="TT_CONTEXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CURRENT_COMP" STATE="1" TYPTYPE="1" TYPE="TD_NAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CURRENT_ORIGIN" STATE="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Current origin of code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_CLASS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_INTERFACE" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_MSG_CLASS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_PROGRAM" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_TYPEGROUP" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEFERRED_DECLARATION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_CLASSLIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Indexed list of class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXCLUDED_CLASSES" STATE="1" TYPTYPE="1" TYPE="TT_CLASSLIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class excluded"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXCLUDED_INCLUDES" STATE="1" TYPTYPE="1" TYPE="TT_CLASSLIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class excluded"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="INCLUDES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Include list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MESSAGES" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_MESSAGE_IDS"/>
+   <ITEM CMPNAME="NEW_ORDER" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ORDER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface Order"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJCAT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF objcat,
+*00	General Object Type
+*01	Exit Class
+*10	Persistent Class
+*11	Factory for Persistent Class
+*12	Status Class for Persistent Class
+*20	View Class
+*30	Proxy Class for Remote Interface
+*40	Exception Class
+*50	Business Class
+*51	Business Class Interface for Static Components
+*52	Business Class Interface for Instance Dependent Components
+*60	BSP Application Class
+*70	Basis Class for BSP Element Handlers
+*80	Web Dynpro Runtime Object
+*90	ESI: Provider Interface (generated)
+*45	Area Class (Shared Objects)
+*05	Test Class (ABAP Unit)
+        class       TYPE td_classcat VALUE &apos;00&apos;,            &quot;#EC NOTEXT
+        exit        TYPE td_classcat VALUE &apos;01&apos;,            &quot;#EC NOTEXT
+        test        TYPE td_classcat VALUE &apos;05&apos;,            &quot;#EC NOTEXT
+        persistent  TYPE td_classcat VALUE &apos;10&apos;,            &quot;#EC NOTEXT
+        factory     TYPE td_classcat VALUE &apos;11&apos;,            &quot;#EC NOTEXT
+        proxy       TYPE td_classcat VALUE &apos;30&apos;,            &quot;#EC NOTEXT
+        exception   TYPE td_classcat VALUE &apos;40&apos;,            &quot;#EC NOTEXT
+        bsp         TYPE td_classcat VALUE &apos;60&apos;,            &quot;#EC NOTEXT
+        END OF objcat
+`</ITEM>
+   <ITEM CMPNAME="OBJTYPE" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF objtype,
+                class             TYPE td_classtype VALUE &apos;0&apos;, &quot;#EC NOTEXT      Object Type : Class
+                exception_class   TYPE td_classtype VALUE &apos;5&apos;, &quot;#EC NOTEXT      Local Object type : Exception_Class
+                interface         TYPE td_classtype VALUE &apos;1&apos;, &quot;#EC NOTEXT      Object Type : Interface
+              END OF objtype
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ORDER" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_ORDER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface Order"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_OBJECT" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_OBJECT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink Class &amp; Interface connector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PACKAGES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TR_PACKAGES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Packages accepted"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PREDEFTYPES" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_PREDEFTYPES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of pre-definied types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="REMAIN_CLASSES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_SOURCES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Classes/interfaces codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="REMAIN_REQUIREMENTS" STATE="1" TYPTYPE="1" TYPE="TT_REQ_OBJECTS"/>
+   <ITEM CMPNAME="REQUIRED_OBJECTS" STATE="1" TYPTYPE="1" TYPE="TT_REQ_OBJECTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface requirement"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="REQUIREMENTS" STATE="1" TYPTYPE="1" TYPE="TT_REQ_OBJECTS"/>
+   <ITEM CMPNAME="SOFTCOMPONENTS" EXPOSURE="2" STATE="1" ATTDECLTYP="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TR_DLVUNIT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Software component accepted"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="S_COMP" STATE="1" TYPTYPE="1" TYPE="TS_COMP">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Temp component for Is_excluded_class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTSPOOL" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Text pool"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TYPEGROUPS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TYPEGROUPS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type Groups list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TYPETYPE" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF typetype,
+                like    TYPE seotyptype VALUE &apos;0&apos;, &quot;#EC NOTEXT      Attribute reference (LIKE)
+                type    TYPE seotyptype VALUE &apos;1&apos;, &quot;#EC NOTEXT      Type reference (TYPE)
+                otype   TYPE seotyptype VALUE &apos;2&apos;, &quot;#EC NOTEXT      Object (TYPE)
+                ref     TYPE seotyptype VALUE &apos;3&apos;, &quot;#EC NOTEXT      Object reference (TYPE REF TO)
+                code    TYPE seotyptype VALUE &apos;4&apos;, &quot;#EC NOTEXT      See coding
+              END OF typetype
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Types of type definition"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+   <ITEM REFCLSNAME="ZAPLINK_KERNEL_TYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="2 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+  DEFINE mac_read_tadir.
+    select single devclass dlvunit into (&amp;4, &amp;5)
+      from v_tralan
+      where pgmid = &amp;1
+        and object = &amp;2
+        and obj_name = &amp;3.
+  END-OF-DEFINITION.
+
+  DEFINE mac_add_comp.
+    if not s_comp-kind is initial and not s_comp-type is initial and not s_comp-name is initial.
+      mac_read_tadir s_comp-kind s_comp-type s_comp-name s_comp-devclass s_comp-softcomp.
+      if s_comp-devclass in packages and s_comp-softcomp in softcomponents.
+        insert s_comp into table all_components.
+      endif.
+    endif.
+  END-OF-DEFINITION.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD_ATTRIBUTS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Attributs"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ATTRIBUTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TT_ATTRIBUTS"/>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the Attributs"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _name TYPE string.
+  FIELD-SYMBOLS &lt;a&gt; LIKE LINE OF attributs.
+
+  LOOP AT attributs ASSIGNING &lt;a&gt;.
+    CONCATENATE &apos;Attributs-&gt;&apos; &lt;a&gt;-cmpname INTO _name.       &quot;#EC NOTEXT
+    stack( _name ).
+    process_type( type = &lt;a&gt;-typtype
+                origin = origin
+                  name = &lt;a&gt;-type
+                source = &lt;a&gt;-_ ).
+    unstack( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_CLASS_DEP" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add class and dependenties"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FULL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Full definition required"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _codes      LIKE LINE OF classes.
+  DATA o_raw       TYPE to_raw.
+  DATA o_data      TYPE to_class.
+  DATA _component  TYPE to_component.
+  DATA _key        TYPE td_name.
+  DATA d_softcomp  TYPE tdevc-dlvunit.
+  DATA d_devclass  TYPE tdevc-devclass.
+  DATA _order      LIKE LINE OF order.
+  DATA _name       TYPE td_compname.
+  DATA f_before    TYPE xfeld.
+  DATA d_tabix     TYPE sy-tabix.
+  DATA _class      TYPE vseoclass.
+  DATA s_key       TYPE seoclskey.
+  DATA d_classname TYPE seoclsname.
+  DATA d_prog      TYPE td_origin.
+  DATA o_cx_childs TYPE REF TO cl_oo_class_relations.
+  FIELD-SYMBOLS:
+    &lt;cx&gt; LIKE LINE OF o_cx_childs-&gt;subclasses,
+    &lt;c&gt; LIKE LINE OF circular_context,
+    &lt;f&gt; LIKE LINE OF o_data-&gt;friends.
+
+  CHECK is_excluded_class( type = c_class-type  name = name ) = abap_false.
+  READ TABLE order TRANSPORTING NO FIELDS
+       WITH KEY name = name
+*                type = _order-type   &quot; for perf reason
+             defered = abap_false.
+  IF sy-subrc = 0.    EXIT.   ENDIF.    &quot; already processed =&gt; nothing to do
+
+  s_key-clsname = name.
+  CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+    EXPORTING
+      cifkey             = s_key
+*     VERSION            = SEOC_VERSION_INACTIVE
+*     STATE              = &apos;0&apos;
+    IMPORTING
+*      clstype            = o_type
+      class              = _class
+*     INTERFACE          =
+    EXCEPTIONS
+      not_existing       = 1
+      deleted            = 2
+      model_only         = 0
+      OTHERS             = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;SEO_CLIF_GET&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  _order-name = name.
+  IF _class-category =  objcat-exception.    _order-type = objtype-exception_class.   ELSE.   _order-type = objtype-class.   ENDIF.
+
+  READ TABLE context TRANSPORTING NO FIELDS
+       WITH KEY context = name
+                   type = _order-type.
+  IF sy-subrc = 0.    &quot; Circular reference =&gt; Use defered
+    stack( context = name   type = _order-type    full = full ).
+    d_tabix = sy-tabix + 1.   circular_context = context.   DELETE circular_context FROM d_tabix.
+    current_comp = name.    handle_context( ).        &quot; CLEAR:  circular_ref_on, circular_context.
+    unstack( ).
+    EXIT.
+  ENDIF.
+
+  READ TABLE classes TRANSPORTING NO FIELDS WITH TABLE KEY name = name.
+  IF sy-subrc = 0.    EXIT.   ENDIF.    &quot; already processed =&gt; nothing to do
+
+  d_classname = name.
+  d_prog = current_origin = cl_oo_classname_service=&gt;get_classpool_name( d_classname ).
+  stack( context = name   type = _order-type    full = full ).
+  do_class( name ).
+
+  CREATE OBJECT _component.
+  _component-&gt;set_type( c_class-type ).   _name = name.   _component-&gt;set_name( _name ).
+  o_raw = o_object-&gt;zaplink_connector~read_from_sap( _component ).    o_data ?= o_raw-&gt;raw.
+
+  append_typegroups( o_data-&gt;typegroups ).
+  append_message( o_data-&gt;a0_maindata-msg_id ).
+
+  IF NOT o_data-&gt;a0_maindata-inheritance-refclsname IS INITIAL.
+    _key = o_data-&gt;a0_maindata-inheritance-refclsname.
+    add_object_to_list( name = _key
+                        full = abap_true
+                    position = &apos;=&gt;inheritance-refclsname&apos; ).
+  ENDIF.
+
+  add_types( types = o_data-&gt;types    origin = d_prog ).
+
+  add_interfaces( o_data-&gt;interfaces ).
+
+  add_attributs( attributs = o_data-&gt;attributs    origin = d_prog ).
+
+  add_source_to_list( code = o_data-&gt;local-types-_   origin = d_prog    position = _name ).
+  add_source_to_list( code = o_data-&gt;local-implementations-_   origin = d_prog    position = _name ).
+  add_source_to_list( code = o_data-&gt;local-macros-_  origin = d_prog    position = _name ).
+
+  add_methods( methods = o_data-&gt;methods    origin = d_prog ).
+
+  LOOP AT o_data-&gt;friends ASSIGNING &lt;f&gt;.
+    _key = &lt;f&gt;-refclsname.    CALL METHOD add_object_to_list( name = _key   position = &apos;=&gt;friends&apos; ).
+  ENDLOOP.
+
+  do_object_list( name = name ).
+
+  unstack( ).
+  insert_order( s_order = _order   context = context ).
+
+* Issue 134 : Unstack &amp; Insert first because subclasses are not required by class, it&apos;s the opposit
+  IF _order-type = objtype-exception_class.
+* Issue 134 : Some exception class are missing
+* When exception class load of childrens also
+    CREATE OBJECT o_cx_childs
+      EXPORTING
+        clsname      = name
+        w_subclasses = seox_true
+      EXCEPTIONS
+        not_existing = 1
+        is_interface = 2
+        OTHERS       = 3.
+    ASSERT sy-subrc = 0.
+    LOOP AT o_cx_childs-&gt;subclasses ASSIGNING &lt;cx&gt;.
+      add_class_dep( &lt;cx&gt;-clsname ).
+    ENDLOOP.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_DEFERRED_CODE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get deferred declaration code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ABAPCODE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CLASSTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _obj      LIKE LINE OF deferred_declaration.
+  DATA _line     LIKE LINE OF abapcode.
+
+  READ TABLE deferred_declaration TRANSPORTING NO FIELDS
+       WITH TABLE KEY name = name.
+  IF sy-subrc = 0.    EXIT.   ENDIF.
+* DEFINE M_124563245. CLASS &amp;1 DEFINITION DEFERRED. END-OF-DEFINITION.
+  CASE type.
+    WHEN objtype-class OR objtype-exception_class.
+      CONCATENATE &apos;CLASS&apos; name &apos;DEFINITION DEFERRED.&apos; INTO _line SEPARATED BY space.
+      APPEND _line TO abapcode.
+      _obj-name = name.
+      INSERT _obj INTO TABLE deferred_declaration.
+    WHEN objtype-interface.
+      CONCATENATE &apos;INTERFACE&apos; name &apos;DEFERRED.&apos; INTO _line SEPARATED BY space.
+      APPEND _line TO abapcode.
+      _obj-name = name.
+      INSERT _obj INTO TABLE deferred_declaration.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_DEFERRED_OK" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Generate ABAP Source Code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="has changed"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  TYPES:
+    BEGIN OF ts_dep,
+      ori_name  TYPE td_name,
+      type      TYPE td_classtype,    &quot; 0 Class 1 interface
+      full_def  TYPE flag,          &quot; Full definition required
+      count     TYPE i,
+    END OF ts_dep.
+  DATA t_tmp     TYPE STANDARD TABLE OF ts_dep WITH DEFAULT KEY.
+  DATA s_dep     LIKE LINE OF t_tmp.
+  DATA t_deps    TYPE SORTED TABLE OF ts_dep WITH NON-UNIQUE KEY ori_name.
+  DATA s_order   LIKE LINE OF new_order.
+  FIELD-SYMBOLS:
+    &lt;r&gt; LIKE LINE OF remain_requirements,
+    &lt;c&gt; LIKE LINE OF remain_classes.
+
+  LOOP AT remain_requirements ASSIGNING &lt;r&gt;.
+    CLEAR s_dep.    MOVE-CORRESPONDING &lt;r&gt; TO s_dep.    s_dep-count = 1.
+    COLLECT s_dep INTO t_tmp.
+  ENDLOOP.
+  DELETE t_tmp WHERE type &lt;&gt; objtype-exception_class AND full_def &lt;&gt; abap_true. &quot; Issue 91
+  t_deps = t_tmp.
+* intf/class with only defered dependences any dependances
+  LOOP AT remain_classes ASSIGNING &lt;c&gt;.
+*    LOOP AT t_deps INTO s_dep                       &quot; Issue 91 : Optimization
+*         WHERE ori_name = &lt;c&gt;-name
+*           AND (   type = objtype-exception_class   &quot; Exception are full required
+*            OR full_def = abap_true ).
+*      EXIT.
+*    ENDLOOP.
+    READ TABLE t_deps TRANSPORTING NO FIELDS WITH TABLE KEY ori_name = &lt;c&gt;-name.
+    IF sy-subrc &lt;&gt; 0.
+      CLEAR s_order.    s_order-name = &lt;c&gt;-name.    s_order-type = &lt;c&gt;-type.    APPEND s_order TO new_order.    DELETE remain_requirements WHERE name = &lt;c&gt;-name.    result = abap_true.   DELETE remain_classes.
+    ENDIF.
+  ENDLOOP.
+  add_without_requirements( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_INCLUDE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add include to list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  APPEND name TO includes.
+  add_prog_textpool( name ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_INTERFACES" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add interfaces"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INTERFACES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TT_INTERFACES"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _key        TYPE td_name.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF interfaces.
+
+  LOOP AT interfaces ASSIGNING &lt;i&gt;.
+    _key = &lt;i&gt;-refclsname.
+    add_object_to_list( name = _key
+                        full = abap_true
+                    position = &apos;=&gt;interface&apos; ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_INTERFACE_DEP" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Interface dependenties"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FULL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Full definition required"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _codes      LIKE LINE OF classes.
+  DATA o_raw       TYPE to_raw.
+  DATA o_data      TYPE to_interface.
+  DATA _component  TYPE zaplink_connector=&gt;to_component.
+  DATA d_softcomp  TYPE tdevc-dlvunit.
+  DATA d_devclass  TYPE tdevc-devclass.
+  DATA _order      LIKE LINE OF order.
+  DATA _name       TYPE zaplink_connector=&gt;td_compname.
+  DATA d_tabix     TYPE sy-tabix.
+  DATA d_classname TYPE seoclsname.
+  DATA d_prog      TYPE td_origin.
+
+  CHECK is_excluded_class( type = c_interface-type  name = name ) = abap_false.
+  _order-name = name.   _order-type = objtype-interface.
+  READ TABLE order TRANSPORTING NO FIELDS
+       WITH KEY name = _order-name
+                type = _order-type
+             defered = abap_false.
+  IF sy-subrc = 0.    EXIT.   ENDIF.    &quot; already processed =&gt; nothing to do
+
+  READ TABLE context TRANSPORTING NO FIELDS
+       WITH KEY context = name
+                   type = _order-type.
+  IF sy-subrc = 0.      &quot; Circular reference =&gt; Use defered
+    stack( context = name   type = _order-type    full = full ).
+    d_tabix = sy-tabix + 1.   circular_context = context.   DELETE circular_context FROM d_tabix.
+    current_comp = name.    handle_context( ).        &quot; CLEAR:  circular_ref_on, circular_context.
+    unstack( ).
+    EXIT.
+  ENDIF.
+
+  READ TABLE classes TRANSPORTING NO FIELDS WITH TABLE KEY name = name.
+  IF sy-subrc = 0.    EXIT.   ENDIF.    &quot; already processed =&gt; nothing to do
+
+  d_classname = name.
+  d_prog = current_origin = cl_oo_classname_service=&gt;get_classpool_name( d_classname ).
+  stack( context = name   type = _order-type    full = full ).
+  do_class( name ).
+
+  CREATE OBJECT _component.
+  _component-&gt;set_type( c_interface-type ).   _name = name.   _component-&gt;set_name( _name ).
+  o_raw = o_object-&gt;zaplink_connector~read_from_sap( _component ).
+  o_data ?= o_raw-&gt;raw.
+
+  append_typegroups( o_data-&gt;typegroups ).
+  add_types( types = o_data-&gt;types    origin = d_prog ).
+  add_interfaces( o_data-&gt;interfaces ).
+  add_attributs( attributs = o_data-&gt;attributs    origin = d_prog ).
+  add_methods( o_data-&gt;methods ).
+  do_object_list( name = name ).
+
+  unstack( ).
+
+  insert_order( s_order = _order   context = context ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_METHODS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add méthods"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="METHODS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TT_METHODS"/>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the methods"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _name       TYPE string.
+  DATA t_objs      TYPE tt_abaprawsource.
+  DATA _key        TYPE td_name.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF t_objs,
+    &lt;m&gt; LIKE LINE OF methods,
+    &lt;p&gt; LIKE LINE OF &lt;m&gt;-parameters,
+    &lt;e&gt; LIKE LINE OF &lt;m&gt;-exceptions.
+
+  LOOP AT methods ASSIGNING &lt;m&gt;.
+    CONCATENATE &apos;Method-&gt;&apos; &lt;m&gt;-cmpname INTO _name.          &quot;#EC NOTEXT
+    stack( _name ).
+* Check parameters
+    LOOP AT &lt;m&gt;-parameters ASSIGNING &lt;p&gt;.
+      process_type( type = &lt;p&gt;-typtype
+                    name = &lt;p&gt;-type ).
+    ENDLOOP.
+
+    IF NOT &lt;m&gt;-mtdnewexc IS INITIAL.
+* Check exceptions class
+      LOOP AT &lt;m&gt;-exceptions ASSIGNING &lt;e&gt;.
+        _key = &lt;e&gt;-sconame.   add_object_to_list( name = _key   position = _name ).
+      ENDLOOP.
+    ENDIF.
+
+    IF not &lt;m&gt;-source-_ is INITIAL.   add_source_to_list( code = &lt;m&gt;-source-_   origin = origin    position = _name ).    endif.
+
+    unstack( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_METHOD_SOURCE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add object use in ABAP Code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA ref_objs     TYPE tt_abaprawsource.
+  DATA _key         TYPE td_name.
+  FIELD-SYMBOLS &lt;o&gt; LIKE LINE OF ref_objs.
+
+  CHECK NOT code IS INITIAL.
+  ref_objs = analyse_source( code = code   origin = origin ).
+  LOOP AT ref_objs ASSIGNING &lt;o&gt;.
+    _key = &lt;o&gt;.
+    add_object( _key ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_OBJECT" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add class/interface to the list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _key   TYPE seoclskey.
+  DATA o_type TYPE seoclstype.
+  DATA o_desc TYPE REF TO cl_abap_typedescr.
+  DATA _name  TYPE td_name.
+  DATA _class TYPE vseoclass.
+
+  _name = name. TRANSLATE _name TO UPPER CASE.            &quot;#EC SYNTCHAR
+  CHECK is_predeftype( _name ) = abap_false.
+  CALL FUNCTION &apos;SEO_CLIF_CHECK_NAME&apos;
+    EXPORTING
+      clsname                   = _name
+    EXCEPTIONS
+      reserved                  = 1
+      space_not_allowed         = 2
+      small_letters_not_allowed = 3
+      symbols_not_allowed       = 4
+      first_character_no_number = 5
+      namespace_error           = 6
+      OTHERS                    = 7.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;SEO_CLIF_CHECK_NAME&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  CALL METHOD cl_abap_typedescr=&gt;describe_by_name
+    EXPORTING
+      p_name         = _name
+    RECEIVING
+      p_descr_ref    = o_desc
+    EXCEPTIONS
+      type_not_found = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;cl_abap_typedescr&apos;
+                                                     method = &apos;describe_by_name&apos;
+                                                      subrc = sy-subrc
+                                               cx_classname = &apos;ZCX_ZAPLINK&apos;).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  CHECK o_desc-&gt;kind = cl_abap_typedescr=&gt;kind_class
+     OR o_desc-&gt;kind = cl_abap_typedescr=&gt;kind_intf.
+
+  _key-clsname = _name.
+  CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+    EXPORTING
+      cifkey             = _key
+*     VERSION            = SEOC_VERSION_INACTIVE
+*     STATE              = &apos;0&apos;
+    IMPORTING
+      clstype            = o_type
+      class              = _class
+*     INTERFACE          =
+    EXCEPTIONS
+      not_existing       = 1
+      deleted            = 2
+      model_only         = 0
+      OTHERS             = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;SEO_CLIF_GET&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  ASSERT o_type = objtype-class OR o_type = objtype-interface.
+
+  IF o_type = objtype-class.
+    add_class_dep( _name ).
+  ELSE.
+    add_interface_dep( _name ).
+  ENDIF.
+
+  IF context IS INITIAL.
+* Main call
+    CALL METHOD _clean_up( ).
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_OBJECT_TO_LIST" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add object to dependenties list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FULL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Full component is requiered"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="POSITION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTEXT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Context of the call"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_obj       LIKE LINE OF required_objects.
+  DATA s_key       TYPE seoclskey.
+  DATA o_type      TYPE seoclstype.
+  DATA s_class     TYPE vseoclass.
+
+  CHECK NOT name IS INITIAL. CHECK is_predeftype( name ) = abap_false.
+  s_key-clsname = name.     TRANSLATE s_key-clsname TO UPPER CASE.    &quot;#EC SYNTCHAR
+  s_obj-name = s_key-clsname.
+  CHECK is_excluded_class( name = s_key-clsname ) = abap_false.
+  CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+    EXPORTING
+      cifkey             = s_key
+*     VERSION            = SEOC_VERSION_INACTIVE
+*     STATE              = &apos;0&apos;
+    IMPORTING
+      clstype            = o_type
+      class              = s_class
+*     INTERFACE          =
+    EXCEPTIONS
+      not_existing       = 1
+      deleted            = 2
+      model_only         = 0
+      OTHERS             = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;SEO_CLIF_GET&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  s_obj-type = o_type.    s_obj-full_def = full.    s_obj-source = position.
+  IF s_class-category = &apos;40&apos;.    s_obj-type = objtype-exception_class.   ENDIF.
+  APPEND s_obj TO required_objects.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_PROG_TEXTPOOL" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Program&apos;s texts pool"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_texts TYPE tt_txtp_textpools.
+  t_texts = zaplink_program_4dep_analyser=&gt;get_prog_textpool( name ).               &quot; Issue 110
+  textspool = zaplink_program_4dep_analyser=&gt;fusion_textpool( source = textspool
+                                                          completion = t_texts ).   &quot; Issue 110</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_SOURCE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Scan ABAP Code for object use"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP source code as table"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _code TYPE string.
+  FIELD-SYMBOLS &lt;f&gt; LIKE LINE OF code.
+  LOOP AT code ASSIGNING &lt;f&gt;.   CONCATENATE _code &lt;f&gt; line_separator INTO _code.    ENDLOOP.
+  add_method_source( code = _code    origin = origin ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_SOURCE_TO_LIST" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add object use in ABAP Code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FULL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Full component is requiered"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="POSITION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTEXT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Context of the call"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_objs       TYPE tt_abaprawsource.
+  DATA _key         TYPE td_name.
+  FIELD-SYMBOLS &lt;o&gt; LIKE LINE OF t_objs.
+
+  t_objs = analyse_source( code = code    origin = origin ).
+  LOOP AT t_objs ASSIGNING &lt;o&gt;.
+    _key = &lt;o&gt;.   add_object_to_list( name = _key   full = full   position = position ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_TYPES" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add types"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the Types"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TT_TYPES"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _name TYPE string.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF types.
+
+  LOOP AT types ASSIGNING &lt;t&gt;.
+    CONCATENATE &apos;Type=&gt;&apos; &lt;t&gt;-cmpname INTO _name.            &quot;#EC NOTEXT
+    stack( _name ).
+    process_type( type = &lt;t&gt;-typtype
+                origin = origin
+                  name = &lt;t&gt;-type
+                source = &lt;t&gt;-_ ).
+    unstack( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_WITHOUT_REQUIREMENTS" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Generate ABAP Source Code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="has changed"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_order   LIKE LINE OF new_order.
+  FIELD-SYMBOLS &lt;c&gt; LIKE LINE OF remain_classes.
+
+* intf/class without any dependances
+  LOOP AT remain_classes ASSIGNING &lt;c&gt;.
+    READ TABLE remain_requirements TRANSPORTING NO FIELDS
+         WITH KEY ori_name = &lt;c&gt;-name.
+    IF sy-subrc &lt;&gt; 0.   CLEAR s_order.    s_order-name = &lt;c&gt;-name.    s_order-type = &lt;c&gt;-type.    APPEND s_order TO new_order.    DELETE remain_requirements WHERE name = &lt;c&gt;-name.    result = abap_true.   DELETE remain_classes.    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ANALYSE_SOURCE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Scan ABAP Code for object use"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ABAPSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJECTS_LIST" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object list"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CONSTANTS c_symbols_ascii TYPE string VALUE &apos;&quot;$%&amp;()=?\{[]}^+*~#-&apos;&apos;.:,;&lt;&gt;|@`!&apos;. &quot;#EC NOTEXT
+
+*  DATA static_objs  TYPE tt_abaprawsource.
+  DATA t_tokens     TYPE STANDARD TABLE OF stokes.
+  DATA t_statments  TYPE STANDARD TABLE OF sstmnt.
+*  DATA _code        TYPE string.
+  DATA t_string     TYPE STANDARD TABLE OF string.
+  DATA d_offset     TYPE i.
+  DATA s_obj        LIKE LINE OF objects_list.
+  DATA d_tabix      TYPE sy-tabix.
+  DATA d_prog       TYPE sy-repid.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF objects_list,
+    &lt;t&gt; LIKE LINE OF t_tokens,
+    &lt;c&gt; LIKE LINE OF t_tokens.
+
+  CHECK NOT code IS INITIAL.
+  SPLIT code AT cl_abap_char_utilities=&gt;newline INTO TABLE t_string.
+  SCAN ABAP-SOURCE t_string
+           TOKENS INTO t_tokens
+       STATEMENTS INTO t_statments.
+
+  LOOP AT t_tokens ASSIGNING &lt;t&gt; WHERE str CP &apos;*=&gt;*&apos;.
+    FIND FIRST OCCURRENCE OF &apos;=&gt;&apos; IN &lt;t&gt;-str MATCH OFFSET d_offset.
+    s_obj = &lt;t&gt;-str(d_offset). TRANSLATE s_obj TO UPPER CASE. &quot;#EC SYNTCHAR
+    CHECK NOT s_obj CA c_symbols_ascii.   &quot; FROM SEO_CLIF_CHECK_NAME
+    APPEND s_obj TO objects_list.
+  ENDLOOP.
+
+  LOOP AT t_tokens ASSIGNING &lt;t&gt; WHERE str = &apos;TYPE&apos;.
+    d_tabix = sy-tabix + 1.   READ TABLE t_tokens ASSIGNING &lt;c&gt; INDEX d_tabix.
+    CHECK sy-subrc = 0.       CHECK &lt;c&gt;-str = &apos;REF&apos;.
+    ADD 1 TO d_tabix.         READ TABLE t_tokens ASSIGNING &lt;c&gt; INDEX d_tabix.
+    CHECK sy-subrc = 0.       CHECK &lt;c&gt;-str = &apos;TO&apos;.
+    ADD 1 TO d_tabix.         READ TABLE t_tokens ASSIGNING &lt;c&gt; INDEX d_tabix.
+    s_obj = &lt;c&gt;-str. TRANSLATE s_obj TO UPPER CASE.       &quot;#EC SYNTCHAR
+    CHECK NOT s_obj CA c_symbols_ascii.   &quot; FROM SEO_CLIF_CHECK_NAME
+    APPEND s_obj TO objects_list.
+  ENDLOOP.
+*  _code = convert_line( code ).
+*
+*  objects_list = extract_strings(
+*      forward     = &apos;X&apos;
+*      search_term = &apos;TYPE REF TO &apos;
+*      code        = _code
+*      ).
+*
+*  static_objs = extract_strings(
+**      forward     =
+*      search_term = &apos;=&gt;&apos;
+*      code        = _code
+*      ).
+*
+*  APPEND LINES OF static_objs TO objects_list.
+  SORT objects_list.      DELETE ADJACENT DUPLICATES FROM objects_list.
+
+  IF origin IS NOT INITIAL.
+* Local class filtering
+* From analyse of abap naviguation : MF RS_NAVIGATION_PREPARE
+    d_prog = origin.
+    LOOP AT objects_list ASSIGNING &lt;o&gt;.
+* FORM search_object =&gt; use &apos;WB_TREE_GET_INCLUDE&apos; to determine local object definitions
+      CALL FUNCTION &apos;WB_TREE_GET_INCLUDE&apos;
+        EXPORTING
+          objectname             = &lt;o&gt;
+          objecttype             = sana_tok_control_def   &quot; in form search_object
+          program                = d_prog
+*     IMPORTING
+*       INCLUDE_NAME           =
+*     TABLES
+*       INCL_TAB               =
+        EXCEPTIONS
+          index_not_found        = 1
+          object_not_found       = 2
+          OTHERS                 = 3.
+      IF sy-subrc &lt;&gt; 0.
+        CALL FUNCTION &apos;WB_TREE_GET_INCLUDE&apos;
+          EXPORTING
+            objectname             = &lt;o&gt;
+            objecttype             = sana_tok_common_def   &quot; in form search_object
+            program                = d_prog
+*     IMPORTING
+*       INCLUDE_NAME           =
+*     TABLES
+*       INCL_TAB               =
+          EXCEPTIONS
+            index_not_found        = 1
+            object_not_found       = 2
+            OTHERS                 = 3.
+      ENDIF.
+      IF sy-subrc = 0.    DELETE objects_list.    ENDIF.
+    ENDLOOP.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="APPEND_MESSAGE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_MESSAGE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_msg LIKE LINE OF messages.
+  CHECK NOT data IS INITIAL.
+  s_msg-name = data.    APPEND s_msg TO messages.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="APPEND_TYPEGROUPS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add type groups"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TYPEGROUPS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TT_TYPEGROUPS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _tg LIKE LINE OF me-&gt;typegroups.
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF typegroups.
+  LOOP AT typegroups ASSIGNING &lt;t&gt;.
+    _tg-name = &lt;t&gt;-typegroup.     APPEND _tg TO me-&gt;typegroups.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _softcomp LIKE LINE OF softcomponents.
+  DATA t_types   TYPE sana_type_list.
+  DATA s_type    LIKE LINE OF t_types.
+
+  _softcomp-sign = &apos;I&apos;. _softcomp-option = &apos;EQ&apos;.
+  _softcomp-low = space. APPEND _softcomp TO softcomponents.
+  _softcomp-low = &apos;HOME&apos;. APPEND _softcomp TO softcomponents.
+  _softcomp-low = &apos;LOCAL&apos;. APPEND _softcomp TO softcomponents.
+
+  CREATE OBJECT o_object.
+
+  c_class-type = &apos;CLAS&apos;.    c_class-kind = zaplink_connectors=&gt;get_typekind( c_class-type ).
+  c_interface-type = &apos;INTF&apos;.    c_interface-kind = zaplink_connectors=&gt;get_typekind( c_interface-type ).
+  c_program-type = &apos;PROG&apos;.    c_program-kind = zaplink_connectors=&gt;get_typekind( c_program-type ).
+  c_typegroup-type = &apos;TYPE&apos;.    c_typegroup-kind = zaplink_connectors=&gt;get_typekind( c_typegroup-type ).
+  c_msg_class-type = &apos;MSAG&apos;.    c_msg_class-kind = zaplink_connectors=&gt;get_typekind( c_msg_class-type ).
+
+  CALL FUNCTION &apos;RS_GET_PREDEFINED_TYPES&apos;
+    IMPORTING
+      type_list      = t_types
+    EXCEPTIONS
+      internal_error = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+  s_type-name = &apos;SY&apos;.   APPEND s_type TO t_types.       &quot; Add system name
+  s_type-name = &apos;SYST&apos;.   APPEND s_type TO t_types.
+
+  SORT t_types BY name.   DELETE ADJACENT DUPLICATES FROM t_types.
+  predeftypes = t_types.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONVERT_LINE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert code line : remove tabs"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TARGET" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  target = zaplink_tools=&gt;conv_abap_line( source ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONVERT_SOURCE_UPCASE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert source code to upcase"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SOURCECODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TARGETCODE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;l&gt; LIKE LINE OF targetcode.
+  targetcode = sourcecode.
+  LOOP AT targetcode ASSIGNING &lt;l&gt;.
+    TRANSLATE &lt;l&gt; TO UPPER CASE.  &quot;#EC SYNTCHAR
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DO_CLASS" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add class dependenties"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _codes      LIKE LINE OF classes.
+  DATA d_prog      TYPE td_progname.
+  DATA d_class     TYPE seoclsname.
+  DATA d_includes  TYPE zaplink_object_data=&gt;ts_includes.
+*  TRY.
+  _codes = get_source( name ).
+*    CATCH cx_root.
+*      RAISE failed.
+*  ENDTRY.
+
+  search_for_include( CHANGING codes = _codes ).
+
+  INSERT _codes INTO TABLE classes.
+  d_class = name.
+  d_includes = zaplink_object=&gt;get_includes( d_class ).
+  d_prog = d_includes-classpool-name.
+  add_prog_textpool( d_prog ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DO_OBJECT_LIST" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add required object stored in the list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CONSTANTS c_intftype TYPE td_classtype VALUE &apos;9&apos;.
+  DATA t_objects TYPE tt_req_objects.
+  DATA s_object  LIKE LINE OF required_objects.
+  FIELD-SYMBOLS &lt;o&gt; LIKE LINE OF t_objects.
+
+  SORT required_objects BY name full_def DESCENDING.   DELETE ADJACENT DUPLICATES FROM required_objects COMPARING name.
+  s_object-type = c_intftype.    MODIFY required_objects FROM s_object TRANSPORTING type WHERE type = objtype-interface.   SORT required_objects BY full_def DESCENDING type DESCENDING name.
+  t_objects = required_objects.    CLEAR required_objects.   &quot; memorize object list for recursive calls
+  LOOP AT t_objects ASSIGNING &lt;o&gt;.
+    stack( context = &lt;o&gt;-source ).    &lt;o&gt;-ori_name = name.    APPEND &lt;o&gt; TO requirements.
+    IF &lt;o&gt;-type = c_intftype.   add_interface_dep( name = &lt;o&gt;-name  full = &lt;o&gt;-full_def ).    ELSE.   add_class_dep( name = &lt;o&gt;-name  full = &lt;o&gt;-full_def ).    ENDIF.
+    unstack( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXTRACT_STRINGS" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Extract strings from source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FORWARD" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG" PAROPTIONL="X" PARPREFERD="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="String is forward search term ?"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Results"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SEARCH_TERM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Search term"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CONSTANTS:
+    c_crlf TYPE string VALUE line_separator,
+    c_commentedline TYPE string VALUE &apos;*&apos;,
+    c_commentscheme TYPE string VALUE &apos;*&quot;*&apos;,
+    c_commentchar TYPE string VALUE &apos;&quot;&apos;.
+
+  DATA _objects    TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
+  DATA _max        TYPE sy-tabix.
+  DATA _pos        TYPE sy-tabix.
+  DATA _idx        TYPE sy-tabix.
+  DATA _lines      TYPE STANDARD TABLE OF string WITH DEFAULT KEY.
+  DATA _line       TYPE string.
+  DATA _tmp        TYPE string.
+  FIELD-SYMBOLS:
+    &lt;l&gt; LIKE LINE OF _objects,
+    &lt;l2&gt; LIKE LINE OF _objects.
+
+  DEFINE mac_split.
+    split _line at &amp;1 into table _lines. &quot; split line into words
+    check not _lines is initial.
+    read table _lines into _line index 1.
+  END-OF-DEFINITION.
+
+  CHECK search_term &lt;&gt; c_crlf.
+
+  IF forward IS INITIAL.
+    SPLIT code AT search_term INTO TABLE _objects.
+    CHECK NOT _objects IS INITIAL.
+    _pos = LINES( _objects ).
+    DELETE _objects INDEX _pos.  &quot; remove last line (unwanted) because backward search
+* Table _ojects contains at the end of each line the searched string
+    LOOP AT _objects ASSIGNING &lt;l&gt;.
+      SPLIT &lt;l&gt; AT c_crlf INTO TABLE _lines. &quot; split string into lines
+* Table _lines contains all lines, searched string is in the last line at the end
+      WHILE NOT _lines IS INITIAL.
+        _pos = LINES( _lines ).
+        READ TABLE _lines INTO _line INDEX _pos.
+        _tmp = _line.
+        CONDENSE _tmp NO-GAPS.
+        IF NOT _tmp IS INITIAL.
+          EXIT.
+        ENDIF.
+        DELETE _lines INDEX _pos.  &quot; empty line
+      ENDWHILE.
+* _Line contains the code line with searched string at the end
+      CHECK _line(1) &lt;&gt; c_commentedline.      &quot; code line is a comment
+      CHECK NOT _line CP c_commentscheme.     &quot; Check line for line comment
+      SPLIT _line AT space INTO TABLE _lines. &quot; split line into words
+      _pos = LINES( _lines ).
+      READ TABLE _lines INTO _line INDEX _pos.
+      APPEND _line TO results.
+    ENDLOOP.
+  ELSE.
+*  X TYPE REF TO
+*     YYYY.
+*  X TYPE REF TO
+*  * Old type
+*     YYYY.
+*  X
+*  TYPE REF TO
+*  * Old type
+*     YYYY.
+*  X TYPE REF TO Z
+*  *X tYPE REF TO K
+*  *X tYPE REF TO
+*     &quot; X TYPE REF TO K
+*     &quot; X TYPE REF TO K
+    SPLIT code AT search_term INTO TABLE _objects.
+    CHECK NOT _objects IS INITIAL.
+* Table _ojects contains at the begining of each line the searched string
+    _max = LINES( _objects ) - 1.
+    LOOP AT _objects ASSIGNING &lt;l&gt; TO _max.
+* &lt;l&gt; is the text before the recherched text to check for comment
+      _idx = sy-tabix.
+      SPLIT &lt;l&gt; AT c_crlf INTO TABLE _lines. &quot; split string into lines
+* Table _lines contains all lines, searched string is in the last line at the end
+      _pos = LINES( _lines ).
+      READ TABLE _lines INTO _line INDEX _pos.
+      IF NOT _line IS INITIAL.
+* process line where search_term was found. Check that line is valid
+        CHECK _line(1) &lt;&gt; c_commentedline.        &quot; code line is a comment =&gt; ignore
+        CHECK NOT _line CP c_commentscheme.       &quot; Check line for line comment
+      ENDIF.
+* Line is not a commented line
+      ADD 1 TO _idx.
+      READ TABLE _objects ASSIGNING &lt;l2&gt; INDEX _idx.
+* NOW &lt;l2&gt; is the text just after the recherched text =&gt; so the text to be extracted
+      SPLIT &lt;l2&gt; AT c_crlf INTO TABLE _lines. &quot; split string into lines
+* remove blank and commented lines
+      DELETE _lines WHERE table_line IS INITIAL.
+      LOOP AT _lines ASSIGNING &lt;l2&gt;.
+        IF &lt;l2&gt;(1) = c_commentedline.
+          DELETE _lines.
+        ENDIF.
+      ENDLOOP.
+* Searche for the &quot;good&quot; line
+      LOOP AT _lines INTO _line.
+        CLEAR _pos.
+        FIND FIRST OCCURRENCE OF c_commentchar IN _line MATCH OFFSET _pos.
+        IF NOT _pos IS INITIAL.
+          _line = _line(_pos).      &quot; remove comment
+        ENDIF.
+        _tmp = _line.
+        CONDENSE _tmp NO-GAPS.
+        IF NOT _tmp IS INITIAL.
+          EXIT.
+        ENDIF.
+      ENDLOOP.
+* _Line contains the code line with searched string at the end
+      CONDENSE _line.
+      CHECK NOT _line IS INITIAL.
+      mac_split space. mac_split &apos;,&apos;. mac_split &apos;.&apos;.
+      APPEND _line TO results.
+    ENDLOOP.
+
+  ENDIF.
+
+  SORT results.
+  DELETE ADJACENT DUPLICATES FROM results.
+  DELETE results WHERE table_line IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLASS_SOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Class source codes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODES" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_SOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+*  DATA o_source    TYPE REF TO cl_oo_source.
+  DATA _clskey     TYPE seoclskey.
+  DATA _pos        TYPE sy-tabix.
+  DATA t_code      TYPE tt_abaprawsource.
+  DATA t_upcode    TYPE tt_abaprawsource.
+*  DATA t_lines     TYPE tt_abaprawsource.
+  DATA _line       LIKE LINE OF t_upcode.
+  FIELD-SYMBOLS:
+    &lt;l&gt; LIKE LINE OF t_upcode.
+
+  _clskey = name.
+
+  t_code = zaplink_object=&gt;get_class_globalsource( _clskey ).
+*  CREATE OBJECT o_source
+*    EXPORTING
+*      clskey             = _clskey
+*    EXCEPTIONS
+*      class_not_existing = 1
+*      OTHERS             = 2.
+*  IF sy-subrc &lt;&gt; 0.
+  zaplink_tools=&gt;remove_comment_on_source( CHANGING table = t_code ).
+  ASSERT NOT t_code IS INITIAL.
+*  t_code = convert_source( o_source-&gt;source ).
+  t_upcode = convert_source_upcase( t_code ).
+*  CLEAR o_source.
+
+*class-pool MESSAGE-ID ZAPLINK_EXTRACTOR.
+*CLASS lcl_data DEFINITION DEFERRED.
+*CLASS zaplink_synchronizer DEFINITION LOCAL FRIENDS lcl_data.
+*CLASS lcl_data DEFINITION
+*
+* Must became :
+*CLASS lcl_data DEFINITION DEFERRED.
+*CLASS zaplink_synchronizer DEFINITION LOCAL FRIENDS lcl_data.
+*CLASS lcl_data DEFINITION
+  READ TABLE t_upcode ASSIGNING &lt;l&gt; INDEX 1.
+  IF &lt;l&gt; CP &apos;*CLASS-POOL*&apos;.   DELETE t_upcode INDEX 1.    DELETE t_code INDEX 1.    ENDIF.
+* Transform CLASS Zxxx DEFINITION
+  CONCATENATE &apos;CLASS&apos; _clskey &apos;DEFINITION&apos; INTO _line SEPARATED BY space.
+  READ TABLE t_upcode TRANSPORTING NO FIELDS FROM _line.
+  IF sy-subrc = 0.
+    _pos = sy-tabix + 1.
+*class ZAPLINK_MESSAGE_COLLECTOR definition
+*  public   &quot; to remove when local class
+*  create public .
+    READ TABLE t_upcode INDEX _pos INTO _line.
+    CONDENSE _line NO-GAPS.
+    IF _line = &apos;PUBLIC&apos;.
+      DELETE t_code INDEX _pos.       DELETE t_upcode INDEX _pos.
+    ENDIF.
+  ENDIF.
+**Remove text before CLASS Zxxx DEFINITION
+*  CONCATENATE &apos;CLASS&apos; _clskey &apos;DEFINITION&apos; INTO _line SEPARATED BY space.
+*  READ TABLE t_upcode TRANSPORTING NO FIELDS
+*       FROM _line.
+*  IF sy-subrc = 0.
+*    _pos = sy-tabix.
+*    APPEND LINES OF t_code FROM _pos TO t_lines.
+**class ZAPLINK_MESSAGE_COLLECTOR definition
+**  public
+**  create public .
+*    SUBTRACT 1 FROM _pos.
+*    IF _pos &gt;= 1. DELETE t_upcode TO _pos. ENDIF.
+*    READ TABLE t_upcode INDEX 2 INTO _line.
+*    CONDENSE _line NO-GAPS.
+*    IF _line = &apos;PUBLIC&apos;.
+*      DELETE t_lines INDEX 2.
+*      DELETE t_upcode INDEX 2.
+*    ENDIF.
+*  ELSE.
+** anormal case
+*    t_lines = t_code.
+*  ENDIF.
+
+* Get implementation
+* class XXXXX implementation.
+  CONCATENATE &apos;CLASS&apos; _clskey &apos;IMPLEMENTATION.&apos; INTO _line SEPARATED BY space.
+  READ TABLE t_upcode TRANSPORTING NO FIELDS FROM _line.
+  IF sy-subrc = 0.
+* Class
+    _pos = sy-tabix.
+    APPEND LINES OF t_code  FROM _pos TO codes-impl.
+    DELETE t_code FROM _pos.    DELETE t_upcode FROM _pos.
+* endclass. &quot;ZAPLINK_MESSAGE_COLLECTOR definition
+    CONCATENATE &apos;ENDCLASS. &quot;&apos; _clskey &apos; DEFINITION&apos; INTO _line.
+    READ TABLE t_upcode TRANSPORTING NO FIELDS FROM _line.
+    ASSERT sy-subrc = 0.
+    _pos = sy-tabix.
+    APPEND LINES OF t_code TO _pos TO codes-def.
+    DELETE t_code TO _pos.    DELETE t_upcode TO _pos.
+    codes-macro = t_code.
+  ELSE.
+* normal case for interfaces
+    codes-def = t_code.
+  ENDIF.
+
+*  zaplink_tools=&gt;condense_abap_source( CHANGING codes-macro ).
+*  zaplink_tools=&gt;condense_abap_source( CHANGING codes-impl ).
+*  zaplink_tools=&gt;condense_abap_source( CHANGING codes-def ).
+
+* CONVERT GLOBAL FRIENDS =&gt; FRIENDS
+  t_upcode = convert_source_upcase( codes-def ).
+  LOOP AT t_upcode ASSIGNING &lt;l&gt;
+     WHERE table_line CP &apos;*GLOBAL FRIENDS*&apos;.
+    REPLACE FIRST OCCURRENCE OF &apos;GLOBAL FRIENDS&apos; IN &lt;l&gt; WITH &apos;FRIENDS&apos;.
+    MODIFY codes-def FROM &lt;l&gt; INDEX sy-tabix.
+  ENDLOOP.
+
+  remove_def_load( CHANGING codes = codes ).
+
+  codes-name = name.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_INTERFACE_SOURCE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get interface source codes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODES" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_SOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _clskey     TYPE seoclskey.
+*  DATA _key    TYPE seoclsname.
+*  DATA _prog   TYPE program.
+  DATA _line   LIKE LINE OF codes-def.
+  DATA _pos        TYPE sy-tabix.
+  DATA t_upcode    TYPE tt_abaprawsource.
+
+  _clskey = name.
+  codes-def = zaplink_object=&gt;get_interface_globalsource( _clskey ).
+*  _key = name.
+*  _prog = cl_oo_classname_service=&gt;get_intfsec_name( _key ).
+*
+*  READ REPORT _prog INTO codes-def.
+*  codes-def = convert_source( codes-def ).
+  t_upcode = convert_source_upcase( codes-def ).
+
+*Remove text public after : interface xxxx
+  CONCATENATE &apos;INTERFACE&apos; _clskey INTO _line SEPARATED BY space.
+  READ TABLE t_upcode TRANSPORTING NO FIELDS
+       FROM _line.
+  ASSERT sy-subrc = 0.
+  _pos = sy-tabix.
+  CONCATENATE _line &apos;.&apos; INTO _line.
+  MODIFY codes-def FROM _line INDEX _pos.
+  ADD 1 TO _pos.
+  READ TABLE t_upcode INTO _line INDEX _pos.
+  CONDENSE _line NO-GAPS.
+  IF _line = &apos;PUBLIC.&apos;.
+    DELETE codes-def INDEX _pos.
+  ENDIF.
+
+  remove_def_load( CHANGING codes = codes ).
+
+  codes-name = name.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SOURCE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get class/interface source codes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODES" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_SOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _key   TYPE seoclskey.
+  DATA o_type TYPE seoclstype.
+  DATA _class      TYPE vseoclass.
+
+  _key-clsname = name.
+  CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+    EXPORTING
+      cifkey             = _key
+*     VERSION            = SEOC_VERSION_INACTIVE
+*     STATE              = &apos;0&apos;
+    IMPORTING
+      clstype            = o_type
+      class              = _class
+*     INTERFACE          =
+    EXCEPTIONS
+      not_existing       = 1
+      deleted            = 2
+      model_only         = 0
+      OTHERS             = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;SEO_CLIF_GET&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  ASSERT o_type = objtype-class OR o_type = objtype-interface.
+
+  IF o_type = objtype-class.
+    IF _class-category = &apos;40&apos;.    o_type = objtype-exception_class.   ENDIF.
+    codes = get_class_source( name ).
+  ELSE.
+    codes = get_interface_source( name ).
+  ENDIF.
+  codes-type = o_type.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="HANDLE_CONTEXT" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Handle circular context"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  TYPES:
+    BEGIN OF ts_object,
+      name  TYPE td_name,
+      type  TYPE seoclstype,
+      rank  TYPE i,
+      tabix TYPE sy-tabix,
+      full  TYPE abap_bool,
+    END OF ts_object.
+  DATA t_objects TYPE STANDARD TABLE OF ts_object WITH DEFAULT KEY.
+  DATA s_object  LIKE LINE OF t_objects.
+  DATA s_key     TYPE seoclskey.
+  DATA d_type    TYPE seoclstype.
+  DATA s_class   TYPE vseoclass.
+  DATA s_order   LIKE LINE OF order.
+  DATA d_tabix   TYPE sy-tabix.
+  DATA s_ctx     LIKE LINE OF circular_context.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF t_objects,
+    &lt;c&gt; LIKE LINE OF circular_context.
+
+  DELETE circular_context WHERE type IS INITIAL.
+  LOOP AT circular_context ASSIGNING &lt;c&gt;.
+*    CLEAR s_object.   s_object-tabix = sy-tabix.
+*    s_key-clsname = &lt;c&gt;-context.    CHECK s_key-clsname = &lt;c&gt;-context.    &quot; field might be too long
+*    CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+*      EXPORTING
+*        cifkey             = s_key
+**     VERSION            = SEOC_VERSION_INACTIVE
+**     STATE              = &apos;0&apos;
+*      IMPORTING
+*        clstype            = d_type
+*        class              = s_class
+**     INTERFACE          =
+*      EXCEPTIONS
+*        not_existing       = 1
+*        deleted            = 2
+*        model_only         = 0
+*        OTHERS             = 4.
+*    IF sy-subrc &lt;&gt; 0.   CONTINUE.   ENDIF.
+*    s_object-name = s_key-clsname.    s_object-type = d_type.
+*    IF d_type = objtype-interface.    s_object-rank = 1.    ELSEIF s_class-category = &apos;40&apos;.   s_object-rank = 2.  s_object-type = objtype-exception_class.    ELSE.   s_object-rank = 3.    ENDIF.
+    CLEAR s_object.   s_object-tabix = sy-tabix.    s_object-name = &lt;c&gt;-context.    s_object-type = &lt;c&gt;-type.   s_object-full = &lt;c&gt;-full_def.
+    IF s_object-type = objtype-interface.    s_object-rank = 1.    ELSEIF s_object-type = objtype-exception_class.   s_object-rank = 2.  s_object-type = objtype-exception_class.    ELSE.   s_object-rank = 3.    ENDIF.
+    IF s_object-full IS INITIAL.
+      ADD 5 TO s_object-rank.
+    ENDIF.
+    APPEND s_object TO t_objects.
+  ENDLOOP.
+
+  SORT t_objects BY name tabix.   DELETE ADJACENT DUPLICATES FROM t_objects COMPARING name.
+  IF LINES( t_objects ) = 1.    DELETE t_objects WHERE name = current_comp.   ENDIF.
+  CHECK NOT t_objects IS INITIAL.   SORT t_objects BY rank tabix.   d_tabix = LINES( order ) + 1.   REFRESH circular_context.
+  LOOP AT t_objects ASSIGNING &lt;o&gt;.    CLEAR s_ctx.    s_ctx-context = &lt;o&gt;-name.   s_ctx-type = &lt;o&gt;-type.    s_ctx-full_def = &lt;o&gt;-full.    APPEND s_ctx TO circular_context.   ENDLOOP.
+  LOOP AT me-&gt;context ASSIGNING &lt;c&gt; WHERE NOT type IS INITIAL.
+    READ TABLE t_objects TRANSPORTING NO FIELDS WITH KEY name = &lt;c&gt;-context.
+    IF sy-subrc &lt;&gt; 0.
+      APPEND &lt;c&gt; TO circular_context.
+    ENDIF.
+  ENDLOOP.
+  LOOP AT t_objects ASSIGNING &lt;o&gt;.
+*    CLEAR s_object.   s_object-tabix = sy-tabix.
+*    READ TABLE order TRANSPORTING NO FIELDS
+*         WITH KEY name = &lt;o&gt;-name
+*                  type = &lt;o&gt;-type
+*               defered = abap_false.
+*    IF sy-subrc = 0.    d_tabix = s_object-tabix.   ENDIF.    &quot; already processed : circular ref
+    do_class( &lt;o&gt;-name ) .
+    CLEAR s_order.  s_order-name = &lt;o&gt;-name.    s_order-type = &lt;o&gt;-type.
+    insert_order( s_order = s_order   context = circular_context ).   DELETE circular_context WHERE context = &lt;o&gt;-name.   &quot; &lt;=&gt; should delete index 1.
+*    insert s_order inTO order index d_tabix.
+  ENDLOOP.
+  CLEAR: circular_context, circular_ref_on.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INSERT_ORDER" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="insert order at the right position"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTEXT" CMPTYPE="1" TYPTYPE="1" TYPE="TT_CONTEXT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Context Stack"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="S_ORDER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_ORDER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface, type and flag"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_tabix TYPE sy-tabix.
+  FIELD-SYMBOLS &lt;c&gt; LIKE LINE OF context.
+
+  DELETE context WHERE type IS INITIAL.   DELETE context WHERE context = s_order-name.
+  READ TABLE order TRANSPORTING NO FIELDS
+       WITH KEY name = s_order-name
+                type = s_order-type
+             defered = abap_false.
+  IF sy-subrc = 0.    EXIT.   ENDIF.    &quot; already processed : circular ref
+  IF context IS INITIAL.    APPEND s_order TO me-&gt;order.    EXIT.   ENDIF.
+  inverse_order( CHANGING order = context ).
+  LOOP AT context ASSIGNING &lt;c&gt; WHERE full_def = abap_true.
+    READ TABLE order TRANSPORTING NO FIELDS
+         WITH KEY name = &lt;c&gt;-context
+                  type = &lt;c&gt;-type
+               defered = abap_false.
+    IF sy-subrc = 0 AND d_tabix &gt; sy-tabix.
+      d_tabix = sy-tabix.
+    ENDIF.
+  ENDLOOP.
+  IF d_tabix IS INITIAL.
+    d_tabix = LINES( order ) + 1.
+    LOOP AT context ASSIGNING &lt;c&gt; WHERE full_def = abap_false.
+      READ TABLE order TRANSPORTING NO FIELDS
+           WITH KEY name = &lt;c&gt;-context
+                    type = &lt;c&gt;-type
+                 defered = abap_false.
+      IF sy-subrc = 0 AND d_tabix &gt; sy-tabix.
+        d_tabix = sy-tabix.
+      ENDIF.
+    ENDLOOP.
+  ENDIF.
+  INSERT s_order INTO me-&gt;order INDEX d_tabix.
+  READ TABLE order TRANSPORTING NO FIELDS   &quot; for security
+       WITH KEY name = s_order-name
+                type = s_order-type
+             defered = abap_false.
+  IF sy-subrc &lt;&gt; 0.
+    APPEND s_order TO me-&gt;order.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INVERSE_ORDER" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Inverse table order"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ORDER" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface Order"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  zaplink_tools=&gt;inverse_table_order( CHANGING my_table = order ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_EXCLUDED_CLASS" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is excluded class"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class is excluded"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TADIR-OBJECT" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_excl_c    LIKE LINE OF excluded_classes.
+
+  CLEAR s_comp.   result = abap_true.   READ TABLE excluded_classes TRANSPORTING NO FIELDS WITH TABLE KEY name = name.    CHECK sy-subrc &lt;&gt; 0.
+  s_comp-type = type.   s_comp-name = name.
+  IF NOT s_comp-type IS INITIAL.
+    s_comp-kind = zaplink_connectors=&gt;get_typekind( type ).
+    mac_read_tadir s_comp-kind s_comp-type s_comp-name s_comp-devclass s_comp-softcomp.
+  ELSE.
+    MOVE-CORRESPONDING c_class TO s_comp.
+    mac_read_tadir s_comp-kind s_comp-type s_comp-name s_comp-devclass s_comp-softcomp.
+    IF sy-subrc &lt;&gt; 0.
+      MOVE-CORRESPONDING c_interface TO s_comp.
+      mac_read_tadir s_comp-kind s_comp-type s_comp-name s_comp-devclass s_comp-softcomp.
+    ENDIF.
+  ENDIF.
+* customer components
+  IF s_comp-devclass IN packages AND s_comp-softcomp IN softcomponents.    result = abap_false.    ELSE.   s_excl_c-name = name.   INSERT s_excl_c INTO TABLE excluded_classes.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_EXCLUDED_INCLUDE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is excluded include"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Include name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Include is excluded"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_excl_c     LIKE LINE OF excluded_includes.
+  DATA d_fugr_group TYPE rs38l-area.
+  DATA d_class_name TYPE seoclsname.
+  DATA d_prog       TYPE rs38l-include.
+
+  CLEAR s_comp.
+  result = abap_true.   READ TABLE excluded_includes TRANSPORTING NO FIELDS WITH TABLE KEY name = name.    CHECK sy-subrc &lt;&gt; 0.
+  d_prog = name.
+  CALL FUNCTION &apos;RS_PROGNAME_SPLIT&apos;
+    EXPORTING
+      progname_with_namespace           = d_prog
+    IMPORTING
+*     NAMESPACE                         =
+*     PROGNAME_WITHOUT_NAMESPACE        =
+*     FUGR_IS_NAME                      =
+*     FUGR_IS_RESERVED_NAME             =
+*     FUGR_IS_FUNCTIONPOOL_NAME         =
+*     FUGR_IS_INCLUDE_NAME              =
+*     FUGR_IS_FUNCTIONMODULE_NAME       =
+*     FUGR_IS_HIDDEN_NAME               =
+      fugr_group                        = d_fugr_group
+*     FUGR_INCLUDE_NUMBER               =
+*     FUGR_SUFFIX                       =
+*     FUGR_IS_RESERVED_EXIT_NAME        =
+*     SLDB_IS_RESERVED_NAME             =
+*     SLDB_LOGDB_NAME                   =
+*     MST_IS_RESERVED_NAME              =
+*     TYPE_IS_RESERVED_NAME             =
+*     TYPE_NAME                         =
+*     MENU_IS_RESERVED_NAME             =
+*     MENU_NAME                         =
+*     CLASS_IS_RESERVED_NAME            =
+*     CLASS_IS_NAME                     =
+      class_name                        = d_class_name
+*     CLASS_IS_METHOD_NAME              =
+*     CLASS_METHOD_NAME                 =
+*     CNTX_IS_RESERVED_NAME             =
+    EXCEPTIONS
+      delimiter_error                   = 1
+      OTHERS                            = 2.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( subrc = sy-subrc
+                                         classname = &apos;ZCX_ZAPLINK&apos;
+                                          funcname = &apos;RS_PROGNAME_SPLIT&apos; ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+  IF NOT d_fugr_group IS INITIAL.
+    s_comp-type = &apos;FUGR&apos;.
+    s_comp-name = d_fugr_group.
+  ELSEIF NOT d_class_name IS INITIAL.
+    result = is_excluded_class( name = d_class_name ).
+    RETURN.
+  ELSE.
+    s_comp-type = &apos;PROG&apos;.
+    s_comp-name = name.
+  ENDIF.
+  s_comp-kind = zaplink_connectors=&gt;get_typekind( s_comp-type ).
+  mac_read_tadir s_comp-kind s_comp-type s_comp-name s_comp-devclass s_comp-softcomp.
+* customer components
+  IF s_comp-devclass IN packages AND s_comp-softcomp IN softcomponents.    result = abap_false.    ELSE.   s_excl_c-name = name.   INSERT s_excl_c INTO TABLE excluded_includes.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_PREDEFTYPE" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is a predefinied type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Do name is pre-definied type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CHECK NOT name IS INITIAL.
+  READ TABLE predeftypes TRANSPORTING NO FIELDS WITH TABLE KEY name = name.
+  IF sy-subrc = 0.    result = abap_true.     ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="PROCESS_TYPE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Process type."/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="RS38L_TYP">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Associated Type of an Interface Parameter"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ORIGIN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ORIGIN" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Origin of the ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Type definition"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOTYPTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Typing"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _key        TYPE td_name.
+  DATA _obj        TYPE string.
+  DATA _type       TYPE string.
+  DATA _up_src     TYPE string.
+  DATA ctx         LIKE LINE OF context.
+  DATA full        TYPE abap_bool.
+
+  ASSERT type &lt;&gt; typetype-code OR NOT origin IS INITIAL.
+  _up_src = source.   TRANSLATE _up_src TO UPPER CASE.
+
+  READ TABLE context INTO ctx INDEX 1.
+  CASE type.
+    WHEN typetype-like OR typetype-type.
+      SPLIT name AT &apos;=&gt;&apos; INTO _obj _type.
+      CHECK _type &lt;&gt; &apos;&apos;.
+      _key = _obj.  full = abap_true.
+    WHEN typetype-otype.
+      _key = name.
+    WHEN typetype-ref.
+      _key = name.
+    WHEN typetype-code.
+      add_source_to_list( code = _up_src   full = abap_true   origin = origin   position = ctx-context ).
+      CLEAR _key.   EXIT.
+  ENDCASE.
+  CHECK NOT _key IS INITIAL.
+  add_object_to_list( name = _key   full = full   position = ctx-context ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REMOVE_DEF_LOAD" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove definition load"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODES" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_SOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_upcode    TYPE tt_abaprawsource.
+  FIELD-SYMBOLS:
+    &lt;l&gt; LIKE LINE OF t_upcode,
+    &lt;m&gt; LIKE LINE OF codes-def.
+
+  t_upcode = convert_source_upcase( codes-def ).
+* Comment CLASS xxx DEFINITION LOAD.
+  LOOP AT t_upcode ASSIGNING &lt;l&gt;
+     WHERE table_line CP &apos;*CLASS * DEFINITION LOAD*&apos;.
+    CHECK &lt;l&gt;(1) &lt;&gt; &apos;*&apos;.
+    CHECK NOT &lt;l&gt; CP &apos;*&quot;*CLASS * DEFINITION LOAD*&apos;.
+    READ TABLE codes-def ASSIGNING &lt;m&gt; index sy-tabix.
+    CONCATENATE &apos;*&apos; &lt;m&gt; INTO &lt;m&gt;.
+  ENDLOOP.
+
+* Comment INTERFACE xxx LOAD .
+  LOOP AT t_upcode ASSIGNING &lt;l&gt;
+     WHERE table_line CP &apos;*INTERFACE * LOAD*&apos;.
+    CHECK &lt;l&gt;(1) &lt;&gt; &apos;*&apos;.
+    CHECK NOT &lt;l&gt; CP &apos;*&quot;*INTERFACE * LOAD*&apos;.
+    READ TABLE codes-def ASSIGNING &lt;m&gt; index sy-tabix.
+    CONCATENATE &apos;*&apos; &lt;m&gt; INTO &lt;m&gt;.
+  ENDLOOP.
+
+  t_upcode = convert_source_upcase( codes-macro ).
+* Comment CLASS xxx DEFINITION LOAD.
+  LOOP AT t_upcode ASSIGNING &lt;l&gt;
+     WHERE table_line CP &apos;*CLASS * DEFINITION LOAD*&apos;.
+    CHECK &lt;l&gt;(1) &lt;&gt; &apos;*&apos;.
+    CHECK NOT &lt;l&gt; CP &apos;*&quot;*CLASS * DEFINITION LOAD*&apos;.
+    READ TABLE codes-macro ASSIGNING &lt;m&gt; index sy-tabix.
+    CONCATENATE &apos;*&apos; &lt;m&gt; INTO &lt;m&gt;.
+  ENDLOOP.
+
+* Comment INTERFACE xxx LOAD .
+  LOOP AT t_upcode ASSIGNING &lt;l&gt;
+     WHERE table_line CP &apos;*INTERFACE * LOAD*&apos;.
+    CHECK &lt;l&gt;(1) &lt;&gt; &apos;*&apos;.
+    CHECK NOT &lt;l&gt; CP &apos;*&quot;*INTERFACE * LOAD*&apos;.
+    READ TABLE codes-macro ASSIGNING &lt;m&gt; index sy-tabix.
+    CONCATENATE &apos;*&apos; &lt;m&gt; INTO &lt;m&gt;.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RESOLVE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Generate ABAP Source Code"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_order   LIKE LINE OF new_order.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF new_order,
+    &lt;c&gt; LIKE LINE OF classes.
+
+  _clean_up( ).
+* Reset Part :
+  REFRESH: deferred_declaration.  &quot; staring new program no declaration have been made
+  REFRESH: new_order.             &quot; rebuild order list
+  remain_classes = classes.
+  remain_requirements = requirements.
+* intf/class without any dependances
+  WHILE add_without_requirements( ) = abap_true.  ENDWHILE.
+  WHILE add_deferred_ok( ) = abap_true.  ENDWHILE.
+
+  IF remain_requirements IS INITIAL.
+    LOOP AT remain_classes ASSIGNING &lt;c&gt;.   CLEAR s_order.    s_order-name = &lt;c&gt;-name.    s_order-type = &lt;c&gt;-type.    APPEND s_order TO new_order.    DELETE remain_requirements WHERE name = &lt;c&gt;-name.    DELETE remain_classes.    ENDLOOP.
+    order = new_order.
+  ELSE.
+    LOOP AT new_order ASSIGNING &lt;o&gt;.    WRITE:/ &lt;o&gt;-name.   ENDLOOP.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SEARCH_FOR_INCLUDE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search include into source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODES" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_SOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_includes TYPE tt_abaprawsource.
+  DATA d_softcomp TYPE tdevc-dlvunit.
+  DATA d_devclass TYPE tdevc-devclass.
+  FIELD-SYMBOLS:
+    &lt;i&gt; LIKE LINE OF t_includes,
+    &lt;l&gt; LIKE LINE OF codes-macro.
+  DATA t_tokens TYPE STANDARD TABLE OF stokes.
+  DATA t_statements TYPE STANDARD TABLE OF sstmnt.
+  DATA t_kw      TYPE STANDARD TABLE OF char255.
+  DATA s_kw      LIKE LINE OF t_kw.
+  DATA d_tabix   TYPE sy-tabix.
+  DATA d_deb     TYPE int4.
+  DATA d_fin     TYPE int4.
+  DATA d_l_deb   TYPE int4.
+  DATA d_l_fin   TYPE int4.
+  DATA d_name    TYPE td_name.
+  data d_prog    type TD_PROGNAME.
+*  DATA d_str TYPE string.
+  FIELD-SYMBOLS:
+    &lt;st&gt; LIKE LINE OF t_statements,
+    &lt;if&gt; LIKE LINE OF t_tokens,
+    &lt;found&gt; LIKE LINE OF t_tokens,
+    &lt;inc&gt; LIKE LINE OF t_tokens,
+    &lt;t_deb&gt; LIKE LINE OF t_tokens,
+    &lt;t&gt; LIKE LINE OF t_tokens.
+
+  s_kw = &apos;PERFORM&apos;.    APPEND s_kw TO t_kw.
+  s_kw = &apos;INCLUDE&apos;.       APPEND s_kw TO t_kw.
+*  s_kw = &apos;PROGRAM&apos;.    APPEND s_kw TO t_kw.
+  SCAN ABAP-SOURCE codes-impl TOKENS INTO t_tokens
+                          STATEMENTS INTO t_statements
+                            KEYWORDS FROM t_kw.
+  zaplink_tools=&gt;inverse_table_order( CHANGING my_table = t_statements ).
+  LOOP AT t_statements ASSIGNING &lt;st&gt;.
+    READ TABLE t_tokens ASSIGNING &lt;t_deb&gt; INDEX &lt;st&gt;-from.    CHECK sy-subrc = 0.
+    CASE &lt;t_deb&gt;-str.
+      WHEN &apos;INCLUDE&apos;.
+
+        d_tabix = &lt;st&gt;-from + 1.
+        READ TABLE t_tokens ASSIGNING &lt;inc&gt; INDEX d_tabix.    CHECK sy-subrc = 0.
+        d_name = &lt;inc&gt;-str.
+        CHECK is_excluded_include( d_name ) = abap_false.
+*          APPEND d_name TO includes.
+        LOOP AT codes-macro FROM &lt;t_deb&gt;-row TO &lt;st&gt;-trow ASSIGNING &lt;l&gt;.
+          CASE sy-tabix.
+            WHEN &lt;t_deb&gt;-row.
+              d_deb = &lt;t_deb&gt;-col.
+              IF &lt;t_deb&gt;-row = &lt;st&gt;-trow.
+                d_fin = &lt;st&gt;-tcol - &lt;t_deb&gt;-col + 1.
+              ELSE.
+                d_fin = STRLEN( &lt;l&gt; ) - &lt;t_deb&gt;-col + 1.
+              ENDIF.
+            WHEN &lt;st&gt;-trow.
+              d_deb = 0.
+              d_fin = &lt;st&gt;-tcol.
+            WHEN OTHERS.
+              CLEAR &lt;l&gt;.
+          ENDCASE.
+          IF NOT &lt;l&gt; IS INITIAL.    REPLACE SECTION OFFSET &lt;t_deb&gt;-col LENGTH &lt;st&gt;-tcol OF &lt;l&gt; WITH space.    ENDIF.
+        ENDLOOP.
+*          zaplink_connector_=&gt;get_prog_source( d_name ).
+
+      WHEN &apos;PERFORM&apos;.
+
+        LOOP AT t_tokens FROM &lt;st&gt;-from TO &lt;st&gt;-to TRANSPORTING NO FIELDS
+             WHERE str CP &apos;PROGRAM&apos;.
+          d_tabix = sy-tabix - 1.   EXIT.
+        ENDLOOP.
+        CHECK sy-subrc = 0.
+        READ TABLE t_tokens ASSIGNING &lt;t_deb&gt; INDEX d_tabix.
+        CHECK sy-subrc = 0.   CHECK &lt;t_deb&gt;-str CP &apos;IN&apos;.   &quot; IN PROGRAM
+        d_tabix = d_tabix + 2.    READ TABLE t_tokens ASSIGNING &lt;inc&gt; INDEX d_tabix.
+        CHECK sy-subrc = 0 AND NOT &lt;inc&gt;-str IS INITIAL.
+        CHECK &lt;inc&gt;-str(1) &lt;&gt; &apos;(&apos;.    &quot; Dynamic include name
+        d_name = &lt;inc&gt;-str.
+        CHECK is_excluded_include( d_name ) = abap_false.
+        LOOP AT t_tokens FROM d_tabix TO &lt;st&gt;-to TRANSPORTING NO FIELDS
+             WHERE str CP &apos;FOUND&apos;.
+          d_tabix = sy-tabix - 1.   EXIT.
+        ENDLOOP.
+        IF sy-subrc = 0.
+* search for IF found addition
+          READ TABLE t_tokens ASSIGNING &lt;if&gt; INDEX d_tabix.
+          d_tabix = d_tabix + 1.  READ TABLE t_tokens ASSIGNING &lt;found&gt; INDEX d_tabix.
+          IF &lt;if&gt;-str CP &apos;IF&apos; AND &lt;found&gt;-str CP &apos;FOUND&apos;.
+*            ASSIGN &lt;found&gt; TO &lt;inc&gt;.   &quot; Do not work on preform x in prog y using Z if found.
+            d_l_deb = &lt;if&gt;-row.
+            d_l_fin = &lt;found&gt;-row.
+            LOOP AT codes-impl FROM d_l_deb TO d_l_fin ASSIGNING &lt;l&gt;.
+              CASE sy-tabix.
+                WHEN d_l_deb.
+                  d_deb = &lt;if&gt;-col.
+                  IF d_l_deb = d_l_fin.
+                    d_fin = &lt;found&gt;-col + STRLEN( &lt;found&gt;-str ) - d_deb.
+                  ELSE.
+                    d_fin = STRLEN( &lt;l&gt; ) - d_deb.
+                  ENDIF.
+                WHEN d_l_fin.
+                  d_deb = 0.
+                  d_fin = &lt;found&gt;-col + STRLEN( &lt;found&gt;-str ).
+                WHEN OTHERS.
+                  CLEAR &lt;l&gt;.
+              ENDCASE.
+              IF NOT &lt;l&gt; IS INITIAL.    REPLACE SECTION OFFSET d_deb LENGTH d_fin OF &lt;l&gt; WITH space.    ENDIF.
+            ENDLOOP.
+          ENDIF.
+        ENDIF.
+        d_l_deb = &lt;t_deb&gt;-row.
+        d_l_fin = &lt;inc&gt;-row.
+
+        d_prog = d_name.      add_include( d_prog ).
+        LOOP AT codes-impl FROM d_l_deb TO d_l_fin ASSIGNING &lt;l&gt;.
+          CASE sy-tabix.
+            WHEN d_l_deb.
+              d_deb = &lt;t_deb&gt;-col.
+              IF d_l_deb = d_l_fin.
+                d_fin = &lt;inc&gt;-col + STRLEN( &lt;inc&gt;-str ) - d_deb.
+              ELSE.
+                d_fin = STRLEN( &lt;l&gt; ) - d_deb.
+              ENDIF.
+            WHEN d_l_fin.
+              d_deb = 0.
+              d_fin = &lt;inc&gt;-col + STRLEN( &lt;inc&gt;-str ).
+            WHEN OTHERS.
+              CLEAR &lt;l&gt;.
+          ENDCASE.
+          IF NOT &lt;l&gt; IS INITIAL.    REPLACE SECTION OFFSET d_deb LENGTH d_fin OF &lt;l&gt; WITH space.    ENDIF.
+        ENDLOOP.
+
+    ENDCASE.
+  ENDLOOP.
+
+  SCAN ABAP-SOURCE codes-macro TOKENS INTO t_tokens
+                           STATEMENTS INTO t_statements
+                             KEYWORDS FROM t_kw.
+  zaplink_tools=&gt;inverse_table_order( CHANGING my_table = t_statements ).
+  LOOP AT t_statements ASSIGNING &lt;st&gt;.
+    READ TABLE t_tokens ASSIGNING &lt;t_deb&gt; INDEX &lt;st&gt;-from.    CHECK sy-subrc = 0.
+    CASE &lt;t_deb&gt;-str.
+      WHEN &apos;INCLUDE&apos;.
+
+        d_tabix = &lt;st&gt;-from + 1.
+        READ TABLE t_tokens ASSIGNING &lt;inc&gt; INDEX d_tabix.    CHECK sy-subrc = 0.
+        d_name = &lt;inc&gt;-str.
+        CHECK is_excluded_include( d_name ) = abap_false.
+        d_prog = d_name.      add_include( d_prog ).
+        LOOP AT codes-macro FROM &lt;t_deb&gt;-row TO &lt;st&gt;-trow ASSIGNING &lt;l&gt;.
+          CASE sy-tabix.
+            WHEN &lt;t_deb&gt;-row.
+              d_deb = &lt;t_deb&gt;-col.
+              IF &lt;t_deb&gt;-row = &lt;st&gt;-trow.
+                d_fin = &lt;st&gt;-tcol - &lt;t_deb&gt;-col + 1.
+              ELSE.
+                d_fin = STRLEN( &lt;l&gt; ) - &lt;t_deb&gt;-col + 1.
+              ENDIF.
+            WHEN &lt;st&gt;-trow.
+              d_deb = 0.
+              d_fin = &lt;st&gt;-tcol.
+            WHEN OTHERS.
+              CLEAR &lt;l&gt;.
+          ENDCASE.
+          IF NOT &lt;l&gt; IS INITIAL.    REPLACE SECTION OFFSET &lt;t_deb&gt;-col LENGTH &lt;st&gt;-tcol OF &lt;l&gt; WITH space.    ENDIF.
+        ENDLOOP.
+
+      WHEN &apos;PERFORM&apos;.
+
+*          LOOP AT codes-macro FROM &lt;t_deb&gt;-row TO &lt;st&gt;-trow ASSIGNING &lt;l&gt;
+*               WHERE str = &apos;PROGRAM&apos;.
+*            EXIT.
+*          ENDLOOP.
+*          d_tabix = sy-tabix + 1.
+*          READ TABLE t_tokens ASSIGNING &lt;inc&gt; INDEX d_tabix.    CHECK sy-subrc = 0.
+*          d_name = &lt;inc&gt;-str.
+*          CHECK is_excluded_include( d_name ) = abap_false.
+*
+*          APPEND d_name TO includes.
+*
+*          LOOP AT codes-macro FROM &lt;t_deb&gt;-row TO &lt;st&gt;-trow ASSIGNING &lt;l&gt;.
+*            CASE sy-tabix.
+*              WHEN &lt;t_deb&gt;-row.
+*                d_deb = &lt;t_deb&gt;-col.
+*                IF &lt;t_deb&gt;-row = &lt;st&gt;-trow.
+*                  d_fin = &lt;st&gt;-tcol - &lt;t_deb&gt;-col + 1.
+*                ELSE.
+*                  d_fin = STRLEN( &lt;l&gt; ) - &lt;t_deb&gt;-col + 1.
+*                ENDIF.
+*              WHEN &lt;st&gt;-trow.
+*                d_deb = 0.
+*                d_fin = &lt;st&gt;-tcol.
+*              WHEN OTHERS.
+*                CLEAR &lt;l&gt;.
+*            ENDCASE.
+*            IF NOT &lt;l&gt; IS INITIAL.    REPLACE SECTION OFFSET &lt;t_deb&gt;-col LENGTH &lt;st&gt;-tcol OF &lt;l&gt; WITH space.    ENDIF.
+*          ENDLOOP.
+
+    ENDCASE.
+  ENDLOOP.
+
+*  LOOP AT codes-macro ASSIGNING &lt;l&gt;.
+*    t_includes = extract_strings(
+*        forward     = abap_true
+*        search_term = &apos;INCLUDE &apos;
+*        code        = &lt;l&gt;
+*        ).
+*
+*    IF NOT t_includes IS INITIAL.
+*      LOOP AT t_includes ASSIGNING &lt;i&gt;.
+*        SELECT SINGLE devclass dlvunit INTO (d_devclass, d_softcomp)
+*          FROM v_tralan
+*          WHERE pgmid = c_program-kind
+*            AND object = c_program-type
+*            AND obj_name = &lt;i&gt;.
+*
+*        CHECK d_devclass IN packages.
+*        CHECK d_softcomp IN softcomponents. &quot; customer components
+*
+*        APPEND &lt;i&gt; TO includes.
+*      ENDLOOP.
+*      DELETE codes-macro.
+*    ENDIF.
+*  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_TEXTPOOL" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add class/interface to the list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_PROGNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Program name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  zaplink_program_4dep_analyser=&gt;set_prog_textpool( program = name
+                                                   textpool = textspool ). &quot; Issue 110</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SOURCE_2_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert source code : remove tabs"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code as string"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;l&gt; LIKE LINE OF data.
+  LOOP AT data ASSIGNING &lt;l&gt;.   IF result IS INITIAL.   result = &lt;l&gt;.   ELSE.     CONCATENATE result line_separator &lt;l&gt; INTO result.    ENDIF.    ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STACK" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add context to context stack"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTEXT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Name to stack"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FULL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CLASSTYPE" PAROPTIONL="X"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_ctx LIKE LINE OF context.
+  s_ctx-context = context.   s_ctx-type = type.    s_ctx-full_def = full.   INSERT s_ctx INTO me-&gt;context INDEX 1.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNSTACK" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove stack entry"/>
+    </TEXTS>
+    <SOURCE>`
+  IF NOT context IS INITIAL. DELETE context INDEX 1. ENDIF.
+  IF context IS INITIAL. CLEAR: circular_ref_on, circular_context. ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_CLEAN_UP" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clean up data"/>
+    </TEXTS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;r&gt; LIKE LINE OF requirements,
+    &lt;c&gt; LIKE LINE OF classes,
+    &lt;i&gt; LIKE LINE OF includes,
+    &lt;t&gt; LIKE LINE OF typegroups,
+    &lt;m&gt; LIKE LINE OF messages.
+
+  SORT requirements BY ori_name name full_def.    DELETE ADJACENT DUPLICATES FROM requirements COMPARING ori_name name full_def.
+  LOOP AT requirements ASSIGNING &lt;r&gt;.   CHECK &lt;r&gt;-ori_name = &lt;r&gt;-name.    DELETE requirements.    ENDLOOP.
+  inverse_order( CHANGING order = order ).     DELETE ADJACENT DUPLICATES FROM order COMPARING type name.   inverse_order( CHANGING order = order ).
+  SORT typegroups.    DELETE ADJACENT DUPLICATES FROM typegroups.
+  SORT includes.      DELETE ADJACENT DUPLICATES FROM includes.
+  SORT messages.      DELETE ADJACENT DUPLICATES FROM messages.
+
+* Update all components list
+  REFRESH all_components.
+  LOOP AT classes ASSIGNING &lt;c&gt;.    CLEAR s_comp.   IF &lt;c&gt;-type = 0. MOVE-CORRESPONDING c_class TO s_comp. ELSE.   MOVE-CORRESPONDING c_interface TO s_comp.   ENDIF.   s_comp-name = &lt;c&gt;-name.   mac_add_comp.    ENDLOOP.
+  LOOP AT typegroups ASSIGNING &lt;t&gt;.    CLEAR s_comp.   MOVE-CORRESPONDING c_typegroup TO s_comp.   s_comp-name = &lt;t&gt;-name.   mac_add_comp.    ENDLOOP.
+  LOOP AT includes ASSIGNING &lt;i&gt;.    CLEAR s_comp.   MOVE-CORRESPONDING c_program TO s_comp.   s_comp-name = &lt;i&gt;.   mac_add_comp.    ENDLOOP.
+  LOOP AT messages ASSIGNING &lt;m&gt;.    CLEAR s_comp.   MOVE-CORRESPONDING c_msg_class TO s_comp.   s_comp-name = &lt;m&gt;-name.   mac_add_comp.    ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X" IMPLICIT="X"/>
+   <ITEM TYPEGROUP="SANA" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOP" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_CLASSCAT" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="1" TYPE="SEOCATEGRY"/>
+   <ITEM CMPNAME="TD_CLASSTYPE" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="1" TYPE="CHAR01">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class type (SEOCLSTYPE)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_CONTEXT" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="1" TYPE="STRING"/>
+   <ITEM CMPNAME="TD_MESSAGE" EXPOSURE="2" STATE="1" EDITORDER="22 " TYPTYPE="1" TYPE="SEOCLASSDF-MSG_ID"/>
+   <ITEM CMPNAME="TD_NAME" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="1" TYPE="SEOCLSNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_ORIGIN" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="TD_PROGNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Origin of ABAP Code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CLASS" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_CLAS_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Data for Class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_INTERFACE" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="3" TYPE="ZAPLINK_INTF_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Data for ABAP Object Interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_OBJECT" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_OBJECT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink Class &amp; Interface connector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_DLVUNIT" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    tr_dlvunit TYPE RANGE OF tdevc-dlvunit
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Software component accepted"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tr_packages TYPE RANGE OF tdevc-devclass
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Range of package"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_COMP" EXPOSURE="2" STATE="1" EDITORDER="20 " TYPTYPE="4">BEGIN OF ts_comp.
+    INCLUDE TYPE ts_compkey AS hdr.
+    TYPES:
+        kind     TYPE td_transport_kind,
+        devclass TYPE td_devclass,
+        softcomp TYPE td_softcomp,
+      END OF ts_comp
+`</ITEM>
+   <ITEM CMPNAME="TS_CONTEXT" EXPOSURE="2" STATE="1" EDITORDER="15 " TYPTYPE="4">BEGIN OF ts_context,
+              context   TYPE td_context,
+              type      TYPE td_classtype,    &quot; 0 Class 1 interface
+              full_def  TYPE flag,          &quot; Full definition required
+            END OF ts_context
+`</ITEM>
+   <ITEM CMPNAME="TS_LIST" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">
+    BEGIN OF ts_list,
+            name      TYPE td_name,
+          END OF ts_list
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MESSAGE" EXPOSURE="2" STATE="1" EDITORDER="23 " TYPTYPE="4">BEGIN OF ts_message,
+                  name TYPE td_message,
+                END OF ts_message
+`</ITEM>
+   <ITEM CMPNAME="TS_ORDER" EXPOSURE="2" STATE="1" EDITORDER="13 " TYPTYPE="4">
+    BEGIN OF ts_order.
+    INCLUDE TYPE ts_list.
+    TYPES:
+      type    TYPE td_classtype,    &quot; 0 Class 1 interface
+      defered TYPE flag,          &quot; &apos;X&apos; if defered load required
+    END OF ts_order
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface, type and flag"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_REQ_OBJECT" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">BEGIN OF ts_req_object,
+            ori_name  TYPE td_name,
+            name      TYPE td_name,
+            type      TYPE td_classtype,    &quot; 0 Class 1 interface
+            full_def  TYPE flag,          &quot; Full definition required
+            source    TYPE td_context,
+          END OF ts_req_object
+`</ITEM>
+   <ITEM CMPNAME="TS_SOURCE" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_source,
+            name  TYPE td_name,
+            type  TYPE td_classtype,    &quot; 0 Class 1 interface
+            def   TYPE tt_abaprawsource,
+            macro TYPE tt_abaprawsource,
+            impl  TYPE tt_abaprawsource,
+          END OF ts_source
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface sources codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TYPEGROUP" EXPOSURE="2" STATE="1" EDITORDER="18 " TYPTYPE="4">
+    BEGIN OF ts_typegroup,
+                  name TYPE seotpuname,
+                END OF ts_typegroup
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="a Type Group"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_CLASSLIST" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tt_classlist TYPE SORTED TABLE OF ts_list WITH UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Indexed list of class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_COMPS" EXPOSURE="2" STATE="1" EDITORDER="21 " TYPTYPE="4">tt_comps TYPE SORTED TABLE OF ts_comp WITH UNIQUE KEY type name
+`</ITEM>
+   <ITEM CMPNAME="TT_CONTEXT" EXPOSURE="2" STATE="1" EDITORDER="16 " TYPTYPE="4">
+    tt_context TYPE STANDARD TABLE OF ts_context WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Context Stack"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_LIST" EXPOSURE="2" STATE="1" EDITORDER="14 " TYPTYPE="4">
+    tt_list TYPE STANDARD TABLE OF ts_order WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_MESSAGE_IDS" EXPOSURE="2" STATE="1" EDITORDER="24 " TYPTYPE="4">tt_message_ids TYPE STANDARD TABLE OF ts_message WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_ORDER" EXPOSURE="2" STATE="1" EDITORDER="17 " TYPTYPE="4">
+    tt_order TYPE STANDARD TABLE OF ts_order WITH NON-UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class/interface Order"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_PREDEFTYPES" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tt_predeftypes TYPE HASHED TABLE OF sana_type_struct WITH UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of pre-definied types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_REQ_OBJECTS" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">tt_req_objects TYPE STANDARD TABLE OF ts_req_object WITH NON-UNIQUE KEY name
+`</ITEM>
+   <ITEM CMPNAME="TT_SOURCES" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">
+    tt_sources TYPE SORTED TABLE OF ts_source WITH UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Classes/interfaces codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TYPEGROUPS" EXPOSURE="2" STATE="1" EDITORDER="19 " TYPTYPE="4">
+    tt_typegroups TYPE STANDARD TABLE OF ts_typegroup WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table of type group"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

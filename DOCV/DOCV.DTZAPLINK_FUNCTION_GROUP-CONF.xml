@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="09B4B76A1BA5CEAB156671B7CB0FDBF3" CONNECTOR="3D34954BEABE5F12E1000000AC120173" NAME="DTZAPLINK_FUNCTION_GROUP-CONF" TYPE="DOCV" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA APPLICATION="DOKU" MASTERLANG="E" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1"/>
+  <TEXTS>
+   <ITEM LANGU="E">* When importing the function group &amp;CURRENT_G&amp; you need to delete the
+  function module &amp;FUNCTION&amp; that belongs to the function group &amp;GROUP&amp;.
+* This case is unusual and requires user confirmation. If you&apos;re not sure
+  select cancel and investigate reasons.
+*</ITEM>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

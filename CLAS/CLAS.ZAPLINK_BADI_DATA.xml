@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="0857B741A8A59360EED959190AD2470F" CODE_SIGNATURE="28FEB5C6BE377404F509A8AEA7BD36E1" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_BADI_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="1" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Commun BADI Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_BADI
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="EXISTS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="EXISTS"/>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_CLASSNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CLASSNAME"/>
+   <ITEM CMPNAME="TD_COMPEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPEXISTS"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_CONNCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNCLASS"/>
+   <ITEM CMPNAME="TD_CONNEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNEXISTS"/>
+   <ITEM CMPNAME="TD_CONNVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNVER"/>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DEVCLASS"/>
+   <ITEM CMPNAME="TD_EXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_EXISTS"/>
+   <ITEM CMPNAME="TD_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LANG"/>
+   <ITEM CMPNAME="TD_LIGHT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LIGHT"/>
+   <ITEM CMPNAME="TD_OBJ_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_OBJ_TYPE"/>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+   <ITEM CMPNAME="TD_TXTP_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_ID"/>
+   <ITEM CMPNAME="TD_TXTP_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_KIND"/>
+   <ITEM CMPNAME="TD_TXTP_LEN" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_LEN"/>
+   <ITEM CMPNAME="TD_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_TEXT"/>
+   <ITEM CMPNAME="TEXTPOOL_KINDS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TEXTPOOL_KINDS"/>
+   <ITEM CMPNAME="TO_XML" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TO_XML"/>
+   <ITEM CMPNAME="TR_DLVUNIT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DLVUNIT"/>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_PACKAGES"/>
+   <ITEM CMPNAME="TR_TR" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_TR"/>
+   <ITEM CMPNAME="TS_BASE_ATTRIBUTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_BASE_ATTRIBUTS"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TS_CONN_CLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_CLASS"/>
+   <ITEM CMPNAME="TS_CONN_DEF" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_DEF"/>
+   <ITEM CMPNAME="TS_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXT"/>
+   <ITEM CMPNAME="TS_TXTP_TEXTPOOL" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXTPOOL"/>
+   <ITEM CMPNAME="TS_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TYPE"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_COMPKEYS"/>
+   <ITEM CMPNAME="TT_CONN_CLASSES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_CONN_CLASSES"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTS"/>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TYPES"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="CONTROLS_COMPOSITES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_CONTROLS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Control Composites, Language Independent"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DEF_NAME" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="EXIT_DEF">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Business Add-In Definition"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOCUMENTATION" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_DOCS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FUNCTIONS_CODES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_FUNCTIONS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Functions Codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUBSCREENS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_SCREENS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component subscreens"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TABLES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TABLES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Tables (sxs_tables)"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_BADI" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* Handle Commun data
+  DATA _fc    LIKE LINE OF functions_codes.
+  DATA _cc    LIKE LINE OF controls_composites.
+  DATA _scr   LIKE LINE OF subscreens.
+*  DATA _me    LIKE LINE OF methods.
+  DATA _t     LIKE LINE OF tables.
+*  DATA o_conn TYPE td_connector.
+*  CONSTANTS c_type TYPE td_comptype VALUE &apos;INTF&apos;.
+*  DATA _comp TYPE ts_component.
+  FIELD-SYMBOLS:
+    &lt;fc&gt;  LIKE LINE OF fm_data-fcodes,
+    &lt;cc&gt;  LIKE LINE OF fm_data-cocos,
+    &lt;in&gt;  LIKE LINE OF fm_data-intas,
+    &lt;scr&gt; LIKE LINE OF fm_data-scrns,
+*    &lt;me&gt;  LIKE LINE OF fm_data-methods,
+    &lt;it&gt;  LIKE LINE OF fm_data-inactive_tabstrips.
+
+* Commun
+*        mast_langu      TYPE  sy-langu,
+*        fcodes          TYPE  seex_fcode_table,
+*        cocos           TYPE  seex_coco_table,
+*        intas           TYPE  seex_table_table,
+*        scrns           TYPE  seex_screen_table,
+*        methods         TYPE  seex_mtd_table,
+
+  LOOP AT fm_data-fcodes ASSIGNING &lt;fc&gt;
+    WHERE exit_name = def_name.
+    CLEAR _fc.
+    _fc = &lt;fc&gt;.
+
+    CLEAR: _fc-exit_name. &quot; VERSION
+    INSERT _fc INTO TABLE functions_codes.
+  ENDLOOP.
+
+  LOOP AT fm_data-cocos ASSIGNING &lt;cc&gt;
+    WHERE exit_name = def_name.
+    CLEAR _cc.
+    _cc = &lt;cc&gt;.
+
+    CLEAR: _cc-exit_name. &quot; VERSION
+    INSERT _cc INTO TABLE controls_composites.
+  ENDLOOP.
+
+  LOOP AT fm_data-intas ASSIGNING &lt;in&gt;
+    WHERE exit_name = def_name.
+    CLEAR _t.
+    _t = &lt;in&gt;.
+
+    CLEAR: _t-exit_name. &quot; VERSION
+    INSERT _t INTO TABLE tables.
+  ENDLOOP.
+
+  LOOP AT fm_data-scrns ASSIGNING &lt;scr&gt;
+    WHERE exit_name = def_name.
+    CLEAR _scr.
+    _scr = &lt;scr&gt;.
+
+    CLEAR: _scr-exit_name. &quot; VERSION
+    INSERT _scr INTO TABLE subscreens.
+  ENDLOOP.
+
+*  LOOP AT fm_data-methods ASSIGNING &lt;me&gt;
+*    WHERE exit_name = def_name.
+*    CLEAR _me.
+*    _me = &lt;me&gt;.
+*
+*    CLEAR: _me-exit_name. &quot; VERSION
+*    INSERT _me INTO TABLE methods.
+*  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+DATA _in  LIKE LINE OF fm_data-intas.
+  DATA _cc  LIKE LINE OF fm_data-cocos.
+  DATA _fc  LIKE LINE OF fm_data-fcodes.
+  DATA _scr LIKE LINE OF fm_data-scrns.
+  FIELD-SYMBOLS:
+    &lt;t&gt;   LIKE LINE OF tables,
+    &lt;scr&gt; LIKE LINE OF subscreens,
+    &lt;fc&gt;  LIKE LINE OF functions_codes,
+    &lt;cc&gt;  LIKE LINE OF controls_composites.
+
+* Commun
+*        mast_langu      TYPE  sy-langu,
+*        fcodes          TYPE  seex_fcode_table,
+*        cocos           TYPE  seex_coco_table,
+*        intas           TYPE  seex_table_table,
+*        scrns           TYPE  seex_screen_table,
+*        methods         TYPE  seex_mtd_table,
+
+  LOOP AT functions_codes ASSIGNING &lt;fc&gt;.
+    CLEAR _fc.
+    _fc = &lt;fc&gt;.
+
+    _fc-exit_name = def_name.
+    INSERT _fc INTO TABLE fm_data-fcodes.
+  ENDLOOP.
+
+  LOOP AT controls_composites ASSIGNING &lt;cc&gt;.
+    CLEAR _cc.
+    _cc = &lt;cc&gt;.
+
+    _cc-exit_name = def_name.
+    INSERT _cc INTO TABLE fm_data-cocos.
+  ENDLOOP.
+
+  LOOP AT tables ASSIGNING &lt;t&gt;.
+    CLEAR _in.
+    _in = &lt;t&gt;.
+
+    _in-exit_name = def_name.
+    INSERT _in INTO TABLE fm_data-intas.
+  ENDLOOP.
+
+  LOOP AT subscreens ASSIGNING &lt;scr&gt;.
+    CLEAR _scr.
+    _scr = &lt;scr&gt;.
+
+    _scr-exit_name = def_name.
+    INSERT _scr INTO TABLE fm_data-scrns.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="SEEX" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_CONNECTOR" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="1" TYPE="ZAPLINK_CONNECTORS=&gt;TO_CONNECTOR"/>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RAW component with data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_CONTROLS" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_controls TYPE SORTED TABLE OF seex_coco_struct WITH UNIQUE KEY coco_outer node_id
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Control Composites, Language Independent"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_FUNCTIONS" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tt_functions TYPE SORTED TABLE OF seex_fcode_struct WITH UNIQUE KEY gui_prog gui_code
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Functions Codes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SCREENS" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    tt_screens TYPE SORTED TABLE OF seex_screen_struct WITH UNIQUE KEY scr_a_prog scr_a_num scr_a_sscr
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component subscreens"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TABLES" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_tables TYPE SORTED TABLE OF seex_table_struct WITH UNIQUE KEY tabname
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Tables (sxs_tables)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    BEGIN OF t_fm_data,
+* Commun
+          mast_langu      TYPE  sy-langu,
+          fcodes          TYPE  seex_fcode_table,
+          cocos           TYPE  seex_coco_table,
+          intas           TYPE  seex_table_table,
+          scrns           TYPE  seex_screen_table,
+*        methods         TYPE  seex_mtd_table,        not used on save
+* Definition Specific
+          definition      TYPE  badi_data,
+          inactive_tabstrips  TYPE  seex_inactive_tabstrips,
+          ext_clname      TYPE  seoclsname,
+          filter_obj      TYPE REF TO cl_badi_flt_struct,
+          methods     TYPE  seex_mtd_table,
+* Implementation Specific
+          implementation  TYPE impl_data,
+          impl_w_filter   TYPE flt_ext,  &quot; Filter active
+          filter_datatype TYPE rollname,
+          filter_values   TYPE SEEX_FILTER_TABLE,    &quot;REF TO cl_badi_flt_values_alv,
+        END OF t_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Datas (deep_structure)"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

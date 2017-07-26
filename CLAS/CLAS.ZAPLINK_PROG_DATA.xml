@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="98BC882399C385AB9B9648F2F24EB825" CODE_SIGNATURE="E2825ECA2A692E3D0712431DBAA623A7" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_PROG_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Commun Data for Class &amp; Interface">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_PROGRAM
+ASDefine XML structure of a Program
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TS_SOURCEASSTRUC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_SOURCEASSTRUC"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DYNPROS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOCUMENTATION_OFF" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_DOCS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="No longer used"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOC_IDS" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF DOC_IDS,
+      Prog      TYPE td_doc_id VALUE &apos;RE&apos;,    &quot; Report
+    END OF DOC_IDS
+`</ITEM>
+   <ITEM CMPNAME="DYNPROS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_DYNPROS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DynPro informations"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MENUPAINTER" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TO_MENUPAINTER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu painter Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_IDS" STATE="1" ATTDECLTYP="1" TYPTYPE="4">BEGIN OF R_DOC_IDS,
+      prog     TYPE TR_DOCID,
+    END OF R_DOC_IDS
+`</ITEM>
+   <ITEM CMPNAME="SOURCE" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_SOURCEASSTRUC">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program texts"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTSPOOL" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_TXTP_TEXTPOOLS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Textpool table"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="VARIANTS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_VARIANTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program&apos;s Variants"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_PROGRAM" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF texts,
+    &lt;v&gt; LIKE LINE OF variants.
+  CLEAR: a0_maindata-cnam, a0_maindata-cdat, a0_maindata-unam, a0_maindata-udat, a0_maindata-sdate, a0_maindata-stime, a0_maindata-idate,
+         a0_maindata-itime, a0_maindata-vern, a0_maindata-state. &quot; Issue 68.
+  LOOP AT variants ASSIGNING &lt;v&gt;.
+    &lt;v&gt;-zl_object-&gt;anonymize( ).
+  ENDLOOP.
+* Issue 133 : Release still predent in documentation
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR: &lt;t&gt;-long_txt-tdlreles, &lt;t&gt;-long_txt-tdfreles.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+*table TDCLT
+*DOKCLASS DOKTITEL
+*RE       Report/Function Group, Logical DB                            Program/module pool
+  DATA _id LIKE LINE OF r_doc_ids-prog.
+
+  _id-sign = &apos;I&apos;.   _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-prog.      APPEND _id TO r_doc_ids-prog.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_txt     LIKE LINE OF texts.
+  DATA t_docs    TYPE tt_docs.
+  DATA s_variant LIKE LINE OF variants.
+  FIELD-SYMBOLS:
+    &lt;v&gt;  LIKE LINE OF fm_data-variants,
+    &lt;d&gt;  LIKE LINE OF fm_data-docs,
+    &lt;dt&gt; LIKE LINE OF &lt;d&gt;-texts,
+    &lt;t&gt;  LIKE LINE OF fm_data-texts.
+
+  a0_maindata = fm_data-header.
+  textspool = fm_data-textspool.
+  source-_ = fm_data-source.
+  dynpros = fm_data-dynpros.
+  menupainter = fm_data-menupainter.
+
+  t_docs = fm_data-docs.
+  READ TABLE t_docs ASSIGNING &lt;d&gt;
+       WITH KEY id = doc_ids-prog
+            object = a0_maindata-name.
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_txt.    s_txt-langu = &lt;t&gt;-sprsl.   s_txt-short_txt = &lt;t&gt;-text.
+    IF &lt;d&gt; IS ASSIGNED.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_txt-langu.
+      IF sy-subrc = 0.    s_txt-long_txt = &lt;dt&gt;.   CLEAR s_txt-long_txt-tdspras.    DELETE TABLE &lt;d&gt;-texts FROM &lt;dt&gt;.    ENDIF.
+    ENDIF.
+    INSERT s_txt INTO TABLE texts.
+  ENDLOOP.
+  IF &lt;d&gt; IS ASSIGNED.
+    LOOP AT &lt;d&gt;-texts ASSIGNING &lt;dt&gt;.
+      CLEAR s_txt.    s_txt-langu = &lt;dt&gt;-tdspras.   s_txt-long_txt = &lt;dt&gt;.   CLEAR s_txt-long_txt-tdspras.    INSERT s_txt INTO TABLE texts.
+    ENDLOOP.
+  ENDIF.
+
+  LOOP AT fm_data-variants ASSIGNING &lt;v&gt;.
+    CREATE OBJECT s_variant-zl_object EXPORTING fm_data = &lt;v&gt;.
+    APPEND s_variant TO variants.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt     LIKE LINE OF fm_data-texts.
+  DATA s_doc     LIKE LINE OF fm_data-docs.
+  DATA s_doc_txt LIKE LINE OF s_doc-texts.
+  DATA s_variant LIKE LINE OF fm_data-variants.
+  DATA d_variant TYPE zaplink_vari_data=&gt;ts_variant_key.
+  FIELD-SYMBOLS:
+    &lt;v&gt;  LIKE LINE OF variants,
+    &lt;t&gt;  LIKE LINE OF texts.
+
+  fm_data-header = a0_maindata.
+  fm_data-textspool = textspool.
+  fm_data-source = source-_.
+  fm_data-dynpros = dynpros.
+  fm_data-menupainter = menupainter.
+
+*APPLICATION                                      DOKU
+*ID	                                   	RE
+*OBJECT	                                   	SAPLxxxx
+*LANGU                                      E
+*MASTERLANG	                                   	X
+*TYP                                      E
+*DOKFORM                                      S_DOCU_SHOW
+*DOKSTYLE	                                   	S_DOCUS1
+  s_doc-application = &apos;DOKU&apos;.   s_doc-id = doc_ids-prog.   s_doc-object = a0_maindata-name.
+  s_doc-masterlang = abap_true.   s_doc-typ = &apos;E&apos;.    s_doc-dokform = &apos;S_DOCU_SHOW&apos;.    s_doc-dokstyle = &apos;S_DOCUS1&apos;.
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    IF NOT &lt;t&gt;-short_txt IS INITIAL.    CLEAR s_txt.    s_txt-sprsl = &lt;t&gt;-langu.   s_txt-text = &lt;t&gt;-short_txt.   INSERT s_txt INTO TABLE fm_data-texts.    ENDIF.
+    IF NOT &lt;t&gt;-long_txt IS INITIAL.
+      CLEAR s_doc_txt.    s_doc_txt = &lt;t&gt;-long_txt.   s_doc_txt-tdspras = &lt;t&gt;-langu.    INSERT s_doc_txt INTO TABLE s_doc-texts.
+      IF s_doc-langu IS INITIAL.    s_doc-langu = s_doc_txt-tdspras.    ENDIF.
+    ENDIF.
+  ENDLOOP.
+  IF NOT s_doc-texts IS INITIAL.    INSERT s_doc INTO TABLE fm_data-docs.   ENDIF.
+
+  LOOP AT variants ASSIGNING &lt;v&gt;.
+    d_variant = zaplink_vari_data=&gt;name_2_key( &lt;v&gt;-zl_object-&gt;name ).
+    d_variant-program = fm_data-header-name.
+    &lt;v&gt;-zl_object-&gt;name = zaplink_vari_data=&gt;key_2_name( d_variant ).
+    s_variant = &lt;v&gt;-zl_object-&gt;to_data( ).
+    APPEND s_variant TO fm_data-variants.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;v&gt; LIKE LINE OF variants.
+  a0_maindata-cnam = sy-uname.
+  LOOP AT variants ASSIGNING &lt;v&gt;.
+    &lt;v&gt;-zl_object-&gt;unanonymize( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_MENUPAINTER" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MENUPAINTER_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Menu painter Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_VARIANT" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_VARI_RAW"/>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="4">BEGIN OF ts_fm_data,
+* xx pour type doc
+      header          TYPE progdir,
+      texts           TYPE tt_trdirti,
+      docs            TYPE tt_docs,
+      textspool	      TYPE tt_txtp_textpools,
+      dynpros	        TYPE tt_dynpros,
+      menupainter	    TYPE to_menupainter,
+      source          TYPE td_abapsource,
+      variants        TYPE tt_vari_data,                    &quot; Issue 53
+    END OF ts_fm_data
+`</ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="1" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+*    INCLUDE TYPE reposrc. &quot;The databae view &quot;REPOSRC&quot; is write-protected, so it cannot be changed.
+  INCLUDE TYPE progdir.
+  TYPES:
+    END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_VARIANT" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">BEGIN OF ts_variant,
+      zl_object TYPE to_variant,
+      END OF ts_variant
+`</ITEM>
+   <ITEM CMPNAME="TT_TRDIRTI" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_trdirti TYPE SORTED TABLE OF trdirti WITH UNIQUE KEY sprsl
+`</ITEM>
+   <ITEM CMPNAME="TT_VARIANTS" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_variants TYPE STANDARD TABLE OF ts_variant WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_VARI_DATA" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="4">tt_vari_data TYPE STANDARD TABLE OF zaplink_vari_data=&gt;ts_fm_data WITH DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="AC89DB5900C20394FAC356833575C8D9" CODE_SIGNATURE="ADCED24CC092C262E2873B9C47973700" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_CHECKPOINTS_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Commun part for checkpoint and variants"/>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_CHECKBOX" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKBOX"/>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKSUM"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DYNPROS"/>
+   <ITEM CMPNAME="TT_LTEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_LTEXTS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+  </ALIASES>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_CHECKPOINTS" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CONV_ACTIVATION2MODE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert activation checkboxes to Mode number"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ACTIVATION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_ACTIVATION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activation checkbox structure"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_MODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activation Mode for Checkpoint Groups"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* From LSAABP01 : Methode pai_0310.
+
+* convert activation mode
+  CALL METHOD cl_aab_tool=&gt;convert_input_to_mode
+    EXPORTING
+      bp_inactive            = activation-breakpoints-inactive
+      bp_stop                = activation-breakpoints-break
+      lp_inactive            = activation-logpoints-inactive
+      lp_log                 = activation-logpoints-log
+      as_fg_inactive         = activation-assertions-inactive
+      as_fg_stop_bg_protocol = activation-assertions-break-log
+      as_fg_stop_bg_rabax    = activation-assertions-break-abort
+      as_fg_protocol         = activation-assertions-log
+      as_fg_rabax            = activation-assertions-abort
+    IMPORTING
+      mode                   = result
+    EXCEPTIONS
+      mode_not_valid         = 1
+      OTHERS                 = 2.
+  ASSERT sy-subrc = 0.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_MODE2ACTIVATION" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Mode number to activation checkboxes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="MODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_MODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activation Mode for Checkpoint Groups"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_ACTIVATION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activation checkbox structure"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* From LSAABP01 : Methode pbo_0310.
+
+* convert activation mode
+  CALL METHOD cl_aab_tool=&gt;convert_mode_to_output
+    EXPORTING
+      mode                   = mode
+    IMPORTING
+      bp_inactive            = result-breakpoints-inactive
+      bp_stop                = result-breakpoints-break
+      lp_inactive            = result-logpoints-inactive
+      lp_log                 = result-logpoints-log
+      as_fg_inactive         = result-assertions-inactive
+      as_fg_stop_bg_protocol = result-assertions-break-log
+      as_fg_stop_bg_rabax    = result-assertions-break-abort
+      as_fg_protocol         = result-assertions-log
+      as_fg_rabax            = result-assertions-abort.
+*      as_bg_text             = s_fmd_acid-header-as_bg_act_txt.
+*  IF NOT result-assertions-break-log IS INITIAL
+*    OR NOT result-assertions-break-abort IS INITIAL.
+*    CALL METHOD cl_aab_tool=&gt;convert_flags_comb_to_single
+*      EXPORTING
+*        as_fg_stop_bg_protocol = result-assertions-break-log
+*        as_fg_stop_bg_rabax    = result-assertions-break-abort
+*      IMPORTING
+*        as_fg_stop             = s_fmd_acid-header-as_fg_stop
+*        as_bg_protocol         = s_fmd_acid-header-as_bg_protocol
+*        as_bg_rabax            = s_fmd_acid-header-as_bg_rabax.
+*  ENDIF.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TD_MODE" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="AAB_ID_MODE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Activation Mode for Checkpoint Groups"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ACTIVATION" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    BEGIN OF ts_activation,
+      breakpoints TYPE ts_bp_act,
+      logpoints   TYPE ts_lp_act,
+      assertions  TYPE ts_a_act,
+    END OF ts_activation
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Activation checkbox structure"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_A_ACT" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_a_act,
+      inactive    TYPE td_checkbox,
+      log         TYPE td_checkbox,
+      abort       TYPE td_checkbox,
+      BEGIN OF break,
+        log         TYPE td_checkbox,
+        abort       TYPE td_checkbox,
+      END OF break,
+    END OF ts_a_act
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Assertion Activation checkboxes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_BP_ACT" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_bp_act,
+      inactive    TYPE td_checkbox,
+      break       TYPE td_checkbox,
+    END OF ts_bp_act
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Break Point Activation checkboxes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_LP_ACT" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    BEGIN OF ts_lp_act,
+      inactive    TYPE td_checkbox,
+      log         TYPE td_checkbox,
+    END OF ts_lp_act
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="LogPoint Activation checkboxes"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

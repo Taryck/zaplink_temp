@@ -1,0 +1,1543 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="D8557440ED603575DFC625325D80ADB2" CODE_SIGNATURE="3DE903307226627908563CF8F4F0BAC2" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_TOOLS" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" WITH_UNIT_TESTS="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink tools">U1&amp;FUNCTIONALITY&amp;
+ASThis object stores general tools used by ZAPLINK Framework that do not
+  belongs to any ZAPLink concept such as :
+AS,,- Connector
+AS,,- Component
+AS,,- Container
+AS,,- File
+AS,,- GUI
+AS,,- Options
+AS,,- ..
+ASbut may be used by many of them. These standalone tools are stored as
+  static method with exception classes. Look at each method for more
+  details.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="COMP_NODENAME" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="COMP_NODENAME"/>
+   <ITEM CMPNAME="EXISTS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="EXISTS"/>
+   <ITEM CMPNAME="EXT_SEP" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="EXT_SEP"/>
+   <ITEM CMPNAME="FILE_EXT" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="FILE_EXT"/>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_ACTION" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ACTION"/>
+   <ITEM CMPNAME="TD_CHECKSUM" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CHECKSUM"/>
+   <ITEM CMPNAME="TD_CLASSNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CLASSNAME"/>
+   <ITEM CMPNAME="TD_COMPEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPEXISTS"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTEXT"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_CONNCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNCLASS"/>
+   <ITEM CMPNAME="TD_CONNEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNEXISTS"/>
+   <ITEM CMPNAME="TD_CONNUUID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNUUID"/>
+   <ITEM CMPNAME="TD_CONNVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNVER"/>
+   <ITEM CMPNAME="TD_CONTNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONTNAME"/>
+   <ITEM CMPNAME="TD_CONTVER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONTVER"/>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DEVCLASS"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TD_EXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_EXISTS"/>
+   <ITEM CMPNAME="TD_FILENAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_FILENAME"/>
+   <ITEM CMPNAME="TD_FILETYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_FILETYPE"/>
+   <ITEM CMPNAME="TD_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LANG"/>
+   <ITEM CMPNAME="TD_LIGHT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_LIGHT"/>
+   <ITEM CMPNAME="TD_OBJ_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_OBJ_TYPE"/>
+   <ITEM CMPNAME="TD_ORDERKIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ORDERKIND"/>
+   <ITEM CMPNAME="TD_PROGNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_PROGNAME"/>
+   <ITEM CMPNAME="TD_SUBSTITUTIONKIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_SUBSTITUTIONKIND"/>
+   <ITEM CMPNAME="TD_TRANSPORT_REQUEST" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_REQUEST"/>
+   <ITEM CMPNAME="TD_TXTP_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_ID"/>
+   <ITEM CMPNAME="TD_TXTP_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_KIND"/>
+   <ITEM CMPNAME="TD_TXTP_LEN" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_LEN"/>
+   <ITEM CMPNAME="TD_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TXTP_TEXT"/>
+   <ITEM CMPNAME="TD_TYPEORDER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TYPEORDER"/>
+   <ITEM CMPNAME="TD_TYPE_AS_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TYPE_AS_TEXT"/>
+   <ITEM CMPNAME="TD_WITH_SUBCOMP" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_WITH_SUBCOMP"/>
+   <ITEM CMPNAME="TEXTPOOL_KINDS" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TEXTPOOL_KINDS"/>
+   <ITEM CMPNAME="TO_XML" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TO_XML"/>
+   <ITEM CMPNAME="TR_AUTHOR" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_AUTHOR"/>
+   <ITEM CMPNAME="TR_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_COMPNAME"/>
+   <ITEM CMPNAME="TR_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_COMPTYPE"/>
+   <ITEM CMPNAME="TR_DLVUNIT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DLVUNIT"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TR_PACKAGES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_PACKAGES"/>
+   <ITEM CMPNAME="TR_SRCSYSTEM" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_SRCSYSTEM"/>
+   <ITEM CMPNAME="TR_TR" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_TR"/>
+   <ITEM CMPNAME="TS_BASE_ATTRIBUTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_BASE_ATTRIBUTS"/>
+   <ITEM CMPNAME="TS_COMPKEY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPKEY"/>
+   <ITEM CMPNAME="TS_COMPONENT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPONENT"/>
+   <ITEM CMPNAME="TS_CONNDATA" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONNDATA"/>
+   <ITEM CMPNAME="TS_CONN_CLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_CLASS"/>
+   <ITEM CMPNAME="TS_CONN_DEF" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_DEF"/>
+   <ITEM CMPNAME="TS_CONTDATA" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONTDATA"/>
+   <ITEM CMPNAME="TS_DIRECTORY" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_DIRECTORY"/>
+   <ITEM CMPNAME="TS_DOC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_DOC"/>
+   <ITEM CMPNAME="TS_HEAD" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_HEAD"/>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_LANG"/>
+   <ITEM CMPNAME="TS_STATMENT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_STATMENT"/>
+   <ITEM CMPNAME="TS_TXTP_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXT"/>
+   <ITEM CMPNAME="TS_TXTP_TEXTPOOL" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TXTP_TEXTPOOL"/>
+   <ITEM CMPNAME="TS_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_TYPE"/>
+   <ITEM CMPNAME="TT_ABAPRAWSOURCE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_ABAPRAWSOURCE"/>
+   <ITEM CMPNAME="TT_COMPKEYS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_COMPKEYS"/>
+   <ITEM CMPNAME="TT_CONN_CLASSES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_CONN_CLASSES"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_GENSETC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_GENSETC"/>
+   <ITEM CMPNAME="TT_RAWTEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_RAWTEXT"/>
+   <ITEM CMPNAME="TT_TOKENS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TOKENS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTS"/>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TYPES"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="GC_GEN_TYPES" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1CFJKMST&apos;" TYPTYPE="4">
+    gc_gen_types(8) TYPE c
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Activable program types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="IMPORT_ALLOWED" EXPOSURE="2" STATE="1" ATTDECLTYP="1" ATTRDONLY="X" TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is Import Allowed"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+   <LOCAL_TEST_CLASS>`
+*----------------------------------------------------------------------*
+*       CLASS abap_unit_testclass DEFINITION
+*----------------------------------------------------------------------*
+*
+*----------------------------------------------------------------------*
+CLASS abap_unit_testclass DEFINITION FOR TESTING &quot;#AU Risk_Level Harmless
+      &quot;#AU Duration Short
+  .
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+    DATA:
+      m_ref TYPE REF TO zaplink_tools.                      &quot;#EC NOTEXT
+
+    METHODS: setup.
+    METHODS: teardown.
+    METHODS: calculate_md5_hash FOR TESTING.
+ENDCLASS.       &quot;Abap_Unit_Testclass
+* ======================================================================
+CLASS abap_unit_testclass IMPLEMENTATION.
+  METHOD setup.
+    CREATE OBJECT m_ref.
+  ENDMETHOD.       &quot;Setup
+* ----------------------------------------------------------------------
+  METHOD teardown.
+  ENDMETHOD.       &quot;Teardown
+* ----------------------------------------------------------------------
+  METHOD calculate_md5_hash.
+    DATA string TYPE string.
+    DATA result TYPE zaplink_datatypes=&gt;td_checksum.
+*    DATA o_file TYPE REF TO zaplink_file.
+
+    CONCATENATE &apos;... FOR TESTING [RISK LEVEL {CRITICAL|DANGEROUS|HARMLESS}]&apos;
+                &apos;                [DURATION   {SHORT|MEDIUM|LONG}]  ... . &apos; INTO string SEPARATED BY cl_abap_char_utilities=&gt;cr_lf.
+    result = zaplink_tools=&gt;calculate_md5_hash( string ).
+
+    cl_aunit_assert=&gt;assert_equals(
+      act   = result
+      exp   = &apos;4993052479518AEA317C383B8764919A&apos;
+      msg   = text-t01
+*      level = cl_aunit_assert=&gt;tolerable
+    ).
+
+*    CREATE OBJECT o_file.
+*    o_file-&gt;set_filetype( zaplink_file=&gt;filetypes-local ).
+*    o_file-&gt;load_dialog( ).
+*    o_file-&gt;load( ).
+*    string = o_file-&gt;get_filecontent( ).
+*    result = zaplink_tools=&gt;calculate_md5_hash( string ).
+*
+*    cl_aunit_assert=&gt;assert_equals(
+*      act   = result
+*      exp   = &apos;4993052479518AEA317C383B8764919A&apos;
+*      msg   = text-t01
+*      level = cl_aunit_assert=&gt;tolerable
+*    ).
+
+  ENDMETHOD.       &quot;Calculate_Md5_Hash
+ENDCLASS.       &quot;Abap_Unit_Testclass</LOCAL_TEST_CLASS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD_COMP_TO_WORKING_AREA" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add component to Working Area"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component Name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component Type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA wa_flag   TYPE rs38l-head.
+  DATA o_cx      TYPE REF TO ZCX_ZAPLINK.
+  DATA f_is_wi   TYPE abap_bool.
+  DATA _name     TYPE e071-obj_name.
+
+  _name = name.
+  IF is_working_areable( type ) = abap_true.
+    CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+      EXPORTING
+        object              = type
+        obj_name            = _name
+      IMPORTING
+        object_is_work_item = f_is_wi.
+    IF f_is_wi = abap_false.   &quot; should be the case
+      CALL FUNCTION &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+        EXPORTING
+          object            = type
+          obj_name          = _name
+        IMPORTING
+          object_inserted   = wa_flag
+        EXCEPTIONS
+          wrong_object_name = 1
+          OTHERS            = 2.
+      IF sy-subrc &lt;&gt; 0.
+        o_cx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;RS_INSERT_INTO_WORKING_AREA&apos;
+                                                  subrc = sy-subrc
+                                              classname = &apos;ZCX_ZAPLINK&apos; ).
+        RAISE EXCEPTION o_cx.
+      ENDIF.
+    ENDIF.
+  ELSE.   &quot; Security Remove old eroneous entries Issue 137
+    CALL FUNCTION &apos;RS_OBJECT_IN_WORKING_AREA&apos;
+      EXPORTING
+        object              = type
+        obj_name            = _name
+      IMPORTING
+        object_is_work_item = f_is_wi.
+    IF f_is_wi = abap_true.   &quot; should only be the case of Issue 137
+      remove_comp_from_working_area( type = type
+                                     name = name ).
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CALCULATE_MD5_HASH" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Calculate MD5 HASH for a string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_CHECKSUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Checksum"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="String Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _len            TYPE i.
+  DATA _md5            TYPE md5_fields-hash.
+
+  _len = STRLEN( string ).
+  CALL FUNCTION &apos;MD5_CALCULATE_HASH_FOR_CHAR&apos;
+    EXPORTING
+      data                 = string
+      length               = _len
+*     VERSION              = 1
+    IMPORTING
+      hash                 = _md5
+*   TABLES
+*     DATA_TAB             =
+    EXCEPTIONS
+      no_data              = 1
+      internal_error       = 2
+      OTHERS               = 3.
+  IF sy-subrc = 0.    result = _md5.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHECK_VALID_PROGLIST" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Check that component are valid and activable"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_GENSETC"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_GENSETC"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA gc_infoline_on TYPE oax.
+  DATA it_gensetc_raw TYPE tt_gensetc.
+  DATA t_trdir TYPE HASHED TABLE OF trdir WITH UNIQUE KEY name.
+  FIELD-SYMBOLS:
+    &lt;dir&gt; LIKE LINE OF t_trdir,
+    &lt;obj&gt; LIKE LINE OF it_gensetc_raw.
+
+  it_gensetc_raw = list.
+* determine the program names on the basis of the TADIR keys *
+  PERFORM  tadir_2_trdir IN PROGRAM rsparagenlod
+           CHANGING it_gensetc_raw.
+* When type doesn&apos;t correspond to a program (or equivalent) name is filled with previous value
+  DELETE ADJACENT DUPLICATES FROM it_gensetc_raw COMPARING name.
+* delete non existing or invalid objects from generation set
+  IF LINES( it_gensetc_raw ) &gt; 1000.
+    PERFORM trdir_check IN PROGRAM rsparagenlod
+      USING    gc_infoline_on
+               it_gensetc_raw
+    CHANGING result.
+  ELSE.
+    SELECT * INTO TABLE t_trdir
+      FROM trdir
+      FOR ALL ENTRIES IN it_gensetc_raw
+      WHERE name = it_gensetc_raw-name
+      %_HINTS ORACLE &apos;&amp;max_blocking_factor 50&amp;&apos;.
+    LOOP AT it_gensetc_raw ASSIGNING &lt;obj&gt;.
+      READ TABLE t_trdir ASSIGNING &lt;dir&gt;
+           WITH TABLE KEY name = &lt;obj&gt;-name.
+      CHECK sy-subrc = 0.
+      CHECK &lt;dir&gt;-subc CA gc_gen_types.
+      APPEND &lt;obj&gt; TO result.
+    ENDLOOP.
+  ENDIF.
+
+  SORT result BY pgmid object objname.   DELETE ADJACENT DUPLICATES FROM result COMPARING pgmid object objname.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_mandant  TYPE t000.
+  SELECT SINGLE *
+    INTO s_mandant
+    FROM t000.
+  ASSERT sy-subrc = 0.
+  IF s_mandant-cccategory &lt;&gt; &apos;P&apos;    &quot; Productive
+    AND s_mandant-ccnocliind CO &apos; 1&apos;.
+    import_allowed = abap_true.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEAN_ABAP_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clean ABAP String of not important characters."/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source code as String"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source code as String"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CHECK NOT data IS INITIAL.    result = data.
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;newline IN result WITH ``.
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;cr_lf IN result WITH ``.
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;form_feed IN result WITH ``.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="COMMENT_STATEMENT" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Comment statement from ABAP Source"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CODE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="COMMENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="STATEMENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_STATMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Description of an ABAP/4 Source Analysis Statement"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TOKENS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_TOKENS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Token list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_line       TYPE i.
+  DATA d_start      TYPE i.
+  DATA d_end        TYPE i.
+  DATA d_sdeb       TYPE string.
+  DATA d_sfin       TYPE string.
+  DATA d_removed    TYPE string.
+  DATA f_st_full_l  TYPE abap_bool.     &quot; statement is alone on his lines
+  FIELD-SYMBOLS:
+    &lt;t_bdeb&gt;  LIKE LINE OF tokens,
+    &lt;t_afin&gt;  LIKE LINE OF tokens,
+    &lt;t_deb&gt;   LIKE LINE OF tokens,
+    &lt;t_fin&gt;   LIKE LINE OF tokens,
+    &lt;l&gt;       LIKE LINE OF code.
+
+  READ TABLE tokens ASSIGNING &lt;t_deb&gt; INDEX statement-from.    ASSERT sy-subrc = 0.
+  READ TABLE tokens ASSIGNING &lt;t_fin&gt; INDEX statement-to.      ASSERT sy-subrc = 0.
+
+  f_st_full_l = abap_true.
+  d_start = statement-from - 1.     READ TABLE tokens ASSIGNING &lt;t_bdeb&gt; INDEX d_start.
+  IF &lt;t_bdeb&gt; IS ASSIGNED.    IF &lt;t_bdeb&gt;-row &gt;= &lt;t_deb&gt;-row.   CLEAR f_st_full_l.    ENDIF.    ENDIF.
+  d_end = statement-to + 1.         READ TABLE tokens ASSIGNING &lt;t_afin&gt; INDEX d_end.
+  IF &lt;t_afin&gt; IS ASSIGNED.    IF &lt;t_afin&gt;-row &lt;= &lt;t_fin&gt;-row.   CLEAR f_st_full_l.    ENDIF.    ENDIF.
+
+  IF f_st_full_l = abap_true.   &quot; simple case statement is alone
+    LOOP AT code ASSIGNING &lt;l&gt; FROM &lt;t_deb&gt;-row TO &lt;t_fin&gt;-row.
+      CONCATENATE &apos;*&apos; &lt;l&gt; &apos;&quot;&apos; comment INTO &lt;l&gt;.
+    ENDLOOP.
+  ELSE.     &quot; Statement share lines with other statements
+    d_start = &lt;t_deb&gt;-row + 1.    d_end = &lt;t_fin&gt;-row - 1.
+    IF d_start &lt;= d_end.    &quot; lines for this statements only
+      LOOP AT code ASSIGNING &lt;l&gt; FROM d_start TO d_end.
+        CONCATENATE &apos;*&apos; &lt;l&gt; &apos;&quot;&apos; comment INTO &lt;l&gt;.
+      ENDLOOP.
+    ENDIF.
+
+    READ TABLE code ASSIGNING &lt;l&gt; INDEX &lt;t_fin&gt;-row.          ASSERT sy-subrc = 0.
+    IF &lt;t_deb&gt;-row = &lt;t_fin&gt;-row.     &quot; on the same line
+
+      CLEAR: d_sdeb, d_sfin.
+      d_end = &lt;t_fin&gt;-col + STRLEN( &lt;t_fin&gt;-str ).
+      d_removed = &lt;l&gt;+&lt;t_deb&gt;-col(d_end).
+      d_sdeb = &lt;l&gt;(&lt;t_deb&gt;-col).    d_sfin = &lt;l&gt;+d_end.
+
+*      CLEAR &lt;l&gt;+&lt;t_deb&gt;-col(&lt;t_fin&gt;-row).
+      CONCATENATE d_sdeb d_sfin &apos;&quot;&apos; comment d_removed INTO &lt;l&gt;.
+*    CONDENSE &lt;l&gt;.
+
+    ELSE.
+* Last line
+      CLEAR: d_sdeb, d_sfin.
+      d_end = &lt;t_fin&gt;-col + STRLEN( &lt;t_fin&gt;-str ).
+      d_removed = &lt;l&gt;(d_end).
+      d_sfin = &lt;l&gt;+d_end.
+*      CLEAR &lt;l&gt;(&lt;t_fin&gt;-row).
+      CONCATENATE d_sfin &apos;&quot;&apos; comment d_removed INTO &lt;l&gt;.
+*    CONDENSE &lt;l&gt;.
+
+* First line
+      READ TABLE code ASSIGNING &lt;l&gt; INDEX &lt;t_deb&gt;-row.         ASSERT sy-subrc = 0.
+      CLEAR: d_sdeb, d_sfin.
+      d_sdeb = &lt;l&gt;(&lt;t_deb&gt;-col).
+      d_removed = &lt;l&gt;+&lt;t_deb&gt;-col.
+*      CLEAR &lt;l&gt;(&lt;t_fin&gt;-row).
+      &lt;l&gt; = d_sdeb.
+      CONCATENATE d_sdeb &apos;&quot;&apos; comment d_removed INTO &lt;l&gt;.
+*    CONDENSE &lt;l&gt;.
+    ENDIF.
+
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONDENSE_ABAP_SOURCE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Condense source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table source code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;l&gt; TYPE ANY.
+  LOOP AT table ASSIGNING &lt;l&gt;.
+    IF &lt;l&gt; IS INITIAL. DELETE table. CONTINUE. ENDIF.  &quot; Condense
+    IF &lt;l&gt;(1) = &apos;*&apos;.   DELETE table. CONTINUE. ENDIF.  &quot; Condense
+    &lt;l&gt; = conv_abap_line( &lt;l&gt; ).   CONDENSE &lt;l&gt;.
+    IF &lt;l&gt; IS INITIAL. CLEAR &lt;l&gt;. CONTINUE. ENDIF.          &quot; Issue 131
+    IF &lt;l&gt;(1) = &apos;&quot;&apos;.   DELETE table. CONTINUE. ENDIF.  &quot; commented line like :     &quot; comment
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_ABAP_LINE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert ABAP Line : Revome tabulations"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TARGET" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  target = source.
+* Convert also constants &apos;#document&apos; =&gt; &apos;#DOCUMENT&apos;. so removed
+*  TRANSLATE target TO UPPER CASE.  &quot;#EC SYNTCHAR
+  REPLACE ALL OCCURRENCES OF cl_abap_char_utilities=&gt;horizontal_tab IN target WITH ` `.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_COMPKEY_2_PROGLIST" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert compkey to Program list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="KEYS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_GENSETC"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_entry      LIKE LINE OF result.
+  FIELD-SYMBOLS &lt;k&gt; LIKE LINE OF keys.
+
+  LOOP AT keys ASSIGNING &lt;k&gt;.
+    s_entry-pgmid = &apos;R3TR&apos;.     s_entry-object = &lt;k&gt;-type.      s_entry-objname = &lt;k&gt;-name.   APPEND s_entry TO result.
+  ENDLOOP.
+  SORT result. DELETE ADJACENT DUPLICATES FROM result.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_LIMU_2_R3TR" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert LIMU entries to R3TR Entries"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="E071" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_E071">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Transport Request entries"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+    </PARAMETERS>
+    <SOURCE>`
+* From TRINT_OBJECT_TABLE
+* HINT TRINT_OLE_SORT_COMPRESS
+* HINT TR_SORT_OBJECT_AND_KEY_LIST
+  DATA _objlist LIKE LINE OF result.
+  DATA w_tadir TYPE tadir.
+  FIELD-SYMBOLS &lt;limu&gt; LIKE LINE OF e071.
+
+  LOOP AT e071 ASSIGNING &lt;limu&gt;.
+    CLEAR: _objlist.
+    IF &lt;limu&gt;-pgmid = &apos;R3TR&apos;.
+      _objlist-type = &lt;limu&gt;-object.
+      _objlist-name = &lt;limu&gt;-obj_name.
+    ELSE.
+      CALL FUNCTION &apos;TR_CHECK_TYPE&apos;
+        EXPORTING
+          wi_e071                              = &lt;limu&gt;
+*       IV_TRANSLATE_OBJNAME                 = &apos; &apos;
+        IMPORTING
+*       PE_RESULT                            =
+*       WE_E071                              =
+*       WE_LOCK_KEY                          =
+*       WE_COMPLETE_ONLY                     =
+*       WE_CATEGORY                          =
+*       WE_CLI_DEP                           =
+*       WE_TABLE_TYP                         =
+*       WE_TABLE_CONTFLAG                    =
+*       PE_NAME_TOO_LONG                     =
+*       EV_NO_OBJECT_NAME                    =
+*       EV_R3TRTEXT_SYNTAXERROR              =
+*       EV_LANGTYP                           =
+*       EV_LANGTYPA                          =
+*       EV_LOGO_OBJ                          =
+*       EV_CURR_SETTING                      =
+*       EV_NAME_TOO_LONG_FOR_OLD             =
+*       EV_NAME_WITH_NONSTANDARD_CHARS       =
+*       EV_NAMESPACE                         =
+*       EV_INVALID_PREFIX_SYNTAX             =
+*       EV_PREFIX_NOT_ALLOWED                =
+*       EV_CASE_SENSITIVE                    =
+*       EV_OBJLEN                            =
+*       EV_INVALID_LANGUAGE_FIELD            =
+          we_tadir                             = w_tadir.
+      _objlist-type = w_tadir-object.
+      _objlist-name = w_tadir-obj_name.
+    ENDIF.
+    IF _objlist IS NOT INITIAL. APPEND _objlist TO result. ENDIF.
+  ENDLOOP.
+
+  SORT result BY type name.
+  DELETE ADJACENT DUPLICATES FROM result COMPARING type name.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_PROGLIST_2_COMPKEY" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Program list to compkey"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_GENSETC"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_entry      LIKE LINE OF result.
+  FIELD-SYMBOLS &lt;k&gt; LIKE LINE OF list.
+
+  LOOP AT list ASSIGNING &lt;k&gt;.
+    CHECK NOT &lt;k&gt;-name IS INITIAL.
+    s_entry-type = &apos;PROG&apos;.      s_entry-name = &lt;k&gt;-name.   APPEND s_entry TO result.
+  ENDLOOP.
+  SORT result. DELETE ADJACENT DUPLICATES FROM result.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONV_TABLE_2UPCASE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert source code to upercase"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table source code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;l&gt; type any.
+  LOOP AT table ASSIGNING &lt;l&gt;.    TRANSLATE &lt;l&gt; TO UPPER CASE.  ENDLOOP.    &quot;#EC SYNTCHAR</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXTEND_PACKAGE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert to package list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PACKAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_PACK"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_PACK">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Test package"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA r_exclu TYPE tr_packages.
+  DATA t_level TYPE tt_pack.
+
+  t_level = result = packages .
+  WHILE NOT t_level[] IS INITIAL.
+    SORT t_level.
+    DELETE ADJACENT DUPLICATES FROM t_level.
+
+    SELECT devclass
+        FROM tdevc
+        INTO TABLE t_level
+           FOR ALL ENTRIES IN t_level
+        WHERE parentcl = t_level-table_line.
+
+    APPEND LINES OF t_level TO result.
+  ENDWHILE.
+
+  SORT result.
+  DELETE ADJACENT DUPLICATES FROM result.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXTEND_PACKAGES" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Extend Package to sub_packages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PACKAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_PACKAGES"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TR_PACKAGES"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA r_exclu TYPE tr_packages.
+  DATA t_level TYPE tr_packages.
+  DATA s_pack LIKE LINE OF result.
+
+  CHECK NOT packages IS INITIAL.
+  r_exclu = packages.   DELETE r_exclu WHERE sign &lt;&gt; &apos;E&apos;. &quot; Keep only Devcclass to remove
+
+* Package selection
+  result = get_sub_packages( packages ).
+
+  IF NOT r_exclu IS INITIAL.
+    s_pack-sign = &apos;I&apos;.   MODIFY r_exclu FROM s_pack TRANSPORTING sign WHERE sign &lt;&gt; s_pack-sign.
+    r_exclu = get_sub_packages( r_exclu ).
+    DELETE result WHERE low IN r_exclu.
+  ENDIF.
+
+  SORT result.    DELETE ADJACENT DUPLICATES FROM result COMPARING low.
+  s_pack-sign = &apos;I&apos;.  s_pack-option = &apos;EQ&apos;.   MODIFY result FROM s_pack TRANSPORTING sign option WHERE NOT low IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLAS_NAME" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get object clas name"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="OBJECT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_CLASSNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_desc TYPE REF TO cl_abap_objectdescr.
+  DATA d_pos TYPE i.
+  DATA d_str  TYPE string.
+
+  CHECK object IS BOUND.
+* Get class name
+  o_desc ?= cl_abap_objectdescr=&gt;describe_by_object_ref( object ).
+  d_str = o_desc-&gt;absolute_name.
+  FIND ALL OCCURRENCES OF &apos;=&apos; IN d_str MATCH OFFSET d_pos.
+  IF NOT d_pos IS INITIAL.
+    ADD 1 TO d_pos.
+    IF STRLEN( d_str ) &gt; d_pos.
+      d_str = d_str+d_pos.
+    ENDIF.
+  ENDIF.
+
+  result = d_str.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_KEYS_FROM_PACKAGE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get object list from Package"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EXT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Extend to sub package"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PACKAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_PACKAGES"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  result = get_keys_from_tadir( packages = packages   ext = ext ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_KEYS_FROM_TADIR" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get object list from TADIR : Package, type, author,..."/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="AUTHOR" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_AUTHOR" PAROPTIONL="X"/>
+     <ITEM SCONAME="EXT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Extend to sub package"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_COMPNAME" PAROPTIONL="X"/>
+     <ITEM SCONAME="PACKAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_PACKAGES" PAROPTIONL="X"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+     <ITEM SCONAME="SRCSYSTEM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_SRCSYSTEM" PAROPTIONL="X"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_COMPTYPE" PAROPTIONL="X"/>
+    </PARAMETERS>
+    <SOURCE>`
+  TYPES tt_pack TYPE STANDARD TABLE OF tdevc-devclass.
+  DATA r_exclu TYPE tr_packages.
+  DATA t_devc  TYPE tt_pack.
+  DATA t_exclu TYPE tt_pack.
+  FIELD-SYMBOLS: &lt;p&gt; LIKE LINE OF t_exclu.
+
+  IF packages IS INITIAL.
+    CHECK srcsystem IS NOT INITIAL OR type IS NOT INITIAL OR name IS NOT INITIAL OR author IS NOT INITIAL. &quot; to prevent extracting all tadir
+    SELECT object obj_name
+      INTO TABLE result
+      FROM tadir
+      WHERE srcsystem IN srcsystem
+        AND object IN type
+        AND obj_name IN name
+        AND author IN author.
+    EXIT.
+  ENDIF.
+
+  r_exclu = packages.
+  DELETE r_exclu WHERE sign &lt;&gt; &apos;E&apos;. &quot; Keep only Devcclass to remove
+
+* Package selection
+  SELECT devclass
+      FROM tdevc
+      INTO TABLE t_devc
+      WHERE devclass IN packages.
+
+  IF NOT ext IS INITIAL.
+    t_devc = extend_package( t_devc ).
+  ENDIF.
+
+* Package selection
+  IF NOT r_exclu IS INITIAL.
+    SELECT devclass
+        FROM tdevc
+        INTO TABLE t_exclu
+        WHERE NOT devclass IN r_exclu.
+
+    t_exclu = extend_package( t_exclu ).
+    LOOP AT t_exclu ASSIGNING &lt;p&gt;.
+      DELETE TABLE t_devc FROM &lt;p&gt;.
+    ENDLOOP.
+  ENDIF.
+
+  IF NOT t_devc IS INITIAL.
+    SELECT object obj_name
+      INTO TABLE result
+      FROM tadir
+        FOR ALL ENTRIES IN t_devc
+      WHERE devclass = t_devc-table_line
+        AND srcsystem IN srcsystem
+        AND object IN type
+        AND obj_name IN name
+        AND author IN author.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_KEYS_FROM_TR" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get object list from Transport request"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_COMPKEYS"/>
+     <ITEM SCONAME="TR" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_TR"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA objlist TYPE tt_e071.
+*  data keys    TYPE TT_COMPKEYS.
+  DATA r_trs   TYPE tr_tr.
+
+* TR
+  SELECT trkorr trkorr trkorr
+      FROM e070
+      INTO TABLE r_trs
+      WHERE trkorr IN tr.
+
+* TR Tasks if not released
+  SELECT trkorr trkorr trkorr
+      FROM e070
+      APPENDING TABLE r_trs
+      WHERE strkorr IN tr
+        AND ( trstatus = &apos;D&apos;    &quot; Modifiable
+           OR trstatus = &apos;O&apos;    &quot; Release started
+           OR trstatus = &apos;L&apos; ). &quot; Modifiable locked
+
+* Alternative : direct but 2 range
+*  SELECT trkorr trkorr trkorr
+*    INTO TABLE r_trs
+*    from V_E071EU
+*    where TRKORR in tr OR (
+*              STRKORR in tr
+*          and ( TRSTATUS = &apos;D&apos; OR &quot; Modifiable
+*                TRSTATUS = &apos;O&apos; OR &quot; Release started
+*                TRSTATUS = &apos;L&apos;) &quot; Modifiable locked
+*          ).
+
+  SORT r_trs BY low.
+  DELETE ADJACENT DUPLICATES FROM r_trs COMPARING low.
+
+  IF NOT r_trs IS INITIAL.
+    SELECT *
+      FROM  e071
+      INTO TABLE objlist
+      FOR ALL ENTRIES IN r_trs
+      WHERE  trkorr = r_trs-low.
+
+*    keys = CONV_LIMU_2_R3TR( objlist ).
+*  create OBJECT result.
+*    result-&gt;add_keys( keys  ).
+    result = conv_limu_2_r3tr( objlist ).
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_SUB_PACKAGES" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Sub Package of packages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="PACKAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TR_PACKAGES"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TR_PACKAGES"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_level TYPE tr_packages.
+  DATA s_pack LIKE LINE OF result.
+
+  CHECK NOT packages IS INITIAL.
+
+* Package selection
+  SELECT devclass AS low
+      FROM tdevc
+      INTO CORRESPONDING FIELDS OF TABLE result
+      WHERE devclass in packages.
+
+* Package extention
+  t_level = result.
+  WHILE NOT t_level[] IS INITIAL.
+    SORT t_level.
+    DELETE ADJACENT DUPLICATES FROM t_level.
+
+    SELECT devclass AS low
+        FROM tdevc
+        INTO CORRESPONDING FIELDS OF TABLE t_level
+           FOR ALL ENTRIES IN t_level
+        WHERE parentcl = t_level-low.
+
+    APPEND LINES OF t_level TO result.
+  ENDWHILE.
+
+  SORT result.    DELETE ADJACENT DUPLICATES FROM result COMPARING low.
+  s_pack-sign = &apos;I&apos;.  s_pack-option = &apos;EQ&apos;.   MODIFY result FROM s_pack TRANSPORTING sign option WHERE NOT low IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INVERSE_TABLE_ORDER" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Inverse standard table order"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="MY_TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Any Standard Table"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA x TYPE i.
+  FIELD-SYMBOLS &lt;o&gt; TYPE ANY.
+
+  CHECK NOT my_table IS INITIAL.
+  x = LINES( my_table ) + 1.
+  LOOP AT my_table ASSIGNING &lt;o&gt;.
+    IF sy-tabix &gt;= x.   EXIT.   ENDIF.
+    INSERT &lt;o&gt; INTO my_table INDEX x.
+  ENDLOOP.
+  SUBTRACT 1 FROM x.    CHECK x &gt; 0.   DELETE my_table FROM 1 TO x.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_WORKING_AREABLE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is type could be added to Workarea"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA l_item TYPE sewor_working_area.
+
+  result = abap_false.
+* Issue 137 : Only type that can be activated should be added
+  CHECK type &lt;&gt; &apos;CLAS&apos; AND type &lt;&gt; &apos;PROG&apos; AND type &lt;&gt; &apos;FUGR&apos;.
+* Exception CLAS, PROG &amp; FUGR are not type that can be in working area despite they could be activated
+  CALL FUNCTION &apos;RS_OBJ_SUPPORTS_INACTIVE&apos;
+    EXPORTING
+      obj_type          = space
+      sub_type          = type
+    IMPORTING
+      supports_inactive = result.
+* Old way that is not working very well
+*  l_item-object = type.
+*  PERFORM get_devclass IN PROGRAM saplseworkingarea CHANGING l_item.
+*  IF l_item-object = l_item-main_item_object.
+*    result = abap_true.
+*  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="PRETTY_PRINTER" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Apply Pretty Printer to Source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INDENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Indent while Pretty Printer"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table source code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;a&gt;   TYPE ANY.
+  DATA d_remotedata   TYPE string.
+  DATA v_extend_mod   TYPE char255.
+  DATA v_komprmode(1) TYPE c VALUE &apos;0&apos;.
+  DATA v_edit_control TYPE c.
+  DATA v_status_flag  TYPE char255.
+  DATA v_convert_mode	TYPE rseumod.
+  DATA v_source_id    TYPE sy-repid.
+  DATA v_overflow_area TYPE char255.
+  DATA v_content_fill TYPE sy-index.
+  DATA v_msg          TYPE char255.
+  DATA v_incl         TYPE char255.
+  DATA v_row          TYPE char255.
+  DATA v_col          TYPE char255.
+  DATA v_wrd(30)      TYPE c.
+  DATA v_scanned      TYPE char255.
+  DATA t_mod_tab      TYPE smodi_mod_tab.
+  DATA t_lineindex    TYPE STANDARD TABLE OF edlineindx.
+  DATA t_tk           TYPE sedi_tk.
+  DATA t_stm          TYPE STANDARD TABLE OF sstmnt.
+  DATA t_dummy        TYPE STANDARD TABLE OF string.
+
+  DEFINE mac_assign.
+    d_remotedata = &amp;1.
+    assign (d_remotedata) to &lt;a&gt;.
+    if sy-subrc = 0. &lt;a&gt; = &amp;2. endif.
+  END-OF-DEFINITION.
+
+* To load Funtion Group in memory
+  CALL FUNCTION &apos;CONVERT_EDITOR_SOURCE&apos;
+    EXPORTING
+      convert_mode        = v_convert_mode
+      source_id           = v_source_id
+      extend_mod          = v_extend_mod
+      komprmode           = v_komprmode
+      edit_control        = v_edit_control
+      status_flag         = v_status_flag
+*     C_EDITOR            =
+    TABLES
+      content             = t_dummy
+      tk                  = t_tk
+      stm                 = t_stm
+      lineindex           = t_lineindex
+      mod_tab             = t_mod_tab
+    CHANGING
+      overflow_area       = v_overflow_area
+      content_fill        = v_content_fill
+      msg                 = v_msg
+      incl                = v_incl
+      row                 = v_row
+      col                 = v_col
+      wrd                 = v_wrd
+      scanned             = v_scanned.
+
+  IF indent &lt;&gt; abap_true.   v_convert_mode-indent = &apos;0&apos;.    ENDIF.
+* From FUNCTION &apos;CONVERT_EDITOR_SOURCE&apos;
+*  IF RSEUMOD-LOWERCASE = &apos;X&apos; AND RSEUMOD-STYLE NE SPACE.
+*    CASE_MODE = &apos;LOWER&apos;.
+*  ELSEIF RSEUMOD-LOWERCASE = &apos;G&apos; AND RSEUMOD-STYLE NE SPACE.
+*    CASE_MODE = &apos;HIKEY&apos;.
+*  ELSEIF RSEUMOD-STYLE NE SPACE.
+*    CASE_MODE = &apos;UPPER&apos;.
+*  ELSE.
+*    CASE_MODE = &apos;EMPTY&apos;.
+*  ENDIF.
+  mac_assign &apos;(SAPLLOCAL_EDT1)RSEUMOD-STYLE&apos; abap_true.   &quot; Change code to ....
+  mac_assign &apos;(SAPLLOCAL_EDT1)RSEUMOD-LOWERCASE&apos; space.   &quot; UPPER CASE
+  mac_assign &apos;(SAPLLOCAL_EDT1)EDIT-APP_ABAP&apos; abap_true.   &quot; ABAP Editor
+  mac_assign &apos;(SAPLLOCAL_EDT1)EDIT-LINE_SIZE&apos; swbse_c_max_line_width.       &quot; Line Size
+
+  CALL FUNCTION &apos;CONVERT_EDITOR_SOURCE&apos;
+    EXPORTING
+      convert_mode        = v_convert_mode
+      source_id           = v_source_id
+      extend_mod          = v_extend_mod
+      komprmode           = v_komprmode
+      edit_control        = v_edit_control
+      status_flag         = v_status_flag
+*     C_EDITOR            =
+    TABLES
+      content             = table
+      tk                  = t_tk
+      stm                 = t_stm
+      lineindex           = t_lineindex
+      mod_tab             = t_mod_tab
+    CHANGING
+      overflow_area       = v_overflow_area
+      content_fill        = v_content_fill
+      msg                 = v_msg
+      incl                = v_incl
+      row                 = v_row
+      col                 = v_col
+      wrd                 = v_wrd
+      scanned             = v_scanned.
+*     ENH_INSTANCE        =
+
+* Old way
+*  DATA t_step TYPE STANDARD TABLE OF edstep.
+*  DATA t_lineindex  TYPE STANDARD TABLE OF edlineindx.
+*  DATA t_usercom  TYPE STANDARD TABLE OF edusercoms.
+*  DATA t_page  TYPE rswsourcet.
+*  DATA t_tk  TYPE sedi_tk.
+*  DATA t_stm  TYPE STANDARD TABLE OF sstmnt.
+*  DATA t_linenum TYPE STANDARD TABLE OF edlinenum.
+*  DATA t_linecoms TYPE STANDARD TABLE OF edlinecoms.
+*  DATA t_delete_tab TYPE smodi_src_tab.
+*  DATA t_smodisrc_tab TYPE smodi_src_tab.
+**&quot;     VALUE(CALLBACK_USERCOM) TYPE  RSTXP-TDOBJECT DEFAULT SPACE
+**&quot;     VALUE(CALLBACK_CHECK) TYPE  RSTXP-TDOBJECT DEFAULT SPACE
+**&quot;     VALUE(CALLBACK_SAVE) TYPE  RSTXP-TDOBJECT DEFAULT SPACE
+**&quot;     VALUE(CALLBACK_PROGRAM) LIKE  TRDIR-NAME DEFAULT SPACE
+**&quot;     VALUE(CALLBACK_SET_PFKEY) TYPE  RSTXP-TDOBJECT DEFAULT SPACE
+**&quot;     VALUE(CALLBACK_BEFORE_FUNCTION) TYPE  RSTXP-TDOBJECT DEFAULT
+**&quot;       SPACE
+**&quot;     VALUE(CALLBACK_AFTER_FUNCTION) TYPE  RSTXP-TDOBJECT DEFAULT
+**&quot;       SPACE
+*  DATA v_editor_mode TYPE editormode.
+*  DATA v_case_mode(5) TYPE c VALUE &apos;UPPER&apos;.
+*  DATA v_komprmode(1) TYPE c VALUE &apos;0&apos;.
+*  DATA v_edit_control TYPE c.
+*  DATA v_cursor_i TYPE sedi_cursor.
+*  DATA v_control_content TYPE cxtab_control.
+*  DATA v_content_display TYPE sy-index.
+*  DATA v_content_fill TYPE sy-index.
+*  DATA v_content_fill_c TYPE sy-index.
+*  DATA v_linecom_shift_places TYPE sy-index.
+*  DATA v_fcode_i TYPE tse02-progfun VALUE &apos;PGPP&apos;.
+*  DATA v_flag_replconf TYPE boolean.
+*  DATA v_flag_auto_scroll TYPE boolean.
+*  DATA v_linecom_was_executed TYPE char255.
+*  DATA v_edit TYPE s38e.
+*  DATA v_new_content_display TYPE sy-index.
+*  DATA v_pcmode TYPE string VALUE &apos;2&apos;.
+*  DATA v_tdcommline TYPE  rstxp-tdcommline.
+*  DATA v_tdparam TYPE  rstxp-tdparam.
+*  DATA v_tdparam2 TYPE  rstxp-tdparam.
+*  DATA v_tdattach TYPE  rstxp-tdattach.
+*  DATA v_flag_linecom_reset TYPE char255.
+*  DATA v_undo_exported TYPE char255.
+*  DATA v_s_modified TYPE char255.
+*  DATA v_editor_content_modified TYPE char255.
+*  DATA:  BEGIN OF v_remember_i,
+*           index1 LIKE sy-tabix,
+*           offset1 LIKE sy-fdpos,
+*           linecom1(2),
+*           index2 LIKE sy-tabix,
+*           offset2 LIKE sy-fdpos,
+*           linecom2(2),
+*           content_display1 TYPE i,        &quot;CONTENT_DISPLAY zu INDEX1
+*           content_display2 TYPE i,        &quot;CONTENT_DISPLAY zu INDEX2
+*           side,
+*        END OF v_remember_i.
+**  DATA v_remember_i TYPE char255.
+*  DATA v_scanned TYPE char255.
+*  DATA v_new_source TYPE char255.
+*  DATA v_h TYPE d020s.
+*  DATA v_dynpro_language_import TYPE sy-langu.
+*  DATA v_dynpro_text TYPE char255.
+*  DATA v_motif TYPE char255.
+*  DATA v_content_app_id TYPE s38e-app_id VALUE &apos;PG&apos;.
+*  DATA v_status_flag TYPE char255.
+*  DATA v_lines_appended TYPE sy-index.
+*  DATA v_mark_flag TYPE char255.
+*  DATA v_lineal_mode TYPE char255.
+*  DATA v_auto_correct TYPE c.
+*  DATA v_suppress_dialog_flag TYPE string VALUE abap_true.
+*  DATA v_title TYPE char255.
+*  DATA v_content_display_new TYPE sy-index.
+*  DATA v_change_mod_flag TYPE char255.
+*  DATA v_dynpro_lines TYPE sy-index.
+*  DATA v_usercom_filled TYPE char255.
+*  DATA v_exclude_filled TYPE char255.
+*  DATA v_extend_mod TYPE char255.
+*  DATA v_dynpro_mod TYPE char255.
+*  DATA v_content_save_flag TYPE char255.
+*  DATA v_in_linenumber_field TYPE char255.
+*  DATA v_scrp_edtr_interface_flag TYPE char255.
+*  DATA v_with_next TYPE char255.
+*  DATA v_overflow_area TYPE char255.
+*  DATA v_msg TYPE char255.
+*  DATA v_incl TYPE char255.
+*  DATA v_row TYPE char255.
+*  DATA v_col TYPE char255.
+*  DATA v_wrd(30) TYPE c.
+*  DATA v_korrnum TYPE e070-trkorr.
+*  DATA v_f1_flag TYPE char255.
+**&quot;     VALUE(DYNPRO_IS_GENERATED) DEFAULT SPACE
+**&quot;     VALUE(DYNPRO_IS_IN_WA) DEFAULT SPACE
+**&quot;     VALUE(DYNPRO_IS_IN_FOREIGN_WA) DEFAULT SPACE
+**&quot;     VALUE(WITH_ACTIVE_SOURCES) DEFAULT SPACE
+*  DATA v_changed_max_line_neu TYPE sy-index VALUE 99999.
+*  DATA v_changed_max_line_neu_c TYPE sy-index VALUE 99999.
+*  DATA v_changed_min_line_neu TYPE sy-index.
+*  DATA v_changed_min_line_neu_c TYPE sy-index.
+*  DATA v_changed_min_line_alt TYPE sy-index.
+*  DATA v_changed_min_line_alt_c TYPE sy-index.
+*  DATA v_changed_max_line_alt TYPE sy-index VALUE 99999.
+*  DATA v_changed_max_line_alt_c TYPE sy-index VALUE 99999.
+*  DATA v_diff_altneu TYPE sy-index.
+*  DATA v_diff_altneu_c TYPE sy-index.
+*  DATA v_fb_name TYPE rs38l-name.
+*  DATA v_enter_w TYPE tse04-linecomtxt.
+**&quot;     VALUE(TRDIR_INF) LIKE  TRDIR STRUCTURE  TRDIR DEFAULT SPACE
+**&quot;     VALUE(FIND_LEN) LIKE  SY-FDPOS OPTIONAL
+**&quot;     VALUE(REPLACE_LEN) LIKE  SY-FDPOS OPTIONAL
+**&quot;     VALUE(C_EDITOR) TYPE REF TO  OBJECT OPTIONAL
+**&quot;     VALUE(CONTAINER_NEW) TYPE REF TO  CL_GUI_CUSTOM_CONTAINER OPTIONAL
+**data v_CONTAINER_NEW1) TYPE REF TO  CL_GUI_CONTAINER OPTIONAL
+**&quot;     VALUE(C1_EDITOR) TYPE REF TO  C_TEXTEDIT_CONTROL OPTIONAL
+**&quot;     VALUE(ERROR_HANDLE) TYPE  CNTL_HANDLE OPTIONAL
+**&quot;     VALUE(OLD_FCODE) LIKE  TSE02-PROGFUN OPTIONAL
+**&quot;     VALUE(IDENT_FLAG) TYPE  CHAR1 OPTIONAL
+**&quot;     VALUE(TRANSPORT_KEY) LIKE  TRKEY STRUCTURE  TRKEY OPTIONAL
+**&quot;     VALUE(P_DOCU_CONTAINER) TYPE REF TO  CL_GUI_CONTROL OPTIONAL
+**&quot;     REFERENCE(MOD_INSTANCE) TYPE REF TO  CL_CLM_TOOL_LOG OPTIONAL
+**&quot;     VALUE(CONTROL_TYPE) TYPE  C DEFAULT SPACE
+**&quot;     REFERENCE(ENH_INSTANCE) TYPE REF TO  CL_ENH_HOOK_CONTAINER
+**&quot;       OPTIONAL
+**&quot;     REFERENCE(SUBCONTAINER_TAB) TYPE  SEDI_SUB_CONT_TAB OPTIONAL
+*  mac_assign &apos;(SAPLLOCAL_EDT1)RSEUMOD-STYLE&apos; &apos;X&apos;.
+*  v_edit-app_id = &apos;PG&apos;.
+*  v_edit-app_disp = &apos;A&apos;.
+*  v_edit-app_obj  = &apos;ABAP&apos;.
+*  v_edit-app_abap = abap_true.
+**  v_edit-BUF_NAME                                      ZAPLINK_OBJECT================CM00P
+**                                     BUF_CULINE                                      000001
+**                                     BUF_SCLINE                                      000001
+**                                     BUF_CUOFFS                                      000
+**                                     BUF_CUWORD
+**                                     BUF_CUSTRG
+*  v_edit-line_size = 1024.
+*  v_edit-app_prog = abap_true.
+*
+*  CALL FUNCTION &apos;USERCOM_INPUT&apos;
+**   EXPORTING
+**     LINE_NAME                      = &apos;RSTXP-TDLINE&apos;
+**     FIRST_NAME                     = &apos;RSTXP-TDFIRST&apos;
+**     LAST_NAME                      = &apos;RSTXP-TDLAST&apos;
+**     TOTAL_NAME                     = &apos;RSTXP-TDTOTAL&apos;
+**     MARK_NAME                      = &apos;RSTXP-TDMARK&apos;
+**     MARK1_NAME                     = &apos;RSTXP-TDMARK1&apos;
+**     COMMLINE_NAME                  = &apos;RSTXP-TDCOMMLINE&apos;
+**     LINECOM_NAME                   = &apos;RSTXP-TDLINECOM&apos;
+**     SPLIT_CALL                     = &apos; &apos;
+**     INITIALIZE_EDIT_CONTROL        = &apos;X&apos;
+**     C_HANDLE                       =
+*    TABLES
+*      step                           = t_step
+*      content                        = sourcecode
+*      content_c                      = result
+*      lineindex                      = t_lineindex
+*      usercom                        = t_usercom
+*      page                           = t_page
+*      tk                             = t_tk
+*      stm                            = t_stm
+**     E                              =
+**     F                              =
+**     M                              =
+**     SMODILOG_ABAP                  =
+**     MOD_TAB                        =
+*      linenum                        = t_linenum
+*      linecoms                       = t_linecoms
+**     BUFFER                         =
+**     BUFFER_C                       =
+**     MESSAGE_TAB_I                  =
+*      delete_tab                     = t_delete_tab
+*      smodisrc_tab                   = t_smodisrc_tab
+*    CHANGING
+**     CALLBACK_USERCOM               = &apos; &apos;
+**     CALLBACK_CHECK                 = &apos; &apos;
+**     CALLBACK_SAVE                  = &apos; &apos;
+**     CALLBACK_PROGRAM               = &apos; &apos;
+**     CALLBACK_SET_PFKEY             = &apos; &apos;
+**     CALLBACK_BEFORE_FUNCTION       = &apos; &apos;
+**     CALLBACK_AFTER_FUNCTION        = &apos; &apos;
+*      editor_mode                    = v_editor_mode
+*      case_mode                      = v_case_mode
+*      komprmode                      = v_komprmode
+*      edit_control                   = v_edit_control
+*      cursor_i                       = v_cursor_i
+*      control_content                = v_control_content
+*      content_display                = v_content_display
+*      content_fill                   = v_content_fill
+*      content_fill_c                 = v_content_fill_c
+*      linecom_shift_places           = v_linecom_shift_places
+*      fcode_i                        = v_fcode_i
+*      flag_replconf                  = v_flag_replconf
+*      flag_auto_scroll               = v_flag_auto_scroll
+*      linecom_was_executed           = v_linecom_was_executed
+*      edit                           = v_edit
+*      new_content_display            = v_new_content_display
+*      pcmode                         = v_pcmode
+*      tdcommline                     = v_tdcommline
+*      tdparam                        = v_tdparam
+*      tdparam2                       = v_tdparam2
+*      tdattach                       = v_tdattach
+*      flag_linecom_reset             = v_flag_linecom_reset
+*      undo_exported                  = v_undo_exported
+*      s_modified                     = v_s_modified
+*      editor_content_modified        = v_editor_content_modified
+*      remember_i                     = v_remember_i
+*      scanned                        = v_scanned
+*      new_source                     = v_new_source
+*      h                              = v_h
+*      dynpro_language_import         = v_dynpro_language_import
+*      dynpro_text                    = v_dynpro_text
+*      motif                          = v_motif
+*      content_app_id                 = v_content_app_id
+*      status_flag                    = v_status_flag
+*      lines_appended                 = v_lines_appended
+*      mark_flag                      = v_mark_flag
+*      lineal_mode                    = v_lineal_mode
+*      auto_correct                   = v_auto_correct
+*      suppress_dialog_flag           = v_suppress_dialog_flag
+*      title                          = v_title
+*      content_display_new            = v_content_display_new
+*      change_mod_flag                = v_change_mod_flag
+*      dynpro_lines                   = v_dynpro_lines
+*      usercom_filled                 = v_usercom_filled
+*      exclude_filled                 = v_exclude_filled
+*      extend_mod                     = v_extend_mod
+*      dynpro_mod                     = v_dynpro_mod
+*      content_save_flag              = v_content_save_flag
+*      in_linenumber_field            = v_in_linenumber_field
+*      scrp_edtr_interface_flag       = v_scrp_edtr_interface_flag
+*      with_next                      = v_with_next
+*      overflow_area                  = v_overflow_area
+*      msg                            = v_msg
+*      incl                           = v_incl
+*      row                            = v_row
+*      col                            = v_col
+*      wrd                            = v_wrd
+*      korrnum                        = v_korrnum
+*      f1_flag                        = v_f1_flag
+**     DYNPRO_IS_GENERATED             = v_DYNPRO_IS_GENERATED
+**     DYNPRO_IS_IN_WA                 = v_DYNPRO_IS_IN_WA
+**     DYNPRO_IS_IN_FOREIGN_WA         = v_DYNPRO_IS_IN_FOREIGN_WA
+**     WITH_ACTIVE_SOURCES             = v_WITH_ACTIVE_SOURCES
+*      changed_max_line_neu           = v_changed_max_line_neu
+*      changed_max_line_neu_c         = v_changed_max_line_neu_c
+*      changed_min_line_neu           = v_changed_min_line_neu
+*      changed_min_line_neu_c         = v_changed_min_line_neu_c
+*      changed_min_line_alt           = v_changed_min_line_alt
+*      changed_min_line_alt_c         = v_changed_min_line_alt_c
+*      changed_max_line_alt           = v_changed_max_line_alt
+*      changed_max_line_alt_c         = v_changed_max_line_alt_c
+*      diff_altneu                    = v_diff_altneu
+*      diff_altneu_c                  = v_diff_altneu_c
+*      fb_name                        = v_fb_name
+*      enter_w                        = v_enter_w.
+**     TRDIR_INF                      = &apos; &apos;
+**     FIND_LEN                       =
+**     REPLACE_LEN                    =
+**     C_EDITOR                       =
+**     CONTAINER_NEW                  =
+**     CONTAINER_NEW1                 =
+**     C1_EDITOR                      =
+**     ERROR_HANDLE                   =
+**     OLD_FCODE                      =
+**     IDENT_FLAG                     =
+**     TRANSPORT_KEY                  =
+**     P_DOCU_CONTAINER               =
+**     MOD_INSTANCE                   =
+**     CONTROL_TYPE                   = &apos; &apos;
+**     ENH_INSTANCE                   =
+**     SUBCONTAINER_TAB               =
+
+* Cleanning comments like &apos;&quot; my comment&apos; but keeps comment like &apos;&quot;#EC&apos;
+  DATA t_tokens TYPE STANDARD TABLE OF stokes.
+  DATA t_statements TYPE STANDARD TABLE OF sstmnt.
+  DATA t_lines   TYPE SORTED TABLE OF sstmnt WITH UNIQUE KEY trow.
+*  DATA t_kw      TYPE STANDARD TABLE OF char255.
+*  DATA s_kw      LIKE LINE OF t_kw.
+  DATA d_tabix   TYPE sy-tabix.
+  DATA t_result  TYPE match_result_tab.
+  FIELD-SYMBOLS:
+    &lt;st&gt; LIKE LINE OF t_lines,
+    &lt;r&gt;  LIKE LINE OF t_result.
+
+*  s_kw = &apos;&quot;&apos;.    APPEND s_kw TO t_kw.
+  SCAN ABAP-SOURCE table TOKENS INTO t_tokens
+                     STATEMENTS INTO t_statements.
+*                       KEYWORDS FROM t_kw.
+  SORT t_statements BY trow. DELETE ADJACENT DUPLICATES FROM t_statements COMPARING trow.
+  DELETE t_statements WHERE trow = 0.
+  t_lines = t_statements.
+*  zaplink_tools=&gt;inverse_table_order( CHANGING my_table = t_statements ).
+  LOOP AT table ASSIGNING &lt;a&gt;.
+    CHECK &lt;a&gt; CP &apos;*&quot;*&apos; AND NOT &lt;a&gt; CP &apos;*&quot;##EC*&apos;.
+    d_tabix = sy-tabix.
+    READ TABLE t_lines ASSIGNING &lt;st&gt;
+         WITH TABLE KEY trow = d_tabix.
+*    if sy-subrc = 4.    read TABLE t_lines ASSIGNING &lt;sT&gt; INDEX sy-tabix.     endif.
+    CHECK sy-subrc = 0.
+    FIND ALL OCCURRENCES OF &apos;&quot;&apos; IN &lt;a&gt; RESULTS t_result.
+    LOOP AT t_result ASSIGNING &lt;r&gt;.
+      CHECK &lt;r&gt;-offset &gt;  &lt;st&gt;-tcol.
+      &lt;a&gt; = &lt;a&gt;(&lt;r&gt;-offset).    EXIT.
+    ENDLOOP.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REMOVE_COMMENT_ON_SOURCE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove comment on source code"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table source code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;l&gt; type any.
+  LOOP AT table ASSIGNING &lt;l&gt;.
+    IF &lt;l&gt; IS INITIAL. DELETE table. CONTINUE. ENDIF.  &quot; Condense
+    IF &lt;l&gt;(1) = &apos;*&apos;.   DELETE table. CONTINUE. ENDIF.  &quot; Condense
+    &lt;l&gt; = conv_abap_line( &lt;l&gt; ).
+*    CONDENSE &lt;l&gt;.
+*    IF &lt;l&gt;(1) = &apos;&quot;&apos;.   DELETE table. CONTINUE. ENDIF.  &quot; commented line like :     &quot; comment
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REMOVE_COMP_FROM_WORKING_AREA" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove component from Working Area"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component Name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component Type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _name     TYPE e071-obj_name.
+
+  _name = name.
+  IF type =&apos;CLAS&apos;.
+* Issue 137 : Remove erroneous Working Area entries
+* Do not works : FM DELETE transform CLAS into * NAME=% :-(
+    DELETE FROM dwinactiv WHERE object = type
+                          AND obj_name = _name.
+  ELSE.
+    CALL FUNCTION &apos;RS_DELETE_FROM_WORKING_AREA&apos;
+      EXPORTING
+        object                 = type
+        obj_name               = _name
+        immediate              = abap_true
+        actualize_working_area = abap_false.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TABLE_2_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert standard table to string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="String"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table of String or Equiv"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s TYPE string.
+
+  CHECK NOT source IS INITIAL.
+  LOOP AT source INTO s.
+    CONCATENATE result cl_abap_char_utilities=&gt;newline s INTO result.
+  ENDLOOP.
+  SHIFT result LEFT BY 1 PLACES.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNZIP_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="unGZIP String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XSTRING"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+  TRY.
+      CALL METHOD cl_abap_gzip=&gt;decompress_text
+        EXPORTING
+          gzip_in      = data
+*          gzip_in_len  = -1
+          conversion   = &apos;DEFAULT&apos;
+        IMPORTING
+*          text_out_len =
+          text_out     = result.
+    CATCH cx_parameter_invalid_range.
+      result = data.
+    CATCH cx_sy_buffer_overflow.
+      result = data.
+    CATCH cx_sy_conversion_codepage.
+      result = data.
+    CATCH cx_sy_compression_error.
+      result = data.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ZIP_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="GZIP String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="XSTRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+  TRY.
+      CALL METHOD cl_abap_gzip=&gt;compress_text
+        EXPORTING
+          text_in        = data
+*      text_in_len    = -1
+          compress_level = 9
+          conversion     = &apos;DEFAULT&apos;
+        IMPORTING
+*      gzip_out_len   =
+          gzip_out       = result.
+    CATCH cx_parameter_invalid_range.
+      result = data.
+    CATCH cx_sy_buffer_overflow.
+      result = data.
+    CATCH cx_sy_conversion_codepage.
+      result = data.
+  ENDTRY.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="T01">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Error in MD5 Hash" LENGTH="100 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEDI" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEWOR" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SMODI" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TT_E071" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    TT_E071 type STANDARD TABLE OF e071 with DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transport Request entries"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_PACK" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_pack TYPE STANDARD TABLE OF tdevc-devclass with DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

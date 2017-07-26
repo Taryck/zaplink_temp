@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4B7914967BA3159E3603EBFA10B2ADB4" CONNECTOR="3D34954BEABE5F12E1000000AC120173" NAME="DTZAPLINK_FUNCTION_GROUP-CONFH" TYPE="DOCV" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA APPLICATION="DOKU" MASTERLANG="E" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1"/>
+  <TEXTS>
+   <ITEM LANGU="E">* In most case, this pop-up appears because a name conflict. The function
+  module &amp;FUNCTION&amp;, that you&apos;re trying to import in this system, already
+  exists in the function group &amp;GROUP&amp;. You should cancel and remove
+  naming conflict. You can do this either :
+* - in your container file (XML) : rename function &amp;FUNCTION&amp; in function
+  group &amp;CURRENT_G&amp;
+* - in SAP system : rename function module &amp;FUNCTION&amp; in your SAP System
+  to allow import of this new function.
+*
+* If function is the same and you just want to move it. Choose &apos;Yes&apos; to
+  confirm deletion.</ITEM>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

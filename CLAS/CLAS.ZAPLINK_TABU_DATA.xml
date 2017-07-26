@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="09DA7373A61184DF9B3F1A2DC43A1360" CODE_SIGNATURE="40BAF6447778E41D8B0C77C8608702E8" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_TABU_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Table (SE11) Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DICTIONARY
+ASDefine XML structure of a Table or Structure
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="CONTENT" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table&apos;s content"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DICTIONARY" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS ZAPLINK_DOCUMENTATION DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_TABLE_NAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA d_name     TYPE ddobjname.
+  DATA t_fields   TYPE STANDARD TABLE OF dd03p.
+  DATA s_line     TYPE REF TO data.
+  FIELD-SYMBOLS:
+    &lt;f&gt; LIKE LINE OF t_fields,
+    &lt;s&gt; TYPE ANY,
+    &lt;m&gt; TYPE ANY,
+    &lt;t&gt; TYPE STANDARD TABLE.
+
+  CREATE DATA content TYPE STANDARD TABLE OF (table).
+  ASSERT sy-subrc = 0.
+
+  ASSIGN content-&gt;* TO &lt;t&gt;.
+  ASSERT sy-subrc = 0.
+
+  SELECT *
+    INTO TABLE &lt;t&gt;
+    FROM (table).
+  ASSERT sy-subrc = 0.
+
+  CHECK &lt;t&gt; IS NOT INITIAL.
+  d_name = table.
+  CALL FUNCTION &apos;DDIF_TABL_GET&apos;
+  EXPORTING
+    name                = d_name
+    state               = &apos;M&apos;
+*       LANGU               = &apos; &apos;
+*  IMPORTING
+**       GOTSTATE            =
+*    dd02v_wa            = s_fm_data-header
+*    dd09l_wa            = s_fm_data-tech
+  TABLES
+    dd03p_tab           = t_fields
+*    dd05m_tab           = s_fm_data-fk_fields
+*    dd08v_tab           = s_fm_data-forein_keys
+*    dd12v_tab           = s_fm_data-indexes
+*    dd17v_tab           = s_fm_data-idx_fields
+*    dd35v_tab           = s_fm_data-search_helps
+*    dd36m_tab           = s_fm_data-sh_fields
+  EXCEPTIONS
+    illegal_input       = 1
+    OTHERS              = 2.
+
+  CREATE DATA s_line TYPE (table).
+  ASSERT sy-subrc = 0.
+
+  ASSIGN s_line-&gt;* TO &lt;s&gt;.
+  ASSERT sy-subrc = 0.
+
+  LOOP AT t_fields ASSIGNING &lt;f&gt;
+          WHERE datatype = &apos;CLNT&apos;
+            AND keyflag = abap_true.
+    LOOP AT &lt;t&gt; ASSIGNING &lt;s&gt;.
+      ASSIGN COMPONENT &lt;f&gt;-fieldname OF STRUCTURE &lt;s&gt; TO &lt;m&gt;.
+      ASSERT sy-subrc = 0.
+      CLEAR &lt;m&gt;.
+    ENDLOOP.
+    EXIT.   &quot; expect only one : Second one might be application value
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TD_TABLE_NAME" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="DD02L-TABNAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table Name"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

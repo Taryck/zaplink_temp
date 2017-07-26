@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="A8EF5FFAA6232CD81C779D1EE4BA4D23" CODE_SIGNATURE="51DB08FCCFBB45D9A9559213415162C3" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_FILE_ZIP" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_FILE"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE-EXT" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <INHERITANCE REFCLSNAME="ZAPLINK_FILE" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Zap Link Extended File Manager">U1&amp;FUNCTIONALITY&amp;
+ASExtend file management for ZIP files
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="FILEKINDS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF filekinds,
+          normal    TYPE td_filekind VALUE space,           &quot;#EC NOTEXT
+          zipped    TYPE td_filekind VALUE &apos;Z&apos;,             &quot;#EC NOTEXT
+        END OF filekinds
+`</ITEM>
+   <ITEM CMPNAME="FILENAME_IN_ZIP" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;container.xml&apos;" TYPTYPE="1" TYPE="TD_FILENAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename in ZIP file"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ZIP_FILE_EXTENSION" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;.zip&apos;" TYPTYPE="1" TYPE="TD_FILENAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZIP file extention"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_FILEKIND" EXPOSURE="1" STATE="1" ATTVALUE="FILEKINDS-ZIPPED" TYPTYPE="1" TYPE="TD_FILEKIND">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File Kind : Normal, Compressed"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="GET_FILEKIND" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="FileKind : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_FILEKIND">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File Kind : Normal, Compressed"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+result = _filekind.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_FILEKIND" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="FileKind : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILEKIND">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File Kind : Normal, Compressed"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+IF     data &lt;&gt; filekinds-normal
+     AND data &lt;&gt; filekinds-zipped.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filekind
+                  filekind = data.
+  ENDIF.
+
+  _filekind = data.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_FILE" MTDNAME="LOAD">
+    <SOURCE>`
+  DATA _cx       TYPE REF TO ZCX_ZL_FILE.
+  DATA tmptable  TYPE STANDARD TABLE OF x.
+  DATA cx_name   TYPE string.
+  DATA cx        TYPE REF TO cx_root.
+  DATA x_string  TYPE xstring.
+  DATA string_size  TYPE i.
+  DATA file_type TYPE char10.
+  DATA file_size TYPE i.
+  DATA _str    LIKE LINE OF tmptable.
+  DATA o_zip   TYPE REF TO cl_abap_zip.
+  DATA o_conv  TYPE REF TO cl_abap_conv_in_ce.
+  DATA x TYPE string.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF tmptable.
+
+  CASE _filekind.
+    WHEN filekinds-normal.
+      TRY.
+          super-&gt;load( ).
+        CATCH ZCX_ZL_FILE INTO _cx.
+          RAISE EXCEPTION _cx.
+      ENDTRY.
+    WHEN filekinds-zipped.
+
+      IF _filetype = c_ft_local.
+        IF _filename IS INITIAL.
+          load_dialog( ).
+        ELSE.
+          file_type = &apos;BIN&apos;.      &quot; change in debug
+          CALL METHOD cl_gui_frontend_services=&gt;gui_upload
+            EXPORTING
+              filename                 = _filename
+              filetype                 = file_type
+*              has_field_separator     = SPACE
+*              header_length           = 0
+*              read_by_line            = &apos;X&apos;
+*              dat_mode                = SPACE
+*              codepage                = SPACE
+*              ignore_cerr             = ABAP_TRUE
+*              replacement             = &apos;#&apos;
+*              virus_scan_profile      =
+            IMPORTING
+              filelength              = file_size
+*              header                  =
+            CHANGING
+              data_tab                = tmptable
+            EXCEPTIONS
+              file_open_error         = 1
+              file_read_error         = 2
+              no_batch                = 3
+              gui_refuse_filetransfer = 4
+              invalid_type            = 5
+              no_authority            = 6
+              unknown_error           = 7
+              bad_data_format         = 8
+              header_not_allowed      = 9
+              separator_not_allowed   = 10
+              header_too_long         = 11
+              unknown_dp_error        = 12
+              access_denied           = 13
+              dp_out_of_memory        = 14
+              disk_full               = 15
+              dp_timeout              = 16
+              not_supported_by_gui    = 17
+              error_no_gui            = 18
+              OTHERS                  = 19.
+          IF sy-subrc &lt;&gt; 0.
+            CASE sy-subrc.
+              WHEN &apos;1&apos;.
+                cx_name = &apos;&apos;.
+              WHEN OTHERS.
+                cx_name = &apos;OTHERS&apos;.
+            ENDCASE.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                  EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                          filename = _filename
+                          filetype = _filetype
+                           cx_name = cx_name.
+          ENDIF.
+          file_size = LINES( tmptable ).
+          CALL FUNCTION &apos;SCMS_BINARY_TO_XSTRING&apos;
+            EXPORTING
+              input_length       = file_size
+*             FIRST_LINE         = 0
+*             LAST_LINE          = 0
+            IMPORTING
+              buffer             = x_string
+            TABLES
+              binary_tab         = tmptable
+           EXCEPTIONS
+             failed             = 1
+             OTHERS             = 2
+                    .
+          IF sy-subrc &lt;&gt; 0.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          ENDIF.
+
+        ENDIF.
+      ELSEIF _filetype = c_ft_server.
+        TRY.
+            OPEN DATASET _filename FOR INPUT IN BINARY MODE.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;save_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+        IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+          RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                        filename = _filename
+                        filetype = _filetype
+                         cx_name = &apos;OPEN DATASET&apos;.
+        ENDIF.
+
+*    DO.
+        TRY.
+            READ DATASET _filename INTO x_string.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;load_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+*      IF sy-subrc &lt;&gt; 0.
+*        EXIT.
+*      ENDIF.
+*      APPEND _str TO tmptable.
+*    ENDDO.
+
+        TRY.
+            CLOSE DATASET _filename.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;save_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+        IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+          RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                        filename = _filename
+                        filetype = _filetype
+                         cx_name = &apos;CLOSE DATASET&apos;.
+        ENDIF.
+      ENDIF.
+
+      TRY.
+          CREATE OBJECT o_zip.
+          CALL METHOD o_zip-&gt;load
+            EXPORTING
+              zip             = x_string
+            EXCEPTIONS
+              zip_parse_error = 1
+              OTHERS          = 2.
+          IF sy-subrc &lt;&gt; 0.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                       WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          ENDIF.
+          CALL METHOD o_zip-&gt;get
+             EXPORTING
+               name                    = filename_in_zip
+*              index                   = 0
+             IMPORTING
+               content                 = x_string
+             EXCEPTIONS
+               zip_index_error         = 1
+               zip_decompression_error = 2
+               OTHERS                  = 3.
+          IF sy-subrc &lt;&gt; 0.
+            CALL METHOD o_zip-&gt;get
+               EXPORTING
+*               name                    = filename_in_zip
+                 index                   = 1
+               IMPORTING
+                 content                 = x_string
+               EXCEPTIONS
+                 zip_index_error         = 1
+                 zip_decompression_error = 2
+                 OTHERS                  = 3.
+            IF sy-subrc &lt;&gt; 0.
+              MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                         WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+            ENDIF.
+          ENDIF.
+
+          o_conv = cl_abap_conv_in_ce=&gt;create( ).
+          o_conv-&gt;convert( EXPORTING input = x_string
+                           IMPORTING  data = _content ).
+        CATCH cx_root INTO cx.
+          CREATE OBJECT _cx
+            EXPORTING
+              textid   = ZCX_ZL_FILE=&gt;save_error
+              filename = _filename
+              filetype = _filetype
+              previous = cx.
+          _cx-&gt;update( ).
+          RAISE EXCEPTION _cx.
+      ENDTRY.
+
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                    filetype = _filetype.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_FILE" MTDNAME="SAVE">
+    <SOURCE>`
+  DATA _cx TYPE REF TO ZCX_ZL_FILE.
+  DATA tmptable TYPE STANDARD TABLE OF x.
+  DATA cx_name TYPE string.
+  DATA cx TYPE REF TO cx_root.
+  DATA x_string TYPE xstring.
+  DATA file_type TYPE char10.
+  DATA file_size TYPE i.
+  DATA o_zip   TYPE REF TO cl_abap_zip.
+  DATA o_conv  TYPE REF TO cl_abap_conv_out_ce.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF tmptable.
+
+  CASE _filekind.
+    WHEN filekinds-normal.
+      TRY.
+          super-&gt;save( ).
+        CATCH ZCX_ZL_FILE INTO _cx.
+          RAISE EXCEPTION _cx.
+      ENDTRY.
+    WHEN filekinds-zipped.
+
+      TRY.
+          o_conv = cl_abap_conv_out_ce=&gt;create( ).
+          o_conv-&gt;convert( EXPORTING   data = _content
+                           IMPORTING buffer = x_string ).
+          CREATE OBJECT o_zip.
+          CALL METHOD o_zip-&gt;add
+            EXPORTING
+              name    = filename_in_zip
+              content = x_string.
+          x_string = o_zip-&gt;save( ).
+        CATCH cx_root INTO cx.
+          CREATE OBJECT _cx
+            EXPORTING
+              textid   = ZCX_ZL_FILE=&gt;save_error
+              filename = _filename
+              filetype = _filetype
+              previous = cx.
+          _cx-&gt;update( ).
+          RAISE EXCEPTION _cx.
+      ENDTRY.
+
+      IF _filetype = c_ft_local.
+        IF _filename IS INITIAL.
+          save_dialog( ).
+        ELSE.
+          CALL FUNCTION &apos;SCMS_XSTRING_TO_BINARY&apos;
+            EXPORTING
+              buffer                = x_string
+*       APPEND_TO_TABLE       = &apos; &apos;
+           IMPORTING
+             output_length         = file_size
+            TABLES
+              binary_tab            =  tmptable.
+
+          CONCATENATE _filename zip_file_extension INTO _filename.
+          file_type = &apos;BIN&apos;.      &quot; change in debug
+          CALL METHOD cl_gui_frontend_services=&gt;gui_download
+            EXPORTING
+              bin_filesize              = file_size
+              filename                  = _filename
+              filetype                  = file_type
+*      append                    = SPACE
+*      write_field_separator     = SPACE
+*      header                    = &apos;00&apos;
+*      trunc_trailing_blanks     = SPACE
+*      write_lf                  = &apos;X&apos;
+*      col_select                = SPACE
+*      col_select_mask           = SPACE
+*      dat_mode                  = SPACE
+*      confirm_overwrite         = SPACE
+*      no_auth_check             = SPACE
+*      codepage                  = SPACE
+*      ignore_cerr               = ABAP_TRUE
+*      replacement               = &apos;#&apos;
+*      write_bom                 = SPACE
+*      trunc_trailing_blanks_eol = &apos;X&apos;
+*      wk1_n_format              = SPACE
+*      wk1_n_size                = SPACE
+*      wk1_t_format              = SPACE
+*      wk1_t_size                = SPACE
+*    IMPORTING
+*      filelength                =
+            CHANGING
+              data_tab                  = tmptable
+            EXCEPTIONS
+              file_write_error          = 1
+              no_batch                  = 2
+              gui_refuse_filetransfer   = 3
+              invalid_type              = 4
+              no_authority              = 5
+              unknown_error             = 6
+              header_not_allowed        = 7
+              separator_not_allowed     = 8
+              filesize_not_allowed      = 9
+              header_too_long           = 10
+              dp_error_create           = 11
+              dp_error_send             = 12
+              dp_error_write            = 13
+              unknown_dp_error          = 14
+              access_denied             = 15
+              dp_out_of_memory          = 16
+              disk_full                 = 17
+              dp_timeout                = 18
+              file_not_found            = 19
+              dataprovider_exception    = 20
+              control_flush_error       = 21
+              not_supported_by_gui      = 22
+              error_no_gui              = 23
+              OTHERS                    = 24.
+          IF sy-subrc &lt;&gt; 0.
+            CASE sy-subrc.
+              WHEN &apos;1&apos;.
+                cx_name = &apos;&apos;.
+              WHEN OTHERS.
+                cx_name = &apos;OTHERS&apos;.
+            ENDCASE.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                  EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                          filename = _filename
+                          filetype = _filetype
+                           cx_name = cx_name.
+          ENDIF.
+        ENDIF.
+      ELSEIF _filetype = c_ft_server.
+        TRY.
+            OPEN DATASET _filename FOR OUTPUT IN BINARY MODE.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;save_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+        IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+          RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                        filename = _filename
+                        filetype = _filetype
+                         cx_name = &apos;OPEN DATASET&apos;.
+        ENDIF.
+
+        TRY.
+            TRANSFER x_string TO _filename.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;save_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+
+        TRY.
+            CLOSE DATASET _filename.
+          CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+            CREATE OBJECT _cx
+              EXPORTING
+                textid   = ZCX_ZL_FILE=&gt;save_error
+                filename = _filename
+                filetype = _filetype
+                previous = cx.
+            _cx-&gt;update( ).
+            RAISE EXCEPTION _cx.
+        ENDTRY.
+        IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+          RAISE EXCEPTION TYPE ZCX_ZL_FILE
+                EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                        filename = _filename
+                        filetype = _filetype
+                         cx_name = &apos;CLOSE DATASET&apos;.
+        ENDIF.
+      ENDIF.
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                    filetype = _filetype.
+  ENDCASE.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPES>
+   <ITEM CMPNAME="TD_FILEKIND" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File Kind : Normal, Compressed"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

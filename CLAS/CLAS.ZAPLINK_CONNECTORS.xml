@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="BB63C1A2E5F271C7988D25A5BD759D76" CODE_SIGNATURE="66505752E050FB52B733E20CA116D820" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_CONNECTORS" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink Connectors">U1&amp;FUNCTIONALITY&amp;
+ASThis class provides various functionalities for Connectors. Take a lot
+  to each method for more details.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="COMP_NODENAME" EXPOSURE="1" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="COMP_NODENAME"/>
+   <ITEM CMPNAME="TD_COMPEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPEXISTS"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_COMPTEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTEXT"/>
+   <ITEM CMPNAME="TD_COMPTYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPTYPE"/>
+   <ITEM CMPNAME="TD_CONNCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNCLASS"/>
+   <ITEM CMPNAME="TD_CONNEXISTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNEXISTS"/>
+   <ITEM CMPNAME="TD_CONNUUID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_CONNUUID"/>
+   <ITEM CMPNAME="TD_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DEVCLASS"/>
+   <ITEM CMPNAME="TD_FILENAME" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_FILENAME"/>
+   <ITEM CMPNAME="TD_OBJ_TYPE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_OBJ_TYPE"/>
+   <ITEM CMPNAME="TD_TRANSPORT_KIND" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TRANSPORT_KIND"/>
+   <ITEM CMPNAME="TD_TYPEORDER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TYPEORDER"/>
+   <ITEM CMPNAME="TD_TYPE_AS_TEXT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_TYPE_AS_TEXT"/>
+   <ITEM CMPNAME="TO_XML" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TO_XML"/>
+   <ITEM CMPNAME="TS_COMPTYPE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_COMPTYPE"/>
+   <ITEM CMPNAME="TS_CONN_CLASS" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_CLASS"/>
+   <ITEM CMPNAME="TS_CONN_DEF" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_CONN_DEF"/>
+   <ITEM CMPNAME="TT_TYPELIST" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TYPELIST"/>
+   <ITEM CMPNAME="TT_TYPES" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TYPES"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="C_CLASS" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TS_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component type def"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXISTS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF exists,
+          exists     TYPE td_connexists VALUE ZAPLINK_DATATYPES~EXISTS-exists,
+          not_exists TYPE td_connexists VALUE ZAPLINK_DATATYPES~EXISTS-not_exists,
+        END OF exists
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Exists constants"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="LOCAL_DEVCLASS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;$LOCAL$&apos;" TYPTYPE="1" TYPE="TD_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Devclass for Local class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MAX_ORDER" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;999999&apos;" TYPTYPE="1" TYPE="TD_TYPEORDER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Max (and default) Rank for type"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SAPTYPES" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_SAPTYPES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of SAP Types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUPPORTED_TYPES" EXPOSURE="2" STATE="1" ATTDECLTYP="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TT_TYPES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of all supported types">U1&amp;MEANING&amp;
+ASList all component types that is supported by one or more connector.
+  Each component of a type listed in this table could be exported using a
+  connector installed in this SAP System.
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TYPE_LIST" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_TYPELIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connectors for all components types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="VALUE_TABLE" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_VALUES"/>
+   <ITEM CMPNAME="XMLENGINE" STATE="1" ATTDECLTYP="1" TYPTYPE="3" TYPE="IF_IXML">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="XML Engine"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_CLASSES" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TT_CLASSES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Classe list"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="1 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD_LOCAL_CONNECTOR" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Local connectors"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="LOCAL_CLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONNCLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object Type : ClassName"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+*  TRY.
+
+      _add_connector( class = local_class
+                   devclass = local_devclass ).
+      _update_def_class( ).
+
+*    CATCH zaplink_cx_connector INTO o_mycx.
+*      RAISE EXCEPTION o_mycx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA t_types    TYPE STANDARD TABLE OF ko100 WITH DEFAULT KEY.
+  DATA s_saptypes LIKE LINE OF saptypes.
+  DATA t_saptypes TYPE STANDARD TABLE OF ts_saptypes.
+  FIELD-SYMBOLS:
+    &lt;t&gt; LIKE LINE OF t_types.
+
+* Create XML Engine
+  xmlengine = cl_ixml=&gt;create( ).
+
+  CALL FUNCTION &apos;TR_OBJECT_TABLE&apos;
+*   IMPORTING
+*     WE_TABLE_LINES       =
+    TABLES
+      wt_object_text       = t_types.
+
+  SORT t_types BY object.
+  DELETE ADJACENT DUPLICATES FROM t_types COMPARING object.
+
+  LOOP AT t_types ASSIGNING &lt;t&gt;.
+    CLEAR s_saptypes. s_saptypes-hdr = &lt;t&gt;.
+    s_saptypes-order = max_order.
+    APPEND s_saptypes TO t_saptypes.
+  ENDLOOP.
+
+  saptypes = t_saptypes.
+
+  c_class-type = &apos;CLAS&apos;.    c_class-kind = zaplink_connectors=&gt;get_typekind( c_class-type ).
+
+  s_saptypes-order = 50.  MODIFY saptypes FROM s_saptypes TRANSPORTING order WHERE object = &apos;DEVC&apos;.
+  s_saptypes-order = 100. MODIFY saptypes FROM s_saptypes TRANSPORTING order WHERE object = &apos;INTF&apos;.
+  s_saptypes-order = 150. MODIFY saptypes FROM s_saptypes TRANSPORTING order WHERE object = c_class-type.
+
+  TRY.
+      reset_connectors( ).
+    CATCH ZCX_ZL_CNX_TWICE_UUID ZCX_ZL_CNX_TWICE_CLASS INTO o_cx.
+        RAISE EXCEPTION o_cx.   &quot;  Major failure that will cause Short Dump
+    CATCH zcx_zaplink INTO o_cx.
+      &quot; Ignore other exceptions
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEAR_CONNECTORS" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove all connectors"/>
+    </TEXTS>
+    <SOURCE>`
+  clear type_list.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_CONNECTOR" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONNUUID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONNUUID" PAROPTIONL="X"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_CONNECTOR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAP Link Connector interface"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE" PAROPTIONL="X"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _cx        TYPE REF TO cx_root.
+  DATA _conn      LIKE LINE OF type_list.
+  DATA _classname TYPE td_connclass.
+  FIELD-SYMBOLS:
+    &lt;cl&gt; LIKE LINE OF _classes,
+    &lt;c&gt; LIKE LINE OF _conn-classes.
+
+* Check same class already loaded
+  IF NOT connuuid IS INITIAL.
+    READ TABLE _classes ASSIGNING &lt;cl&gt;
+               WITH TABLE KEY uuid = connuuid.
+    IF sy-subrc &lt;&gt; 0.
+* Class &apos;&amp;CONNUUID&amp;&apos; for type &apos;&amp;TYPE&amp;&apos; is not a valid connector. Check attribute SUPPORTED_TYPES of Class &apos;&amp;CONNCLASS&amp;&apos;
+      RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+        EXPORTING
+          textid   = ZCX_ZL_CONNECTOR=&gt;invalid_uuid
+          type     = type
+          connuuid = connuuid.
+    ELSE.
+      IF NOT type IS INITIAL.
+        READ TABLE &lt;cl&gt;-types TRANSPORTING NO FIELDS
+             WITH TABLE KEY type = type.
+        IF sy-subrc &lt;&gt; 0.
+* Class &apos;&amp;CONNUUID&amp;&apos; for type &apos;&amp;TYPE&amp;&apos; is not a valid connector. Check attribute SUPPORTED_TYPES of Class &apos;&amp;CONNCLASS&amp;&apos;
+          RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+            EXPORTING
+              textid    = ZCX_ZL_CONNECTOR=&gt;type_not_supported
+              type      = type
+              connclass = &lt;cl&gt;-classname
+              connuuid  = connuuid.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+    _classname = &lt;cl&gt;-classname.
+  ELSEIF NOT type IS INITIAL.
+    _conn = _search_connector( type ).
+    IF NOT _conn-classes IS INITIAL AND _conn-default_class IS INITIAL.
+      READ TABLE _conn-classes ASSIGNING &lt;c&gt; INDEX 1.
+      IF sy-subrc = 0.
+        _conn-default_class = &lt;c&gt;-classname.
+      ENDIF.
+    ENDIF.
+    _classname = _conn-default_class.
+  ELSE.
+    EXIT.
+** Class &apos;&amp;CONNUUID&amp;&apos; for type &apos;&amp;TYPE&amp;&apos; is not a valid connector. Check attribute SUPPORTED_TYPES of Class &apos;&amp;CONNCLASS&amp;&apos;
+*    RAISE EXCEPTION TYPE zaplink_cx_connector
+*               EXPORTING textid = zaplink_cx_connector=&gt;invalid_uuid
+*                           type = type
+*                       connuuid = connuuid.
+  ENDIF.
+
+  IF NOT _classname IS INITIAL.
+    TRY.
+        CREATE OBJECT result TYPE (_classname).
+      CATCH cx_root INTO _cx.
+        RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+          EXPORTING
+            textid   = zcx_zaplink=&gt;system_error
+            previous = _cx.
+    ENDTRY.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DO_EXISTS" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Exists ?"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_CONNEXISTS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Connector exists (&apos;X&apos;) or not (&apos; &apos;)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _conn LIKE LINE OF type_list.
+
+*  TRY.
+      result = exists-not_exists.
+      _conn = _search_connector( type ).
+
+      IF NOT _conn-classes IS INITIAL.
+        result = exists-exists.
+      ENDIF.
+
+*    CATCH zaplink_cx INTO o_cx.
+*      mac_cascade_raise o_mycx o_cx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLASSNAME" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get connector&apos;s classname"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="O_CONN" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_CONNECTOR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAP Link Connector interface"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_CONNCLASS"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_typedesc TYPE REF TO cl_abap_objectdescr.
+
+  CHECK o_conn IS BOUND.
+  o_typedesc ?= cl_abap_objectdescr=&gt;describe_by_object_ref( o_conn ).
+  result = o_typedesc-&gt;get_relative_name( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CONNECTORLIST" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Connector as List (object)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Connector list"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp TYPE to_component.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF _classes.
+
+  CREATE OBJECT result.
+  LOOP AT _classes ASSIGNING &lt;c&gt;
+       WHERE NOT types IS INITIAL
+         AND NOT uuid IS INITIAL.
+*    TRY.
+        CREATE OBJECT o_comp.
+        o_comp-&gt;set_type( c_class-type ).
+        o_comp-&gt;set_name( &lt;c&gt;-classname ).
+        result-&gt;add( o_comp ).
+*      CATCH zaplink_cx.
+*    ENDTRY.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_TYPEKIND" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Program ID of object type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_TRANSPORT_KIND"/>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF saptypes.
+
+  READ TABLE saptypes ASSIGNING &lt;t&gt;
+       WITH TABLE KEY object = data.
+  IF sy-subrc = 0.    result = &lt;t&gt;-pgmid.   ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_TYPEORDER" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get order of object Type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_TYPEORDER"/>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF saptypes.
+
+  READ TABLE saptypes ASSIGNING &lt;t&gt;
+       WITH TABLE KEY object = data.
+  IF sy-subrc = 0.
+    result = &lt;t&gt;-order.
+  ELSE.
+    result = max_order.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_VALUES" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Search Helps"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA lt_return TYPE STANDARD TABLE OF ddshretval.
+  DATA d_value   TYPE help_info-fldvalue.
+
+  d_value = type.
+  CALL FUNCTION &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
+    EXPORTING
+*     DDIC_STRUCTURE         = &apos; &apos;
+      retfield               = &apos;OBJECT&apos;
+*     PVALKEY                = &apos; &apos;
+*     DYNPPROG               = &apos; &apos;
+*     DYNPNR                 = &apos; &apos;
+*     DYNPROFIELD            = &apos; &apos;
+*     STEPL                  = 0
+      window_title           = &apos;Installed connectors&apos;(sh1)
+      value                  = d_value
+      value_org              = &apos;S&apos;
+*     MULTIPLE_CHOICE        = &apos; &apos;
+*     DISPLAY                = &apos; &apos;
+*     CALLBACK_PROGRAM       = &apos; &apos;
+*     CALLBACK_FORM          = &apos; &apos;
+*     MARK_TAB               =
+*   IMPORTING
+*     USER_RESET             =
+    TABLES
+      value_tab              = value_table
+*     FIELD_TAB              =
+      return_tab             = lt_return
+*     DYNPFLD_MAPPING        =
+    EXCEPTIONS
+      parameter_error        = 1
+      no_values_found        = 2
+      OTHERS                 = 3.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= zcx_zaplink=&gt;create_from_mf_cx( funcname = &apos;F4IF_INT_TABLE_VALUE_REQUEST&apos;
+                                                 subrc = sy-subrc
+                                             classname = &apos;ZAPLINK_CX_CONNECTOR&apos; ).
+    o_mycx-&gt;update( ).
+    RAISE EXCEPTION o_mycx.
+  ELSE.
+    type = d_value.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NODE_2_RAW" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert XML node to RAW"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_NODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_NODE"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_RAW_BASE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Base RAW component without data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA ez_xml    TYPE REF TO zaplink_easyxml.
+  DATA _xml_comp TYPE REF TO if_ixml_document.
+  DATA _clone    TYPE REF TO if_ixml_node.
+  DATA _cx       TYPE to_root_exception.
+
+  _xml_comp = xmlengine-&gt;create_document( ).
+  _clone = node-&gt;clone( ).
+  _xml_comp-&gt;if_ixml_node~append_child( _clone ).
+  CREATE OBJECT result.
+  CREATE OBJECT ez_xml.
+  TRY.
+      CALL METHOD ez_xml-&gt;xml2any
+        EXPORTING
+          xmldoc = _xml_comp
+        CHANGING
+          any    = result.
+    CATCH zcx_zaplink INTO _cx.
+      CREATE OBJECT o_mycx
+        EXPORTING
+          textid   = zcx_zaplink=&gt;system_error
+          previous = _cx.
+      o_mycx-&gt;update( ).
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RAW_2_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert RAW to String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_RAW_BASE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_NODE"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Base RAW component without data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_xml  TYPE to_xml.
+
+  CHECK data IS BOUND.
+*  TRY.
+      o_xml = raw_2_xml( data ).
+      result = xml_2_string( o_xml ).
+*    CATCH zaplink_cx INTO o_cx.
+*      CREATE OBJECT o_mycx
+*        EXPORTING
+*          textid   = zaplink_cx=&gt;system_error
+*          previous = o_cx.
+*      o_mycx-&gt;update( ).
+*      RAISE EXCEPTION o_mycx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RAW_2_XML" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert RAW to String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_RAW_BASE"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_XML"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA ez_xml    TYPE REF TO zaplink_easyxml.
+
+  CHECK data IS BOUND.
+
+  CREATE OBJECT ez_xml.
+*  TRY.
+      result = ez_xml-&gt;any2xml( any       = data
+                                type      = comp_nodename ).
+*    CATCH zaplink_cx INTO o_cx.
+*      mac_cascade_raise o_mycx o_cx.
+*  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RESET_CONNECTORS" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Reset all connectors to default (remove local)"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_conn      TYPE REF TO zaplink_connector.
+  DATA _connectors TYPE REF TO cl_oo_if_relations.
+  DATA o_desc      TYPE REF TO cl_abap_typedescr.
+  FIELD-SYMBOLS:
+    &lt;im_cl&gt; LIKE LINE OF _connectors-&gt;implementing_classes,
+    &lt;s_cl&gt; LIKE LINE OF _connectors-&gt;subclasses.
+
+  CLEAR type_list.
+*Issue 3
+* Check interface type (local or global).
+  o_desc = cl_abap_structdescr=&gt;describe_by_name( &apos;ZAPLINK_CONNECTOR&apos; ).
+* when Local : \PROGRAM=ZAPLINK_INSTALLER\INTERFACE=ZAPLINK_CONNECTOR
+* when Global : \INTERFACE=ZAPLINK_CONNECTOR
+  IF o_desc-&gt;absolute_name CP &apos;\INTERFACE=*&apos;.
+* Global Interface : check use
+    CREATE OBJECT _connectors
+      EXPORTING
+        clsname      = &apos;ZAPLINK_CONNECTOR&apos;
+*      w_references = seox_true
+*      w_implementings = seox_true
+*      w_comprisings = seox_true
+*      w_subclasses = seox_true
+      EXCEPTIONS
+        not_existing = 0    &quot; For installer ignore not existing class
+        is_class     = 2
+        OTHERS       = 3.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= zcx_zaplink=&gt;create_from_method_cx( class_name = &apos;cl_oo_if_relations&apos;
+                                                        method = &apos;constructor&apos;
+                                                         subrc = sy-subrc
+                                                  cx_classname = &apos;ZAPLINK_CX_CONNECTOR&apos;).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+    IF _connectors IS BOUND.
+      LOOP AT _connectors-&gt;implementing_classes ASSIGNING &lt;im_cl&gt;
+              WHERE exposure &lt;&gt; &apos;0&apos;   &quot; Private
+                AND version = &apos;1&apos;     &quot; Active
+                AND state &lt;&gt; &apos;0&apos;.     &quot; Only modeled
+
+        TRY.
+
+            _add_connector( class = &lt;im_cl&gt;-clsname ).
+
+          CATCH ZCX_ZL_CNX_TWICE_UUID ZCX_ZL_CNX_TWICE_CLASS into o_cx.
+            RAISE EXCEPTION O_CX.
+          CATCH zcx_zaplink INTO o_cx.
+*           &quot; Ignore other Exceptions
+        ENDTRY.
+
+      ENDLOOP.
+
+      LOOP AT _connectors-&gt;subclasses ASSIGNING &lt;s_cl&gt;
+              WHERE state &lt;&gt; &apos;0&apos;      &quot; Only modeled
+                AND version = &apos;1&apos;.    &quot; Active
+
+        TRY.
+
+            _add_connector( class = &lt;s_cl&gt;-clsname ).
+
+          CATCH ZCX_ZL_CNX_TWICE_UUID ZCX_ZL_CNX_TWICE_CLASS into o_cx.
+            RAISE EXCEPTION O_CX.
+          CATCH zcx_zaplink INTO o_cx.
+*           &quot; Ignore other Exceptions
+        ENDTRY.
+
+      ENDLOOP.
+
+      _update_def_class( ).
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STRING_2_XML" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert string to XML Document"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_XML"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_streamfactory  TYPE REF TO if_ixml_stream_factory.
+  DATA o_stream         TYPE REF TO if_ixml_istream.
+  DATA o_parser         TYPE REF TO if_ixml_parser.
+  DATA _tempstring      TYPE string.
+  DATA _rc              TYPE sysubrc.
+  DATA o_doc            TYPE to_xml.
+
+  CHECK NOT data IS INITIAL.
+
+  TRY.
+      o_streamfactory = xmlengine-&gt;create_stream_factory( ).
+      o_doc = xmlengine-&gt;create_document( ).
+      o_stream = o_streamfactory-&gt;create_istream_string( data ).
+      o_parser = xmlengine-&gt;create_parser(  stream_factory = o_streamfactory
+                                            istream        = o_stream
+                                            document       = o_doc ).
+      o_parser-&gt;parse( ).
+    CATCH cx_root.
+  ENDTRY.
+
+  IF o_doc IS BOUND.  result = o_doc.   ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TYPE2TEXT" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get object Type as text"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_TYPE_AS_TEXT"/>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF saptypes.
+
+  READ TABLE saptypes ASSIGNING &lt;t&gt;
+       WITH TABLE KEY object = data.
+  IF sy-subrc = 0.
+    result = &lt;t&gt;-text.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="XML_2_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert XML document to String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Base RAW component without data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_XML">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_NODE"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_xmlengine    TYPE REF TO if_ixml.
+  DATA _streamfactory TYPE REF TO if_ixml_stream_factory.
+  DATA _outputstream TYPE REF TO if_ixml_ostream.
+  DATA _renderer TYPE REF TO if_ixml_renderer.
+  DATA _tempstring TYPE string.
+  DATA _printxmldoc TYPE REF TO cl_xml_document.
+  DATA _rc      TYPE sysubrc.
+
+  CHECK xml IS BOUND.
+  o_xmlengine = cl_ixml=&gt;create( ).
+  _streamfactory = o_xmlengine-&gt;create_stream_factory( ).
+  _outputstream = _streamfactory-&gt;create_ostream_cstring( _tempstring ).
+  _renderer = xmlengine-&gt;create_renderer( document = xml
+                                           ostream = _outputstream ).
+  _renderer-&gt;set_normalizing( ).
+  _rc = _renderer-&gt;render( ).
+  CREATE OBJECT _printxmldoc.
+  _rc = _printxmldoc-&gt;parse_string( _tempstring ).
+
+  WHILE _tempstring(1) &lt;&gt; &apos;&lt;&apos;.    SHIFT _tempstring LEFT BY 1 PLACES.   ENDWHILE.
+
+  result = _tempstring.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_ADD_CONNECTOR" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add a connector to the list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONNCLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object Type : ClassName"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="DEVCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_DEVCLASS" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Devlopment class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Exception for Component"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA connector TYPE REF TO zaplink_connector.
+  DATA o_cx_root TYPE REF TO cx_root.
+  DATA o_cx_create TYPE REF TO cx_sy_create_object_error.
+  DATA cx_comp   TYPE REF TO zcx_zl_component.
+  DATA tabletypeline TYPE ko105.
+  DATA _conn     LIKE LINE OF type_list.
+  DATA _class    LIKE LINE OF _conn-classes.
+  DATA the_class LIKE LINE OF _classes.
+  DATA _value    LIKE LINE OF value_table.
+
+  FIELD-SYMBOLS:
+    &lt;cl&gt; LIKE LINE OF _classes,
+    &lt;c&gt;  LIKE LINE OF type_list,
+    &lt;st&gt; LIKE LINE OF saptypes,
+    &lt;t&gt;  LIKE LINE OF connector-&gt;supported_types.
+
+* try to build class
+  TRY.
+
+      CREATE OBJECT connector TYPE (class).
+
+    CATCH cx_sy_create_object_error INTO o_cx_create.
+      CASE o_cx_create-&gt;textid.
+        WHEN cx_sy_create_object_error=&gt;abstract_class
+          OR cx_sy_create_object_error=&gt;private_constructor
+          OR cx_sy_create_object_error=&gt;protected_constructor.
+* Ignore these exceptions
+        WHEN OTHERS.
+          mac_cascade_raise o_mycx o_cx_create.
+      ENDCASE.
+    CATCH cx_root INTO o_cx_root.
+      mac_cascade_raise o_mycx o_cx_root.
+  ENDTRY.
+
+  CHECK connector IS BOUND.
+
+  IF NOT connector-&gt;uuid IS INITIAL               AND
+     NOT connector-&gt;supported_types IS INITIAL.
+    the_class-uuid = connector-&gt;uuid.
+* Check same class already loaded
+    READ TABLE _classes ASSIGNING &lt;cl&gt;
+               WITH TABLE KEY uuid = the_class-uuid.
+    IF sy-subrc = 0.
+      IF &lt;cl&gt;-classname &lt;&gt; class.                           &quot; Issue 25
+        RAISE EXCEPTION TYPE zcx_zl_cnx_twice_uuid
+          EXPORTING
+            connclass  = class
+            otherclass = &lt;cl&gt;-classname
+            connuuid   = &lt;cl&gt;-uuid.
+      ELSEIF NOT ( &lt;cl&gt;-devclass &lt;&gt; local_devclass AND devclass = local_devclass ).
+        RAISE EXCEPTION TYPE zcx_zl_cnx_twice_class
+          EXPORTING
+            connclass = class.
+      ELSE.
+* OK : Overide general class with local class
+        LOOP AT &lt;cl&gt;-types ASSIGNING &lt;t&gt;.
+          READ TABLE type_list ASSIGNING &lt;c&gt;
+               WITH TABLE KEY object = &lt;t&gt;-type.
+          IF sy-subrc &lt;&gt; 0.
+            RAISE EXCEPTION TYPE zcx_zl_connector
+              EXPORTING
+                textid  = zcx_zl_connector=&gt;system_error
+                cx_name = &apos;TYPE NOT FOUND&apos;.
+          ELSE.
+            DELETE &lt;c&gt;-classes WHERE classname = class.
+          ENDIF.
+        ENDLOOP.
+      ENDIF.
+    ENDIF.
+
+    the_class-classname = class.
+    IF NOT devclass IS INITIAL.
+      the_class-devclass = devclass.
+    ELSE.
+      SELECT SINGLE devclass INTO the_class-devclass
+        FROM tadir
+        WHERE pgmid = c_class-kind
+          AND object = c_class-type
+          AND obj_name = the_class-classname.
+    ENDIF.
+    the_class-types = connector-&gt;supported_types.
+    INSERT the_class INTO TABLE _classes.
+
+    LOOP AT connector-&gt;supported_types ASSIGNING &lt;t&gt;.
+      READ TABLE type_list ASSIGNING &lt;c&gt;
+           WITH TABLE KEY object = &lt;t&gt;-type.
+      IF sy-subrc &lt;&gt; 0.
+        _conn-object = &lt;t&gt;-type.
+        READ TABLE saptypes ASSIGNING &lt;st&gt;
+                   WITH TABLE KEY object = _conn-object.
+        IF sy-subrc = 0.
+          _conn-text = &lt;st&gt;-text.
+        ENDIF.
+        INSERT _conn INTO TABLE type_list.
+        READ TABLE type_list ASSIGNING &lt;c&gt;
+             WITH TABLE KEY object = &lt;t&gt;-type.
+      ENDIF.
+      CLEAR _class.
+      MOVE-CORRESPONDING the_class TO _class.
+      INSERT _class INTO TABLE &lt;c&gt;-classes.
+    ENDLOOP.
+  ENDIF.
+
+  CLEAR value_table.
+  LOOP AT type_list ASSIGNING &lt;c&gt;.
+    _value-object = &lt;c&gt;-object.
+    _value-text = &lt;c&gt;-text.
+    APPEND _value TO value_table.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_SEARCH_CONNECTOR" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search for a connector in list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_CONN_DEF"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  READ TABLE type_list INTO result
+             WITH TABLE KEY object = type.
+  IF sy-subrc &lt;&gt; 0.
+    READ TABLE saptypes TRANSPORTING NO FIELDS
+               WITH TABLE KEY object = type.
+    IF sy-subrc &lt;&gt; 0.
+* Type &apos;&amp;1&apos; is not assigned to a ZAPLINK connector and is not a known SAPobject type (transaction SE01).
+      RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                 EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;invalid_type
+                             type = type.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_UPDATE_DEF_CLASS" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Update default"/>
+    </TEXTS>
+    <SOURCE>`
+  TYPES:
+    BEGIN OF t_classlist,
+      class TYPE seoclsname,
+    END OF t_classlist.
+
+  DATA classlist TYPE STANDARD TABLE OF t_classlist WITH DEFAULT KEY.
+  DATA tabletypeline TYPE ko105.
+  DATA _conn LIKE LINE OF type_list.
+  DATA _class LIKE LINE OF _conn-classes.
+  DATA _types TYPE STANDARD TABLE OF ko100 WITH DEFAULT KEY.
+  DATA s_type LIKE LINE OF supported_types.
+  FIELD-SYMBOLS:
+    &lt;c&gt; LIKE LINE OF type_list.
+
+  REFRESH supported_types.
+* Default class
+  LOOP AT type_list ASSIGNING &lt;c&gt;.
+    CLEAR: s_type.    s_type-type = &lt;c&gt;-object.   INSERT s_type INTO TABLE supported_types.
+    CHECK NOT &lt;c&gt;-classes IS INITIAL.
+    LOOP AT &lt;c&gt;-classes INTO _class   WHERE devclass = local_devclass.
+      EXIT.
+    ENDLOOP.
+    LOOP AT &lt;c&gt;-classes INTO _class   WHERE devclass = &apos;ZAPLINK-CONNECTORS-MAIN&apos;.
+      EXIT.
+    ENDLOOP.
+    IF sy-subrc &lt;&gt; 0 OR _class-classname IS INITIAL.
+      LOOP AT &lt;c&gt;-classes INTO _class WHERE devclass CP &apos;ZAPLINK-CONNECTORS*&apos;.
+        EXIT.
+      ENDLOOP.
+    ENDIF.
+    IF sy-subrc &lt;&gt; 0 OR _class-classname IS INITIAL.
+      LOOP AT &lt;c&gt;-classes INTO _class WHERE devclass CP &apos;ZAPLINK*&apos;.
+        EXIT.
+      ENDLOOP.
+    ENDIF.
+    IF sy-subrc &lt;&gt; 0 OR _class-classname IS INITIAL.
+      READ TABLE &lt;c&gt;-classes INTO _class INDEX 1.
+    ENDIF.
+    &lt;c&gt;-default_class = _class-classname.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="SH1">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Installed connectors" LENGTH="20 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="1" STATE="1" EDITORDER="9 " TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CONNECTOR" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAP Link Connector interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZCX_ZL_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for Connectors"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZapLink Components list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MSG_COLL" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW_BASE" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_RAW_BASE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Base RAW component without data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CLASS" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">BEGIN OF ts_class.
+  INCLUDE TYPE ts_conn_class.
+  TYPES:
+      types TYPE tt_types,   &quot; supported_types
+    END OF ts_class
+`</ITEM>
+   <ITEM CMPNAME="TS_COMPONENT" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">BEGIN OF ts_component,
+          type TYPE td_comptype,
+          name TYPE td_compname,
+        END OF ts_component
+`</ITEM>
+   <ITEM CMPNAME="TS_CONNDATA" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_conndata,
+          exists TYPE td_connexists,
+          classname TYPE td_connclass,
+          o_conn TYPE to_connector,
+        END OF ts_conndata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Info"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SAPTYPES" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="4">BEGIN OF ts_saptypes.
+  INCLUDE TYPE ko100 AS hdr.
+  TYPES:
+      order TYPE td_typeorder,     &quot; order of prefered load
+    END OF ts_saptypes
+`</ITEM>
+   <ITEM CMPNAME="TS_VALUE" STATE="1" EDITORDER="1 " TYPTYPE="4">BEGIN OF ts_value,
+           object TYPE td_comptype,
+           text   TYPE td_comptext,
+         END OF ts_value
+`</ITEM>
+   <ITEM CMPNAME="TT_CLASSES" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="4">tt_classes TYPE SORTED TABLE OF ts_class WITH UNIQUE KEY uuid
+`</ITEM>
+   <ITEM CMPNAME="TT_SAPTYPES" EXPOSURE="1" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    tt_saptypes TYPE HASHED TABLE OF ts_saptypes WITH UNIQUE KEY object
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of SAP CTS Types"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_VALUES" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_values TYPE STANDARD TABLE OF ts_value WITH DEFAULT KEY
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,2009 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4BB89E38FBCCF8CF1FE5B0FEF4EA3025" CODE_SIGNATURE="1EF4B7805148B1DD45F45A5B07F2FB1B" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_EASYXML" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-XML" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" RSTAT="K" MSG_ID="ZAPLINK_EASYXML">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZapLink Easy XML Tools">U1&amp;FUNCTIONALITY&amp;
+ASTransform any ABAP type into XML and read XML to store in a ABAP Type.
+  Attributes (in structure, object,...) with special name &quot;_&quot; is stored in
+  XML as a value. All other data is stored as attribute of an XML Node.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="APPLICATION_LOG" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TO_LOG">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="BAL_LEVEL" STATE="1" TYPTYPE="1" TYPE="BALLEVEL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CHAR_TO_PROTECT" STATE="1" ATTDECLTYP="1" TYPTYPE="4">
+    char_to_protect TYPE RANGE OF ABAP_CHAR1
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Charater list to be protected"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CONTEXT" STATE="1" TYPTYPE="1" TYPE="TT_CONTEXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="For debug porpuse"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CRC" STATE="1" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Return Code as String"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EN_LINE" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;ITEM&apos;" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Element Name for Table&apos;s line"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ISSUE46_PREFIX" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;_&apos;" TYPTYPE="1" TYPE="ABAP_CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Prefix for attribut name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ISSUE46_REGEX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Regex to convert back fieldname"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="IXML" EXPOSURE="1" STATE="1" TYPTYPE="3" TYPE="IF_IXML">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="IF_IXML"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MSGID" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;ZAPLINK_EASYXML&apos;" TYPTYPE="1" TYPE="SYMSGID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PROTECTION_CHAR" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;`&apos;" TYPTYPE="1" TYPE="ABAP_CHAR1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Protection Character"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="RC" STATE="1" TYPTYPE="1" TYPE="I">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Return Code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SELF_FIELDNAME" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;_&apos;" TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Special FieldName in structure">U1&amp;MEANING&amp;
+ASField Name in structure to switch XML storage location from attribute to
+  value
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+
+* Add error message to application log.
+DEFINE mac_syserr_log.
+  IF &amp;1 &lt;&gt; 0.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 000 WITH abap_true abap_true abap_true. ENDIF.
+    SET EXTENDED CHECK ON.
+*      IF not application_log is bound. MESSAGE ID MSGID TYPE &apos;E&apos; NUMBER 000 WITH abap_true abap_true abap_true. ENDIF.
+* Assuming application log is created
+    crc = &amp;1.
+* System Error &amp;1 : on &amp;2 in &amp;3
+    CALL METHOD application_log-&gt;add_error
+      EXPORTING
+*          id_msgid     = MSGID
+        id_msgno     = &apos;000&apos;
+        id_msgv1     = crc
+        id_msgv2     = &amp;2
+        id_msgv3     = &amp;3
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+        .
+  ENDIF.
+END-OF-DEFINITION.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD_ANY" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transform any data to XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_DOCUMENT"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA svalue    TYPE string.
+  FIELD-SYMBOLS: &lt;any&gt; TYPE ANY.
+
+  CHECK any IS NOT INITIAL.         &quot; prevent from do anything for an empty field
+  IF typedesc IS BOUND.
+    _desc = typedesc.
+  ELSE.
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = any ).
+  ENDIF.
+
+  _desc = get_ref_type( _desc ).
+  stack_descr( _desc ).
+  CASE _desc-&gt;kind.
+    WHEN cl_abap_datadescr=&gt;kind_ref.
+      IF _desc-&gt;type_kind = cl_abap_refdescr=&gt;typekind_dref.   &quot; Data Ref
+        ASSIGN any-&gt;* TO &lt;any&gt;.
+        IF sy-subrc = 0.        &quot; Ignore dref {A:INITIAL}
+          _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = &lt;any&gt; ).
+          add_any(   xmldoc = xmldoc
+                   xml_node = xml_node
+                       name = name
+                        any = &lt;any&gt;
+                   typedesc = _desc ).
+        ENDIF.
+      ELSE.
+* Unexpected =&gt; Ignored
+        mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_ANY&apos;.
+      ENDIF.
+    WHEN cl_abap_datadescr=&gt;kind_elem.
+      svalue = elem_2_string( any = any
+                        type_desc = _desc ).
+      IF NOT svalue IS INITIAL.
+        IF name IS INITIAL.
+          rc = xml_node-&gt;set_value( svalue ).
+          mac_syserr_log rc &apos;set_value&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_ANY&apos;.
+        ELSE.
+          rc = xml_node-&gt;set_attribute( name = name
+                                       value = svalue ).
+          mac_syserr_log rc &apos;set_attribute&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_ANY&apos;. &quot;#EC NOTEXT
+        ENDIF.
+      ENDIF.
+    WHEN cl_abap_datadescr=&gt;kind_struct.
+      add_structure(   xmldoc = xmldoc
+                     xml_node = xml_node
+                         name = name
+                    structure = any ).
+    WHEN cl_abap_datadescr=&gt;kind_table.
+      add_table(   xmldoc = xmldoc
+                 xml_node = xml_node
+                     name = name
+                    table = any ).
+    WHEN cl_abap_datadescr=&gt;kind_class.
+      add_object(   xmldoc = xmldoc
+                  xml_node = xml_node
+                      name = name
+                    object = any
+                  typedesc = _desc ).
+    WHEN cl_abap_datadescr=&gt;kind_intf.
+* To be ignored
+      svalue = _desc-&gt;get_relative_name( ).
+*      IF NOT application_log IS BOUND. MESSAGE ID MSGID TYPE &apos;E&apos; NUMBER 001 WITH abap_true abap_true. ENDIF.
+* Assuming Application_log is bound
+      SET EXTENDED CHECK OFF.
+      IF 1 = 2. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 001 WITH name svalue. ENDIF.
+      SET EXTENDED CHECK ON.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;001&apos;
+          id_msgv1     = name
+          id_msgv2     = svalue
+*          id_msgv3     = &amp;3
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+  ENDCASE.
+  unstack( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_OBJECT" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transform Object to XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="OBJECT"/>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_DOCUMENT"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA node      TYPE REF TO if_ixml_element.
+  DATA o_obj     TYPE REF TO cl_abap_classdescr.
+  DATA typedescr TYPE REF TO cl_abap_typedescr.
+  DATA svalue    TYPE string.
+  DATA sname     TYPE string.
+  DATA attr_name TYPE string.
+  DATA self_done TYPE flag.
+  FIELD-SYMBOLS:
+    &lt;d&gt; TYPE ANY,
+    &lt;any&gt; TYPE ANY,
+    &lt;a&gt; LIKE LINE OF o_obj-&gt;attributes.
+
+  IF NOT object IS BOUND. EXIT. ENDIF.
+
+* Issue 26 : describe_by_object_ref all the time
+*  IF typedesc IS BOUND.
+*    o_obj ?= typedesc.
+*  ELSE.
+*    o_obj ?= cl_abap_classdescr=&gt;describe_by_object_ref( p_object_ref = object ).
+*  ENDIF.
+*  IF o_obj-&gt;absolute_name = &apos;\CLASS=OBJECT&apos;.
+  o_obj ?= cl_abap_classdescr=&gt;describe_by_object_ref( p_object_ref = object ).
+* Replace in stack &apos;\CLASS=YYYY&apos; =&gt; &apos;\CLASS=XXXX&apos;
+  unstack( ).
+  attr_name = o_obj-&gt;absolute_name.
+  stack( attr_name ).
+*  ENDIF.
+
+  IF name IS INITIAL.
+    node = xml_node.
+  ELSE.
+    node = xmldoc-&gt;create_element( name ).
+  ENDIF.
+
+* set value before adding node or they will be lost
+  READ TABLE o_obj-&gt;attributes TRANSPORTING NO FIELDS
+       WITH KEY name = self_fieldname.
+  IF sy-subrc = 0.
+    ASSIGN object-&gt;(self_fieldname) TO &lt;d&gt;.
+    IF sy-subrc &lt;&gt; 0.
+*Error handling
+      mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT &lt;c&gt;-name OF STRUCTURE structure&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_OBJECT&apos;. &quot;#EC NOTEXT
+    ELSE.
+      add_self( xml_node = node
+                    name = name
+                    any = &lt;d&gt; ).
+      self_done = abap_true.
+    ENDIF.
+  ENDIF.
+
+  LOOP AT o_obj-&gt;attributes ASSIGNING &lt;a&gt;
+    WHERE ( visibility = cl_abap_classdescr=&gt;public OR
+            visibility = cl_abap_classdescr=&gt;protected )  &quot; May be friend of the class
+      AND is_constant IS INITIAL  &quot; Do not handle constants
+      AND is_class    IS INITIAL  &quot; Do not handle class attribute
+      AND alias_for   IS INITIAL
+      AND is_virtual  IS INITIAL.
+
+    ASSIGN object-&gt;(&lt;a&gt;-name) TO &lt;d&gt;.
+    IF sy-subrc &lt;&gt; 0.
+* error handling
+      mac_syserr_log sy-subrc &apos;ASSIGN object-&gt;(&lt;a&gt;-name)&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_OBJECT&apos;. &quot;#EC NOTEXT
+      CONTINUE.
+    ENDIF.
+    IF &lt;a&gt;-name = self_fieldname AND self_done = abap_true.     CONTINUE.   ENDIF.
+    attr_name = &lt;a&gt;-name.
+    stack( attr_name ).
+    add_any(   xmldoc = xmldoc
+             xml_node = node
+                 name = attr_name
+                  any = &lt;d&gt; ).
+    unstack( ).
+  ENDLOOP.
+
+  IF node IS BOUND AND NOT name IS INITIAL.
+    rc = xml_node-&gt;append_child( node ).
+    mac_syserr_log rc &apos;append_child&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_OBJECT&apos;. &quot;#EC NOTEXT
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_SELF" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transform special self field to XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA svalue    TYPE string.
+  DATA typedescr TYPE REF TO cl_abap_typedescr.
+  FIELD-SYMBOLS: &lt;any&gt; TYPE ANY.
+
+  typedescr = cl_abap_typedescr=&gt;describe_by_data( any ).
+  typedescr = get_ref_type( typedescr ).
+  IF typedescr-&gt;kind = cl_abap_datadescr=&gt;kind_ref.
+    ASSIGN any-&gt;* TO &lt;any&gt;.
+    typedescr = cl_abap_typedescr=&gt;describe_by_data( p_data = &lt;any&gt; ).
+  ENDIF.
+  CASE typedescr-&gt;kind.
+    WHEN cl_abap_datadescr=&gt;kind_elem.
+      svalue = elem_2_string( any = any
+                        type_desc = typedescr ).
+      IF svalue IS NOT INITIAL.
+        svalue = protect_string( svalue ).                  &quot; Issue 61
+        rc = xml_node-&gt;set_value( svalue ).
+        mac_syserr_log rc &apos;set_value&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_SELF&apos;. &quot;#EC NOTEXT
+      ENDIF.
+    WHEN OTHERS.
+      svalue = typedescr-&gt;get_relative_name( ).
+* Self field &apos;&amp;1&apos; of &amp;2 (&amp;3) must be simple data type, not &apos;&amp;4&apos;
+      IF NOT application_log IS BOUND. MESSAGE E004 WITH self_fieldname name svalue typedescr-&gt;kind. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*              id_msgid     = MSGID
+          id_msgno     = 004
+          id_msgv1     = self_fieldname
+          id_msgv2     = name
+          id_msgv3     = svalue
+          id_msgv4     = typedescr-&gt;kind
+*              id_detlevel  =
+*              id_probclass =
+          .
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_STRUCTURE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transform Structure to XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="STRUCTURE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_DOCUMENT"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA node         TYPE REF TO if_ixml_element.
+  DATA sname        TYPE string.
+  DATA svalue       TYPE string.
+  DATA structdescr  TYPE REF TO cl_abap_structdescr.
+  DATA typedescr    TYPE REF TO cl_abap_typedescr.
+  DATA self_done    TYPE flag.
+  FIELD-SYMBOLS:
+    &lt;fieldvalue&gt; TYPE ANY,
+    &lt;fld&gt; TYPE ANY,
+    &lt;any&gt; TYPE ANY,
+    &lt;c&gt; LIKE LINE OF structdescr-&gt;components.
+
+  IF structure IS INITIAL. EXIT. ENDIF.
+
+  IF name IS INITIAL.
+    node = xml_node.
+  ELSE.
+    node = xmldoc-&gt;create_element( name ).
+  ENDIF.
+
+  structdescr ?= cl_abap_structdescr=&gt;describe_by_data( structure ).
+* set value before adding node or they will be lost
+  READ TABLE structdescr-&gt;components TRANSPORTING NO FIELDS
+       WITH KEY name = self_fieldname.
+  IF sy-subrc = 0.
+    ASSIGN COMPONENT self_fieldname OF STRUCTURE structure TO &lt;fieldvalue&gt;.
+    IF sy-subrc &lt;&gt; 0.
+*Error handling
+      mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT &lt;c&gt;-name OF STRUCTURE structure&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_STRUCTURE&apos;. &quot;#EC NOTEXT
+    ELSE.
+      add_self( xml_node = node
+                    name = name
+                     any = &lt;fieldvalue&gt; ).
+      self_done = abap_true.
+    ENDIF.
+  ENDIF.
+  LOOP AT structdescr-&gt;components ASSIGNING &lt;c&gt;.
+    ASSIGN COMPONENT &lt;c&gt;-name OF STRUCTURE structure TO &lt;fieldvalue&gt;.
+    IF sy-subrc &lt;&gt; 0.
+*Error handling
+      mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT &lt;c&gt;-name OF STRUCTURE structure&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_STRUCTURE&apos;. &quot;#EC NOTEXT
+      CONTINUE.
+    ENDIF.
+    IF &lt;c&gt;-name = self_fieldname AND self_done = abap_true.     CONTINUE.   ENDIF.
+
+    typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;fieldvalue&gt; ).
+    typedescr = get_ref_type( typedescr ).
+    sname = &lt;c&gt;-name.
+
+* Issue 46 : Field names strating with numbre in attributes
+    IF sname(1) CO &apos;0123456789&apos; AND typedescr-&gt;kind = cl_abap_datadescr=&gt;kind_elem.
+      CONCATENATE issue46_prefix sname INTO sname. UNASSIGN &lt;fld&gt;. ASSIGN COMPONENT sname OF STRUCTURE structure TO &lt;fld&gt;.
+      WHILE &lt;fld&gt; IS ASSIGNED. CONCATENATE issue46_prefix sname INTO sname. UNASSIGN &lt;fld&gt;. ASSIGN COMPONENT sname OF STRUCTURE structure TO &lt;fld&gt;. ENDWHILE.
+    ENDIF.
+
+    stack( sname ).
+    add_any( xmldoc = xmldoc
+           xml_node = node
+               name = sname
+                any = &lt;fieldvalue&gt;
+           typedesc = typedescr ).
+    unstack( ).
+  ENDLOOP.
+
+  IF node IS BOUND AND NOT name IS INITIAL.
+    rc = xml_node-&gt;append_child( node ).
+    mac_syserr_log rc &apos;append_child&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_STRUCTURE&apos;. &quot;#EC NOTEXT
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_TABLE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transform table to XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY TABLE"/>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_DOCUMENT"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA t_node        TYPE REF TO if_ixml_element.
+  DATA i_node        TYPE REF TO if_ixml_element.
+  FIELD-SYMBOLS:
+    &lt;l&gt; TYPE ANY.
+
+  IF table IS INITIAL. EXIT. ENDIF.
+
+  IF name IS INITIAL.
+    t_node = xml_node.
+  ELSE.
+    t_node = xmldoc-&gt;create_element( name ).
+  ENDIF.
+  ASSERT t_node IS BOUND.
+
+  LOOP AT table ASSIGNING &lt;l&gt;.
+    i_node = xmldoc-&gt;create_element( en_line ).
+    add_any(   xmldoc = xmldoc
+             xml_node = i_node
+*                 name = EN_LINE
+                  any = &lt;l&gt; ).
+    t_node-&gt;append_child( i_node ).
+  ENDLOOP.
+
+  IF NOT name IS INITIAL.
+    rc = xml_node-&gt;append_child( t_node ).
+    mac_syserr_log rc &apos;append_child&apos; &apos;ZAPLINK_EASYXML-&gt;ADD_TABLE&apos;.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ANY2XML" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Any data =&gt; XML"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Data to convert"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ATTRIBUTS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Structure of attributs"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Root node name = Object Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="XML Document generated"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA xml_node  TYPE REF TO if_ixml_element.
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA string    TYPE string.
+
+  xmldoc = ixml-&gt;create_document( ).
+  xml_node = xmldoc-&gt;create_element( type ). stack( type ).
+
+  IF attributs IS SUPPLIED.
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = attributs ).
+    _desc = get_ref_type( _desc ).
+    stack_descr( _desc ).
+    CASE _desc-&gt;kind.
+      WHEN cl_abap_datadescr=&gt;kind_ref.
+* Unexpected =&gt; Ignored
+        mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;ANY2XML&apos;.
+      WHEN cl_abap_datadescr=&gt;kind_struct.
+        add_structure(   xmldoc = xmldoc
+                       xml_node = xml_node
+*                         name = name
+                      structure = attributs ).
+        &quot; cl_abap_datadescr=&gt;kind_elem.
+        &quot; cl_abap_datadescr=&gt;kind_table.
+        &quot; cl_abap_datadescr=&gt;kind_class.
+      WHEN OTHERS. &quot; cl_abap_datadescr=&gt;kind_intf.
+* To be ignored
+        string = _desc-&gt;get_relative_name( ).
+        MESSAGE ID MSGID TYPE &apos;X&apos; NUMBER 001 WITH string &apos;ATTRIBUTES&apos;.
+    ENDCASE.
+    unstack( ).
+  ENDIF.
+*  IF NOT name IS INITIAL. xml_node-&gt;set_attribute( name = tn_name value = name ). ENDIF.
+*  IF NOT version IS INITIAL.
+*    rc = xml_node-&gt;set_attribute( name = tn_version value = version ).
+*    mac_syserr_log rc &apos;set_attribute&apos; &apos;ZAPLINK_EASYXML-&gt;ANY2XML&apos;.
+*    IF rc &lt;&gt; 0.
+*      EXIT.
+*    ENDIF.
+*  ENDIF.
+
+  add_any( xmldoc = xmldoc
+         xml_node = xml_node
+*             name =
+              any = any ).
+
+  rc = xmldoc-&gt;append_child( xml_node ).
+  mac_syserr_log rc &apos;append_child&apos; &apos;ZAPLINK_EASYXML-&gt;ANY2XML&apos;.
+
+  IF application_log-&gt;has_messages_of_msgt( id_msgty     = &apos;E&apos; ) IS INITIAL.
+* Successfull conversion data to XML.
+    IF NOT application_log IS BOUND. MESSAGE ID MSGID TYPE &apos;S&apos; NUMBER 006. ENDIF.
+    CALL METHOD application_log-&gt;add_success
+      EXPORTING
+*          id_msgid     = MSGID
+        id_msgno     = &apos;006&apos;
+*          id_msgv1     =
+*          id_msgv2     =
+*          id_msgv3     =
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+        .
+  ENDIF.
+  unstack( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+*  DATA: obj TYPE balobj.
+*  DATA: sobj TYPE balsub.
+* Issue 61 : Workaround
+  DATA s_char LIKE LINE OF char_to_protect.
+  s_char-sign = &apos;I&apos;.    s_char-option = &apos;EQ&apos;.
+  s_char-low = space.                                 APPEND s_char TO char_to_protect.
+  s_char-low = CL_ABAP_CHAR_UTILITIES=&gt;NEWLINE.       APPEND s_char TO char_to_protect.
+  s_char-low = CL_ABAP_CHAR_UTILITIES=&gt;CR_LF.         APPEND s_char TO char_to_protect.
+  s_char-low = CL_ABAP_CHAR_UTILITIES=&gt;FORM_FEED.     APPEND s_char TO char_to_protect.
+
+* Issue 46 : &apos;^[_]*&apos;
+  CONCATENATE &apos;^[&apos; issue46_prefix &apos;]*&apos; INTO issue46_regex.
+
+* Issue 56 : BAL Log object are set in ZAPLINK_MESSAGE_COLLECTOR=&gt;CHECK_CUSTO( )
+*&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;
+* &lt;TABU TABNAME=&quot;BALOBJ&quot;&gt;
+*  &lt;DataRow OBJECT=&quot;ZAPLINK&quot;/&gt;
+* &lt;/TABU&gt;
+* &lt;TABU TABNAME=&quot;BALOBJT&quot;&gt;
+*  &lt;DataRow SPRAS=&quot;D&quot; OBJECT=&quot;ZAPLINK&quot; OBJTXT=&quot;SAP Link - Logs&quot;/&gt;
+*  &lt;DataRow SPRAS=&quot;E&quot; OBJECT=&quot;ZAPLINK&quot; OBJTXT=&quot;SAP Link - Logs&quot;/&gt;
+*  &lt;DataRow SPRAS=&quot;F&quot; OBJECT=&quot;ZAPLINK&quot; OBJTXT=&quot;SAP Link - Logs&quot;/&gt;
+* &lt;/TABU&gt;
+* &lt;TABU TABNAME=&quot;BALSUB&quot;&gt;
+*  &lt;DataRow OBJECT=&quot;ZAPLINK&quot; SUBOBJECT=&quot;DEVC&quot;/&gt;
+* &lt;/TABU&gt;
+* &lt;TABU TABNAME=&quot;BALSUBT&quot;&gt;
+*  &lt;DataRow SPRAS=&quot;D&quot; OBJECT=&quot;ZAPLINK&quot; SUBOBJECT=&quot;DEVC&quot; SUBOBJTXT=&quot;Devlopment class&quot;/&gt;
+*  &lt;DataRow SPRAS=&quot;E&quot; OBJECT=&quot;ZAPLINK&quot; SUBOBJECT=&quot;DEVC&quot; SUBOBJTXT=&quot;Devlopment class&quot;/&gt;
+*  &lt;DataRow SPRAS=&quot;F&quot; OBJECT=&quot;ZAPLINK&quot; SUBOBJECT=&quot;DEVC&quot; SUBOBJTXT=&quot;Devlopment class&quot;/&gt;
+* &lt;/TABU&gt;
+** Check BALOBJ
+*  obj-object = zaplink_datatypes=&gt;ballog_object.
+*  SELECT SINGLE * INTO obj
+*    FROM balobj
+*    WHERE object = obj-object.
+*  IF sy-subrc &lt;&gt; 0.
+*    INSERT balobj FROM obj.
+*  ENDIF.
+*
+** Check BALSUB
+*  sobj-object = obj-object.
+*  sobj-subobject = &apos;EASYXML&apos;.
+*  SELECT SINGLE * INTO sobj
+*    FROM balsub
+*    WHERE    object = sobj-object
+*      AND subobject = sobj-subobject.
+*  IF sy-subrc &lt;&gt; 0.
+*    INSERT balsub FROM sobj.
+*  ENDIF.
+*  IF sy-subrc &lt;&gt; 0.
+*    COMMIT WORK AND WAIT.
+*  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  ixml = cl_ixml=&gt;create( ).
+  reset( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ELEM_2_STRING" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Elementary type to string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="TYPE_DESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA exception TYPE REF TO cx_root.
+  DATA l_convin  TYPE REF TO cl_abap_conv_in_ce.
+
+  IF any IS INITIAL.
+    EXIT.
+  ENDIF.
+
+  IF type_desc IS BOUND.
+    _desc = type_desc.
+  ELSE.
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = any ).
+  ENDIF.
+
+  IF _desc-&gt;kind &lt;&gt; cl_abap_datadescr=&gt;kind_elem. EXIT. ENDIF.
+
+  CASE _desc-&gt;type_kind.
+    WHEN cl_abap_typedescr=&gt;typekind_xstring
+      OR cl_abap_typedescr=&gt;typekind_xsequence.
+      TRY.
+*          CALL FUNCTION &apos;ECATT_CONV_XSTRING_TO_STRING&apos;
+          l_convin = cl_abap_conv_in_ce=&gt;create( encoding = &apos;UTF-8&apos;
+                                                    input = any ).
+          CALL METHOD l_convin-&gt;read
+            IMPORTING
+              data = string.
+        CATCH cx_root INTO exception.
+          application_log-&gt;add_exception( exception = exception ).
+      ENDTRY.
+    WHEN cl_abap_typedescr=&gt;typekind_char
+      OR cl_abap_typedescr=&gt;typekind_clike
+      OR cl_abap_typedescr=&gt;typekind_date
+      OR cl_abap_typedescr=&gt;typekind_time
+      OR cl_abap_typedescr=&gt;typekind_string
+      OR cl_abap_typedescr=&gt;typekind_csequence
+      OR cl_abap_typedescr=&gt;typekind_num
+      OR cl_abap_typedescr=&gt;typekind_numeric
+      OR cl_abap_typedescr=&gt;typekind_int
+      OR cl_abap_typedescr=&gt;typekind_int1
+      OR cl_abap_typedescr=&gt;typekind_int2
+      OR cl_abap_typedescr=&gt;typekind_float
+      OR cl_abap_typedescr=&gt;typekind_packed
+      OR cl_abap_typedescr=&gt;typekind_simple
+      OR cl_abap_typedescr=&gt;typekind_hex        &quot; Convert Hex to String works
+        .
+      TRY.
+          string = any.
+        CATCH cx_root INTO exception.
+          application_log-&gt;add_exception( exception ).
+      ENDTRY.
+    WHEN OTHERS.
+* Unexpected =&gt; Dump
+      mac_syserr_log -1 &apos;WHEN OTHERS&apos; &apos;ZAPLINK_EASYXML-&gt;ELEM_2_STRING&apos;.
+*    WHEN cl_abap_typedescr=&gt;typekind_class
+*      OR cl_abap_typedescr=&gt;typekind_struct1
+*      OR cl_abap_typedescr=&gt;typekind_struct2
+*      OR cl_abap_typedescr=&gt;typekind_table
+*      .
+*
+*    WHEN cl_abap_typedescr=&gt;typekind_any.
+*    WHEN cl_abap_typedescr=&gt;typekind_data.
+*    WHEN cl_abap_typedescr=&gt;typekind_dref.
+*    WHEN cl_abap_typedescr=&gt;typekind_intf.
+*    WHEN cl_abap_typedescr=&gt;typekind_iref.
+*    WHEN cl_abap_typedescr=&gt;typekind_oref.
+*    WHEN cl_abap_typedescr=&gt;typekind_w.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_ATTRIBUTS" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get XML root Attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ATTRIBUTS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Structure of attributs"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="XML document"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA root_node   TYPE REF TO if_ixml_element.
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA string    TYPE string.
+
+  root_node = xmldoc-&gt;get_root_element( ).
+
+  IF root_node IS BOUND.
+
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = attributs ).
+    _desc = get_ref_type( _desc ).
+    stack_descr( _desc ).
+    CASE _desc-&gt;kind.
+      WHEN cl_abap_datadescr=&gt;kind_ref.
+* Unexpected =&gt; Ignored
+        mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;ANY2XML&apos;.
+      WHEN cl_abap_datadescr=&gt;kind_struct.
+        read_structure( EXPORTING
+                         xml_node = root_node
+                         CHANGING
+                        structure = attributs ).
+        &quot; cl_abap_datadescr=&gt;kind_elem.
+        &quot; cl_abap_datadescr=&gt;kind_table.
+        &quot; cl_abap_datadescr=&gt;kind_class.
+      WHEN OTHERS. &quot; cl_abap_datadescr=&gt;kind_intf.
+* To be ignored
+        string = _desc-&gt;get_relative_name( ).
+        MESSAGE ID msgid TYPE &apos;X&apos; NUMBER 001 WITH string &apos;ATTRIBUTES&apos;.
+    ENDCASE.
+    unstack( ).
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_NODE_TEXT" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read XML node for text"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_filter   TYPE REF TO if_ixml_node_filter.
+  DATA o_iterator TYPE REF TO if_ixml_node_iterator.
+  DATA o_text     TYPE REF TO if_ixml_node.
+
+* XML Value
+  check xml_node-&gt;contains( if_ixml_node=&gt;co_node_text ) = abap_true.    &quot; value returned by get_value is the right one.
+  o_filter = xml_node-&gt;create_filter_node_type( if_ixml_node=&gt;co_node_text ).
+  o_iterator = xml_node-&gt;create_iterator_filtered( depth = 1
+                                                  filter = o_filter ).
+  o_text = o_iterator-&gt;get_next( ).   result = o_text-&gt;get_value( ).    IF result = &apos;#&apos;. clear result. endif.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_REF_TYPE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="For Ref data (like object) type get target type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="REF_TYPE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_ref      TYPE REF TO cl_abap_refdescr.
+  FIELD-SYMBOLS &lt;a&gt; TYPE ANY.
+
+  ref_type = typedesc.
+  IF typedesc-&gt;kind = cl_abap_datadescr=&gt;kind_ref.
+    o_ref ?= typedesc.
+    IF o_ref-&gt;type_kind = cl_abap_refdescr=&gt;typekind_oref.    &quot; Object
+      ref_type = o_ref-&gt;get_referenced_type( ).
+    ENDIF.
+  ENDIF.
+*  DATA o_ref      TYPE REF TO cl_abap_refdescr.
+*  DATA _desc      TYPE REF TO cl_abap_typedescr.
+*  FIELD-SYMBOLS &lt;a&gt; TYPE ANY.
+*
+*  IF typedesc IS BOUND.
+*    _desc = typedesc.
+*  ELSE.
+*    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = data ).
+*  ENDIF.
+*
+*  IF _desc-&gt;kind = cl_abap_datadescr=&gt;kind_ref.
+*    o_ref ?= _desc.
+*    IF o_ref-&gt;type_kind = cl_abap_refdescr=&gt;typekind_oref.    &quot; Object
+*      ref_type = o_ref-&gt;get_referenced_type( ).
+*    ELSEIF o_ref-&gt;type_kind = cl_abap_refdescr=&gt;typekind_dref.   &quot; Data Ref
+*      ASSIGN data-&gt;* TO &lt;a&gt;.
+*      ref_type = cl_abap_typedescr=&gt;describe_by_data( &lt;a&gt; ).
+*    ELSE.
+*      ASSERT 0 = 1.
+*    ENDIF.
+*  ELSE.
+*    ref_type = typedesc.
+*  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_SIMPLE_TYPE_KIND" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Determine Kind from Type kind for simple kind"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+     <ITEM SCONAME="TYPE_KIND" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_TYPEKIND"/>
+    </PARAMETERS>
+    <SOURCE>`
+  result = &apos;?&apos;.  &quot; unknow
+
+  CASE TYPE_KIND.
+*          WHEN cl_abap_typedescr=&gt;typekind_clike.
+*          WHEN cl_abap_typedescr=&gt;typekind_date.
+*          WHEN cl_abap_typedescr=&gt;typekind_time.
+*          WHEN cl_abap_typedescr=&gt;typekind_string.
+
+*          WHEN cl_abap_typedescr=&gt;typekind_int.
+*          WHEN cl_abap_typedescr=&gt;typekind_int1.
+*          WHEN cl_abap_typedescr=&gt;typekind_int2.
+
+*          WHEN cl_abap_typedescr=&gt;typekind_num.
+*          WHEN cl_abap_typedescr=&gt;typekind_numeric.
+
+*          WHEN cl_abap_typedescr=&gt;typekind_float.
+*          WHEN cl_abap_typedescr=&gt;typekind_packed.
+*          WHEN cl_abap_typedescr=&gt;typekind_simple.
+
+    WHEN cl_abap_typedescr=&gt;typekind_char
+      OR cl_abap_typedescr=&gt;typekind_clike
+      OR cl_abap_typedescr=&gt;typekind_date
+      OR cl_abap_typedescr=&gt;typekind_time
+      OR cl_abap_typedescr=&gt;typekind_string
+      OR cl_abap_typedescr=&gt;typekind_xstring
+      OR cl_abap_typedescr=&gt;typekind_num
+      OR cl_abap_typedescr=&gt;typekind_numeric
+      OR cl_abap_typedescr=&gt;typekind_int
+      OR cl_abap_typedescr=&gt;typekind_int1
+      OR cl_abap_typedescr=&gt;typekind_int2
+      OR cl_abap_typedescr=&gt;typekind_float
+      OR cl_abap_typedescr=&gt;typekind_packed
+      OR cl_abap_typedescr=&gt;typekind_simple
+        .
+     result = abap_true.
+    WHEN cl_abap_typedescr=&gt;typekind_class
+      or cl_abap_typedescr=&gt;typekind_struct1
+      or cl_abap_typedescr=&gt;typekind_struct2
+      or cl_abap_typedescr=&gt;typekind_table
+      .
+     result = abap_false.
+
+    WHEN cl_abap_typedescr=&gt;typekind_any.
+    WHEN cl_abap_typedescr=&gt;typekind_csequence.
+    WHEN cl_abap_typedescr=&gt;typekind_data.
+    WHEN cl_abap_typedescr=&gt;typekind_dref.
+    WHEN cl_abap_typedescr=&gt;typekind_hex.
+    WHEN cl_abap_typedescr=&gt;typekind_intf.
+    WHEN cl_abap_typedescr=&gt;typekind_iref.
+    WHEN cl_abap_typedescr=&gt;typekind_oref.
+    WHEN cl_abap_typedescr=&gt;typekind_w.
+    WHEN cl_abap_typedescr=&gt;typekind_xsequence.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NODE2STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert node to String"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _ixml TYPE REF TO if_ixml.
+  DATA _streamfactory TYPE REF TO if_ixml_stream_factory.
+  DATA _outputstream TYPE REF TO if_ixml_ostream.
+  DATA _printxmldoc TYPE REF TO cl_xml_document.
+
+  _ixml = cl_ixml=&gt;create( ).
+  _streamfactory = _ixml-&gt;create_stream_factory( ).
+  _outputstream = _streamfactory-&gt;create_ostream_cstring( string ).
+  CALL METHOD xml_node-&gt;render
+    EXPORTING
+      ostream   = _outputstream.
+  CREATE OBJECT _printxmldoc.
+  _printxmldoc-&gt;parse_string( string ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NODE_IS_NOT_TYPE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do node is not a speficied type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_NODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_NODE"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_mask(8)  TYPE x.
+  DATA d_txt_m(8) TYPE x.
+
+  check node is bound.
+  d_mask = node-&gt;get_type( ).   d_txt_m = type.
+  d_mask = d_mask BIT-AND d_txt_m.
+  if d_mask = 00000000.   result = abap_true.   endif.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NODE_IS_TYPE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do node is the speficied type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_NODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_NODE"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL"/>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_mask(8)  TYPE x.
+  DATA d_txt_m(8) TYPE x.
+
+  check node is bound.
+  d_mask = node-&gt;get_type( ).   d_txt_m = type.
+  d_mask = d_mask BIT-AND d_txt_m.
+  if d_mask = d_txt_m.    result = abap_true.   endif.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="PROTECT_STRING" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Protect String for XML value"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_last TYPE i.
+  CHECK NOT string IS INITIAL.
+  d_last = strlen( string ) - 1.
+  IF NOT string(1) IN char_to_protect.
+    result = string.
+  ELSE.
+    CONCATENATE protection_char string INTO result.
+  ENDIF.
+  IF string+d_last(1) IN char_to_protect.   CONCATENATE result protection_char INTO result.   ENDIF.    &quot; Issue 61 &amp; 68</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="READ_ANY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read XML to Any data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA string    TYPE string.
+  DATA name      TYPE string.
+  DATA object    TYPE REF TO object.
+  FIELD-SYMBOLS: &lt;any&gt; TYPE ANY.
+
+  IF typedesc IS BOUND.
+    _desc = typedesc.
+  ELSE.
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = any ).
+  ENDIF.
+
+  _desc = get_ref_type( _desc ).
+  stack_descr( _desc ).
+  CASE _desc-&gt;kind.
+    WHEN cl_abap_datadescr=&gt;kind_ref.
+      IF _desc-&gt;type_kind = cl_abap_refdescr=&gt;typekind_dref.   &quot; Data Ref
+        ASSIGN any-&gt;* TO &lt;any&gt;.
+        IF sy-subrc = 0.        &quot; already assigned
+* Unexpected =&gt; Ignored
+          mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;READ_ANY&apos;.
+        ELSE.
+*          TRY.
+          CREATE DATA any TYPE REF TO if_ixml_element.
+*            CATCH cx_sy_create_data_error.
+*              mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;READ_ANY&apos;.
+*          ENDTRY.
+          ASSIGN any-&gt;* TO &lt;any&gt;.
+          ASSERT sy-subrc = 0.
+          &lt;any&gt; = xml_node.
+        ENDIF.
+      ELSE.
+* Unexpected =&gt; Ignored
+        mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref&apos; &apos;ZAPLINK_EASYXML-&gt;READ_ANY&apos;.
+      ENDIF.
+    WHEN cl_abap_datadescr=&gt;kind_elem.
+*      string = xml_node-&gt;get_attribute( name = tn_value ).
+      string = xml_node-&gt;get_value( ).
+      string_2_elem( EXPORTING
+                        string = string
+                    type_desc = _desc
+                     CHANGING
+                          any = any ).
+    WHEN cl_abap_datadescr=&gt;kind_struct.
+      read_structure( EXPORTING
+                       xml_node = xml_node
+                       CHANGING
+                      structure = any ).
+    WHEN cl_abap_datadescr=&gt;kind_table.
+      read_table( EXPORTING
+                   xml_node = xml_node
+                   CHANGING
+                      table = any ).
+    WHEN cl_abap_datadescr=&gt;kind_class.
+      object = any.
+      read_object( EXPORTING
+                    xml_node = xml_node
+                    typedesc = _desc
+                    CHANGING
+                      object = object ).
+      IF any &lt;&gt; object.   any ?= object.    ENDIF.
+    WHEN cl_abap_datadescr=&gt;kind_intf.
+* To be ignored
+      string = _desc-&gt;get_relative_name( ).
+      name = xml_node-&gt;get_name( ).
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 001 WITH space space. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;001&apos;
+          id_msgv1     = name
+          id_msgv2     = string
+*          id_msgv3     = &amp;3
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+  ENDCASE.
+  unstack( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="READ_OBJECT" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read XML to Object"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="3" TYPE="OBJECT"/>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+*  DATA o_ref      TYPE REF TO cl_abap_refdescr.
+  DATA elem       TYPE REF TO if_ixml_element.
+  DATA next_node  TYPE REF TO if_ixml_node.
+  DATA node       TYPE REF TO if_ixml_node.
+  DATA o_obj      TYPE REF TO cl_abap_classdescr.
+  DATA iterator   TYPE REF TO if_ixml_node_iterator.
+  DATA childs     TYPE REF TO if_ixml_node_list.
+  DATA attrs      TYPE REF TO if_ixml_named_node_map.
+  DATA data_type  TYPE string.
+  DATA attr_name  TYPE string.
+  DATA name       TYPE string.
+  DATA svalue     TYPE string.
+  DATA typedescr  TYPE REF TO cl_abap_typedescr.
+  DATA _cx        TYPE REF TO cx_root.
+  FIELD-SYMBOLS &lt;d&gt; TYPE ANY.
+
+  IF NOT object IS BOUND AND NOT typedesc IS BOUND. EXIT. ENDIF.
+  IF NOT object IS BOUND.
+    data_type = typedesc-&gt;get_relative_name( ).
+    TRY.
+        CREATE OBJECT object TYPE (data_type).
+      CATCH cx_root INTO _cx.
+        CALL METHOD application_log-&gt;add_exception
+          EXPORTING
+            exception    = _cx
+*          id_detlevel  =
+*          id_probclass =
+            .
+        EXIT.
+    ENDTRY.
+  ENDIF.
+
+* Issue 26 : describe_by_object_ref all the time
+*  IF typedesc IS BOUND.
+*    o_obj ?= typedesc.
+*  ELSE.
+*    o_ref ?= cl_abap_classdescr=&gt;describe_by_data( p_data = object ).
+*    o_obj ?= get_ref_type( o_ref ).
+*  ENDIF.
+*  IF o_obj-&gt;absolute_name = &apos;\CLASS=OBJECT&apos;.
+  o_obj ?= cl_abap_classdescr=&gt;describe_by_object_ref( p_object_ref = object ).
+* Replace in stack &apos;\CLASS=YYYY&apos; =&gt; &apos;\CLASS=XXXX&apos;
+  unstack( ).
+  attr_name = o_obj-&gt;absolute_name.
+  stack( attr_name ).
+*  ENDIF.
+
+* XML Value
+  svalue = get_node_text( xml_node ).                       &quot; Issue 38
+  IF NOT svalue IS INITIAL.
+    svalue = unprotect_string( svalue ).                    &quot; Issue 61
+    ASSIGN object-&gt;(self_fieldname) TO &lt;d&gt;.
+    IF sy-subrc &lt;&gt; 0.
+* Error to raise
+      mac_syserr_log sy-subrc &apos;ASSIGN object-&gt;(self_fieldname) TO &lt;d&gt;&apos; &apos;ZAPLINK_EASYXML-&gt;READ_OBJECT&apos;. &quot;#EC NOTEXT
+    ELSE.
+* attribute assigned
+      typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+      typedescr = get_ref_type( typedescr ).
+      CASE typedescr-&gt;kind.
+        WHEN cl_abap_datadescr=&gt;kind_ref.
+* Exception ref of ref ?
+          mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Value)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_OBJECT&apos;. &quot;#EC NOTEXT
+        WHEN cl_abap_datadescr=&gt;kind_elem.
+          string_2_elem( EXPORTING
+                            string = svalue
+                        type_desc = typedescr
+                         CHANGING
+                              any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+        WHEN OTHERS.
+          mac_syserr_log -1 &apos;NOT cl_abap_datadescr=&gt;kind_elem (Value)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_OBJECT&apos;. &quot;#EC NOTEXT
+      ENDCASE.
+    ENDIF.
+  ENDIF.
+
+* XML Attributs
+  attrs = xml_node-&gt;get_attributes( ).
+  iterator = attrs-&gt;create_iterator( ).
+  next_node = iterator-&gt;get_next( ).
+  WHILE next_node IS BOUND.
+    node = next_node.    next_node ?= iterator-&gt;get_next( ).
+    attr_name = node-&gt;get_name( ).
+    READ TABLE o_obj-&gt;attributes TRANSPORTING NO FIELDS WITH KEY name = attr_name.
+    IF sy-subrc &lt;&gt; 0.
+* Component not found
+      data_type = o_obj-&gt;get_relative_name( ).
+      name = xml_node-&gt;get_name( ).
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 003 WITH abap_true abap_true abap_true. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;003&apos;
+          id_msgv1     = attr_name
+          id_msgv2     = name
+          id_msgv3     = data_type
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ELSE.
+      ASSIGN object-&gt;(attr_name) TO &lt;d&gt;.
+      IF sy-subrc &lt;&gt; 0.
+* Error to raise
+        mac_syserr_log sy-subrc &apos;ASSIGN object-&gt;(attr_name) TO &lt;d&gt; (Attrs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+      ELSE.
+* attribute assigned
+        typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+        typedescr = get_ref_type( typedescr ).
+        CASE typedescr-&gt;kind.
+          WHEN cl_abap_datadescr=&gt;kind_ref.
+* Exception ref of ref ?
+            mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Attrs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+          WHEN cl_abap_datadescr=&gt;kind_elem.
+*            svalue = xml_node-&gt;get_attribute( name = attr_name ). &quot; equivalent to =&gt;
+            svalue = node-&gt;get_value( ).
+            string_2_elem( EXPORTING
+                              string = svalue
+                          type_desc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+          WHEN OTHERS.
+            TRY.
+                elem ?= node.
+                stack( attr_name ).
+                read_any( EXPORTING
+                           xml_node = elem
+                           typedesc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+                unstack( ).
+              CATCH cx_root INTO _cx.
+                application_log-&gt;add_exception( exception = _cx ).
+            ENDTRY.
+        ENDCASE.
+      ENDIF.
+    ENDIF.
+  ENDWHILE.
+
+* XML Childs
+  childs = xml_node-&gt;get_children( ).
+  iterator = childs-&gt;create_iterator( ).
+  next_node = iterator-&gt;get_next( ).
+  WHILE next_node IS BOUND.
+    node = next_node.    next_node ?= iterator-&gt;get_next( ).
+
+    attr_name = node-&gt;get_name( ).
+    CHECK node_is_not_type( node = node type = if_ixml_node=&gt;co_node_text ) = abap_true. &quot; not text node
+
+    READ TABLE o_obj-&gt;attributes TRANSPORTING NO FIELDS WITH KEY name = attr_name.
+    IF sy-subrc &lt;&gt; 0.
+* Attributes not found
+      data_type = o_obj-&gt;get_relative_name( ).
+      name = xml_node-&gt;get_name( ).
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 003 WITH abap_true abap_true abap_true. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;003&apos;
+          id_msgv1     = attr_name
+          id_msgv2     = name
+          id_msgv3     = data_type
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ELSE.
+      ASSIGN object-&gt;(attr_name) TO &lt;d&gt;.
+      IF sy-subrc &lt;&gt; 0.
+* Error to raise
+        mac_syserr_log sy-subrc &apos;ASSIGN object-&gt;(attr_name)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_OBJECT&apos;. &quot;#EC NOTEXT
+      ELSE.
+* attribute assigned
+        typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+        typedescr = get_ref_type( typedescr ).
+        CASE typedescr-&gt;kind.
+*          WHEN cl_abap_datadescr=&gt;kind_ref.
+** Exception ref of ref ?
+*            mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Attrs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_OBJECT&apos;.
+          WHEN cl_abap_datadescr=&gt;kind_elem.
+*            svalue = xml_node-&gt;get_attribute( name = attr_name ). &quot; equivalent to =&gt;
+            svalue = node-&gt;get_value( ).
+            string_2_elem( EXPORTING
+                              string = svalue
+                          type_desc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+          WHEN OTHERS.
+            TRY.
+                elem ?= node.
+                stack( attr_name ).
+                read_any( EXPORTING
+                           xml_node = elem
+                           typedesc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+                unstack( ).
+              CATCH cx_root INTO _cx.
+                application_log-&gt;add_exception( exception = _cx ).
+            ENDTRY.
+        ENDCASE.
+      ENDIF.
+    ENDIF.
+  ENDWHILE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="READ_STRUCTURE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read XML to Structure"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="STRUCTURE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="DATA"/>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA elem        TYPE REF TO if_ixml_element.
+  DATA node        TYPE REF TO if_ixml_node.
+  DATA next_node   TYPE REF TO if_ixml_node.
+  DATA structdescr TYPE REF TO cl_abap_structdescr.
+  DATA typedescr   TYPE REF TO cl_abap_typedescr.
+  DATA svalue      TYPE string.
+  FIELD-SYMBOLS:
+    &lt;d&gt; TYPE ANY,
+    &lt;c&gt; LIKE LINE OF structdescr-&gt;components.
+  DATA attrs      TYPE REF TO if_ixml_named_node_map.
+  DATA iterator   TYPE REF TO if_ixml_node_iterator.
+  DATA childs     TYPE REF TO if_ixml_node_list.
+  DATA attr_name  TYPE string.
+  DATA name       TYPE string.
+  DATA data_type  TYPE string.
+  DATA exception  TYPE REF TO cx_root.
+*  DATA o_filter   TYPE REF TO if_ixml_node_filter.
+*  DATA o_iterator TYPE REF TO if_ixml_node_iterator.
+*  DATA o_text     TYPE REF TO if_ixml_node.
+
+* XML Value
+  svalue = get_node_text( xml_node ).                       &quot; Issue 38
+  IF NOT svalue IS INITIAL.
+    svalue = unprotect_string( svalue ).                    &quot; Issue 61
+    ASSIGN COMPONENT self_fieldname OF STRUCTURE structure TO &lt;d&gt;.
+    IF sy-subrc &lt;&gt; 0.
+* Error to raise
+      mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT self_fieldname OF STRUCTURE structure (Value)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+    ELSE.
+* attribute assigned
+      typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+      typedescr = get_ref_type( typedescr ).
+      CASE typedescr-&gt;kind.
+        WHEN cl_abap_datadescr=&gt;kind_ref.
+* Exception ref of ref ?
+          mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Value)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+        WHEN cl_abap_datadescr=&gt;kind_elem.
+          string_2_elem( EXPORTING
+                            string = svalue
+                        type_desc = typedescr
+                         CHANGING
+                              any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+        WHEN OTHERS.
+          mac_syserr_log -1 &apos;NOT cl_abap_datadescr=&gt;kind_elem (Value)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+      ENDCASE.
+    ENDIF.
+  ENDIF.
+
+* XML Attributs
+  structdescr ?= cl_abap_structdescr=&gt;describe_by_data( structure ).
+  attrs = xml_node-&gt;get_attributes( ).
+  iterator = attrs-&gt;create_iterator( ).
+  node = iterator-&gt;get_next( ).
+  WHILE node IS BOUND.
+    attr_name = node-&gt;get_name( ).    UNASSIGN &lt;c&gt;.
+    READ TABLE structdescr-&gt;components ASSIGNING &lt;c&gt; WITH KEY name = attr_name.
+    IF sy-subrc &lt;&gt; 0.
+      REPLACE FIRST OCCURRENCE OF REGEX issue46_regex IN attr_name WITH ``.
+      IF sy-subrc = 0 AND STRLEN( attr_name ) &gt; 0.
+        IF attr_name(1) CO &apos;0123456789&apos;.    &quot; Issue 46 : Field names strating with numbre in attributes
+          READ TABLE structdescr-&gt;components ASSIGNING &lt;c&gt; WITH KEY name = attr_name.
+        ENDIF.
+      ENDIF.
+      IF NOT &lt;c&gt; IS ASSIGNED.   attr_name = node-&gt;get_name( ).    endif.
+    ENDIF.
+    IF NOT &lt;c&gt; IS ASSIGNED.
+* Component not found
+      data_type = structdescr-&gt;get_relative_name( ).
+      name = xml_node-&gt;get_name( ).
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 003 WITH abap_true abap_true abap_true. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;003&apos;
+          id_msgv1     = attr_name
+          id_msgv2     = name
+          id_msgv3     = data_type
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ELSE.
+      ASSIGN COMPONENT attr_name OF STRUCTURE structure TO &lt;d&gt;.
+      IF sy-subrc &lt;&gt; 0.
+* Error to raise
+        mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT attr_name OF STRUCTURE structure (Attrs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+      ELSE.
+* attribute assigned
+        typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+        typedescr = get_ref_type( typedescr ).
+        CASE typedescr-&gt;kind.
+          WHEN cl_abap_datadescr=&gt;kind_ref.
+* Exception ref of ref ?
+            mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Attrs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+          WHEN cl_abap_datadescr=&gt;kind_elem.
+*            svalue = xml_node-&gt;get_attribute( name = attr_name ). &quot; equivalent to =&gt;
+            svalue = node-&gt;get_value( ).
+            string_2_elem( EXPORTING
+                              string = svalue
+                          type_desc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+          WHEN OTHERS.
+            TRY.
+                elem ?= node.
+                stack( attr_name ).
+                read_any( EXPORTING
+                           xml_node = elem
+                           typedesc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+                unstack( ).
+              CATCH cx_root INTO exception.
+                application_log-&gt;add_exception( exception = exception ).
+            ENDTRY.
+        ENDCASE.
+      ENDIF.
+    ENDIF.
+    node ?= iterator-&gt;get_next( ).
+  ENDWHILE.
+
+* XML Childs
+  childs = xml_node-&gt;get_children( ).
+  iterator = childs-&gt;create_iterator( ).
+  next_node ?= iterator-&gt;get_next( ).
+  WHILE next_node IS BOUND.
+    node = next_node.    next_node ?= iterator-&gt;get_next( ).
+    attr_name = node-&gt;get_name( ).
+    CHECK node_is_not_type( node = node type = if_ixml_node=&gt;co_node_text ) = abap_true. &quot; not text node
+    READ TABLE structdescr-&gt;components ASSIGNING &lt;c&gt; WITH KEY name = attr_name.
+    IF sy-subrc &lt;&gt; 0.
+* Component not found
+      data_type = structdescr-&gt;get_relative_name( ).
+      name = xml_node-&gt;get_name( ).
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;E&apos; NUMBER 003 WITH abap_true abap_true abap_true. ENDIF.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;003&apos;
+          id_msgv1     = attr_name
+          id_msgv2     = name
+          id_msgv3     = data_type
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ELSE.
+      ASSIGN COMPONENT attr_name OF STRUCTURE structure TO &lt;d&gt;.
+      IF sy-subrc &lt;&gt; 0.
+* Error to raise
+        mac_syserr_log sy-subrc &apos;ASSIGN COMPONENT attr_name OF STRUCTURE structure (Childs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+      ELSE.
+* attribute assigned
+        typedescr = cl_abap_typedescr=&gt;describe_by_data( &lt;d&gt; ).
+        typedescr = get_ref_type( typedescr ).
+        CASE typedescr-&gt;kind.
+          WHEN cl_abap_datadescr=&gt;kind_ref.
+* Exception ref of ref ?
+            mac_syserr_log -1 &apos;cl_abap_datadescr=&gt;kind_ref (Childs)&apos; &apos;ZAPLINK_EASYXML-&gt;READ_STRUCTURE&apos;. &quot;#EC NOTEXT
+          WHEN cl_abap_datadescr=&gt;kind_elem.
+            svalue = node-&gt;get_value( ).
+            string_2_elem( EXPORTING
+                              string = svalue
+                          type_desc = typedescr
+                           CHANGING
+                                any = &lt;d&gt; ).
+* cl_abap_datadescr=&gt;kind_struct cl_abap_datadescr=&gt;kind_table cl_abap_datadescr=&gt;kind_class cl_abap_datadescr=&gt;kind_intf.
+          WHEN OTHERS.
+            elem ?= node.
+            stack( attr_name ).
+            read_any( EXPORTING
+                       xml_node = elem
+                       typedesc = typedescr
+                       CHANGING
+                            any = &lt;d&gt; ).
+            unstack( ).
+        ENDCASE.
+      ENDIF.
+    ENDIF.
+  ENDWHILE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="READ_TABLE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Read XML to Table"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TABLE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY TABLE"/>
+     <ITEM SCONAME="XML_NODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_ELEMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_ELEMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+*  DATA o_node     TYPE REF TO if_ixml_node.
+  DATA o_n_elem   TYPE REF TO if_ixml_element.
+  DATA o_elem     TYPE REF TO if_ixml_element.
+  DATA o_iterator TYPE REF TO if_ixml_node_iterator.
+  DATA o_childs   TYPE REF TO if_ixml_node_list.
+  DATA o_filter   TYPE REF TO if_ixml_node_filter.
+  DATA dref       TYPE REF TO data.
+  DATA d_name     TYPE string.
+  DATA d_context  LIKE LINE OF context.
+  DATA _cx        TYPE REF TO cx_root.
+  DATA _count     TYPE string.
+  FIELD-SYMBOLS:
+    &lt;d&gt; TYPE ANY.
+
+  o_childs = xml_node-&gt;get_children( ).
+  o_filter = xml_node-&gt;create_filter_node_type( if_ixml_node=&gt;co_node_element ).
+  o_iterator = o_childs-&gt;create_iterator_filtered( filter = o_filter ).
+  o_n_elem ?= o_iterator-&gt;get_next( ).
+  WHILE o_n_elem IS BOUND.
+    ADD 1 TO _count.    stack( _count ).
+    o_elem = o_n_elem.    o_n_elem ?= o_iterator-&gt;get_next( ).
+    d_name = o_elem-&gt;get_name( ).
+    IF en_line &lt;&gt; d_name.
+* Unexpected node name : Node name of table line should be &apos;&amp;1&apos; but is &apos;&amp;2&apos; within &amp;3
+      IF NOT context IS INITIAL. READ TABLE context INTO d_context INDEX 1. ENDIF.
+      CALL METHOD application_log-&gt;add_error
+        EXPORTING
+*             id_msgid     = MSGID
+          id_msgno     = &apos;007&apos;
+          id_msgv1     = en_line
+          id_msgv2     = d_name
+          id_msgv3     = d_context
+*             id_msgv4     =
+*             id_detlevel  =
+*             id_probclass =
+          .
+    ELSE.
+      TRY.
+          CREATE DATA dref LIKE LINE OF table.
+        CATCH cx_root INTO _cx.
+          application_log-&gt;add_exception( exception = _cx ).
+          CONTINUE.
+      ENDTRY.
+      ASSIGN dref-&gt;* TO &lt;d&gt;.
+      IF sy-subrc &lt;&gt; 0.
+* Assign error
+        mac_syserr_log sy-subrc &apos;ASSIGN dref-&gt;*&apos; &apos;ZAPLINK_EASYXML-&gt;READ_TABLE&apos;. &quot;#EC NOTEXT
+      ELSE.
+        read_any( EXPORTING
+                   xml_node = o_elem
+                   CHANGING
+                        any = &lt;d&gt; ).
+        INSERT &lt;d&gt; INTO TABLE table.
+        mac_syserr_log sy-subrc &apos;INSERT &lt;d&gt; INTO TABLE table.&apos; &apos;ZAPLINK_EASYXML-&gt;READ_TABLE&apos;. &quot;#EC NOTEXT
+      ENDIF.
+    ENDIF.
+    unstack( ).
+  ENDWHILE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RESET" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Reste attributs"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA object	TYPE balobj_d.
+  DATA subobject  TYPE balsubobj.
+  DATA ext_id	TYPE balnrext.
+
+  IF application_log IS BOUND.
+    application_log-&gt;clear( ).
+    application_log-&gt;free( ).
+  ELSE.
+    CREATE OBJECT application_log.
+    application_log-&gt;msgid = msgid.
+
+    object = &apos;ZAPLINK&apos;.
+    subobject	= &apos;EASYXML&apos;.
+*  CONCATENATE sy-uname sy-datum sy-uzeit INTO ext_id SEPARATED BY space.
+*01    Create
+*02    Change
+*03    Display
+*04    Modify (Direct Input: Create/Change)
+*06    Delete
+*11    Create defaults
+*12    Change defaults
+*13    Display defaults
+    CALL METHOD application_log-&gt;init
+      EXPORTING
+        id_object      = object
+        id_subobject   = subobject
+        id_extnumber   = ext_id
+        auto_upd_custo = abap_true
+        id_activity    = zaplink_message_collector=&gt;actions-create
+      EXCEPTIONS
+        error          = 1
+        OTHERS         = 2.
+    IF sy-subrc &lt;&gt; 0.
+* ignore
+    ELSE.
+      bal_level = 1.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STACK" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add context to context stack"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ITEM" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+    </PARAMETERS>
+    <SOURCE>`
+  IF NOT item IS INITIAL.
+    INSERT item INTO context INDEX 1.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STACK_DESCR" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add context to context stack from description object"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA name TYPE string.
+
+  name = desc-&gt;absolute_name.
+
+  stack( name ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STRING_2_ELEM" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Elementary type to string"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="TYPE_DESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _desc     TYPE REF TO cl_abap_typedescr.
+  DATA exception TYPE REF TO cx_root.
+
+  IF string IS INITIAL. EXIT. ENDIF.
+
+  IF type_desc IS BOUND.
+    _desc = type_desc.
+  ELSE.
+    _desc = cl_abap_typedescr=&gt;describe_by_data( p_data = any ).
+  ENDIF.
+
+  IF _desc-&gt;kind &lt;&gt; cl_abap_datadescr=&gt;kind_elem. EXIT. ENDIF.
+
+  CASE _desc-&gt;type_kind.
+    WHEN cl_abap_typedescr=&gt;typekind_xstring
+      OR cl_abap_typedescr=&gt;typekind_xsequence.
+      TRY.
+          CALL FUNCTION &apos;ECATT_CONV_STRING_TO_XSTRING&apos;
+            EXPORTING
+              im_string         = string
+*             IM_ENCODING       = &apos;UTF-8&apos;
+            IMPORTING
+              ex_xstring        = any
+*             EX_LEN            =
+                    .
+        CATCH cx_root INTO exception.
+          application_log-&gt;add_exception( exception = exception ).
+      ENDTRY.
+    WHEN cl_abap_typedescr=&gt;typekind_char
+      OR cl_abap_typedescr=&gt;typekind_clike
+      OR cl_abap_typedescr=&gt;typekind_date
+      OR cl_abap_typedescr=&gt;typekind_time
+      OR cl_abap_typedescr=&gt;typekind_string
+      OR cl_abap_typedescr=&gt;typekind_csequence
+      OR cl_abap_typedescr=&gt;typekind_num
+      OR cl_abap_typedescr=&gt;typekind_numeric
+      OR cl_abap_typedescr=&gt;typekind_int
+      OR cl_abap_typedescr=&gt;typekind_int1
+      OR cl_abap_typedescr=&gt;typekind_int2
+      OR cl_abap_typedescr=&gt;typekind_float
+      OR cl_abap_typedescr=&gt;typekind_packed
+      OR cl_abap_typedescr=&gt;typekind_simple
+      OR cl_abap_typedescr=&gt;typekind_hex        &quot; Convert Hex to String works
+        .
+      TRY.
+          any = string.
+        CATCH cx_root INTO exception.
+          application_log-&gt;add_exception( exception = exception ).
+      ENDTRY.
+    WHEN OTHERS.
+* Unexpected =&gt; Dump
+      mac_syserr_log -1 &apos;WHEN OTHERS&apos; &apos;ZAPLINK_EASYXML-&gt;STRING_2_ELEM&apos;.
+
+*    WHEN cl_abap_typedescr=&gt;typekind_class
+*      OR cl_abap_typedescr=&gt;typekind_struct1
+*      OR cl_abap_typedescr=&gt;typekind_struct2
+*      OR cl_abap_typedescr=&gt;typekind_table
+*      .
+*
+*    WHEN cl_abap_typedescr=&gt;typekind_any.
+*    WHEN cl_abap_typedescr=&gt;typekind_data.
+*    WHEN cl_abap_typedescr=&gt;typekind_dref.
+*    WHEN cl_abap_typedescr=&gt;typekind_hex.
+*    WHEN cl_abap_typedescr=&gt;typekind_intf.
+*    WHEN cl_abap_typedescr=&gt;typekind_iref.
+*    WHEN cl_abap_typedescr=&gt;typekind_oref.
+*    WHEN cl_abap_typedescr=&gt;typekind_w.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNPROTECT_STRING" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unprotect String issued from XML value"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING"/>
+     <ITEM SCONAME="STRING" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_last TYPE i.
+  CHECK NOT string IS INITIAL.
+  d_last = STRLEN( string ) - 1.    result = string.
+  IF string(1) = protection_char AND d_last &gt;= 1.
+    IF string+1(1) IN char_to_protect.
+      SHIFT result BY 1 PLACES LEFT.
+    ENDIF.
+  ENDIF.
+  IF string+d_last(1) = protection_char AND d_last &gt;= 2.      &quot; Issue 61 &amp; 68
+    SUBTRACT 1 FROM d_last.
+    IF string+d_last(1) IN char_to_protect.
+      SHIFT result BY 1 PLACES RIGHT CIRCULAR.    SHIFT result BY 1 PLACES LEFT.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNSTACK" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Remove stack entry"/>
+    </TEXTS>
+    <SOURCE>`
+  IF NOT context IS INITIAL.
+    DELETE context INDEX 1.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="XML2ANY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="XML =&gt; Any data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Data to map from XML Doc"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ATTRIBUTS" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Structure of attributs"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="XMLDOC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_DOCUMENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="XML document"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA root_node   TYPE REF TO if_ixml_element.
+
+  root_node = xmldoc-&gt;get_root_element( ).
+
+  IF root_node IS BOUND.
+    IF attributs IS SUPPLIED.
+      CALL METHOD me-&gt;get_attributs
+        EXPORTING
+          xmldoc    = xmldoc
+        CHANGING
+          attributs = attributs.
+    ENDIF.
+
+    read_any( EXPORTING
+               xml_node = root_node
+               CHANGING
+                    any = any ).
+    IF application_log-&gt;has_messages_of_msgt( id_msgty     = &apos;E&apos; ) IS INITIAL.
+* Successfull conversion XML to data.
+      IF NOT application_log IS BOUND. MESSAGE ID msgid TYPE &apos;S&apos; NUMBER 005. ENDIF.
+      CALL METHOD application_log-&gt;add_success
+        EXPORTING
+*          id_msgid     = MSGID
+          id_msgno     = &apos;005&apos;
+*          id_msgv1     =
+*          id_msgv2     =
+*          id_msgv3     =
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_XML2ANY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="XML =&gt; Any data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ANY" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+     <ITEM SCONAME="XML" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="IF_IXML_NODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="IF_IXML_DOCUMENT"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA root_node   TYPE REF TO if_ixml_element.
+  DATA _doc        TYPE REF TO if_ixml_document.
+
+  TRY.
+      _doc ?= xml.
+      root_node = _doc-&gt;get_root_element( ).
+    CATCH cx_sy_move_cast_error.
+      root_node ?= xml.
+  ENDTRY.
+
+  IF root_node IS BOUND.
+    read_any( EXPORTING
+               xml_node = root_node
+               CHANGING
+                    any = any ).
+  ENDIF.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SLIS" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LOG" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ELE" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_ele,
+    select    TYPE flag,
+    elem_type	TYPE trobjtype,
+    elem_key  TYPE elemgenkey,
+    td_pack  	TYPE devclass,
+    elem_pack	TYPE devclass,
+  END OF ts_ele
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Donnée pour"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_ITF_EL" STATE="1" EDITORDER="3 " TYPTYPE="4">BEGIN OF ts_itf_el,
+    interface	TYPE REF TO if_package_interface,
+    elements  TYPE STANDARD TABLE OF scomeldtln WITH NON-UNIQUE DEFAULT KEY, &quot;SCOMELDATA,
+    acls      TYPE STANDARD TABLE OF scomaclstr WITH NON-UNIQUE DEFAULT KEY, &quot;SCOMACLTAB,
+  END OF ts_itf_el
+`</ITEM>
+   <ITEM CMPNAME="TT_CONTEXT" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_context TYPE STANDARD TABLE OF string WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="For debug porpuse :Stack of calls"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_ELE" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_ele TYPE STANDARD TABLE OF ts_ele WITH NON-UNIQUE DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_ITF_EL" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    tt_itf_el TYPE STANDARD TABLE OF ts_itf_el WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interfaces &amp; it&apos;s Elements"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

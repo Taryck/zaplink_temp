@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="B9883F309D5EB00D964B6B2F6F2EBB0B" CODE_SIGNATURE="663D7F6849DA087E4AA1774784772179" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_DEVC_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="DEVC Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_PACKAGE
+ASDefine XML structure of a Package (Development Class)
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="SCOMPKDTLN">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ACLS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_ACLS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="User Access"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="IF" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="IF_PACKAGE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface for Packages"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="INTERFACES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_INTERFACES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interfaces"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PACKAGES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_PACKAGES">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub packages"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_PACKAGE" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA o_raw_i     LIKE LINE OF me-&gt;interfaces.
+  DATA o_interface TYPE to_interface.
+  DATA o_raw_p     LIKE LINE OF me-&gt;packages.
+  DATA o_package   TYPE to_mykind.
+
+  CLEAR:
+    me-&gt;a0_maindata-created_by,
+    me-&gt;a0_maindata-created_on,
+    me-&gt;a0_maindata-changed_by,
+*    me-&gt;a0_maindata-as4user,    &quot; Issue 88 : Person responsible : Must be clear because user might not exists
+    me-&gt;a0_maindata-changed_on.
+
+  LOOP AT me-&gt;interfaces INTO o_raw_i.
+    o_interface ?= o_raw_i-zl_object-&gt;raw.
+    o_interface-&gt;anonymize( ).
+  ENDLOOP.
+
+  LOOP AT me-&gt;packages INTO o_raw_p.
+    o_package ?= o_raw_p-zl_object-&gt;raw.
+    o_package-&gt;anonymize( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unanonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA o_raw_i     LIKE LINE OF me-&gt;interfaces.
+  DATA o_interface TYPE to_interface.
+  DATA o_raw_p     LIKE LINE OF me-&gt;packages.
+  DATA o_package   TYPE to_mykind.
+
+  If me-&gt;a0_maindata-created_by is INITIAL. me-&gt;a0_maindata-created_by = sy-uname. endif.
+  If me-&gt;a0_maindata-created_on is INITIAL. me-&gt;a0_maindata-created_on = sy-datum. endif.
+  If me-&gt;a0_maindata-as4user is INITIAL. me-&gt;a0_maindata-as4user = sy-uname. endif. &quot; Person responsible
+
+  LOOP AT me-&gt;interfaces INTO o_raw_i.
+    o_interface ?= o_raw_i-zl_object-&gt;raw.
+    o_interface-&gt;unanonymize( ).
+  ENDLOOP.
+
+  LOOP AT me-&gt;packages INTO o_raw_p.
+    o_package ?= o_raw_p-zl_object-&gt;raw.
+    o_package-&gt;unanonymize( ).
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_DEVC_RAW" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_DEVC_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Raw for package"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_INTERFACE" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_PINF_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Package Interface datas"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MYKIND" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_DEVC_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Protected"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_PINF_RAW" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_PINF_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Raw for package&apos;s interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_INTERFACE" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">BEGIN OF ts_interface,
+        zl_object TYPE to_pinf_raw,
+      END OF ts_interface
+`</ITEM>
+   <ITEM CMPNAME="TS_PACKAGE" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">BEGIN OF ts_package,
+        zl_object TYPE to_devc_raw,
+      END OF ts_package
+`</ITEM>
+   <ITEM CMPNAME="TT_ACLS" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tt_acls TYPE STANDARD TABLE OF pkgpermdat WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="User Access"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_INTERFACES" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_interfaces TYPE STANDARD TABLE OF ts_interface WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interfaces"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_PACKAGES" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    tt_packages TYPE STANDARD TABLE OF ts_package WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub packages"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

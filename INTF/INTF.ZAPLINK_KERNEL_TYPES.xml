@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="9B815107AC0BF670F5BF84DAF119D51A" CODE_SIGNATURE="0D0E368D8689A141F03B193A57A8CBC3" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_KERNEL_TYPES" TYPE="INTF" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAP Link : Components Types">U1&amp;MEANING&amp;
+ASList all Core object of the Framework ZAPLink that might be used. Other
+  objects are for internal use and might be changed without prior notice.
+U1&amp;USE&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B1My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B1My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application
+AS</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BALLOG_OBJECT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;ZAPLINK&apos;" TYPTYPE="1" TYPE="BALOBJ_D">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Object Name (Application Code)"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_COMPONENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Component"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CONTAINER" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_CONTAINER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZapLink Container :  To store SAP component in XML"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_FILE" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_FILE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLINK Nugget : File Manager"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_LIST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZapLink Components list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_MSG_COLL" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Message Collector"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_OPTIONS" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_OPTIONS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link : Options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_OPT_DEVCLASS" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_OPT_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link DevClass options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_OPT_DIRECTORY" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_OPT_DIRECTORY">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Directory options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_OPT_TRANSPORT_REQUEST" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_OPT_TRANSPORT_REQUEST">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Transport Request options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="RAW component with data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW_BASE" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_RAW_BASE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Base RAW component without data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

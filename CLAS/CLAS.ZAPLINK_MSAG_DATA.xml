@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="2EB176686913A2022982FDE4BC89E420" CODE_SIGNATURE="108BCA19B679AAEF7350EF428EA20F15" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_MSAG_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Data for Message Class">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_MESSAGE
+ASDefine XML structure of a message class
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_LANG"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MESSAGES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_MSGTEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Textpool table"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_MESSAGE" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_msg LIKE LINE OF messages.
+
+  CLEAR:
+*    a0_maindata-respuser,    &quot; Person respons.
+    a0_maindata-lastuser,
+    a0_maindata-ldate,
+    a0_maindata-ltime.
+
+  MODIFY messages FROM s_msg TRANSPORTING name datum
+         WHERE NOT msgnr IS INITIAL OR msgnr IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Unanonymized component data (set back default values)"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA s_msg LIKE LINE OF messages.
+
+  IF a0_maindata-respuser IS INITIAL. a0_maindata-respuser = sy-uname. ENDIF.
+  s_msg-name = a0_maindata-respuser.
+  MODIFY messages FROM s_msg TRANSPORTING name WHERE name IS INITIAL.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+    INCLUDE TYPE t100a.
+    TYPES:
+      END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MSGTEXT" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">BEGIN OF ts_msgtext,
+          msgnr	      TYPE msgnr,
+* T100U
+          name        TYPE syuname,
+          datum	      TYPE sydatum,
+          selfdef	    TYPE doku_selfd,
+* Documetation : long text
+          application TYPE tdobject,
+          typ	        TYPE doku_typ,
+          dokform	    TYPE tdformnew,
+          dokstyle    TYPE tdstyle,
+* T100 &amp; documentation
+          texts       TYPE tt_texts,
+        END OF ts_msgtext
+`</ITEM>
+   <ITEM CMPNAME="TS_TEXT" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_text,
+* T100T
+          langu      TYPE spras,
+          short_txt	 TYPE string,
+          long_txt   TYPE ts_lang,
+        END OF ts_text
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Textpool text"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_MSGTEXTS" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_msgtexts TYPE SORTED TABLE OF ts_msgtext WITH UNIQUE KEY msgnr
+`</ITEM>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_texts TYPE SORTED TABLE OF ts_text WITH UNIQUE KEY langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Textpool text Table"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

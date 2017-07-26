@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="7252227CBE5898C3045E36C16F77262B" CODE_SIGNATURE="DD8F3CADBACFF0D4382A85249B2B0931" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_VARI_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Data for program&apos;s variants">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_PROGRAM
+ASDefine XML structure of a Program
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="LINE_SEPARATOR" EXPOSURE="2" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="LINE_SEPARATOR"/>
+   <ITEM CMPNAME="TD_ABAPSOURCE" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_ABAPSOURCE"/>
+   <ITEM CMPNAME="TD_COMPNAME" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_COMPNAME"/>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TS_SOURCEASSTRUC" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_SOURCEASSTRUC"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_DYNPROS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DYNPROS"/>
+   <ITEM CMPNAME="TT_LTEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_LTEXTS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+   <ITEM CMPNAME="TT_TXTP_TEXTPOOLS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TXTP_TEXTPOOLS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SCREENS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_SCREENS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Screens list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_LTEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program texts"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TRANSPORT" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF transport,
+* FROM FORM BUILD_DESCRIPTION (LSVARF02)
+** Variante transportieren
+** Systemvariante sind immer geschützt
+** Variante nicht bei F4 anzeigen und transportieren
+*  IF RSVAR-NODISPLAY EQ &apos;X&apos; AND RSVAR-TRANSPORT EQ &apos;X&apos;.
+*    MOVE &apos;X&apos; TO VARID-TRANSPORT.
+** Variante nicht bei F4 anzeigen und nicht transportieren
+*  ELSEIF RSVAR-NODISPLAY EQ &apos;X&apos; AND RSVAR-TRANSPORT EQ SPACE.
+*    MOVE &apos;N&apos; TO VARID-TRANSPORT.
+** Variante bei F4 anzeigen und transportieren
+*  ELSEIF RSVAR-NODISPLAY EQ SPACE AND RSVAR-TRANSPORT EQ &apos;X&apos;.
+*    MOVE SPACE TO VARID-TRANSPORT.
+** Ansonsten F
+*  ELSEIF RSVAR-NODISPLAY EQ SPACE AND RSVAR-TRANSPORT EQ SPACE.
+*    MOVE &apos;F&apos; TO VARID-TRANSPORT.
+*  ENDIF.
+      no_display  TYPE varid-transport VALUE &apos;N&apos;,           &quot;#EC NOTEXT
+      hidden      TYPE varid-transport VALUE &apos;X&apos;,           &quot;#EC NOTEXT
+      protected   TYPE varid-transport VALUE space,         &quot;#EC NOTEXT
+      normal      TYPE varid-transport VALUE &apos;F&apos;,           &quot;#EC NOTEXT
+    END OF transport
+`</ITEM>
+   <ITEM CMPNAME="VALUES" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TT_PARAMS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Values of parameters"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="VARIANT_PREFIX" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF variant_prefix,
+      system    TYPE varid-variant VALUE &apos;SAP&amp;*&apos;,
+      customer  TYPE varid-variant VALUE &apos;CUS&amp;*&apos;,
+    END OF variant_prefix
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant reserved names"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_PROGRAM" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_PROG_DATA" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_VARI_RAW" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  CLEAR: a0_maindata-mandt, a0_maindata-ename, a0_maindata-edat, a0_maindata-etime, a0_maindata-aename, a0_maindata-aedat, a0_maindata-aetime.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt     LIKE LINE OF texts.
+  DATA t_docs    TYPE tt_docs.
+  DATA s_value   LIKE LINE OF values.
+  DATA s_scr     LIKE LINE OF screens.
+  FIELD-SYMBOLS:
+    &lt;s&gt;  LIKE LINE OF fm_data-screens,
+    &lt;t&gt;  LIKE LINE OF fm_data-texts.
+
+  a0_maindata = fm_data-header.
+  values = fm_data-params.
+  MODIFY values FROM s_value TRANSPORTING olen  FROM  to  text kind WHERE name &lt;&gt; space OR name = space.
+* Event or other stuff might be present in VNAME when no TVARVC is used =&gt; Clean it
+  MODIFY values FROM s_value TRANSPORTING vname WHERE vtype = space.
+
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_txt.    s_txt-lang = &lt;t&gt;-langu.   s_txt-text = &lt;t&gt;-vtext.
+    INSERT s_txt INTO TABLE texts.
+  ENDLOOP.
+
+  screens = fm_data-screens.
+*  LOOP AT fm_data-screens ASSIGNING &lt;s&gt;.
+*    CLEAR s_scr.    s_scr-dynnr = &lt;s&gt;-dynnr.
+*    INSERT s_scr INTO TABLE screens.
+*  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="KEY_2_NAME" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Key to Name (E071 Entrie)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_VARIANT_KEY"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+    </PARAMETERS>
+    <SOURCE>`
+  result = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NAME_2_KEY" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert Name (E071 Entrie) to Key"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_VARIANT_KEY"/>
+    </PARAMETERS>
+    <SOURCE>`
+  result = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt     LIKE LINE OF fm_data-texts.
+  data s_scr     like LINE OF fm_data-screens.
+  FIELD-SYMBOLS:
+    &lt;s&gt;  like LINE OF screens,
+    &lt;t&gt;  LIKE LINE OF texts.
+
+  fm_data-header = a0_maindata.
+  fm_data-params = values.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_txt.    s_txt-mandt = a0_maindata-mandt.    s_txt-report = a0_maindata-report.    s_txt-variant = a0_maindata-variant.    s_txt-langu = &lt;t&gt;-lang.   s_txt-vtext = &lt;t&gt;-text.
+    INSERT s_txt INTO TABLE fm_data-texts.
+  ENDLOOP.
+  fm_data-screens = screens.
+*  LOOP AT screens ASSIGNING &lt;s&gt;.
+*    CLEAR s_scr.    &quot; s_scr-mandt = a0_maindata-mandt.    s_scr-report = a0_maindata-report.    s_scr-variant = a0_maindata-variant.
+*    s_scr-dynnr = &lt;s&gt;-dynnr.
+*    INSERT s_scr INTO TABLE fm_data-screens.
+*  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  a0_maindata-ename = a0_maindata-aename = sy-uname.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TR_STRING" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    tr_string TYPE RANGE OF string
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Values"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="1" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+* xx pour type doc
+      header          TYPE varid,
+      texts           TYPE tt_varit,
+      screens         TYPE tt_screens,
+      params          TYPE tt_params,
+    END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Data retrieve from FM"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="1" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+  INCLUDE TYPE varid.
+  TYPES:
+    END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_PARAM_DATA" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_param_data.
+  INCLUDE TYPE vanz AS hdr.
+  TYPES:
+    value           TYPE string,
+    values          TYPE tr_string,
+    params          TYPE tr_string,
+  END OF ts_param_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Parameters &amp; Select-options data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_VARIANT_KEY" EXPOSURE="1" STATE="1" EDITORDER="8 " TYPTYPE="4">
+    BEGIN OF ts_variant_key,
+        program  TYPE varid-report,
+        variant  TYPE varid-variant,
+      END OF ts_variant_key
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Structure that define variant&apos;s key"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_PARAMS" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_params TYPE SORTED TABLE OF ts_param_data WITH UNIQUE KEY name
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Params list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_SCREENS" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="4">
+    tt_screens TYPE SORTED TABLE OF rsdynnr WITH UNIQUE KEY dynnr
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Screens list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_VARIT" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    tt_varit TYPE SORTED TABLE OF varit WITH UNIQUE KEY langu
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Variant&apos;s texts"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

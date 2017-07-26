@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="69901DD48F1429A994B61A042D87C970" CODE_SIGNATURE="5E8CC51CC96C597732BD6334E1BB01F4" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZCX_ZL_OPTIONS" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZCX_ZAPLINK"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-ERR_HANDLING" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" CATEGORY="40" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" VARCL="X" UNICODE="X" RSTAT="S">
+   <INHERITANCE REFCLSNAME="ZCX_ZAPLINK" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPlink Exception for Options">U1&amp;FUNCTIONALITY&amp;
+ASOptions root exception class. Exception class dedicated to error
+  handling of exception in options (ZAPLINK_OPTIONS &amp; ZAPLINK_OPT*). Have
+  a look to each Exception text for more details. Have a look to
+  inheriting classes.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <EXCEPTIONS_TEXTS>
+   <ITEM CMPNAME="DIALOG_CANCELED" EDITORDER="3 ">
+    <MESSAGE CLASS="ZAPLINK" NUMBER="253"/>
+   </ITEM>
+   <ITEM CMPNAME="ZCX_ZL_OPTIONS" EDITORDER="3 ">
+    <MESSAGE CLASS="ZAPLINK" NUMBER="111" ATTRIBUT_1="CX_NAME"/>
+   </ITEM>
+  </EXCEPTIONS_TEXTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+ </RAW>
+</ZL_OBJECT>

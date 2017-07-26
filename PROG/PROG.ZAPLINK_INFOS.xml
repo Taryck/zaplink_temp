@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="A8293D3088662F11665684A86E1E8FC4" CODE_SIGNATURE="1681D51C718CB7E5C3CA2AE2D1B1D957" CONNECTOR="AAAD0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_INFOS" TYPE="PROG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VARCL="X" SUBC="1" APPL="S" RSTAT="K" RMAND="200" RLOAD="E" FIXPT="X" UCCHECK="X"/>
+  <SOURCE>`
+*&amp;---------------------------------------------------------------------*
+*&amp; Report  ZAPLINK_INFOS
+*&amp;
+*&amp;---------------------------------------------------------------------*
+*&amp;
+*&amp;
+*&amp;---------------------------------------------------------------------*
+
+REPORT  zaplink_infos MESSAGE-ID zaplink.
+
+PARAMETERS p_file LOWER CASE TYPE string DEFAULT &apos;C:\ZAPLink.info.xml&apos;.
+
+DATA o_file     TYPE REF TO zaplink_file.
+DATA o_cx_file  TYPE REF TO ZCX_ZL_FILE.
+
+INITIALIZATION.
+  CREATE OBJECT o_file.
+  o_file-&gt;set_filetype( zaplink_file=&gt;filetypes-local ).
+
+AT SELECTION-SCREEN ON VALUE-REQUEST FOR p_file.
+*  DATA l_file TYPE zaplink_file=&gt;t_filename.
+  DATA d_msg  TYPE string.
+
+  TRY.
+      o_file-&gt;load_dialog( p_file ).
+      p_file = o_file-&gt;get_filename( ).
+    CATCH ZCX_ZL_FILE INTO o_cx_file.
+      CHECK o_cx_file-&gt;is_exception_text( ZCX_ZL_FILE=&gt;dialog_canceled ) IS INITIAL.
+      d_msg = o_cx_file-&gt;get_text( ).
+      MESSAGE d_msg TYPE &apos;W&apos;.
+  ENDTRY.
+
+START-OF-SELECTION.
+  DATA o_infos TYPE REF TO zaplink_infos.
+  DATA o_ezxml TYPE REF TO zaplink_easyxml.
+  DATA o_xml   TYPE REF TO if_ixml_document.
+  DATA o_xmlengine  TYPE REF TO if_ixml.
+  DATA o_streamfactory TYPE REF TO if_ixml_stream_factory.
+  DATA o_outputstream TYPE REF TO if_ixml_ostream.
+  DATA o_renderer TYPE REF TO if_ixml_renderer.
+  DATA d_tempstr TYPE string.
+  DATA o_printxmldoc TYPE REF TO cl_xml_document.
+  DATA t_xml TYPE STANDARD TABLE OF string.
+  FIELD-SYMBOLS &lt;l&gt; LIKE LINE OF t_xml.
+
+  o_xmlengine = cl_ixml=&gt;create( ).
+  o_streamfactory = o_xmlengine-&gt;create_stream_factory( ).
+  o_outputstream = o_streamfactory-&gt;create_ostream_cstring( d_tempstr ).
+  CREATE OBJECT o_infos.
+  CREATE OBJECT o_ezxml.
+  o_xml = o_ezxml-&gt;any2xml( any = o_infos
+                           type = &apos;INFOS&apos; ).
+  o_renderer = o_xmlengine-&gt;create_renderer( document = o_xml
+                                              ostream = o_outputstream ).
+  o_renderer-&gt;set_normalizing( ).
+  o_renderer-&gt;render( ).
+  CREATE OBJECT o_printxmldoc.
+  o_printxmldoc-&gt;parse_string( d_tempstr ).
+
+  WHILE d_tempstr(1) &lt;&gt; &apos;&lt;&apos;.    SHIFT d_tempstr LEFT BY 1 PLACES.   ENDWHILE.
+  SPLIT d_tempstr AT cl_abap_char_utilities=&gt;newline INTO TABLE t_xml.
+  LOOP AT t_xml ASSIGNING &lt;l&gt;.  WRITE:/ &lt;l&gt;.  ENDLOOP.
+  o_file-&gt;set_filename( p_file ).
+  o_file-&gt;set_filecontent( d_tempstr ).
+  o_file-&gt;save( ).</SOURCE>
+  <TEXTSPOOL>
+   <ITEM ID="R">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="ZAPLink Informations : SAP Status &amp; Framework version" LENGTH="53 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="S" KEY="P_FILE">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="        Information file to create" LENGTH="34 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+ </RAW>
+</ZL_OBJECT>

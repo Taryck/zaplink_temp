@@ -1,0 +1,3303 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="AB8348B69749ECD143B85B0F90528C05" CODE_SIGNATURE="AE361B614B33060C9CF37D032776B670" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_MESSAGE_COLLECTOR" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-LOG" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Message Collector">U1&amp;FUNCTIONALITY&amp;
+ASCollect message and store them in Application Log transaction SLG1.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="ACTIONS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    begin of ACTIONS,
+      CREATE    type BU_AKTYP value &apos;01&apos;, &quot;#EC NOTEXT
+      CHANGE    type BU_AKTYP value &apos;02&apos;, &quot;#EC NOTEXT
+      DISPLAY   type BU_AKTYP value &apos;03&apos;, &quot;#EC NOTEXT
+    end of ACTIONS
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Activity on Logs"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="EXT_ID" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALNREXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: External ID"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MC_MAX_LEVEL" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;9&apos;" TYPTYPE="1" TYPE="N">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Maximum Level of Detail"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MC_MIN_LEVEL" EXPOSURE="1" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1&apos;" TYPTYPE="1" TYPE="N">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Minimum Level of Detail"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MD_EXTNUMBER" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALNREXT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: External ID"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MD_HANDLE" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALLOGHNDL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Log Handle (Internal)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MD_LEVEL" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALLEVEL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Level of Detail for Following Messages (0..9)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MD_SUP_COUNT" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="SYTABIX">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Support Mode Only: Number of Messages"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MF_LOG_NOT_STORED" EXPOSURE="1" STATE="1" ATTVALUE="ABAP_FALSE" TYPTYPE="1" TYPE="ABAP_BOOL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Access to Unsaved Log?"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MSGID" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="SYMSGID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Default Message Class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MS_LOG" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="BAL_S_LOG">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Log Header Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="MT_SUP_MSG" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="T_MSG_X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Support Mode Only: All Messages"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJECT" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALOBJ_D">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Object Name (Application Code)"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PROBCL" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF probcl,
+        very_imp    TYPE balprobcl VALUE &apos;1&apos;,               &quot;#EC NOTEXT
+        important   TYPE balprobcl VALUE &apos;2&apos;,               &quot;#EC NOTEXT
+        medium      TYPE balprobcl VALUE &apos;3&apos;,               &quot;#EC NOTEXT
+        for_info    TYPE balprobcl VALUE &apos;4&apos;,               &quot;#EC NOTEXT
+        other       TYPE balprobcl VALUE space,
+      END OF probcl
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Problem Classes"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUBOBJECT" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*======================================================================
+* standard sy-messages
+*======================================================================
+DEFINE mac_symsg_send.
+  message id sy-msgid type sy-msgty number sy-msgno
+          with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_send_as_type.
+  message id sy-msgid type &amp;1 number sy-msgno
+          display like sy-msgty
+          with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_raise.
+  message id sy-msgid type sy-msgty number sy-msgno
+          with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+          raising &amp;1.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_raise_as_type.
+  message id sy-msgid type &amp;1 number sy-msgno
+          with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+          raising &amp;2.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_raise_on_subrc.
+  if sy-subrc = &amp;1.
+    message id sy-msgid type sy-msgty number sy-msgno
+            with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+            raising &amp;2.
+  endif.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_into_text.
+  message id sy-msgid type sy-msgty number sy-msgno
+          with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+          into &amp;1.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_set.
+  sy-msgid = &amp;1.
+  sy-msgty = &amp;2.
+  sy-msgno = &amp;3.
+  sy-msgv1 = &amp;4.
+  sy-msgv2 = &amp;5.
+  sy-msgv3 = &amp;6.
+  sy-msgv4 = &amp;7.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_set_from_msg.
+  sy-msgid = &amp;1-msgid.
+  sy-msgty = &amp;1-msgty.
+  sy-msgno = &amp;1-msgno.
+  sy-msgv1 = &amp;1-msgv1.
+  sy-msgv2 = &amp;1-msgv2.
+  sy-msgv3 = &amp;1-msgv3.
+  sy-msgv4 = &amp;1-msgv4.
+END-OF-DEFINITION.
+
+DEFINE mac_msg_set_from_symsg.
+  &amp;1-msgid = sy-msgid.
+  &amp;1-msgty = sy-msgty.
+  &amp;1-msgno = sy-msgno.
+  &amp;1-msgv1 = sy-msgv1.
+  &amp;1-msgv2 = sy-msgv2.
+  &amp;1-msgv3 = sy-msgv3.
+  &amp;1-msgv4 = sy-msgv4.
+END-OF-DEFINITION.
+
+
+*======================================================================
+* bapi messages
+*======================================================================
+DEFINE mac_bapimsg_to_symsg.
+  sy-msgty = &amp;1-type.
+  sy-msgid = &amp;1-id.
+  sy-msgno = &amp;1-number.
+  sy-msgv1 = &amp;1-message_v1.
+  sy-msgv2 = &amp;1-message_v2.
+  sy-msgv3 = &amp;1-message_v3.
+  sy-msgv4 = &amp;1-message_v4.
+END-OF-DEFINITION.
+
+DEFINE mac_msg_to_bapimsg.
+  call function &apos;BALW_BAPIRETURN_GET2&apos;
+    exporting
+      type       = &amp;1-msgty
+      cl         = &amp;1-msgid
+      number     = &amp;1-msgno
+      par1       = &amp;1-msgv1
+      par2       = &amp;1-msgv2
+      par3       = &amp;1-msgv3
+      par4       = &amp;1-msgv4
+*     LOG_NO     = &apos; &apos;
+*     LOG_MSG_NO = &apos; &apos;
+*     PARAMETER  = &apos; &apos;
+*     ROW        = 0
+*     FIELD      = &apos; &apos;
+    importing
+      return     = &amp;2.
+END-OF-DEFINITION.
+
+
+*======================================================================
+*======================================================================
+DEFINE mac_msglist_add.
+  call method &amp;1-&gt;add
+    exporting
+      id_msgty = &amp;2
+      id_msgid = &amp;3
+      id_msgno = &amp;4
+      id_msgv1 = &amp;5
+      id_msgv2 = &amp;6
+      id_msgv3 = &amp;7
+      id_msgv4 = &amp;8.
+END-OF-DEFINITION.
+
+
+*======================================================================
+* formatting
+*======================================================================
+DEFINE mac_symsg_format_out.
+  write &amp;1 to &amp;2 left-justified.
+  condense &amp;2.
+END-OF-DEFINITION.
+
+DEFINE mac_symsg_format_num.
+  if &amp;1 is not initial.
+    write &amp;1 to &amp;2 no-zero.
+    condense &amp;2.
+  else.
+    clear &amp;2.
+  endif.
+END-OF-DEFINITION.
+
+
+*======================================================================
+* assertions / fatal error handling
+*======================================================================
+
+DEFINE mac_invalid_precondition.
+  assert 0 = 1.
+END-OF-DEFINITION.
+
+DEFINE mac_invalid_postcondition.
+  assert 0 = 1.
+END-OF-DEFINITION.
+
+DEFINE mac_assert_initial.
+  assert fields &amp;1 condition &amp;1 is initial.
+END-OF-DEFINITION.
+
+DEFINE mac_assert_not_initial.
+  assert &amp;1 is not initial.
+END-OF-DEFINITION.
+
+DEFINE mac_assert_ref.
+  assert &amp;1 is bound.
+END-OF-DEFINITION.
+
+DEFINE mac_assert_subrc.
+  assert fields sy-subrc condition sy-subrc = 0.
+END-OF-DEFINITION.
+
+
+*======================================================================
+* switch boolean value
+*======================================================================
+DEFINE mac_switch_flag.
+  if &amp;1 &lt;&gt; &apos; &apos;.
+    &amp;1 = &apos; &apos;.
+  else.
+    &amp;1 = &apos;X&apos;.
+  endif.
+END-OF-DEFINITION.
+
+*======================================================================
+* date
+*======================================================================
+*DEFINE mac_set_date_if_initial.
+*  if cl_reca_date=&gt;is_date_initial( &amp;1 ) = abap_true.
+*    &amp;1 = &amp;2.
+*  endif.
+*END-OF-DEFINITION.
+
+DEFINE mac_clear_date_if_initial.
+  if is_date_initial( &amp;1 ) = abap_true.
+    clear &amp;1.
+  endif.
+END-OF-DEFINITION.
+
+*DEFINE mac_clear_date_if_min_max.
+*  if &amp;1 = reca0_date-min or &amp;1 = reca0_date-max.
+*    clear &amp;1.
+*  endif.
+*END-OF-DEFINITION.
+
+*DEFINE mac_refresh_support_list.
+** also refresh support message list
+*  if cl_reca_trace=&gt;ms_options-traceon = abap_true.
+*    call method get_list_x
+*      importing
+*        et_list_x = mt_sup_msg.
+*    md_sup_count = lines( mt_sup_msg ).
+*  endif.
+*END-OF-DEFINITION.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Adds Message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MESSAGE" CMPTYPE="1" PARDECLTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Level of Detail (0..9)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_INDEX" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="NUMERIC" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Line Index"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="1st Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="2nd Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="3rd Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="4th Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="1st Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="2nd Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="3rd Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="4th Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Problem class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_SUBLOG" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLOGHNDL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Link to Subordinate Log"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_CUMULATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Cumulation of Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IS_MESSAGE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Complete or Individual Message Data:"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    ls_message    TYPE bal_s_msg,
+*    ls_msgcontext TYPE recamsgcontext,
+    ls_par        LIKE LINE OF ls_message-params-t_par,
+    ld_parcontext TYPE balpval.
+
+*  DEFINE mac_append_par.
+*    if &amp;2 is not initial.
+*      ls_par-parname  = &amp;1.
+*      ls_par-parvalue = &amp;2.
+*      append ls_par to ls_message-params-t_par.
+*    endif.
+*  END-OF-DEFINITION.
+
+* INIT RESULTS
+  CLEAR es_message.
+
+* BODY
+  IF is_message IS NOT INITIAL.
+
+*   set message data from structure
+    ls_message = is_message.
+
+  ELSE.
+
+*   set message data from single field values
+*   (special handling of message v1..v4 for type date)
+    ls_message-msgty = id_msgty.
+    IF id_msgid IS INITIAL.
+      ls_message-msgid = msgid.
+    ELSE.
+      ls_message-msgid = id_msgid.
+    ENDIF.
+    ls_message-msgno = id_msgno.
+
+    IF id_msgv1 IS SUPPLIED.
+      ls_message-msgv1 = id_msgv1.
+    ELSEIF id_msgd1 IS SUPPLIED.
+      CALL METHOD convert_date_to_string
+        EXPORTING
+          id_date        = id_msgd1
+        IMPORTING
+          ed_date_string = ls_message-msgv1.
+    ENDIF.
+
+    IF id_msgv2 IS SUPPLIED.
+      ls_message-msgv2 = id_msgv2.
+    ELSEIF id_msgd2 IS SUPPLIED.
+      CALL METHOD convert_date_to_string
+        EXPORTING
+          id_date        = id_msgd2
+        IMPORTING
+          ed_date_string = ls_message-msgv2.
+    ENDIF.
+
+    IF id_msgv3 IS SUPPLIED.
+      ls_message-msgv3 = id_msgv3.
+    ELSEIF id_msgd3 IS SUPPLIED.
+      CALL METHOD convert_date_to_string
+        EXPORTING
+          id_date        = id_msgd3
+        IMPORTING
+          ed_date_string = ls_message-msgv3.
+    ENDIF.
+
+    IF id_msgv4 IS SUPPLIED.
+      ls_message-msgv4 = id_msgv4.
+    ELSEIF id_msgd4 IS SUPPLIED.
+      CALL METHOD convert_date_to_string
+        EXPORTING
+          id_date        = id_msgd4
+        IMPORTING
+          ed_date_string = ls_message-msgv4.
+    ENDIF.
+
+    ls_message-detlevel  = id_detlevel.
+    ls_message-probclass = id_probclass.
+
+  ENDIF.
+
+* check message data (T100)
+  IF ( ls_message-msgty NA &apos;ISWEAX&apos; ) OR
+     ( ls_message-msgid IS INITIAL  ).
+    MESSAGE ID ls_message-msgid TYPE ls_message-msgty NUMBER ls_message-msgno
+            WITH ls_message-msgv1 ls_message-msgv2 ls_message-msgv3 ls_message-msgv4.
+  ENDIF.
+
+* modify detail level for message hierarchy
+  IF ls_message-detlevel NOT BETWEEN mc_min_level AND mc_max_level.
+    ls_message-detlevel = md_level.
+  ENDIF.
+
+* modify problem class
+  IF ls_message-probclass IS INITIAL.
+    CASE ls_message-msgty.
+      WHEN &apos;I&apos; OR &apos;S&apos;.       ls_message-probclass = &apos;4&apos;.
+      WHEN &apos;W&apos;.              ls_message-probclass = &apos;3&apos;.
+      WHEN &apos;E&apos;.              ls_message-probclass = &apos;2&apos;.
+      WHEN &apos;A&apos; OR &apos;X&apos;.       ls_message-probclass = &apos;1&apos;.
+    ENDCASE.
+  ENDIF.
+
+** set additional message data
+*  IF ( id_tabname   IS NOT INITIAL ) OR
+*     ( id_fieldname IS NOT INITIAL ) OR
+*     ( id_value     IS NOT INITIAL ) OR
+*     ( id_index     IS NOT INITIAL ) OR
+*     ( id_intreno   IS NOT INITIAL ) OR
+*     ( id_custact   IS NOT INITIAL ) OR
+*     ( id_sublog    IS NOT INITIAL ) OR
+*     ( id_context   IS NOT INITIAL ).
+*
+***   set callback header
+**    IF ( id_tabname IS NOT INITIAL OR id_fieldname IS NOT INITIAL ) OR
+**       ( id_intreno IS NOT INITIAL                                ) OR
+**       ( id_custact IS NOT INITIAL                                ) OR
+**       ( id_sublog  IS NOT INITIAL                                ).
+**      ls_message-params-callback-userexitp = space.
+**      ls_message-params-callback-userexitf = mc_func_callback.
+**      ls_message-params-callback-userexitt = &apos;F&apos;.
+**    ELSE.
+*      ls_message-params-altext = &apos;-&apos;.
+**    ENDIF.
+*
+**   set message callback parameter
+*    mac_append_par &apos;TABNAME&apos;   id_tabname.
+*    mac_append_par &apos;FIELDNAME&apos; id_fieldname.
+*    mac_append_par &apos;VALUE&apos;     id_value.
+*    mac_append_par &apos;INDEX&apos;     id_index.
+*    mac_append_par &apos;INTRENO&apos;   id_intreno.
+*    mac_append_par &apos;CUSTACT&apos;   id_custact.
+*    mac_append_par &apos;SUBLOG&apos;    id_sublog.
+*
+**    IF id_context IS NOT INITIAL.
+***     (unicode-like assignment)
+**      CALL METHOD cl_abap_container_utilities=&gt;fill_container_c
+**        EXPORTING
+**          im_value     = id_context
+**        IMPORTING
+**          ex_container = ld_parcontext.
+**    ENDIF.
+**
+**    mac_append_par &apos;CONTEXT&apos;   ld_parcontext.
+**
+****   set message context (only used to display in support mode)
+***    ls_msgcontext-tabname      = id_tabname.
+***    ls_msgcontext-fieldname    = id_fieldname.
+***    ls_msgcontext-tabindex     = id_index.
+***    ls_msgcontext-intreno      = id_intreno.
+***
+***    ls_message-context-tabname = &apos;RECAMSGCONTEXT&apos;.
+**    ls_message-context-tabname = id_tabname.
+**
+***   (unicode-like assignment)
+**    CALL METHOD cl_abap_container_utilities=&gt;fill_container_c
+**      EXPORTING
+**        im_value     = id_context
+**      IMPORTING
+**        ex_container = ls_message-context-value.
+*
+*  ENDIF.
+
+** trace
+*  CASE ls_message-msgty.
+*    WHEN &apos;E&apos; OR &apos;A&apos;. mac_trace &apos;MSG_E_ADD&apos;.
+*    WHEN &apos;W&apos;.        mac_trace &apos;MSG_W_ADD&apos;.
+*  ENDCASE.
+*  mac_trace &apos;MSG_ADD&apos;.
+
+* add message to application log
+
+  IF if_cumulate = abap_true.
+*   add cumulated messages (see documentation of funcion module BAL_LOG_MSG_CUMULATE)
+    CALL FUNCTION &apos;BAL_LOG_MSG_CUMULATE&apos;
+      EXPORTING
+        i_log_handle         = md_handle
+        i_s_msg              = ls_message
+        i_compare_attributes = abap_true       &quot; compare attributes
+        i_compare_context    = abap_true       &quot; and context
+        i_compare_parameters = abap_false
+      EXCEPTIONS
+        log_not_found        = 1
+        msg_inconsistent     = 2
+        log_is_full          = 3
+        OTHERS               = 4.
+  ELSE.
+*   just separately add this message
+    CALL FUNCTION &apos;BAL_LOG_MSG_ADD&apos;
+      EXPORTING
+        i_log_handle     = md_handle
+        i_s_msg          = ls_message
+      EXCEPTIONS
+        log_not_found    = 1
+        msg_inconsistent = 2
+        log_is_full      = 3
+        OTHERS           = 4.
+  ENDIF.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_send_as_type &apos;A&apos;.
+  ELSE.
+    es_message = ls_message.
+  ENDIF.
+
+** also refresh support message list
+*  mac_refresh_support_list.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_ABEND" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Abend message to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application log: Message problem class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _detlevel	TYPE ballevel.
+
+  IF id_detlevel IS INITIAL.
+    _detlevel = md_level.
+  ELSE.
+    _detlevel = id_detlevel.
+  ENDIF.
+
+  CALL METHOD add
+    EXPORTING
+*      is_message   =
+      id_msgty     = &apos;A&apos;
+      id_msgid     = id_msgid
+      id_msgno     = id_msgno
+      id_msgv1     = id_msgv1
+      id_msgv2     = id_msgv2
+      id_msgv3     = id_msgv3
+      id_msgv4     = id_msgv4
+*      id_msgd1     =
+*      id_msgd2     =
+*      id_msgd3     =
+*      id_msgd4     =
+      id_detlevel  = _detlevel
+*      if_cumulate  =
+      id_probclass = id_probclass
+*      id_index     =
+*      id_sublog    =
+*    IMPORTING
+*      es_message   =
+      .</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_ERROR" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add errror message to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application log: Message problem class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _detlevel	TYPE ballevel.
+
+  IF id_detlevel IS INITIAL.
+    _detlevel = md_level.
+  ELSE.
+    _detlevel = id_detlevel.
+  ENDIF.
+
+  CALL METHOD add
+    EXPORTING
+*      is_message   =
+      id_msgty     = &apos;E&apos;
+      id_msgid     = id_msgid
+      id_msgno     = id_msgno
+      id_msgv1     = id_msgv1
+      id_msgv2     = id_msgv2
+      id_msgv3     = id_msgv3
+      id_msgv4     = id_msgv4
+*      id_msgd1     =
+*      id_msgd2     =
+*      id_msgd3     =
+*      id_msgd4     =
+      id_detlevel  = _detlevel
+*      if_cumulate  =
+      id_probclass = id_probclass
+*      id_index     =
+*      id_sublog    =
+*    IMPORTING
+*      es_message   =
+      .</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_EXCEPTION" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add exception to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EXCEPTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CX_ROOT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Abstract Superclass for All Global Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _detlevel  TYPE ballevel.
+  DATA o_zl_cx    TYPE REF TO ZCX_ZAPLINK.
+
+  IF id_detlevel IS INITIAL.    _detlevel = md_level.   ELSE.   _detlevel = id_detlevel.    ENDIF.
+  TRY.
+      o_zl_cx ?= exception.
+    CATCH cx_root.
+  ENDTRY.
+  IF o_zl_cx IS BOUND.
+    CALL METHOD _add_zl_cx
+      EXPORTING
+        exception    = o_zl_cx
+        id_detlevel  = _detlevel
+        id_probclass = id_probclass.
+  ELSE.
+    CALL METHOD _add_exception
+      EXPORTING
+        exception    = exception
+        id_detlevel  = _detlevel
+        id_probclass = id_probclass.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_FROM_BAPI" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Adds All Messages from BAPI Format"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EF_ADD_ERROR" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Error/Termination Message Was Added"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="EF_ADD_WARNING" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Warning Message Was Added"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_CUMULATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Cumulation of Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IS_BAPIRET" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRET2" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="BAPI Return Information"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IT_BAPIRET" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAPIRETTAB" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Table Containing BAPI Return Information"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+      &lt;ls_bapiret&gt; LIKE is_bapiret.
+
+* INIT RESULTS
+  ef_add_error   = abap_false.
+  ef_add_warning = abap_false.
+
+* BODY
+* evaluate bapi return table
+  LOOP AT it_bapiret ASSIGNING &lt;ls_bapiret&gt;.
+    CALL METHOD add
+      EXPORTING
+        id_msgty    = &lt;ls_bapiret&gt;-type
+        id_msgid    = &lt;ls_bapiret&gt;-id
+        id_msgno    = &lt;ls_bapiret&gt;-number
+        id_msgv1    = &lt;ls_bapiret&gt;-message_v1
+        id_msgv2    = &lt;ls_bapiret&gt;-message_v2
+        id_msgv3    = &lt;ls_bapiret&gt;-message_v3
+        id_msgv4    = &lt;ls_bapiret&gt;-message_v4
+        if_cumulate = if_cumulate.
+*       id_tabname   = &lt;ls_bapiret&gt;-parameter
+*       id_fieldname = &lt;ls_bapiret&gt;-field
+*       id_index     = &lt;ls_bapiret&gt;-row
+
+    IF ( &lt;ls_bapiret&gt;-type = &apos;E&apos; ) OR
+       ( &lt;ls_bapiret&gt;-type = &apos;A&apos; ).
+      ef_add_error   = abap_true.
+    ELSEIF ( &lt;ls_bapiret&gt;-type = &apos;W&apos; ).
+      ef_add_warning = abap_true.
+    ENDIF.
+  ENDLOOP.
+
+* evaluate bapi return structure
+  IF is_bapiret IS NOT INITIAL.
+    CALL METHOD add
+      EXPORTING
+        id_msgty    = is_bapiret-type
+        id_msgid    = is_bapiret-id
+        id_msgno    = is_bapiret-number
+        id_msgv1    = is_bapiret-message_v1
+        id_msgv2    = is_bapiret-message_v2
+        id_msgv3    = is_bapiret-message_v3
+        id_msgv4    = is_bapiret-message_v4
+        if_cumulate = if_cumulate.
+*       id_tabname   = is_bapiret-parameter
+*       id_fieldname = is_bapiret-field
+*       id_index     = is_bapiret-row
+
+    IF ( is_bapiret-type = &apos;E&apos; ) OR
+       ( is_bapiret-type = &apos;A&apos; ).
+      ef_add_error   = abap_true.
+    ELSEIF ( is_bapiret-type = &apos;W&apos; ).
+      ef_add_warning = abap_true.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_FROM_INSTANCE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Inserts All Messages of Another Log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="IF_ADD_AS_SUBNODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Insert after Detail Level = md_level + 1"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_CUMULATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Cumulation of Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IO_MSGLIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Other Message Collector"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_msglist            TYPE t_msg,
+    ls_msglist            TYPE bal_s_msg,
+    ld_num_max_level      TYPE int1 VALUE mc_max_level,
+    ld_num_detlevel_diff  TYPE int1,
+    ld_num_detlevel_other TYPE int1,
+    lf_cumulate           TYPE abap_bool.
+
+  FIELD-SYMBOLS:
+    &lt;ls_msglist&gt;          LIKE LINE OF lt_msglist.
+
+* PRECONDITION
+  CHECK io_msglist IS BOUND.
+
+* BODY
+  lt_msglist = io_msglist-&gt;get_list( ).
+
+  CHECK lt_msglist IS NOT INITIAL.
+
+* cumulation of messages
+  lf_cumulate = if_cumulate.
+
+* increment detail level?
+  IF if_add_as_subnode = abap_true.
+    set_detail_level( id_relative = 1 ).
+    lf_cumulate = abap_false.
+  ENDIF.
+
+  LOOP AT lt_msglist ASSIGNING &lt;ls_msglist&gt;.
+
+    MOVE-CORRESPONDING &lt;ls_msglist&gt; TO ls_msglist.
+
+*   clear some fields as messages are &quot;new&quot;
+    CLEAR:
+      ls_msglist-time_stmp,
+      ls_msglist-msg_count.
+
+*   set detail level
+    IF ls_msglist-detlevel NOT BETWEEN mc_min_level AND mc_max_level.
+*     adopt always current detail level
+      ls_msglist-detlevel = md_level.
+    ELSEIF md_level = mc_min_level.
+*     nothing to do: adopt the detail level from other
+    ELSE.
+*     adopt the message with a &quot;deeper&quot; detail level
+      ld_num_detlevel_diff  = md_level - 1.
+      ld_num_detlevel_other = ls_msglist-detlevel.
+      ADD ld_num_detlevel_diff TO ld_num_detlevel_other.
+
+      IF ld_num_detlevel_other &lt;= ld_num_max_level.
+        ls_msglist-detlevel = ld_num_detlevel_other.
+      ELSE.
+        ls_msglist-detlevel = mc_max_level.
+      ENDIF.
+    ENDIF.
+
+*   add message
+    add( is_message  = ls_msglist
+         if_cumulate = lf_cumulate ).
+
+  ENDLOOP.
+
+* decrement detail level?
+  IF if_add_as_subnode = abap_true.
+    set_detail_level( id_relative = -1 ).
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_INFO" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add info message to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application log: Message problem class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _detlevel  TYPE ballevel.
+
+  IF id_detlevel IS INITIAL.
+    _detlevel = md_level.
+  ELSE.
+    _detlevel = id_detlevel.
+  ENDIF.
+
+  CALL METHOD add
+    EXPORTING
+*      is_message   =
+      id_msgty     = &apos;I&apos;
+      id_msgid     = ID_MSGID
+      id_msgno     = id_msgno
+      id_msgv1     = id_msgv1
+      id_msgv2     = id_msgv2
+      id_msgv3     = id_msgv3
+      id_msgv4     = id_msgv4
+*      id_msgd1     =
+*      id_msgd2     =
+*      id_msgd3     =
+*      id_msgd4     =
+      id_detlevel  = _detlevel
+*      if_cumulate  =
+      id_probclass = id_probclass
+*      id_index     =
+*      id_sublog    =
+*    IMPORTING
+*      es_message   =
+      .</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_SUCCESS" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Success message to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application log: Message problem class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _detlevel	TYPE ballevel.
+
+  IF id_detlevel IS INITIAL.
+    _detlevel = md_level.
+  ELSE.
+    _detlevel = id_detlevel.
+  ENDIF.
+
+  CALL METHOD add
+    EXPORTING
+*      is_message   =
+      id_msgty     = &apos;S&apos;
+      id_msgid     = id_msgid
+      id_msgno     = id_msgno
+      id_msgv1     = id_msgv1
+      id_msgv2     = id_msgv2
+      id_msgv3     = id_msgv3
+      id_msgv4     = id_msgv4
+*      id_msgd1     =
+*      id_msgd2     =
+*      id_msgd3     =
+*      id_msgd4     =
+      id_detlevel  = _detlevel
+*      if_cumulate  =
+      id_probclass = id_probclass
+*      id_index     =
+*      id_sublog    =
+*    IMPORTING
+*      es_message   =
+      .</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_SYMSG" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Adds Message from SY-MSG* Variables"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MESSAGE" CMPTYPE="1" PARDECLTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Level of Detail (0..9)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_INDEX" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="NUMERIC" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Line Index"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="SY-MSGTY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Problem class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_CUMULATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Cumulation of Messages"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA ls_symsg TYPE symsg.
+
+  CHECK NOT sy-msgid IS INITIAL AND
+*        not id_msgty is INITIAL AND
+        NOT sy-msgno IS INITIAL.
+* BODY
+* pass local copies of current sy-msg*-values
+  ls_symsg-msgty = id_msgty.
+  ls_symsg-msgid = sy-msgid.
+  ls_symsg-msgno = sy-msgno.
+  ls_symsg-msgv1 = sy-msgv1.
+  ls_symsg-msgv2 = sy-msgv2.
+  ls_symsg-msgv3 = sy-msgv3.
+  ls_symsg-msgv4 = sy-msgv4.
+
+* add message
+  CALL METHOD add
+    EXPORTING
+      id_msgty     = ls_symsg-msgty
+      id_msgid     = ls_symsg-msgid
+      id_msgno     = ls_symsg-msgno
+      id_msgv1     = ls_symsg-msgv1
+      id_msgv2     = ls_symsg-msgv2
+      id_msgv3     = ls_symsg-msgv3
+      id_msgv4     = ls_symsg-msgv4
+      if_cumulate  = if_cumulate
+      id_detlevel  = id_detlevel
+      id_probclass = id_probclass
+*      id_tabname   = id_tabname
+*      id_fieldname = id_fieldname
+*      id_value     = id_value
+      id_index     = id_index
+*      id_intreno   = id_intreno
+*      id_custact   = id_custact
+*      id_context   = id_context
+    IMPORTING
+      es_message   = es_message.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="ADD_WARNING" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Warning message to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application Log: Level of detail"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Application log: Message problem class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA: _detlevel	TYPE ballevel.
+
+  IF id_detlevel IS INITIAL.
+    _detlevel = md_level.
+  ELSE.
+    _detlevel = id_detlevel.
+  ENDIF.
+
+  CALL METHOD add
+    EXPORTING
+*      is_message   =
+      id_msgty     = &apos;W&apos;
+      id_msgid     = id_msgid
+      id_msgno     = id_msgno
+      id_msgv1     = id_msgv1
+      id_msgv2     = id_msgv2
+      id_msgv3     = id_msgv3
+      id_msgv4     = id_msgv4
+*      id_msgd1     =
+*      id_msgd2     =
+*      id_msgd3     =
+*      id_msgd4     =
+      id_detlevel  = _detlevel
+*      if_cumulate  =
+      id_probclass = id_probclass
+*      id_index     =
+*      id_sublog    =
+*    IMPORTING
+*      es_message   =
+      .</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="AS_CHAR" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Converts Date into CHAR Field"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RD_DATE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="CHAR10">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Date in display format"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* BODY
+  CALL FUNCTION &apos;CONVERT_DATE_TO_EXTERNAL&apos;
+    EXPORTING
+      date_internal            = id_date
+    IMPORTING
+      date_external            = rd_date
+    EXCEPTIONS
+      date_internal_is_invalid = 1
+      OTHERS                   = 2.
+  IF sy-subrc &lt;&gt; 0.
+    CLEAR rd_date.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHANGE_MSG_TYPE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Changes Type of Message, e.g. from E to W"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_MSGTY_SRC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Chanage Message Type from ... (&apos; &apos; = All)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY_TRG" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Change Message Type to ..."/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RD_CHANGED" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="I">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Number of Changed Messages"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle   TYPE bal_t_logh,
+    lt_msg_handle   TYPE bal_t_msgh,
+    ls_msg          TYPE bal_s_msg.
+
+  FIELD-SYMBOLS:
+    &lt;ls_msg_handle&gt; LIKE LINE OF lt_msg_handle.
+
+* PRECONDITION
+  IF ( id_msgty_src NA &apos; AEISWX&apos; ) OR
+     ( id_msgty_trg NA &apos;AEISWX&apos;  ).
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+* something to do?
+  CHECK id_msgty_src &lt;&gt; id_msgty_trg.
+
+* get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+    IMPORTING
+      e_t_msg_handle = lt_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+*   no message found
+    RETURN.
+  ENDIF.
+
+* get message data and change
+  LOOP AT lt_msg_handle ASSIGNING &lt;ls_msg_handle&gt;.
+
+    CALL FUNCTION &apos;BAL_LOG_MSG_READ&apos;
+      EXPORTING
+        i_s_msg_handle = &lt;ls_msg_handle&gt;
+      IMPORTING
+        e_s_msg        = ls_msg
+      EXCEPTIONS
+        log_not_found  = 1
+        msg_not_found  = 2
+        OTHERS         = 3.
+
+    IF sy-subrc = 0.
+
+      IF ( id_msgty_src IS INITIAL     ) OR
+         ( id_msgty_src = ls_msg-msgty ).
+
+        ls_msg-msgty = id_msgty_trg.
+        CALL FUNCTION &apos;BAL_LOG_MSG_CHANGE&apos;
+          EXPORTING
+            i_s_msg_handle = &lt;ls_msg_handle&gt;
+            i_s_msg        = ls_msg
+          EXCEPTIONS
+            OTHERS         = 1.
+        IF sy-subrc = 0.
+          ADD 1 TO rd_changed.
+        ENDIF.
+
+      ENDIF.
+
+    ENDIF.
+
+  ENDLOOP.
+
+** also refresh support message list
+*  mac_refresh_support_list.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHECK_CUSTO" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Auto create custo entries"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALOBJ_D">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="See Table BALOBJ"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_SUBOBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALSUBOBJ">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="See Table BALSUB"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ERROR" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Error"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _commit  TYPE flag.
+  DATA obj      TYPE balobj.
+  DATA obj_t    TYPE balobjt.
+  DATA sobj     TYPE balsub.
+  DATA sobj_t   TYPE balsubt.
+  DATA str      TYPE string.
+  FIELD-SYMBOLS:
+    &lt;t_balobj&gt; TYPE ANY,
+    &lt;s_balobj&gt; TYPE ANY,
+    &lt;t_balsub&gt; TYPE ANY,
+    &lt;s_balsub&gt; TYPE ANY.
+
+* Check BALOBJ
+  obj-object = id_object.
+  CALL FUNCTION &apos;BAL_OBJECT_SELECT&apos;
+    EXPORTING
+      i_object                      = id_object
+*   IMPORTING
+*     E_BALOBJ                      =
+*     E_T_BALSUB                    =
+*     E_OBJECT_HAS_SUBOBJECTS       =
+   EXCEPTIONS
+     object_not_found              = 1
+     OTHERS                        = 2
+            .
+  IF sy-subrc &lt;&gt; 0.
+*  SELECT SINGLE * INTO obj
+*    FROM balobj
+*    WHERE object = obj-object.
+*  IF sy-subrc &lt;&gt; 0.
+    INSERT balobj FROM obj.
+    obj_t-spras = sy-langu.
+    obj_t-object = obj-object.
+    obj_t-objtxt = &apos;Entry auto created by ZAPLINK_MESSAGE_COLLECTOR&apos;(blt).
+    INSERT balobjt FROM obj_t.
+    _commit = abap_true.
+*  ENDIF.
+  ENDIF.
+
+* Check BALSUB
+  sobj-object = obj-object.
+  sobj-subobject = id_subobject.
+  SELECT SINGLE * INTO sobj
+    FROM balsub
+    WHERE    object = sobj-object
+      AND subobject = sobj-subobject.
+  IF sy-subrc &lt;&gt; 0.
+    INSERT balsub FROM sobj.
+    sobj_t-spras = sy-langu.
+    sobj_t-object = sobj-object.
+    sobj_t-subobject = sobj-subobject.
+    sobj_t-subobjtxt = &apos;Entry auto created by ZAPLINK_MESSAGE_COLLECTOR&apos;(blt).
+    INSERT balsubt FROM sobj_t.
+    _commit = abap_true.
+  ENDIF.
+
+  IF NOT _commit IS INITIAL.
+* Clear cached tables
+    str = &apos;(SAPLSBAL_SERVICE)g_balobj[]&apos;.  ASSIGN (str) TO &lt;t_balobj&gt;.
+    IF sy-subrc = 0. CLEAR &lt;t_balobj&gt;.  UNASSIGN &lt;t_balobj&gt;.  ENDIF.
+    str = &apos;(SAPLSBAL_SERVICE)g_balobj&apos;.    ASSIGN (str) TO &lt;s_balobj&gt;.
+    IF sy-subrc = 0. CLEAR &lt;s_balobj&gt;.  UNASSIGN &lt;s_balobj&gt;.  ENDIF.
+    str = &apos;(SAPLSBAL_SERVICE)g_balsub[]&apos;.  ASSIGN (str) TO &lt;t_balsub&gt;.
+    IF sy-subrc = 0. CLEAR &lt;t_balsub&gt;.  UNASSIGN &lt;t_balsub&gt;.  ENDIF.
+    str = &apos;(SAPLSBAL_SERVICE)g_balsub&apos;.    ASSIGN (str) TO &lt;s_balsub&gt;.
+    IF sy-subrc = 0. CLEAR &lt;s_balsub&gt;.  UNASSIGN &lt;s_balsub&gt;.  ENDIF.
+* include LSBAL_SERVICETOP
+*  g_balobj TYPE SORTED TABLE OF balobj WITH HEADER LINE
+*           WITH NON-UNIQUE DEFAULT KEY INITIAL SIZE 20,
+*  g_balsub TYPE SORTED TABLE OF balsub WITH HEADER LINE
+*           WITH NON-UNIQUE DEFAULT KEY INITIAL SIZE 60,
+    COMMIT WORK AND WAIT.
+* Reload BAL cache
+    CALL FUNCTION &apos;BAL_OBJECT_SELECT&apos;
+      EXPORTING
+        i_object                      = id_object
+*     IMPORTING
+*       E_BALOBJ                      =
+*       E_T_BALSUB                    =
+*       E_OBJECT_HAS_SUBOBJECTS       =
+     EXCEPTIONS
+       object_not_found              = 1
+       OTHERS                        = 2
+              .
+    IF sy-subrc &lt;&gt; 0.
+* ignore error
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEAR" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Deletes All Collected Messages"/>
+    </TEXTS>
+    <SOURCE>`
+* BODY
+* delete all messages
+  CALL FUNCTION &apos;BAL_LOG_MSG_DELETE_ALL&apos;
+    EXPORTING
+      i_log_handle = md_handle
+    EXCEPTIONS
+      OTHERS       = 0.
+
+* initialize detail level
+  md_level = mc_min_level.
+
+* also delete support mode tables
+  CLEAR:
+    md_sup_count,
+    mt_sup_msg.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONVERT_DATE_TO_STRING" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Converts the Date into a String (Text Field)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ED_DATE_STRING" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CSEQUENCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Date as a String (10 Characters!)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Date"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* local data
+  DATA:
+    ld_date     TYPE sydatum,
+    ld_char(10) TYPE c.
+
+* eliminate NULL dates
+  ld_date = id_date.
+  mac_clear_date_if_initial ld_date.
+
+* convert date
+  ld_char = as_char( ld_date ).
+
+* set &quot;correct&quot; date &quot;00.00.0000&quot; for initial dates
+  IF ld_char IS INITIAL.
+    ld_date = &apos;11111111&apos;.
+    ld_char = as_char( ld_date ).
+    REPLACE &apos;1&apos; WITH &apos;0&apos; INTO ld_char.
+  ENDIF.
+
+  ed_date_string = ld_char.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="COUNT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Gets Number of Messages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RD_COUNT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="I">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Number of Messages"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle TYPE bal_t_logh,
+    lt_msg_handle TYPE bal_t_msgh.
+
+* BODY
+* get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+    IMPORTING
+      e_t_msg_handle = lt_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc = 0.
+    rd_count = lines( lt_msg_handle ).
+  ELSE.
+*   no message found
+    rd_count = 0.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DELETE_MESSAGE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Deletes Individual Message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_MSGNUMBER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALMNR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Internal Sequential Number of the Message"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="NOT_FOUND" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message not found"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA:
+    ls_msg_handle TYPE balmsghndl.
+
+* BODY
+  ls_msg_handle-log_handle = md_handle.
+  ls_msg_handle-msgnumber  = id_msgnumber.
+
+  CALL FUNCTION &apos;BAL_LOG_MSG_DELETE&apos;
+    EXPORTING
+      i_s_msg_handle = ls_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      log_not_found  = 2
+      OTHERS         = 3.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_raise not_found.
+  ENDIF.
+
+** also refresh support message list
+*  mac_refresh_support_list.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FREE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Releases Resources of Instance"/>
+    </TEXTS>
+    <SOURCE>`
+* BODY
+  IF mf_log_not_stored = abap_false.
+    CALL FUNCTION &apos;BAL_LOG_REFRESH&apos;
+    EXPORTING
+      i_log_handle = md_handle
+    EXCEPTIONS
+      OTHERS       = 0.
+  ENDIF.
+
+* clear instance attributes
+  CLEAR md_handle.
+  CLEAR ms_log.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_FIRST_MESSAGE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies First Message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MESSAGE" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="First Message"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="&apos;I&apos;">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type: Allowed I, W, E, A"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OR_HIGHER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Consider More Critical Message Types Also?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="NOT_FOUND" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="No notifications found"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle TYPE bal_t_logh,
+    lt_msg_handle TYPE bal_t_msgh,
+    ls_msg_filter TYPE bal_s_mfil,
+    ld_msg_handle TYPE balmsghndl,
+    ls_msg        TYPE bal_s_msg.
+
+* INIT RESULTS
+  CLEAR es_message.
+
+* PRECONDITION
+  IF id_msgty NA &apos;IWEA&apos;.
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+* get message filter by message type
+  CALL METHOD get_msg_filter
+    EXPORTING
+      id_msgty      = id_msgty
+      if_or_higher  = if_or_higher
+    IMPORTING
+      es_msg_filter = ls_msg_filter.
+
+* get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+      i_s_msg_filter = ls_msg_filter
+    IMPORTING
+      e_t_msg_handle = lt_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+*   no message found
+    mac_symsg_raise not_found.
+  ENDIF.
+
+* get data of first message
+  READ TABLE lt_msg_handle INDEX 1 INTO ld_msg_handle.
+  CALL FUNCTION &apos;BAL_LOG_MSG_READ&apos;
+    EXPORTING
+      i_s_msg_handle = ld_msg_handle
+    IMPORTING
+      e_s_msg        = ls_msg
+    EXCEPTIONS
+      log_not_found  = 1
+      msg_not_found  = 2
+      OTHERS         = 3.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_raise not_found.
+  ENDIF.
+
+  es_message = ls_msg.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_HANDLE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies Internal Log Handle"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RD_HANDLE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="BALLOGHNDL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Log Handle (Internal)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  rd_handle = md_handle.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_LAST_MESSAGE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies Last Message"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MESSAGE" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Last message"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="&apos;I&apos;">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type: Allowed I, W, E, A"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OR_HIGHER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Consider More Critical Message Types Also?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="NOT_FOUND" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="No notifications found"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle TYPE bal_t_logh,
+    lt_msg_handle TYPE bal_t_msgh,
+    ls_msg_filter TYPE bal_s_mfil,
+    ld_msg_handle TYPE balmsghndl,
+    ls_msg        TYPE bal_s_msg,
+    ld_count      TYPE i.
+
+* INIT RESULTS
+  CLEAR es_message.
+
+* PRECONDITION
+  IF id_msgty NA &apos;IWEA&apos;.
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+* get message filter by message type
+  CALL METHOD get_msg_filter
+    EXPORTING
+      id_msgty      = id_msgty
+      if_or_higher  = if_or_higher
+    IMPORTING
+      es_msg_filter = ls_msg_filter.
+
+* get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+      i_s_msg_filter = ls_msg_filter
+    IMPORTING
+      e_t_msg_handle = lt_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+*   no message found
+    mac_symsg_raise not_found.
+  ENDIF.
+
+* get data of last message
+  ld_count = lines( lt_msg_handle ).
+  READ TABLE lt_msg_handle INDEX ld_count INTO ld_msg_handle.
+  CALL FUNCTION &apos;BAL_LOG_MSG_READ&apos;
+    EXPORTING
+      i_s_msg_handle = ld_msg_handle
+    IMPORTING
+      e_s_msg        = ls_msg
+    EXCEPTIONS
+      log_not_found  = 1
+      msg_not_found  = 2
+      OTHERS         = 3.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_raise not_found.
+  ENDIF.
+
+  es_message = ls_msg.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_LIST" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies All Collected Messages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ET_LIST" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="T_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="List of  Collected Messages"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA lt_msglist_x   TYPE t_msg_x.
+
+  FIELD-SYMBOLS &lt;ls_msglist_x&gt; LIKE LINE OF lt_msglist_x.
+
+* INIT RESULTS
+  CLEAR et_list.
+
+* BODY
+  CALL METHOD get_list_x
+    IMPORTING
+      et_list_x = lt_msglist_x.
+
+  LOOP AT lt_msglist_x ASSIGNING &lt;ls_msglist_x&gt;.
+    APPEND &lt;ls_msglist_x&gt;-msg TO et_list.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_LIST_AS_BAPIRET" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies All Collected Messages as a BAPI Error"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ET_LIST" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="BAPIRETTAB">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="List of Messages as BAPI Error Information"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_msglist_x  TYPE t_msg_x,
+    ls_list       LIKE LINE OF et_list,
+    ls_par        TYPE bal_s_par,
+    ld_bapi_par   TYPE bapiret2-parameter,
+    ld_bapi_field TYPE bapiret2-field,
+    ld_bapi_row   TYPE bapiret2-row.
+
+  FIELD-SYMBOLS &lt;ls_msglist_x&gt; LIKE LINE OF lt_msglist_x.
+
+* INIT RESULTS
+  CLEAR et_list.
+
+* BODY
+* get messages
+  CALL METHOD get_list_x
+    IMPORTING
+      et_list_x = lt_msglist_x.
+
+  LOOP AT lt_msglist_x ASSIGNING &lt;ls_msglist_x&gt;.
+*   also try to get parameters
+*   1. TABLE name
+    READ TABLE &lt;ls_msglist_x&gt;-params-t_par INTO ls_par
+      WITH KEY parname = &apos;TABNAME&apos;.
+    IF sy-subrc = 0.
+      ld_bapi_par = ls_par-parvalue.
+    ELSE.
+      CLEAR ld_bapi_par.
+    ENDIF.
+
+*   2. FIELD name
+    READ TABLE &lt;ls_msglist_x&gt;-params-t_par INTO ls_par
+      WITH KEY parname = &apos;FIELDNAME&apos;.
+    IF sy-subrc = 0.
+      ld_bapi_field = ls_par-parvalue.
+    ELSE.
+      CLEAR ld_bapi_field.
+    ENDIF.
+
+*   3. INDEX
+    READ TABLE &lt;ls_msglist_x&gt;-params-t_par INTO ls_par
+      WITH KEY parname = &apos;INDEX&apos;.
+    IF sy-subrc = 0.
+      ld_bapi_row = ls_par-parvalue.
+    ELSE.
+      ld_bapi_row = 0.
+    ENDIF.
+
+    CALL FUNCTION &apos;BALW_BAPIRETURN_GET2&apos;
+      EXPORTING
+        type       = &lt;ls_msglist_x&gt;-msgty
+        cl         = &lt;ls_msglist_x&gt;-msgid
+        number     = &lt;ls_msglist_x&gt;-msgno
+        par1       = &lt;ls_msglist_x&gt;-msgv1
+        par2       = &lt;ls_msglist_x&gt;-msgv2
+        par3       = &lt;ls_msglist_x&gt;-msgv3
+        par4       = &lt;ls_msglist_x&gt;-msgv4
+*       LOG_NO     = &apos; &apos;
+*       LOG_MSG_NO = &apos; &apos;
+        parameter  = ld_bapi_par
+        row        = ld_bapi_row
+        field      = ld_bapi_field
+      IMPORTING
+        return     = ls_list.
+    APPEND ls_list TO et_list.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_LIST_X" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies All Collected Messages with Additional Techn.Fields"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ET_LIST_X" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_MSG_X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="List of  Collected Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="&apos;I&apos;">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type: Allowed I, W, E, A"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle   TYPE bal_t_logh,
+    lt_msg_handle   TYPE bal_t_msgh,
+    ls_msg_filter   TYPE bal_s_mfil,
+    ls_msg          TYPE bal_s_msg,
+    ls_list_x       LIKE LINE OF et_list_x.
+
+  FIELD-SYMBOLS &lt;ls_msg_handle&gt; LIKE LINE OF lt_msg_handle.
+
+* INIT RESULTS
+  CLEAR et_list_x.
+
+* PRECONDITION
+  IF id_msgty NA &apos;IWEA&apos;.
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+* get message filter by message type
+  CALL METHOD get_msg_filter
+    EXPORTING
+      id_msgty      = id_msgty
+      if_or_higher  = abap_true
+    IMPORTING
+      es_msg_filter = ls_msg_filter.
+
+* get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+      i_s_msg_filter = ls_msg_filter
+    IMPORTING
+      e_t_msg_handle = lt_msg_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+*   no message found
+    RETURN.
+  ENDIF.
+
+* get message data
+  LOOP AT lt_msg_handle ASSIGNING &lt;ls_msg_handle&gt;.
+
+    CALL FUNCTION &apos;BAL_LOG_MSG_READ&apos;
+      EXPORTING
+        i_s_msg_handle = &lt;ls_msg_handle&gt;
+      IMPORTING
+        e_s_msg        = ls_msg
+      EXCEPTIONS
+        log_not_found  = 1
+        msg_not_found  = 2
+        OTHERS         = 3.
+    IF sy-subrc = 0.
+      ls_list_x-msg       = ls_msg.
+      ls_list_x-msgnumber = &lt;ls_msg_handle&gt;-msgnumber.
+      APPEND ls_list_x TO et_list_x.
+    ENDIF.
+
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_MSG_FILTER" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies Filter Settings for Selecting Messages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MSG_FILTER" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MFIL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filter Criteria for Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="&apos;I&apos;">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Notification category"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OR_HIGHER" CMPTYPE="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Consider More Critical Message Types Also?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA ls_so_msgty LIKE LINE OF es_msg_filter-msgty.
+
+  DEFINE mac_add_msgty.
+    clear ls_so_msgty.
+    ls_so_msgty-sign   = &apos;I&apos;.
+    ls_so_msgty-option = &apos;EQ&apos;.
+    ls_so_msgty-low    = &amp;1.
+    append ls_so_msgty to es_msg_filter-msgty.
+  END-OF-DEFINITION.
+
+* INIT RESULTS
+  CLEAR es_msg_filter.
+
+* PRECONDITION
+  IF id_msgty NA &apos;AEISWX&apos;.
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+* something to do?
+  IF ( id_msgty     CA &apos;IS&apos;     ) AND
+     ( if_or_higher = abap_true ).
+    RETURN.
+  ENDIF.
+
+* set filter by message type
+  mac_add_msgty id_msgty.
+
+* add message type with same level
+  CASE id_msgty.
+    WHEN &apos;I&apos;.     mac_add_msgty &apos;S&apos;.
+    WHEN &apos;S&apos;.     mac_add_msgty &apos;I&apos;.
+    WHEN &apos;A&apos;.     mac_add_msgty &apos;X&apos;.
+    WHEN &apos;X&apos;.     mac_add_msgty &apos;A&apos;.
+  ENDCASE.
+
+* add message types with higher level
+  IF if_or_higher = abap_true.
+    CASE id_msgty.
+      WHEN &apos;I&apos; OR &apos;S&apos;.
+        mac_add_msgty &apos;W&apos;.
+        mac_add_msgty &apos;E&apos;.
+        mac_add_msgty &apos;A&apos;.
+        mac_add_msgty &apos;X&apos;.
+
+      WHEN &apos;W&apos;.
+        mac_add_msgty &apos;E&apos;.
+        mac_add_msgty &apos;A&apos;.
+        mac_add_msgty &apos;X&apos;.
+
+      WHEN &apos;E&apos;.
+        mac_add_msgty &apos;A&apos;.
+        mac_add_msgty &apos;X&apos;.
+
+    ENDCASE.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_REF_TYPE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="For Ref data (like object) type get target type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="REF_TYPE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TYPEDESC" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_TYPEDESCR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Runtime Type Services"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_ref      TYPE REF TO cl_abap_refdescr.
+
+  IF typedesc-&gt;kind = cl_abap_datadescr=&gt;kind_ref.
+    o_ref ?= typedesc.
+    ref_type = o_ref-&gt;get_referenced_type( ).
+  ELSE.
+    ref_type = typedesc.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_STATISTICS" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Supplies Summary of Number of Messages, etc."/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RS_STATISTICS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="BAL_S_SCNT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Statistics: Message Type Counter"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* clear result
+  CLEAR rs_statistics.
+
+* call log
+  CALL FUNCTION &apos;BAL_LOG_HDR_READ&apos;
+    EXPORTING
+      i_log_handle = md_handle
+    IMPORTING
+      e_statistics = rs_statistics
+    EXCEPTIONS
+      OTHERS       = 0.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_STATISTICS_AS_TEXT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Gets Summary as Text Using Message Number"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ED_TEXT" CMPTYPE="1" PARDECLTYP="1" TYPTYPE="1" TYPE="CSEQUENCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Summary of the Number of Errors"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OUTPUT_E_MESSAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Output Number of Termination and Error Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OUTPUT_HIGHEST_ONLY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Output Only Number of Highest Message Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OUTPUT_I_MESSAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Output Number of Information and Status Messages"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OUTPUT_W_MESSAGES" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Output Number of Warning Messages"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    ls_statistics   TYPE bal_s_scnt,
+    ld_result       TYPE string,
+    ld_result_cnt   TYPE string,
+    ld_result_cnt_e TYPE string,
+    ld_result_cnt_w TYPE string,
+    ld_result_cnt_i TYPE string.
+
+* INIT RESULTS
+  CLEAR ed_text.
+
+* BODY
+  ls_statistics = get_statistics( ).
+
+* evaluate E- / W- / I-messages only
+  ADD ls_statistics-msg_cnt_a TO ls_statistics-msg_cnt_e.
+  ADD ls_statistics-msg_cnt_s TO ls_statistics-msg_cnt_i.
+
+* build text for each message type only
+  IF if_output_e_messages = abap_true.
+    IF ls_statistics-msg_cnt_e &gt; 1.
+      ld_result_cnt = ls_statistics-msg_cnt_e.
+      ld_result_cnt_e = text-se0.
+      REPLACE &apos;&amp;1&apos; WITH ld_result_cnt INTO ld_result_cnt_e.
+      CONDENSE ld_result_cnt_e.
+    ELSEIF ls_statistics-msg_cnt_e = 1.
+      ld_result_cnt_e = text-se1.
+    ENDIF.
+  ENDIF.
+
+  IF if_output_w_messages = abap_true.
+    IF ls_statistics-msg_cnt_w &gt; 1.
+      ld_result_cnt = ls_statistics-msg_cnt_w.
+      ld_result_cnt_w = text-sw0.
+      REPLACE &apos;&amp;1&apos; IN ld_result_cnt_w WITH ld_result_cnt.
+      CONDENSE ld_result_cnt_w.
+    ELSEIF ls_statistics-msg_cnt_w = 1.
+      ld_result_cnt_w = text-sw1.
+    ENDIF.
+  ENDIF.
+
+  IF if_output_i_messages = abap_true.
+    IF ls_statistics-msg_cnt_i &gt; 1.
+      ld_result_cnt = ls_statistics-msg_cnt_i.
+      ld_result_cnt_i = text-si0.
+      REPLACE &apos;&amp;1&apos; WITH ld_result_cnt INTO ld_result_cnt_i.
+      CONDENSE ld_result_cnt_i.
+    ELSEIF ls_statistics-msg_cnt_i = 1.
+      ld_result_cnt_i = text-si1.
+    ENDIF.
+  ENDIF.
+
+* build resulting text
+  IF ld_result_cnt_e IS NOT INITIAL.
+    ld_result = ld_result_cnt_e.
+  ENDIF.
+
+  IF ld_result_cnt_w IS NOT INITIAL.
+    IF ld_result IS INITIAL.
+      ld_result = ld_result_cnt_w.
+    ELSEIF if_output_highest_only = abap_false.
+      CONCATENATE ld_result &apos;, &amp;1&apos;
+             INTO ld_result.
+      REPLACE &apos;&amp;1&apos; IN ld_result WITH ld_result_cnt_w.
+    ENDIF.
+  ENDIF.
+
+  IF ld_result_cnt_i IS NOT INITIAL.
+    IF ld_result IS INITIAL.
+      ld_result = ld_result_cnt_i.
+    ELSEIF if_output_highest_only = abap_false.
+      CONCATENATE ld_result &apos;, &amp;1&apos;
+             INTO ld_result.
+      REPLACE &apos;&amp;1&apos; IN ld_result WITH ld_result_cnt_i.
+    ENDIF.
+  ENDIF.
+
+* SET RESULT
+  ed_text = ld_result.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="HAS_MESSAGES_OF_MSGT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Are There Messages of a Given Type (I; W; E; A)?"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type: Allowed I, W, E, A"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OR_HIGHER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Consider More Critical Message Types Also?"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RF_EXISTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Does Message Exist?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    ls_statistics TYPE bal_s_scnt,
+    ld_msg_count  TYPE i.
+
+* PRECONDITION
+  IF id_msgty NA &apos;IWEA&apos;.
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+  IF ( id_msgty     = &apos;I&apos;       ) AND
+     ( if_or_higher = abap_true ).
+
+*   corresponds to &quot;all messages&quot;
+    IF is_empty( ) = abap_false.
+      rf_exists = abap_true.
+    ENDIF.
+
+  ELSE.
+
+*   get statistics about messages
+    ls_statistics = get_statistics( ).
+    ld_msg_count  = 0.
+
+    CASE id_msgty.
+      WHEN &apos;I&apos;.
+        ld_msg_count = ls_statistics-msg_cnt_i +
+                       ls_statistics-msg_cnt_s.
+
+      WHEN &apos;W&apos;.
+        ld_msg_count = ls_statistics-msg_cnt_w.
+        IF ( if_or_higher = abap_true ) AND ( ld_msg_count = 0 ).
+          ld_msg_count = ls_statistics-msg_cnt_e +
+                         ls_statistics-msg_cnt_a.
+        ENDIF.
+
+      WHEN &apos;E&apos;.
+        ld_msg_count = ls_statistics-msg_cnt_e.
+        IF ( if_or_higher = abap_true ) AND ( ld_msg_count = 0 ).
+          ld_msg_count = ls_statistics-msg_cnt_a.
+        ENDIF.
+
+      WHEN &apos;A&apos;.
+        ld_msg_count = ls_statistics-msg_cnt_a.
+
+    ENDCASE.
+
+*   check message counter
+    IF ld_msg_count &gt; 0.
+      rf_exists = abap_true.
+    ENDIF.
+
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INIT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="&lt;Only For Factory Methods&gt;"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="AUTO_UPD_CUSTO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="FLAG" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Auto Update customizing tables"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_ACTIVITY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BU_AKTYP" PARVALUE="ACTIONS-CREATE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activity (Change/Display Not Differentiated)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_EXTNUMBER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALNREXT" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="External ID of Log"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_OBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALOBJ_D">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="See Table BALOBJ"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_SUBOBJECT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALSUBOBJ">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="See Table BALSUB"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ERROR" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Error"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA:
+    lt_log_header TYPE balhdr_t,
+    ls_log_header TYPE balhdr,
+    ls_log_filter TYPE bal_s_lfil,
+    ld_guid       TYPE guid_32.
+*TYPE BU_AKTYP
+*01    Create
+*02    Change
+*03    Display
+*04    Modify (Direct Input: Create/Change)
+*06    Delete
+*11    Create defaults
+*12    Change defaults
+*13    Display defaults
+
+  IF NOT auto_upd_custo IS INITIAL.
+    check_custo( id_object = id_object
+              id_subobject = id_subobject ).
+  ENDIF.
+
+* BODY
+  IF id_activity = actions-create.                    &quot;create
+
+*   initialize application log data
+    ms_log-object     = id_object.
+    ms_log-subobject  = id_subobject.
+    ms_log-aluser     = sy-uname.
+    ms_log-alprog     = sy-cprog.
+    ms_log-aldate_del = sy-datum + 30.      &quot;expiration in 30 days
+
+*   set external number
+    IF id_extnumber IS NOT INITIAL.
+      ms_log-extnumber = id_extnumber.
+    ELSE.
+      CALL FUNCTION &apos;GUID_CREATE&apos;
+        IMPORTING
+          ev_guid_32 = ld_guid.
+      ms_log-extnumber = ld_guid.
+    ENDIF.
+
+*   create application log
+    CALL FUNCTION &apos;BAL_LOG_CREATE&apos;
+      EXPORTING
+        i_s_log                 = ms_log
+      IMPORTING
+        e_log_handle            = md_handle
+      EXCEPTIONS
+        log_header_inconsistent = 1
+        OTHERS                  = 2.
+    IF sy-subrc &lt;&gt; 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+              WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+
+  ELSE.
+
+*   find log header
+    CALL FUNCTION &apos;BAL_FILTER_CREATE&apos;
+      EXPORTING
+        i_object       = id_object
+        i_subobject    = id_subobject
+        i_extnumber    = id_extnumber
+      IMPORTING
+        e_s_log_filter = ls_log_filter.
+
+    CALL FUNCTION &apos;BAL_DB_SEARCH&apos;
+      EXPORTING
+        i_s_log_filter     = ls_log_filter
+      IMPORTING
+        e_t_log_header     = lt_log_header
+      EXCEPTIONS
+        log_not_found      = 1
+        no_filter_criteria = 2
+        OTHERS             = 3.
+    IF sy-subrc &lt;&gt; 0.
+      mac_symsg_raise error.
+    ENDIF.
+
+*    IF LINES( lt_log_header ) &gt; 1.
+*      MESSAGE e105(recabc)
+*              RAISING error.
+*    ENDIF.
+
+*   load log
+    CALL FUNCTION &apos;BAL_DB_LOAD&apos;
+      EXPORTING
+        i_t_log_header                = lt_log_header
+*       I_DO_NOT_LOAD_MESSAGES        = &apos; &apos;
+*       I_EXCEPTION_IF_ALREADY_LOADED =
+*     IMPORTING
+*       E_T_LOG_HANDLE                =
+*       E_T_MSG_HANDLE                =
+      EXCEPTIONS
+        no_logs_specified             = 1
+        log_not_found                 = 2
+        log_already_loaded            = 3
+        OTHERS                        = 4.
+    IF sy-subrc &lt;&gt; 0.
+      mac_symsg_raise error.
+    ENDIF.
+
+*   initialize attributes
+    READ TABLE lt_log_header INDEX 1 INTO ls_log_header.
+    MOVE-CORRESPONDING ls_log_header TO ms_log.
+    md_handle = ls_log_header-log_handle.
+
+  ENDIF.
+
+* set interface attribute
+  object = id_object.
+  subobject = id_subobject.
+  ext_id = md_extnumber = ms_log-extnumber.
+
+* initialize detail level
+  md_level = mc_min_level.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INIT_BY_HANDLE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="&lt;Only For Factory Methods&gt;"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_HANDLE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLOGHNDL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Log Handle (Internal)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ERROR" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Error"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA:
+    lt_log_handle TYPE bal_t_logh,
+    lf_load_error TYPE abap_bool.
+
+* BODY
+* load log
+  INSERT id_handle INTO TABLE lt_log_handle.
+
+* read log from DB
+  CALL FUNCTION &apos;BAL_DB_LOAD&apos;
+    EXPORTING
+      i_t_log_handle     = lt_log_handle
+    EXCEPTIONS
+      no_logs_specified  = 1
+      log_not_found      = 2
+      log_already_loaded = 3
+      OTHERS             = 4.
+* ignore error (maybe the log is not yet stored)
+  IF sy-subrc &lt;&gt; 0.
+    lf_load_error = abap_true.
+  ENDIF.
+
+* initialize attributes
+  CALL FUNCTION &apos;BAL_LOG_HDR_READ&apos;
+    EXPORTING
+      i_log_handle = id_handle
+    IMPORTING
+      e_s_log      = ms_log
+    EXCEPTIONS
+      OTHERS       = 1.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_raise error.
+  ENDIF.
+
+* if load error =&gt; do not delete log ( see method free)
+  IF lf_load_error = abap_true.
+    mf_log_not_stored = abap_true.
+  ENDIF.
+
+* initialize attributes
+  md_handle    = id_handle.
+  ext_id = md_extnumber = ms_log-extnumber.
+  md_level     = mc_min_level.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="INSERT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Inserts Message at a Given Position"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ES_MESSAGE" CMPTYPE="1" PARDECLTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Level of Detail (0..9)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_INDEX" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="NUMERIC" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Line Index"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_INSERT_INDEX" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="I">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Position Where Message Inserted"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="1st Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="2nd Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="3rd Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGD4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYDATUM" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="4th Message Variable as Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGID" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGID" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGNO" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGNO" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Number"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Messages: Message Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV1" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="1st Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV2" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="2nd Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV3" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="3rd Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_MSGV4" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="CLIKE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="4th Message Variable as Text"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Problem class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_SET_FOLLOWING_AS_SUBNODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Changes Detail Level (+1) of Existing, Following Message"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IS_MESSAGE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Complete or Individual Message Data:"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    lt_msglist_x              TYPE t_msg_x,
+    ld_insert_index           TYPE i,
+    ld_delete_index           TYPE i,
+    ld_num_detlevel_new       TYPE i,
+    ld_num_detlevel_next      TYPE i,
+    ld_num_detlevel_diff      TYPE i,
+    ld_num_detlevel_following TYPE i.
+
+  FIELD-SYMBOLS &lt;ls_msglist_x&gt;            LIKE LINE OF lt_msglist_x.
+
+* BODY
+* adopt index as inserting position
+* (index = 0 or index = 1 inserts the new message as the 1st message)
+  IF id_insert_index &gt; 0.
+    ld_insert_index = id_insert_index.
+  ELSE.
+    ld_insert_index = 1.
+  ENDIF.
+
+* get all current messages
+  CALL METHOD get_list_x
+    IMPORTING
+      et_list_x = lt_msglist_x.
+
+* insert new message
+  IF ld_insert_index &gt; lines( lt_msglist_x ).
+
+*   simply append as last message
+    CALL METHOD add
+      EXPORTING
+        is_message   = is_message
+        id_msgty     = id_msgty
+        id_msgid     = id_msgid
+        id_msgno     = id_msgno
+        id_msgv1     = id_msgv1
+        id_msgv2     = id_msgv2
+        id_msgv3     = id_msgv3
+        id_msgv4     = id_msgv4
+        id_msgd1     = id_msgd1
+        id_msgd2     = id_msgd2
+        id_msgd3     = id_msgd3
+        id_msgd4     = id_msgd4
+        id_detlevel  = id_detlevel
+        id_probclass = id_probclass
+*        id_tabname   = id_tabname
+*        id_fieldname = id_fieldname
+*        id_value     = id_value
+        id_index     = id_index
+*        id_intreno   = id_intreno
+*        id_context   = id_context
+      IMPORTING
+        es_message   = es_message.
+
+  ELSE.
+
+*   insert message with specified index
+
+*   delete all following messages from message list and
+*   hold only these messages in lt_msglist_x
+    IF ld_insert_index &gt; 1.
+      ld_delete_index = ld_insert_index - 1.
+      DELETE lt_msglist_x TO ld_delete_index.
+
+      LOOP AT lt_msglist_x ASSIGNING &lt;ls_msglist_x&gt;.
+        CALL METHOD delete_message
+          EXPORTING
+            id_msgnumber = &lt;ls_msglist_x&gt;-msgnumber
+          EXCEPTIONS
+            OTHERS       = 0.
+      ENDLOOP.
+    ELSE.
+      clear( ).
+    ENDIF.
+
+*   append new message to temporarily reduced list
+    CALL METHOD add
+      EXPORTING
+        is_message   = is_message
+        id_msgty     = id_msgty
+        id_msgid     = id_msgid
+        id_msgno     = id_msgno
+        id_msgv1     = id_msgv1
+        id_msgv2     = id_msgv2
+        id_msgv3     = id_msgv3
+        id_msgv4     = id_msgv4
+        id_msgd1     = id_msgd1
+        id_msgd2     = id_msgd2
+        id_msgd3     = id_msgd3
+        id_msgd4     = id_msgd4
+        id_detlevel  = id_detlevel
+        id_probclass = id_probclass
+*        id_tabname   = id_tabname
+*        id_fieldname = id_fieldname
+*        id_value     = id_value
+        id_index     = id_index
+*        id_intreno   = id_intreno
+*        id_context   = id_context
+      IMPORTING
+        es_message   = es_message.
+
+*   determine detail level for subnode
+    IF if_set_following_as_subnode = abap_true.
+      READ TABLE lt_msglist_x INDEX 1 ASSIGNING &lt;ls_msglist_x&gt;.
+      ld_num_detlevel_next = &lt;ls_msglist_x&gt;-detlevel.
+      ld_num_detlevel_new  = es_message-detlevel.
+      ld_num_detlevel_diff = ld_num_detlevel_new  -
+                             ld_num_detlevel_next + 1.
+    ENDIF.
+
+*   append deleted messages
+    LOOP AT lt_msglist_x ASSIGNING &lt;ls_msglist_x&gt;.
+
+*     clear some fields as messages are &quot;new&quot;
+      CLEAR:
+        &lt;ls_msglist_x&gt;-time_stmp,
+        &lt;ls_msglist_x&gt;-msg_count.
+
+*     adopt detail level
+      IF if_set_following_as_subnode = abap_true.
+        ld_num_detlevel_following = &lt;ls_msglist_x&gt;-detlevel +
+                                    ld_num_detlevel_diff.
+        IF ld_num_detlevel_following &lt; 0.
+          &lt;ls_msglist_x&gt;-detlevel = 0.
+        ELSEIF ld_num_detlevel_following &gt; mc_max_level.
+          &lt;ls_msglist_x&gt;-detlevel = mc_max_level.
+        ELSE.
+          &lt;ls_msglist_x&gt;-detlevel = ld_num_detlevel_following.
+        ENDIF.
+      ENDIF.
+
+*     add message
+      CALL METHOD add( is_message = &lt;ls_msglist_x&gt;-msg ).
+
+    ENDLOOP.
+
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_DATE_INITIAL" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT='Bool: Date = &quot;Initial&quot;'/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_DATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SY-DATUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Date"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RF_INITIAL" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Bool: Initial"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* PRECONDITION
+  IF ( id_date(1) &gt;= &apos;1&apos; ).
+    rf_initial = abap_false.
+    RETURN.
+  ENDIF.
+
+* BODY
+  IF ( id_date IS INITIAL    ) OR
+     ( id_date  = space      ) OR
+     ( id_date  = &apos;00000000&apos; ).
+    rf_initial = abap_true.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IS_EMPTY" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Is the List of Collected Messages Empty?"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RF_EMPTY" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Is List Empty?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA lt_log_handle TYPE bal_t_logh.
+
+* BODY
+* try to get handles of messages
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_GLB_SEARCH_MSG&apos;
+    EXPORTING
+      i_t_log_handle = lt_log_handle
+    EXCEPTIONS
+      msg_not_found  = 1
+      OTHERS         = 2.
+  IF sy-subrc &lt;&gt; 0.
+*   no message found
+    rf_empty = abap_true.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="NEW" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create new instance"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="OBJ" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="3" TYPE="ZAPLINK_MESSAGE_COLLECTOR">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Collector: Standard Implementation"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  CREATE OBJECT obj.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RAISE_FIRST_MESSAGE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Gets First Message as Exception"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_MSGTY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SYMSGTY" PARVALUE="&apos;E&apos;">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Type: Allowed I, W, E, A"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="IF_OR_HIGHER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Consider More Critical Message Types Also?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="FIRST_MESSAGE" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="E-Message Found, Data in SY Variables"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA ls_msg TYPE BAL_S_MSG.
+
+* BODY
+  CALL METHOD get_first_message
+    EXPORTING
+      id_msgty     = id_msgty
+      if_or_higher = if_or_higher
+    IMPORTING
+      es_message   = ls_msg
+    EXCEPTIONS
+      not_found    = 1
+      OTHERS       = 2.
+  IF sy-subrc = 0.
+    MESSAGE ID ls_msg-msgid TYPE ls_msg-msgty NUMBER ls_msg-msgno
+            WITH ls_msg-msgv1 ls_msg-msgv2 ls_msg-msgv3 ls_msg-msgv4
+            RAISING first_message.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="RAISE_ON_ERROR" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Raise exception when error in BAL Log"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_exception TYPE REF TO ZCX_ZAPLINK.
+
+  IF NOT has_messages_of_msgt( id_msgty = &apos;E&apos; ) IS INITIAL.
+* Fatal Errors occurs, check ba log (SLG1) : &apos;&amp;1&apos; &apos;&amp;2&apos; &apos;&amp;3&apos;
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE e012(zaplink_package) WITH space space space. ENDIF.
+    SET EXTENDED CHECK ON.
+    add_abend( id_msgid = &apos;ZAPLINK_PACKAGE&apos;
+               id_msgno = &apos;012&apos;
+               id_msgv1 = object
+               id_msgv2 = subobject
+               id_msgv3 = ext_id
+*             id_msgv4 = id_msgv4
+*               id_detlevel = &apos;1&apos;
+*               id_probclass = &apos;1&apos;
+                ).
+
+    o_exception = ZCX_ZAPLINK=&gt;create_from_application_log( message_collector = me ).
+
+    RAISE EXCEPTION o_exception.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_DETAIL_LEVEL" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Changes Level of Detail for Following Messages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_ABSOLUTE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Level of Detail (0..4)"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_RELATIVE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="INT4" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Increase/Decrease"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA:
+    ld_num_min_level    LIKE id_relative,
+    ld_num_max_level    LIKE id_relative,
+    ld_num_level_signed LIKE id_relative.
+
+* PRECONDITION
+  IF ( id_absolute IS NOT INITIAL ) AND
+     ( id_relative IS NOT INITIAL ).
+    mac_invalid_precondition.
+  ENDIF.
+
+* BODY
+  IF id_absolute IS NOT INITIAL.
+
+*   set level as absolute number
+    IF id_absolute BETWEEN mc_min_level AND mc_max_level.
+      md_level = id_absolute.
+    ENDIF.
+
+  ELSEIF id_relative IS NOT INITIAL .
+
+*   set level relative to the previous one
+    ld_num_min_level = mc_min_level.
+    ld_num_max_level = mc_max_level.
+
+    ld_num_level_signed = md_level.
+    ADD id_relative TO ld_num_level_signed.
+
+    IF ld_num_level_signed &lt; ld_num_min_level.
+      md_level = mc_min_level.
+    ELSEIF ld_num_level_signed &gt; ld_num_max_level.
+      md_level = mc_max_level.
+    ELSE.
+      md_level = ld_num_level_signed.
+    ENDIF.
+
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_EXTNUMBER" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Changes External Identification of Log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ID_EXTNUMBER" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALNREXT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="External ID of Log"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA ls_log_temp LIKE ms_log.
+
+* PRECONDITION
+  CHECK id_extnumber IS NOT INITIAL.
+
+* BODY
+  ls_log_temp           = ms_log.
+  ls_log_temp-extnumber = id_extnumber.
+
+  CALL FUNCTION &apos;BAL_LOG_HDR_CHANGE&apos;
+    EXPORTING
+      i_log_handle            = md_handle
+      i_s_log                 = ls_log_temp
+    EXCEPTIONS
+      log_not_found           = 1
+      log_header_inconsistent = 2
+      OTHERS                  = 3.
+  IF sy-subrc &lt;&gt; 0.
+*   ignore failure
+    RETURN.
+  ENDIF.
+
+  ms_log-extnumber = id_extnumber.
+  ext_id = md_extnumber     = id_extnumber.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="STORE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Saves Log with Collected Messages"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="IF_IN_UPDATE_TASK" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT='Call update program using &quot;IN UPDATE TASK&quot;'/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ERROR" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Error when saving"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA lt_log_handle TYPE bal_t_logh.
+
+* BODY
+  INSERT md_handle INTO TABLE lt_log_handle.
+
+  CALL FUNCTION &apos;BAL_DB_SAVE&apos;
+    EXPORTING
+*     I_CLIENT         = SY-MANDT
+      i_in_update_task = if_in_update_task
+*     I_SAVE_ALL       = &apos; &apos;
+      i_t_log_handle   = lt_log_handle
+*   IMPORTING
+*     E_NEW_LOGNUMBERS =
+    EXCEPTIONS
+      log_not_found    = 1
+      save_not_allowed = 2
+      numbering_error  = 3
+      OTHERS           = 4.
+  IF sy-subrc &lt;&gt; 0.
+    mac_symsg_raise error.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="WRITE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Write message to screen"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="_OFFSET" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING" PAROPTIONL="X"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA lt_messages  TYPE t_msg_x.
+  DATA _msg TYPE string.
+  DATA _light TYPE icon_d.
+  FIELD-SYMBOLS &lt;m&gt; LIKE LINE OF lt_messages.
+
+* get messages
+  CALL METHOD get_list_x
+    IMPORTING
+      et_list_x = lt_messages.
+
+  LOOP AT lt_messages ASSIGNING &lt;m&gt;.
+    CASE &lt;m&gt;-msgty.
+      WHEN &apos;X&apos;. _light = icon_red_xcircle.
+      WHEN &apos;A&apos;. _light = icon_message_critical_small.
+      WHEN &apos;E&apos;. _light = icon_red_light.
+      WHEN &apos;W&apos;. _light = icon_yellow_light.
+      WHEN &apos;I&apos;. _light = icon_light_out.
+      WHEN &apos;S&apos;. _light = icon_green_light.
+      WHEN OTHERS. _light = icon_light_out.
+    ENDCASE.
+    MESSAGE ID &lt;m&gt;-msgid TYPE &apos;I&apos; NUMBER &lt;m&gt;-msgno WITH &lt;m&gt;-msgv1 &lt;m&gt;-msgv2 &lt;m&gt;-msgv3 &lt;m&gt;-msgv4 INTO _msg.
+    WRITE:/ _offset, _light AS ICON, _msg.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_ADD_EXCEPTION" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add exception to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EXCEPTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="CX_ROOT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Abstract Superclass for All Global Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _detlevel  TYPE ballevel.
+  DATA cx_text    TYPE string.
+  DATA o_ref      TYPE REF TO cl_abap_refdescr.
+  DATA o_obj      TYPE REF TO cl_abap_classdescr.
+*  DATA prog       TYPE syrepid.
+*  DATA include    TYPE syrepid.
+*  DATA line       TYPE i.
+  DATA cx_src_pos TYPE string.
+  DATA f_toolong  TYPE abap_bool.
+  DATA:
+    BEGIN OF s_msg,
+      msgv1	TYPE symsgv,
+      msgv2	TYPE symsgv,
+      msgv3	TYPE symsgv,
+      msgv4	TYPE symsgv,
+    END OF s_msg.
+
+  IF exception-&gt;previous IS BOUND.
+    _detlevel = id_detlevel + 1.
+    CALL METHOD add_exception
+      EXPORTING
+        exception    = exception-&gt;previous
+        id_detlevel  = _detlevel
+        id_probclass = id_probclass.
+  ENDIF.
+
+  o_ref ?= cl_abap_classdescr=&gt;describe_by_data( p_data = exception ).
+  o_obj ?= get_ref_type( o_ref ).
+
+  cx_src_pos = ZCX_ZAPLINK=&gt;source_position_as_string( exception ).
+*  CALL METHOD exception-&gt;get_source_position
+*    IMPORTING
+*      program_name = prog
+*      include_name = include
+*      source_line  = line.
+*  cx_src_pos = line.
+*  IF include = prog.    CLEAR include.    ENDIF.
+*  IF include IS INITIAL.
+*    CONCATENATE prog &apos; @&apos; cx_src_pos INTO cx_src_pos.
+*  ELSE.
+*    CONCATENATE include &apos;(&apos; prog &apos;) @&apos; cx_src_pos INTO cx_src_pos.
+*  ENDIF.
+
+  s_msg = o_obj-&gt;absolute_name.
+  IF NOT s_msg-msgv2 IS INITIAL OR NOT s_msg-msgv3 IS INITIAL OR NOT s_msg-msgv4 IS INITIAL.    f_toolong = abap_true.    ENDIF.
+  s_msg = cx_src_pos.
+  IF NOT s_msg-msgv2 IS INITIAL OR NOT s_msg-msgv3 IS INITIAL OR NOT s_msg-msgv4 IS INITIAL.    f_toolong = abap_true.    ENDIF.
+  s_msg = cx_text = exception-&gt;if_message~get_text( ).
+  IF NOT s_msg-msgv3 IS INITIAL OR NOT s_msg-msgv4 IS INITIAL.    f_toolong = abap_true.    ENDIF.
+  IF f_toolong IS INITIAL.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE e002(zaplink_easyxml) WITH abap_true abap_true abap_true abap_true. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD add_error
+      EXPORTING
+        id_msgid     = &apos;ZAPLINK_EASYXML&apos;
+        id_msgno     = &apos;002&apos;
+        id_msgv1     = o_obj-&gt;absolute_name
+        id_msgv2     = s_msg-msgv1
+        id_msgv3     = s_msg-msgv2
+        id_msgv4     = cx_src_pos
+        id_detlevel  = id_detlevel
+        id_probclass = id_probclass.
+  ELSE.
+    s_msg = o_obj-&gt;absolute_name.   s_msg+100 = cx_src_pos.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE e012(zaplink_easyxml) WITH abap_true abap_true abap_true abap_true. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD add_error
+      EXPORTING
+        id_msgid     = &apos;ZAPLINK_EASYXML&apos;
+        id_msgno     = &apos;012&apos;
+        id_msgv1     = s_msg-msgv1
+        id_msgv2     = s_msg-msgv2
+        id_msgv3     = s_msg-msgv3
+        id_msgv4     = s_msg-msgv4
+        id_detlevel  = id_detlevel
+        id_probclass = id_probclass.
+    WHILE NOT cx_text IS INITIAL.
+      s_msg = cx_text.
+      SET EXTENDED CHECK OFF.
+      IF 1 = 2. MESSAGE e011(zaplink_easyxml) WITH abap_true abap_true abap_true abap_true. ENDIF.
+      SET EXTENDED CHECK ON.
+      CALL METHOD add_info
+        EXPORTING
+          id_msgid     = &apos;ZAPLINK_EASYXML&apos;
+          id_msgno     = &apos;011&apos;
+          id_msgv1     = s_msg-msgv1
+          id_msgv2     = s_msg-msgv2
+          id_msgv3     = s_msg-msgv3
+          id_msgv4     = s_msg-msgv4
+          id_detlevel  = id_detlevel
+          id_probclass = id_probclass.
+      IF STRLEN( cx_text ) &lt; 200.   CLEAR cx_text.    ELSE.   SHIFT cx_text BY 200 PLACES LEFT.    ENDIF.
+    ENDWHILE.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_ADD_ZL_CX" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add Zaplink exception to bal log"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="EXCEPTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Abstract Superclass for All Global Exceptions"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ID_DETLEVEL" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALLEVEL"/>
+     <ITEM SCONAME="ID_PROBCLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BALPROBCL"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA _detlevel  TYPE ballevel.
+
+  IF exception-&gt;previous IS BOUND.
+    _detlevel = id_detlevel + 1.
+    CALL METHOD add_exception
+      EXPORTING
+        exception    = exception-&gt;previous
+        id_detlevel  = _detlevel
+        id_probclass = id_probclass.
+  ENDIF.
+
+  CALL METHOD _add_exception
+    EXPORTING
+      exception    = exception
+      id_detlevel  = id_detlevel
+      id_probclass = id_probclass.
+
+  IF exception-&gt;messages IS BOUND.
+    CALL METHOD add_from_instance
+      EXPORTING
+        io_msglist        = exception-&gt;messages
+*      if_cumulate       =
+        if_add_as_subnode = abap_true.
+  ENDIF.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="BLT">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Entry auto created by ZAPLINK_MESSAGE_COLLECTOR" LENGTH="60 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SE0">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="&amp;1 Errors" LENGTH="9 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SE1">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="1 Error" LENGTH="7 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SI0">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="&amp;1 Messages" LENGTH="11 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SI1">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="1 Message" LENGTH="9 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SW0">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="&amp;1 Warnings" LENGTH="11 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="SW1">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="1 Warning" LENGTH="9 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="MSG_X" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF msg_x .
+    INCLUDE TYPE bal_s_msg AS msg.
+TYPES:
+    msgnumber	TYPE balmnr,
+  END OF msg_x
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Msg with tech data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_MSG" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    t_msg TYPE STANDARD TABLE OF bal_s_msg WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Msg list"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_MSG_X" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    t_msg_x TYPE STANDARD TABLE OF msg_x WITH NON-UNIQUE DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Msg list with tech data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

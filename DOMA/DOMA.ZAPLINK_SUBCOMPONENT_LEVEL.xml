@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="E738781701049246935885E97506121A" CONNECTOR="5079624B82531D63E1000000AC120173" NAME="ZAPLINK_SUBCOMPONENT_LEVEL" TYPE="DOMA" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA DATATYPE="CHAR" LENG="000001" OUTPUTLEN="000001" VALEXI="X"/>
+  <TEXTS>
+   <ITEM LANGU="E" SHORT_TXT="Sub Component level">
+    <LONG_TXT TDFRELES="701" TDLRELES="701" TDLINESIZE="072">U1&amp;DEFINITION&amp;
+ASAllow to define when exporting a component what should exactly be
+  exported. Four levels are possible:
+B10 - Only the component it self
+B13 - Component and sub component like in SAP Transport Request
+B16 - Component and sub component required for installation
+B19 - Component with all possible sub component
+* Depending on the connector and the component type content exported won&apos;t
+  be the same.
+U1Dictionary Objects
+* DOMA : Domain =&gt; Level doesn&apos;t change anything
+* DTEL : Data Element =&gt; Level doesn&apos;t change anything
+* ENQU : Enqueue =&gt; Level doesn&apos;t change anything
+* INDX : Index =&gt; Level doesn&apos;t change anything
+* MCID : Match Code ID =&gt; Level doesn&apos;t change anything
+* MCOB : Match Code Object =&gt; Level doesn&apos;t change anything
+* SHLP : Search Help =&gt; Level doesn&apos;t change anything
+* SQLT : Cluster Pool =&gt; Level doesn&apos;t change anything
+* TABL : Table or Structure
+B1Level 0 - Table only without indexes
+B1Level 3 - Table and his indexes
+B1Level 6 - Table, his indexes and table content if table is customizing
+  table
+B1Level 9 - Table, his indexes and table content
+* TABU : Table Content =&gt; Level doesn&apos;t change anything
+* TTYP : Table Type =&gt; Level doesn&apos;t change anything
+* TYPE : Type Group =&gt; Level doesn&apos;t change anything
+* VIEW : View =&gt; Level doesn&apos;t change anything
+* XINX : Extension Index =&gt; Level doesn&apos;t change anything</LONG_TXT>
+   </ITEM>
+  </TEXTS>
+  <VALUES>
+   <ITEM VALPOS="0001" DOMVALUE_L="0">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Only the component it self"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM VALPOS="0002" DOMVALUE_L="3">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component and sub component like in SAP Transport Request"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM VALPOS="0003" DOMVALUE_L="6">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component and sub component required for installation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM VALPOS="0004" DOMVALUE_L="9">
+    <TEXTS>
+     <ITEM LANGU="E" SHORT_TXT="Component with all possible sub component"/>
+    </TEXTS>
+   </ITEM>
+  </VALUES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="273C32FD0527AF18523D6BF0B430AD46" CODE_SIGNATURE="36DD41475BC6F33E63B26EAF18F74592" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_OPTIONS" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Zap Link : Options">U1&amp;FUNCTIONALITY&amp;
+ASOptions for Importing or Exporting Components
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="DEVCLASS" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TO_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="OBSOLETE Zap Link DevClass options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DIRECTORY" EXPOSURE="2" STATE="1" ATTRDONLY="X" TYPTYPE="1" TYPE="TO_DIRECTORY">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link Directory options"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  create OBJECT directory.
+  create OBJECT devclass.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_DIRECTORY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DevClass : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_DIRECTORY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link DevClass options"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPTIONS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  result = directory.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_DIRECTORY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="DevClass : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_DIRECTORY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link DevClass options"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_OPTIONS" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CHECK data &lt;&gt; directory.
+  directory = data.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_DEVCLASS" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_OPT_DEVCLASS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link DevClass options"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_DIRECTORY" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_OPT_DIRECTORY">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Zap Link DevClass options"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

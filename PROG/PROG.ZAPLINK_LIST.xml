@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="AC376FF8261C2D57C0287E8F59C98AEC" CODE_SIGNATURE="2CDD542F74A37209A1097E0590CD0CD8" CONNECTOR="AAAD0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_LIST" TYPE="PROG" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VARCL="X" SUBC="M" RSTAT="K" RMAND="200" RLOAD="E" FIXPT="X" UCCHECK="X"/>
+  <MENUPAINTER BAR="000002" FUNCTION="000002" MENU="000005">
+   <FUNCTIONS>
+    <ITEM CODE="%PC" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_EXPORT" ICON_ID="@49@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Download" INFO="Download to PC"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="%SC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Search"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="%SL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_MAIL" ICON_ID="@1S@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Send..."/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ABC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CALCULATION" ICON_ID="@0M@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="ABC-Analyse"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ALL" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Select All" INFO="Select all lines"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;AQW" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CHANGE_TEXT" ICON_ID="@0Q@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Word"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ELP" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SYSTEM_HELP" ICON_ID="@35@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Hilfe"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ETA" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_DETAIL" ICON_ID="@16@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Details" INFO="Displya item details"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;F03" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Back"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;F12" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CANCEL" ICON_ID="@0W@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Exit"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;F15" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Cancel"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ILT" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_FILTER" ICON_ID="@4G@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Filter" INFO="Filter entries"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;NFO" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_INFORMATION" ICON_ID="@0S@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Information"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;NTE" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Auffrischen"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;ODN" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_DOWN" ICON_ID="@3F@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Sort Descending" INFO="Sort list in descending order"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;OUP" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_SORT_UP" ICON_ID="@3E@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Sort Asscending" INFO="Sort list in asscending order"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;RNT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_PRINT" ICON_ID="@0X@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Print"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;SAL" TEXTNO="002" TEXT_TYPE="S" TEXT_NAME="ICON_DESELECT_ALL" ICON_ID="@4D@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Unselect All" INFO="Unselect all entries"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;UMC" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SUM" ICON_ID="@3Z@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Summary"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="&amp;XXL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_XXL" ICON_ID="@DJ@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Excel"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="ABORT" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Exit"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="BACK" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Back"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="CANCEL" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CANCEL" ICON_ID="@0W@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Cancel" ICON="Cancel action" INFO="Cancel action"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="CONFIRM" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Confirm" ICON="Confirm action" INFO="Confirm action on selected items"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="MARA" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SELECT_ALL" ICON_ID="@4B@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Select All" INFO="Alle Benutzer markieren"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="MARD" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_DESELECT_ALL" ICON_ID="@4D@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="De-Select All"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="MYPICK" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_DETAIL" ICON_ID="@3R@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Details anzeigen"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="P+" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Next Entry"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="P++" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Last Entry"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="P-" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Previous Entry"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="P--" TEXTNO="001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="First Entry"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="PRINT" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_PRINT" ICON_ID="@0X@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Print"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="SEARCH" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_SEARCH" ICON_ID="@13@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Find"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="STOP" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_CANCEL" ICON_ID="@0W@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Cancel"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="TAKE" TEXTNO="001" TEXT_TYPE="S" TEXT_NAME="ICON_OKAY" ICON_ID="@0V@">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Execute" INFO="Markierte Benutzer übernehmen"/>
+     </TEXTS>
+    </ITEM>
+   </FUNCTIONS>
+   <KEY_SETTINGS>
+    <ITEM OBJ_CODE="000001" MODAL="D">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="ALV Grid toolbar"/>
+     </TEXTS>
+     <KEYS>
+      <ITEM PFNO="02" FUNCODE="&amp;ETA" FUNNO="002"/>
+      <ITEM PFNO="03" FUNCODE="BACK" FUNNO="001"/>
+      <ITEM PFNO="05" FUNCODE="&amp;ALL" FUNNO="002"/>
+      <ITEM PFNO="06" FUNCODE="&amp;SAL" FUNNO="002"/>
+      <ITEM PFNO="07" FUNCODE="&amp;ILT" FUNNO="002"/>
+      <ITEM PFNO="09" FUNCODE="%PC" FUNNO="002"/>
+      <ITEM PFNO="12" FUNCODE="STOP" FUNNO="001"/>
+      <ITEM PFNO="14" FUNCODE="CONFIRM" FUNNO="001"/>
+      <ITEM PFNO="15" FUNCODE="ABORT" FUNNO="001"/>
+      <ITEM PFNO="17" FUNCODE="CANCEL" FUNNO="001"/>
+      <ITEM PFNO="33" FUNCODE="&amp;OUP" FUNNO="002"/>
+      <ITEM PFNO="34" FUNCODE="&amp;ODN" FUNNO="002"/>
+      <ITEM PFNO="71" FUNCODE="SEARCH" FUNNO="001"/>
+      <ITEM PFNO="86" FUNCODE="PRINT" FUNNO="001"/>
+     </KEYS>
+     <PUSHBUTTONS>
+      <ITEM SUB_CODE="0001" MODAL="D">
+       <TEXTS>
+        <ITEM LANGU="E" TEXT="ALV Grid toolbar"/>
+       </TEXTS>
+       <COMPOSITION>
+        <ITEM NO="01" PFNO="14"/>
+        <ITEM NO="02" PFNO="17"/>
+        <ITEM NO="03" PFNO="02"/>
+        <ITEM NO="04" PFNO="33"/>
+        <ITEM NO="05" PFNO="34"/>
+        <ITEM NO="06" PFNO="05"/>
+        <ITEM NO="07" PFNO="06"/>
+        <ITEM NO="08" PFNO="07"/>
+        <ITEM NO="09" PFNO="09"/>
+       </COMPOSITION>
+      </ITEM>
+     </PUSHBUTTONS>
+    </ITEM>
+    <ITEM OBJ_CODE="000002" MODAL="D" NORM="X">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="Standard Maximum Interation"/>
+     </TEXTS>
+     <KEYS>
+      <ITEM PFNO="01" FUNCODE="&amp;ELP" FUNNO="001"/>
+      <ITEM PFNO="02" FUNCODE="MYPICK" FUNNO="001"/>
+      <ITEM PFNO="03" FUNCODE="&amp;F03" FUNNO="001"/>
+      <ITEM PFNO="05" FUNCODE="&amp;ALL" FUNNO="002"/>
+      <ITEM PFNO="06" FUNCODE="&amp;SAL" FUNNO="002"/>
+      <ITEM PFNO="07" FUNCODE="&amp;NFO" FUNNO="001"/>
+      <ITEM PFNO="08" FUNCODE="&amp;NTE" FUNNO="001"/>
+      <ITEM PFNO="09" FUNCODE="%PC" FUNNO="002"/>
+      <ITEM PFNO="12" FUNCODE="&amp;F12" FUNNO="001"/>
+      <ITEM PFNO="13" FUNCODE="&amp;RNT" FUNNO="001"/>
+      <ITEM PFNO="14" FUNCODE="TAKE" FUNNO="001"/>
+      <ITEM PFNO="15" FUNCODE="&amp;F15" FUNNO="001"/>
+      <ITEM PFNO="16" FUNCODE="&amp;XXL" FUNNO="001"/>
+      <ITEM PFNO="17" FUNCODE="&amp;AQW" FUNNO="001"/>
+      <ITEM PFNO="18" FUNCODE="&amp;ABC" FUNNO="001"/>
+      <ITEM PFNO="19" FUNCODE="&amp;UMC" FUNNO="001"/>
+      <ITEM PFNO="20" FUNCODE="%SL" FUNNO="001"/>
+      <ITEM PFNO="38" FUNCODE="&amp;ILT" FUNNO="002"/>
+      <ITEM PFNO="39" FUNCODE="&amp;ETA" FUNNO="002"/>
+      <ITEM PFNO="40" FUNCODE="&amp;ODN" FUNNO="002"/>
+      <ITEM PFNO="41" FUNCODE="&amp;OUP" FUNNO="002"/>
+      <ITEM PFNO="44" FUNCODE="MARA" FUNNO="001"/>
+      <ITEM PFNO="45" FUNCODE="MARD" FUNNO="001"/>
+      <ITEM PFNO="71" FUNCODE="%SC" FUNNO="001"/>
+      <ITEM PFNO="80" FUNCODE="P--" FUNNO="001"/>
+      <ITEM PFNO="81" FUNCODE="P-" FUNNO="001"/>
+      <ITEM PFNO="82" FUNCODE="P+" FUNNO="001"/>
+      <ITEM PFNO="83" FUNCODE="P++" FUNNO="001"/>
+      <ITEM PFNO="86" FUNCODE="&amp;RNT" FUNNO="001"/>
+     </KEYS>
+     <PUSHBUTTONS>
+      <ITEM SUB_CODE="0001" MODAL="D">
+       <TEXTS>
+        <ITEM LANGU="E" TEXT="Standard Maximum Interation"/>
+       </TEXTS>
+       <COMPOSITION>
+        <ITEM NO="01" PFNO="14"/>
+        <ITEM NO="02" PFNO="39"/>
+        <ITEM NO="03" PFNO="41"/>
+        <ITEM NO="04" PFNO="40"/>
+        <ITEM NO="05" PFNO="05"/>
+        <ITEM NO="06" PFNO="06"/>
+        <ITEM NO="07" PFNO="38"/>
+        <ITEM NO="08" PFNO="09"/>
+       </COMPOSITION>
+      </ITEM>
+     </PUSHBUTTONS>
+    </ITEM>
+   </KEY_SETTINGS>
+   <MENU_BARS>
+    <ITEM OBJ_CODE="000001" MODAL="D">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="ALV Grid toolbar"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM OBJ_CODE="000002" MODAL="D">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="STANDARD"/>
+     </TEXTS>
+     <COMPOSITION>
+      <ITEM NO="01" MENUCODE="000003"/>
+      <ITEM NO="02" MENUCODE="000005"/>
+     </COMPOSITION>
+    </ITEM>
+   </MENU_BARS>
+   <MENU_LIST>
+    <ITEM CODE="000001" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="000002" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E"/>
+     </TEXTS>
+    </ITEM>
+    <ITEM CODE="000003" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E"/>
+     </TEXTS>
+     <COMPOSITION>
+      <ITEM NO="01" REF_TYPE="F" REF_CODE="&amp;RNT" REF_NO="001"/>
+      <ITEM NO="02" REF_TYPE="M" REF_CODE="000004"/>
+      <ITEM NO="03" REF_TYPE="F" REF_CODE="%SL" REF_NO="001"/>
+      <ITEM NO="04" REF_TYPE="S"/>
+      <ITEM NO="05" REF_TYPE="F" REF_CODE="&amp;F15" REF_NO="001"/>
+      <ITEM NO="06" REF_TYPE="F" REF_CODE="&amp;F03" REF_NO="001"/>
+     </COMPOSITION>
+    </ITEM>
+    <ITEM CODE="000004" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E"/>
+     </TEXTS>
+     <COMPOSITION>
+      <ITEM NO="01" REF_TYPE="F" REF_CODE="&amp;AQW" REF_NO="001"/>
+      <ITEM NO="02" REF_TYPE="F" REF_CODE="&amp;XXL" REF_NO="001"/>
+      <ITEM NO="03" REF_TYPE="F" REF_CODE="%PC" REF_NO="002"/>
+     </COMPOSITION>
+    </ITEM>
+    <ITEM CODE="000005" TEXT_TYPE="S">
+     <TEXTS>
+      <ITEM LANGU="E"/>
+     </TEXTS>
+     <COMPOSITION>
+      <ITEM NO="01" REF_TYPE="F" REF_CODE="&amp;ALL" REF_NO="002"/>
+      <ITEM NO="02" REF_TYPE="F" REF_CODE="&amp;SAL" REF_NO="002"/>
+      <ITEM NO="03" REF_TYPE="S"/>
+      <ITEM NO="04" REF_TYPE="F" REF_CODE="&amp;ILT" REF_NO="002"/>
+      <ITEM NO="05" REF_TYPE="S"/>
+      <ITEM NO="06" REF_TYPE="F" REF_CODE="&amp;OUP" REF_NO="002"/>
+      <ITEM NO="07" REF_TYPE="F" REF_CODE="&amp;ODN" REF_NO="002"/>
+      <ITEM NO="08" REF_TYPE="S"/>
+      <ITEM NO="09" REF_TYPE="F" REF_CODE="%SC" REF_NO="001"/>
+      <ITEM NO="10" REF_TYPE="S"/>
+      <ITEM NO="11" REF_TYPE="F" REF_CODE="&amp;F12" REF_NO="001"/>
+     </COMPOSITION>
+    </ITEM>
+   </MENU_LIST>
+   <STATUS>
+    <ITEM CODE="SELECT_TOOLBAR" MODAL="D" ACTCODE="000001" PFKCODE="000001" BUTCODE="0001">
+     <TEXTS>
+      <ITEM LANGU="E" TEXT="ALV Grid toolbar"/>
+     </TEXTS>
+     <FUNCTIONS>
+      <ITEM>%PC</ITEM>
+      <ITEM>&amp;ALL</ITEM>
+      <ITEM>&amp;ETA</ITEM>
+      <ITEM>&amp;ILT</ITEM>
+      <ITEM>&amp;ODN</ITEM>
+      <ITEM>&amp;OUP</ITEM>
+      <ITEM>&amp;SAL</ITEM>
+      <ITEM>ABORT</ITEM>
+      <ITEM>BACK</ITEM>
+      <ITEM>CANCEL</ITEM>
+      <ITEM>CONFIRM</ITEM>
+      <ITEM>PRINT</ITEM>
+      <ITEM>SEARCH</ITEM>
+      <ITEM>STOP</ITEM>
+     </FUNCTIONS>
+    </ITEM>
+   </STATUS>
+  </MENUPAINTER>
+  <SOURCE>`
+*&amp;---------------------------------------------------------------------*
+*&amp; Module Pool       ZAPLINK_LIST
+*&amp;---------------------------------------------------------------------*
+
+PROGRAM  zaplink_list.
+
+TYPE-POOLS: slis.
+
+TYPES to_list TYPE REF TO zaplink_list.
+TYPES td_action TYPE rsmpe-func.
+
+DATA o_list_u0zi0gu276j00cars51w  TYPE to_list.
+
+CONSTANTS:
+  c_act_cancel  TYPE td_action VALUE &apos;CANCEL&apos;,
+  c_act_confirm TYPE td_action VALUE &apos;CONFIRM&apos;.
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  PF_STATUS_SET
+*&amp;---------------------------------------------------------------------*
+FORM pf_status_set USING rt_extab TYPE slis_t_extab.
+  SET PF-STATUS &apos;SELECT_TOOLBAR&apos; OF PROGRAM &apos;ZAPLINK_LIST&apos; EXCLUDING rt_extab.
+ENDFORM.                    &quot;pf_status_set
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  pf_status_set_no_action
+*&amp;---------------------------------------------------------------------*
+FORM pf_status_no_action USING rt_extab TYPE slis_t_extab.
+  DATA lt_extab TYPE slis_t_extab.
+  DATA s_fcode LIKE LINE OF rt_extab.
+
+  lt_extab = rt_extab.
+  s_fcode-fcode = c_act_confirm.     APPEND s_fcode TO lt_extab.
+  s_fcode-fcode = c_act_cancel.      APPEND s_fcode TO lt_extab.
+  PERFORM pf_status_set USING lt_extab.
+ENDFORM.                    &quot;pf_status_set
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  user_command_user
+*&amp;---------------------------------------------------------------------*
+FORM user_command_user USING r_ucomm LIKE sy-ucomm
+                  rs_selfield TYPE slis_selfield.
+
+  rs_selfield-exit = &apos;X&apos;.
+  CASE r_ucomm.
+    WHEN c_act_confirm.
+      IF o_list_u0zi0gu276j00cars51w IS BOUND.   o_list_u0zi0gu276j00cars51w-&gt;is_confirmed = abap_true.   ENDIF.
+    WHEN c_act_cancel.
+      IF o_list_u0zi0gu276j00cars51w IS BOUND.   o_list_u0zi0gu276j00cars51w-&gt;is_confirmed = abap_false.   ENDIF.
+    WHEN OTHERS.
+      CLEAR rs_selfield-exit.
+  ENDCASE.
+ENDFORM.                    &quot;user_command_user
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  set_list
+*&amp;---------------------------------------------------------------------*
+FORM set_list USING list TYPE to_list.
+  o_list_u0zi0gu276j00cars51w = list.
+  IF o_list_u0zi0gu276j00cars51w IS BOUND.   o_list_u0zi0gu276j00cars51w-&gt;is_confirmed = abap_false.   ENDIF.
+ENDFORM.                    &quot;set_list
+
+*&amp;---------------------------------------------------------------------*
+*&amp;      Form  clear_list
+*&amp;---------------------------------------------------------------------*
+FORM clear_list.
+  CLEAR o_list_u0zi0gu276j00cars51w.
+ENDFORM.                    &quot;clear_list
+
+**&amp;---------------------------------------------------------------------*
+**&amp;      Form  Show_list
+**&amp;---------------------------------------------------------------------*
+*FORM show_list USING layout TYPE slis_layout_alv
+*                     fields TYPE slis_t_fieldcat_alv
+*                     data TYPE STANDARD TABLE.
+*
+*  CALL FUNCTION &apos;REUSE_ALV_GRID_DISPLAY&apos;
+*    EXPORTING
+*      i_callback_program       = &apos;ZAPLINK_LIST&apos;
+*      i_callback_pf_status_set = &apos;PF_STATUS_SET&apos;
+*      i_callback_user_command  = &apos;USER_COMMAND_USER&apos;
+*      i_grid_title             = &apos;Select objects&apos;(lst)
+*      it_fieldcat              = fields
+*      is_layout                = layout
+*    TABLES
+*      t_outtab                 = data
+*    EXCEPTIONS
+*      OTHERS                   = 0.
+*
+*ENDFORM.                    &quot;Show_list</SOURCE>
+  <TEXTSPOOL>
+   <ITEM ID="R">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Call back program for Class ZAPLINK_LIST" LENGTH="40 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+ </RAW>
+</ZL_OBJECT>

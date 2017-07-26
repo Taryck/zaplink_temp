@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="0E762D2BF7C981E4E94C983145C120D9" CODE_SIGNATURE="406955781A4883FB18971FC1FA6952B7" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_MESSAGE" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_CONNECTOR_"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_CONNECTOR_" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Connector for Message class">U1&amp;FUNCTIONALITY&amp;
+ASIs a connector for :
+AS- MSAG : Message Class
+U1&amp;RELATIONS&amp;
+ASIs part of ZAP Link Framework as Official Connector.
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AShttps://code.google.com/p/zaplink/wiki/Connector
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BALLOG_SUBOBJECT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;CNX_MESSAGE&apos;" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_MSG_ID" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;NA&apos;" TYPTYPE="1" TYPE="TD_DOC_ID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Document class for message"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="R_DOC_ID" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation Object"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="ST_MSGCLASS" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;MSAG&apos;" TYPTYPE="1" TYPE="TD_COMPTYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transport category : ABAP Object"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_UUID" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1FAC0A4B07A5A05AE1000000AC120173&apos;" TYPTYPE="1" TYPE="TD_CONNUUID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UUID for connector Message class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_VER" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1.0&apos;" TYPTYPE="1" TYPE="TD_CONNVER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Version"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+*table TDCLT
+*DOKCLASS DOKTITEL
+*NA       Message
+  DATA _id LIKE LINE OF r_doc_id.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = C_MSG_ID. APPEND _id TO r_doc_id.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA type LIKE LINE OF supported_types.
+
+  CALL METHOD super-&gt;constructor.
+  mac_create_log application_log ballog_subobject space.
+  type-type = st_msgclass. INSERT type INTO TABLE supported_types.
+
+  uuid = _uuid.
+  version = _ver.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CNX_EXT_CLEANER~ANONYMIZE">
+    <SOURCE>`
+  DATA o_msag TYPE to_data.
+
+  CHECK object IS BOUND.
+
+  o_msag ?= object-&gt;raw.
+  o_msag-&gt;anonymize( ).
+
+  TRY.
+      super-&gt;zaplink_cnx_ext_cleaner~anonymize( object ).
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CNX_EXT_CLEANER~UNANONYMIZE">
+    <SOURCE>`
+  DATA o_msag TYPE to_data.
+
+  TRY.
+      super-&gt;zaplink_cnx_ext_cleaner~unanonymize( object ).
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.
+
+  o_msag ?= object-&gt;raw.
+  o_msag-&gt;unanonymize( ).</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~CREATE_NEW_RAW">
+    <SOURCE>`
+  DATA o_data TYPE to_data.
+
+  CREATE OBJECT object.
+  CASE type.
+    WHEN st_msgclass.
+      CREATE OBJECT o_data.
+      object-&gt;raw = o_data.
+    WHEN OTHERS.
+      CLEAR object.
+      mac_raise_type_not_supported me-&gt;class_name type.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DELETE_FROM_SAP">
+    <SOURCE>`
+  DATA _name TYPE t100a-arbgb.
+  DATA type  TYPE td_comptype.
+  DATA name  TYPE td_compname.
+
+  TRY.
+
+    type = component-&gt;get_type( ).
+    CASE type.
+      WHEN st_msgclass.
+        _name = name = component-&gt;get_name( ).
+        CALL FUNCTION &apos;RS_DELETE_MESSAGE_ID&apos;
+          EXPORTING
+            nachrichtenklasse = _name
+          EXCEPTIONS
+            not_executed      = 1
+            not_found         = 2
+            no_permission     = 3
+            OTHERS            = 4.
+        IF sy-subrc &lt;&gt; 0. &quot; SAP NameSpace
+          CASE sy-subrc.
+            WHEN 2.
+              RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;not_found.
+            WHEN OTHERS.
+              RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;system_error.
+          ENDCASE.
+        ENDIF.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.
+  result = abap_true.
+* Issue 137 =&gt; Remove from Working Area
+  zaplink_tools=&gt;remove_comp_from_working_area( type = type
+                                                name = name ).</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DO_EXISTS">
+    <SOURCE>`
+  DATA _name TYPE t100a-arbgb.
+  DATA type  TYPE td_comptype.
+
+  exists = me-&gt;exists-not_exists.
+
+  TRY.
+    type = component-&gt;get_type( ).
+    CASE type.
+      WHEN st_msgclass.
+        _name = component-&gt;get_name( ).
+        SELECT SINGLE arbgb INTO _name
+          FROM t100a
+          WHERE arbgb = _name.
+        IF sy-subrc = 0.
+          exists = me-&gt;exists-exists.
+        ENDIF.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~IS_SUPPORTED_VERSION">
+    <SOURCE>`
+  result = abap_false.
+  if version = _ver.
+    result = abap_true.
+  endif.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~READ_FROM_SAP">
+    <SOURCE>`
+  DATA _data  TYPE to_data.
+  DATA _obj   TYPE doku_obj.
+  DATA t_t100 TYPE SORTED TABLE OF t100 WITH UNIQUE KEY msgnr sprsl.
+  DATA _name  TYPE arbgb.
+  DATA t_docs TYPE zaplink_documentation=&gt;tt_docs.
+  FIELD-SYMBOLS:
+    &lt;l&gt; LIKE LINE OF t_docs,
+    &lt;lt&gt; LIKE LINE OF &lt;l&gt;-texts,
+    &lt;t&gt; LIKE LINE OF t_t100,
+    &lt;m&gt; LIKE LINE OF _data-&gt;messages,
+    &lt;mt&gt; LIKE LINE OF &lt;m&gt;-texts.
+
+  DATA _text LIKE LINE OF &lt;m&gt;-texts.
+  DATA _htxt LIKE LINE OF _data-&gt;texts.
+  DATA _key  TYPE doku_obj.
+  DATA d_type TYPE td_comptype.
+
+  TRY.
+
+    CREATE OBJECT object.
+    d_type = component-&gt;get_type( ).
+    CASE d_type.
+      WHEN st_msgclass.
+        _name = component-&gt;get_name( ).
+* Documentation
+* example : ZAPLINK_EASYXML000
+        CONCATENATE _name &apos;+++&apos; INTO _obj.  &quot; +++ stand for message number
+        t_docs = zaplink_documentation=&gt;get( ids = r_doc_id
+                                          object = _obj ).
+        DELETE t_docs WHERE texts IS INITIAL.
+
+        CREATE OBJECT _data.
+* Main data
+        SELECT SINGLE *
+          INTO CORRESPONDING FIELDS OF _data-&gt;a0_maindata
+          FROM t100a
+          WHERE arbgb = _name.
+
+* Descriptions
+        SELECT sprsl stext
+          INTO TABLE _data-&gt;texts
+          FROM t100t
+          WHERE arbgb = _name
+            AND stext &lt;&gt; space.        &quot; ignore null
+
+        READ TABLE _data-&gt;texts TRANSPORTING NO FIELDS
+             WITH TABLE KEY langu = _data-&gt;a0_maindata-masterlang.
+        IF sy-subrc &lt;&gt; 0.
+          _htxt-langu = _data-&gt;a0_maindata-masterlang.
+          _htxt-short_txt = _data-&gt;a0_maindata-stext.
+          INSERT _htxt INTO TABLE _data-&gt;texts.
+        ENDIF.
+        CLEAR _data-&gt;a0_maindata-stext.
+
+* Messages
+        SELECT *
+          INTO CORRESPONDING FIELDS OF TABLE _data-&gt;messages
+          FROM t100u
+          WHERE arbgb = _name.
+* Messages texts
+        SELECT * INTO TABLE t_t100
+          FROM t100
+          WHERE arbgb = _name
+            AND text &lt;&gt; space.          &quot; ignore null
+
+        LOOP AT _data-&gt;messages ASSIGNING &lt;m&gt;.
+          LOOP AT t_t100 ASSIGNING &lt;t&gt;
+                  WHERE msgnr = &lt;m&gt;-msgnr.
+            CLEAR _text.
+            _text-langu = &lt;t&gt;-sprsl.
+            _text-short_txt = &lt;t&gt;-text.
+            INSERT _text INTO TABLE &lt;m&gt;-texts.
+          ENDLOOP.
+
+          CONCATENATE _name &lt;m&gt;-msgnr INTO _key.
+          LOOP AT t_docs ASSIGNING &lt;l&gt;
+                  WHERE object = _key.
+
+            IF &lt;m&gt;-application IS INITIAL.
+              &lt;m&gt;-application = &lt;l&gt;-application.
+            ELSE.
+              ASSERT &lt;m&gt;-application = &lt;l&gt;-application.
+            ENDIF.
+
+            IF &lt;m&gt;-typ IS INITIAL.
+              &lt;m&gt;-typ = &lt;l&gt;-typ.
+            ELSE.
+              ASSERT &lt;m&gt;-typ = &lt;l&gt;-typ.
+            ENDIF.
+
+            IF &lt;m&gt;-dokform IS INITIAL.
+              &lt;m&gt;-dokform = &lt;l&gt;-dokform.
+            ELSE.
+              ASSERT &lt;m&gt;-dokform = &lt;l&gt;-dokform.
+            ENDIF.
+
+            IF &lt;m&gt;-dokstyle IS INITIAL.
+              &lt;m&gt;-dokstyle = &lt;l&gt;-dokstyle.
+            ELSE.
+              ASSERT &lt;m&gt;-dokstyle = &lt;l&gt;-dokstyle.
+            ENDIF.
+
+            LOOP AT &lt;l&gt;-texts ASSIGNING &lt;lt&gt;.
+
+              READ TABLE &lt;m&gt;-texts ASSIGNING &lt;mt&gt;
+                   WITH TABLE KEY langu = &lt;lt&gt;-tdspras.
+              IF sy-subrc = 0.
+                &lt;mt&gt;-long_txt = &lt;lt&gt;.
+                CLEAR &lt;mt&gt;-long_txt-tdspras.
+              ELSE.
+                CLEAR _text.
+                _text-long_txt = &lt;lt&gt;.
+                CLEAR _text-long_txt-tdspras.
+                INSERT _text INTO TABLE &lt;m&gt;-texts.
+              ENDIF.
+            ENDLOOP.
+
+          ENDLOOP.
+          IF &lt;m&gt;-texts IS INITIAL.    DELETE _data-&gt;messages.     ENDIF.
+        ENDLOOP.
+
+        object-&gt;set_component( component ).
+        CLEAR _data-&gt;a0_maindata-arbgb.
+        object-&gt;raw = _data.
+      WHEN OTHERS.
+        CLEAR object.
+        mac_raise_type_not_supported me-&gt;class_name d_type.
+    ENDCASE.
+    object-&gt;update_connector_data( me ).                    &quot; Issue 66
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~WRITE_TO_SAP">
+    <SOURCE>`
+  DATA _data      TYPE to_data.
+  DATA o_comp     TYPE to_component.
+  DATA _name      TYPE td_compname.
+  DATA t_docs     TYPE zaplink_documentation=&gt;tt_docs.
+  DATA ls_doc     LIKE LINE OF t_docs.
+  DATA: lt_t100   TYPE STANDARD TABLE OF t100,
+        ls_t100   LIKE LINE OF lt_t100,
+        lt_t100t  TYPE STANDARD TABLE OF t100t,
+        ls_t100t  LIKE LINE OF lt_t100t,
+        lt_t100u  TYPE STANDARD TABLE OF t100u,
+        ls_t100u  LIKE LINE OF lt_t100u,
+        ls_t100a  TYPE t100a.
+  FIELD-SYMBOLS:
+    &lt;m&gt; LIKE LINE OF _data-&gt;messages,
+    &lt;l&gt; LIKE LINE OF &lt;m&gt;-texts,
+    &lt;t&gt; LIKE LINE OF _data-&gt;texts.
+
+  TRY.
+
+    CREATE OBJECT components.                         &quot; Issue 92
+    CASE object-&gt;type.
+      WHEN st_msgclass.
+        _data ?= object-&gt;raw.
+* Main data
+        _data-&gt;a0_maindata-arbgb = object-&gt;name.
+        MOVE-CORRESPONDING _data-&gt;a0_maindata TO ls_t100a.
+* description
+        LOOP AT _data-&gt;texts ASSIGNING &lt;t&gt;.
+          CLEAR ls_t100t.
+          ls_t100t-arbgb = _data-&gt;a0_maindata-arbgb.
+          ls_t100t-sprsl = &lt;t&gt;-langu.
+          ls_t100t-stext = &lt;t&gt;-short_txt.
+          APPEND ls_t100t TO lt_t100t.
+          IF &lt;t&gt;-langu = _data-&gt;a0_maindata-masterlang.
+* Restore text
+            ls_t100a-stext = &lt;t&gt;-short_txt.
+          ENDIF.
+        ENDLOOP.
+
+* Messages
+        LOOP AT _data-&gt;messages ASSIGNING &lt;m&gt;.
+          CLEAR ls_t100u.
+          MOVE-CORRESPONDING &lt;m&gt; TO ls_t100u.
+          ls_t100u-arbgb = _data-&gt;a0_maindata-arbgb.
+          APPEND ls_t100u TO lt_t100u.
+
+          CLEAR ls_doc.
+          ls_doc-application = &lt;m&gt;-application.
+          ls_doc-id = c_msg_id.
+          CONCATENATE _data-&gt;a0_maindata-arbgb &lt;m&gt;-msgnr INTO ls_doc-object.
+*        ls_doc-langu = &lt;m&gt;-langu.
+*        ls_doc-masterlang = &lt;m&gt;-masterlang.
+          ls_doc-typ = &lt;m&gt;-typ.
+          ls_doc-dokform = &lt;m&gt;-dokform.
+          ls_doc-dokstyle = &lt;m&gt;-dokstyle.
+          ls_doc-selfdef = &lt;m&gt;-selfdef.
+
+          CLEAR ls_t100.
+          MOVE-CORRESPONDING &lt;m&gt; TO ls_t100.
+          MOVE-CORRESPONDING ls_t100u TO ls_t100.
+          LOOP AT &lt;m&gt;-texts ASSIGNING &lt;l&gt;.
+            IF NOT &lt;l&gt;-short_txt IS INITIAL.
+              ls_t100-sprsl = &lt;l&gt;-langu.
+              ls_t100-text = &lt;l&gt;-short_txt.
+              MOVE-CORRESPONDING &lt;l&gt; TO ls_t100.
+              APPEND ls_t100 TO lt_t100.
+            ENDIF.
+* Long texts
+            IF NOT &lt;l&gt;-long_txt IS INITIAL.
+              &lt;l&gt;-long_txt-tdspras = &lt;l&gt;-langu.
+              INSERT &lt;l&gt;-long_txt INTO TABLE ls_doc-texts .
+            ENDIF.
+          ENDLOOP.
+          IF NOT ls_doc-texts IS INITIAL.
+            INSERT ls_doc INTO TABLE t_docs.
+          ENDIF.
+        ENDLOOP.
+
+        CALL FUNCTION &apos;RS_ACCESS_PERMISSION&apos;
+          EXPORTING
+            mode         = &apos;FREE&apos;
+            object       = ls_t100a-arbgb
+            object_class = &apos;T100&apos;.
+
+*--- Check permission
+        CALL FUNCTION &apos;RS_ACCESS_PERMISSION&apos;
+          EXPORTING
+            authority_check          = &apos;X&apos;
+            global_lock              = &apos;X&apos;
+            mode                     = &apos;INSERT&apos;
+            language_upd_exit        = &apos;UPDATE_MASTER&apos;
+            master_language          = ls_t100a-masterlang
+            object                   = ls_t100a-arbgb
+            object_class             = &apos;T100&apos;
+            suppress_language_check  = &apos; &apos;
+          EXCEPTIONS
+            canceled_in_corr         = 01
+            enqueued_by_user         = 02
+            enqueue_system_failure   = 03
+            illegal_parameter_values = 04
+            locked_by_author         = 05
+            no_modify_permission     = 06
+            no_show_permission       = 07
+            permission_failure       = 08.
+        CASE sy-subrc.
+          WHEN 0.
+          WHEN 2 OR 5.
+            RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                  EXPORTING
+                      name = _name
+                      type = object-&gt;type
+                    textid = ZCX_ZL_CONNECTOR=&gt;object_locked.
+          WHEN 6 OR 7 OR 8 OR 9.
+            RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                  EXPORTING
+                      name = _name
+                      type = object-&gt;type
+                    textid = ZCX_ZL_CONNECTOR=&gt;not_authorized.
+          WHEN OTHERS.
+            RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                  EXPORTING
+                      name = _name
+                      type = object-&gt;type
+                    textid = ZCX_ZL_CONNECTOR=&gt;system_error.
+        ENDCASE.
+
+*      CALL FUNCTION &apos;RS_CORR_INSERT&apos;
+*           EXPORTING
+*                author              = sy-uname
+*                global_lock         = &apos;X&apos;
+*                object              = ls_t100a-arbgb
+*                object_class        = &apos;T100&apos;
+*                devclass            = &apos;$TMP&apos;
+*                master_language     = sy-langu
+*                mode                = &apos;INSERT&apos;
+**       IMPORTING
+**            AUTHOR              = UNAME
+**            KORRNUM             = CORRNUMBER_LOCAL
+**            DEVCLASS            = DEVCLASS_LOCAL
+*           EXCEPTIONS
+*                cancelled           = 1
+*                permission_failure  = 2
+*                unknown_objectclass = 3.
+*
+*      IF sy-subrc &lt;&gt; 0.
+*        CASE sy-subrc.
+*          WHEN 2.
+*            RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+*                  EXPORTING
+*                      name = _name
+*                      type = object-&gt;type
+*                  devclass = &apos;$TMP&apos;
+*                    textid = ZCX_ZL_CONNECTOR=&gt;not_authorized.
+*          WHEN OTHERS.
+*            RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+*                  EXPORTING
+*                      name = _name
+*                      type = object-&gt;type
+*                    textid = ZCX_ZL_CONNECTOR=&gt;system_error.
+*        ENDCASE.
+*      ENDIF.
+
+        MODIFY t100a FROM ls_t100a.
+        MODIFY t100t FROM TABLE lt_t100t.
+        MODIFY t100u FROM TABLE lt_t100u.
+        MODIFY t100 FROM TABLE lt_t100.
+
+* Documentation
+        CALL METHOD zaplink_documentation=&gt;set
+          EXPORTING
+            t_docs = t_docs.
+
+*        CREATE OBJECT _comp.
+*        _comp-&gt;set_type( st_msgclass ).
+*        _name = _data-&gt;a0_maindata-arbgb.
+*        _comp-&gt;set_name( _name ).
+*        CREATE OBJECT components.
+*        components-&gt;add( _comp ).
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name object-&gt;type.
+    ENDCASE.
+    check_component_list( EXPORTING     object = object
+                           CHANGING components = components ). &quot; Issue 92
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_RAW____" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="RSWSOURCET">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_MSAG_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Commun Data for Class &amp; Interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_PROG_ATTR" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_prog_attr.
+  INCLUDE TYPE ts_base_attributs AS base.
+  TYPES:
+    END OF ts_prog_attr
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program Attributs"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SOURCE" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_TEXT" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">begin of ts_text,
+      langu   type SPRAS,
+      ENTRY	  type TEXTPOOLTX,
+      LENGTH  type TEXTPOOLLN,
+    end of ts_text</ITEM>
+   <ITEM CMPNAME="TS_TEXTPOOL" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">begin of ts_textpool,
+      ID    type  TEXTPOOLID,
+      KEY	  type  TEXTPOOLKY,
+      texts type  tt_texts,
+    end of ts_textpool</ITEM>
+   <ITEM CMPNAME="TT_TEXTPOOLS" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    TT_TEXTPOOLs type SORTED TABLE OF ts_textpool WITH UNIQUE key ID KEY
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Table of textppool"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">tt_texts type SORTED TABLE OF ts_text WITH UNIQUE KEY langu</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

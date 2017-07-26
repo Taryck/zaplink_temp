@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="1BBEA95E4C3A2A6403DABFF024793AD8" CODE_SIGNATURE="4FABB3828EA443A32B447606BFF70B43" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_VIEW_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Views (SE11) Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DICTIONARY
+ASDefine XML structure of a View
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="CONDITIONS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_WHERES"/>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF doc_ids,
+      header TYPE td_doc_id VALUE &apos;VW&apos;,
+    END OF doc_ids
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FIELDS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_FIELDS"/>
+   <ITEM CMPNAME="INNER_JOIN" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_JOINS"/>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TABLES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TABLES"/>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DICTIONARY" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS ZAPLINK_DOCUMENTATION DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  FIELD-SYMBOLS:
+    &lt;t&gt; like LINE OF texts.
+
+  clear: a0_maindata-AS4USER, a0_maindata-AS4DATE, a0_maindata-AS4TIME,
+         a0_maindata-technical_settings-AS4USER, a0_maindata-technical_settings-AS4DATE, a0_maindata-technical_settings-AS4TIME.
+  loop at texts ASSIGNING &lt;t&gt;.
+    clear: &lt;t&gt;-LONG_TXT-TDFUSER, &lt;t&gt;-LONG_TXT-TDFDATE, &lt;t&gt;-LONG_TXT-TDFTIME.
+  endloop.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-header. APPEND _id TO r_doc_ids.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF texts.
+  DATA s_table LIKE LINE OF tables.
+  DATA s_field LIKE LINE OF fields.
+  DATA s_join  LIKE LINE OF inner_join.
+  DATA s_where LIKE LINE OF conditions.
+  FIELD-SYMBOLS:
+    &lt;d&gt; LIKE LINE OF fm_data-docs,
+    &lt;dt&gt; LIKE LINE OF &lt;d&gt;-texts,
+    &lt;t&gt; LIKE LINE OF fm_data-texts.
+
+  a0_maindata-hdr = fm_data-header.
+  a0_maindata-technical_settings = fm_data-tech.
+  CLEAR: a0_maindata-technical_settings-tabname,
+         a0_maindata-technical_settings-as4local,
+         a0_maindata-technical_settings-as4vers.
+
+* Texts
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-langu = &lt;t&gt;-ddlanguage.
+    s_text-short_txt = &lt;t&gt;-ddtext.
+    READ TABLE fm_data-docs ASSIGNING &lt;d&gt;
+         WITH KEY id = doc_ids-header
+              object = a0_maindata-viewname.
+    IF sy-subrc = 0.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_text-langu.
+      IF sy-subrc = 0.
+        s_text-long_txt = &lt;dt&gt;.
+        CLEAR s_text-long_txt-tdspras.
+      ENDIF.
+    ENDIF.
+    INSERT s_text INTO TABLE texts.
+  ENDLOOP.
+
+* Tables
+  tables = fm_data-tables.
+  MODIFY tables FROM s_table TRANSPORTING viewname WHERE NOT viewname IS INITIAL.
+
+* fields
+  fields = fm_data-fields.
+  MODIFY fields FROM s_field TRANSPORTING viewname WHERE NOT viewname IS INITIAL.
+
+* joins
+  inner_join = fm_data-joins.
+  MODIFY inner_join FROM s_join TRANSPORTING viewname WHERE NOT viewname IS INITIAL.
+
+* where
+  conditions = fm_data-wheres.
+  MODIFY conditions FROM s_where TRANSPORTING condname WHERE NOT condname IS INITIAL.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF fm_data-texts.
+  DATA s_doc   LIKE LINE OF fm_data-docs.
+  DATA s_dtxt  LIKE LINE OF s_doc-texts.
+  DATA s_table LIKE LINE OF fm_data-tables.
+  DATA s_field LIKE LINE OF fm_data-fields.
+  DATA s_join  LIKE LINE OF fm_data-joins.
+  DATA s_where LIKE LINE OF fm_data-wheres.
+  FIELD-SYMBOLS:
+    &lt;d&gt; LIKE LINE OF fm_data-docs,
+    &lt;t&gt; LIKE LINE OF texts.
+
+  fm_data-header = a0_maindata-hdr.
+  fm_data-tech = a0_maindata-technical_settings.
+  fm_data-tech-tabname = a0_maindata-viewname.
+  fm_data-tech-as4local = a0_maindata-as4local.
+  fm_data-tech-as4vers = a0_maindata-as4vers.
+
+* Texts
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-viewname = fm_data-header-viewname.
+    s_text-ddlanguage = &lt;t&gt;-langu.
+    s_text-as4local = &apos;A&apos;. &quot; Active
+    s_text-as4vers = &apos;0000&apos;. &quot; Active
+    s_text-ddtext = &lt;t&gt;-short_txt.
+    INSERT s_text INTO TABLE fm_data-texts.
+    IF NOT &lt;t&gt;-long_txt IS INITIAL.
+      IF fm_data-docs IS INITIAL.
+        s_doc-application = &apos;DOKU&apos;.
+        s_doc-id = doc_ids-header.
+        s_doc-object = fm_data-header-viewname.
+        s_doc-langu = &lt;t&gt;-langu.
+        s_doc-masterlang = abap_true.
+        s_doc-typ = &apos;E&apos;.
+        s_doc-dokform = &apos;S_DOCU_SHOW&apos;.
+        s_doc-dokstyle = &apos;S_DOCUS1&apos;.
+        INSERT s_doc INTO TABLE fm_data-docs.
+      ENDIF.
+      READ TABLE fm_data-docs ASSIGNING &lt;d&gt; INDEX 1.
+      s_dtxt = &lt;t&gt;-long_txt.
+      s_dtxt-tdspras = &lt;t&gt;-langu.
+      INSERT s_dtxt INTO TABLE &lt;d&gt;-texts.
+    ENDIF.
+  ENDLOOP.
+
+* Tables
+  fm_data-tables = tables.        s_table-viewname = a0_maindata-viewname.
+  MODIFY fm_data-tables FROM s_table TRANSPORTING viewname WHERE viewname &lt;&gt; s_table-viewname.
+
+* fields
+  fm_data-fields = fields.        s_field-viewname = a0_maindata-viewname.
+  MODIFY fm_data-fields FROM s_field TRANSPORTING viewname WHERE viewname &lt;&gt; s_field-viewname.
+
+* joins
+  fm_data-joins = inner_join.     s_join-viewname = a0_maindata-viewname.
+  MODIFY fm_data-joins FROM s_join TRANSPORTING viewname WHERE viewname &lt;&gt; s_join-viewname.
+
+* where
+  fm_data-wheres = conditions.    s_where-condname = a0_maindata-viewname.
+  MODIFY fm_data-wheres FROM s_where TRANSPORTING condname WHERE condname &lt;&gt; s_where-condname.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+* DO pour type doc
+            header        TYPE dd25v,
+            tech          TYPE dd09v,
+            texts         TYPE tt_dd25t,
+            docs          TYPE tt_docs,
+            tables        TYPE tt_dd26v,
+*  types:       &quot; If alias is used
+*    BEGIN OF ts_table,
+*      TABNAME     type DD26V-TABNAME,
+*      TABPOS	    type DD26V-TABPOS,
+*      FORTABNAME	type DD26V-FORTABNAME,
+*      FORFIELD	  type DD26V-FORFIELD,
+*      FORDIR	    type DD26V-FORDIR,
+*    END OF ts_table.
+            fields        TYPE tt_dd27p,
+            joins         TYPE tt_dd28j,
+            wheres        TYPE tt_dd28v,
+          END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="12 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+    INCLUDE TYPE dd25v AS hdr.
+*    INCLUDE TYPE dd09v AS tech.
+*    types:
+*      BEGIN OF ts_dd09v_light,
+** required fields of dd09V
+*        TABKAT TABKAT  CHAR  2 0 Size category
+*        TABART TABART  CHAR  5 0 Data class in technical settings
+*        PUFFERUNG  PUFFERUNG CHAR  1 0 Buffering type indicator
+*        SCHFELDANZ SCHFELDANZ  NUMC  3 0 No. of key fields for generic buffers
+*        PROTOKOLL  DDPROTOCOL  CHAR  1 0 Log data changes
+*        SPEICHPUFF SPEICHPUFF  CHAR  1 0 Flag for the storage type in the buffer
+*        AS4USER  AS4USER CHAR  12  0 Last Changed by
+*        AS4DATE  AS4DATE DATS  8 0 Date of Last Change
+*        AS4TIME  AS4TIME TIMS  6 0 Last changed at
+*        TRANSPFLAG DDTRANSP  CHAR  1 0 Convert to transparent table or maintain transparency
+*        RESERVE  DDRESERVE CHAR  1 0 Reserved field in the ABAP Dictionary
+*        UEBERSETZ  UEBERSETZ CHAR  1 0 Flag whether table is relevant for translation
+*        ACTFLAG  ACTFLAG CHAR  1 0 Activation flag
+*        BUFALLOW BUFALLOW  CHAR  1 0 Indicator for buffering allowed/not allowed
+*        JAVAONLY DDJAVAONLY  CHAR  1 0 Write access only with JAVA
+*      END OF ts_dd09v_light .
+*    INCLUDE TYPE ts_dd09v_light AS tech.
+    TYPES:
+        technical_settings TYPE dd09v,
+      END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="General Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DD25T" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_dd25t TYPE SORTED TABLE OF dd25t WITH UNIQUE KEY ddlanguage
+`</ITEM>
+   <ITEM CMPNAME="TT_DD26V" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4">tt_dd26v TYPE STANDARD TABLE OF dd26v WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD27P" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_dd27p TYPE STANDARD TABLE OF dd27p WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD28J" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">tt_dd28j TYPE STANDARD TABLE OF dd28j WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD28V" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_dd28v TYPE STANDARD TABLE OF dd28v WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_FIELDS" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">tt_fields TYPE SORTED TABLE OF dd27p WITH UNIQUE KEY objpos
+`</ITEM>
+   <ITEM CMPNAME="TT_JOINS" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">tt_joins TYPE STANDARD TABLE OF dd28j WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_TABLES" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">tt_tables TYPE SORTED TABLE OF dd26v WITH UNIQUE KEY tabpos
+`</ITEM>
+   <ITEM CMPNAME="TT_WHERES" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">tt_wheres TYPE SORTED TABLE OF dd28v WITH UNIQUE KEY position
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="42CB6234A2F98DBABB67691F5A8A2BB0" CODE_SIGNATURE="64D9D4055F5D6026A1C5CAFA44B3808D" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_SHLP_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Search Help (SE11) Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_DICTIONARY
+ASDefine XML structure of a Search help
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TD_DOC_ID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TD_DOC_ID"/>
+   <ITEM CMPNAME="TR_DOCID" EXPOSURE="1" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TR_DOCID"/>
+   <ITEM CMPNAME="TT_DOCS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_DOCS"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Line Type for Table with Package Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="2" TYPTYPE="4">
+    BEGIN OF doc_ids,
+      header TYPE td_doc_id VALUE &apos;TT&apos;,
+    END OF doc_ids
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PARAMS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_FIELDS"/>
+   <ITEM CMPNAME="R_DOC_IDS" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TR_DOCID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Documentation IDS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="SUB_SEARCH_HELPS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_SUB_SH"/>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS"/>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_DICTIONARY" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+ CLASS ZAPLINK_DOCUMENTATION DEFINITION LOAD.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+    <SOURCE>`
+  FIELD-SYMBOLS   &lt;s&gt; LIKE LINE OF sub_search_helps.
+
+  CLEAR: a0_maindata-as4user, a0_maindata-as4date, a0_maindata-as4time.
+  LOOP AT sub_search_helps ASSIGNING &lt;s&gt;.
+    IF &lt;s&gt;-zl_object IS BOUND.    &lt;s&gt;-zl_object-&gt;anonymize( ).    ENDIF.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA _id LIKE LINE OF r_doc_ids.
+
+  _id-sign = &apos;I&apos;. _id-option = &apos;EQ&apos;.
+  _id-low = doc_ids-header. APPEND _id TO r_doc_ids.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text    LIKE LINE OF texts.
+  DATA s_param   LIKE LINE OF params.
+  DATA s_ssh     LIKE LINE OF sub_search_helps.
+  DATA s_sshp    LIKE LINE OF s_ssh-params.
+  DATA t_docs    TYPE tt_docs.
+  FIELD-SYMBOLS:
+    &lt;d&gt;  LIKE LINE OF fm_data-docs,
+    &lt;dt&gt; LIKE LINE OF &lt;d&gt;-texts,
+    &lt;s&gt;  LIKE LINE OF fm_data-sub_sh,
+    &lt;sp&gt; LIKE LINE OF fm_data-ssh_params,
+    &lt;t&gt;  LIKE LINE OF fm_data-texts.
+
+  a0_maindata-hdr = fm_data-header.   CLEAR a0_maindata-ddtext.
+  params = fm_data-fields.    MODIFY params FROM s_param TRANSPORTING shlpname WHERE table_line IS NOT INITIAL.
+
+* Texts
+  t_docs = fm_data-docs.
+  READ TABLE t_docs ASSIGNING &lt;d&gt;
+       WITH KEY id = doc_ids-header
+            object = a0_maindata-shlpname.
+  LOOP AT fm_data-texts ASSIGNING &lt;t&gt;
+          WHERE shlpname = a0_maindata-shlpname.
+    CLEAR s_text.   s_text-langu = &lt;t&gt;-ddlanguage.    s_text-short_txt = &lt;t&gt;-ddtext.
+    IF &lt;d&gt; IS ASSIGNED.
+      READ TABLE &lt;d&gt;-texts ASSIGNING &lt;dt&gt;
+          WITH KEY tdspras = s_text-langu.
+      IF sy-subrc = 0.    s_text-long_txt = &lt;dt&gt;.   CLEAR s_text-long_txt-tdspras.    DELETE TABLE &lt;d&gt;-texts FROM &lt;dt&gt;.    ENDIF.
+    ENDIF.
+    INSERT s_text INTO TABLE texts.
+  ENDLOOP.
+  IF &lt;d&gt; IS ASSIGNED.
+    LOOP AT &lt;d&gt;-texts ASSIGNING &lt;dt&gt;.
+      CLEAR s_text.    s_text-langu = &lt;dt&gt;-tdspras.   s_text-long_txt = &lt;dt&gt;.   CLEAR s_text-long_txt-tdspras.    INSERT s_text INTO TABLE texts.
+    ENDLOOP.
+  ENDIF.
+
+* SUB_SEARCH_HELPS
+  LOOP AT fm_data-sub_sh ASSIGNING &lt;s&gt;
+          WHERE shlpname = a0_maindata-shlpname.
+    CLEAR s_ssh.   s_ssh-hdr = &lt;s&gt;.   CLEAR s_ssh-shlpname.
+    IF s_ssh-viashlp = a0_maindata-shlpname.  CLEAR s_ssh-viashlp.  ENDIF.
+    LOOP AT fm_data-ssh_params ASSIGNING &lt;sp&gt;
+            WHERE shlpname = a0_maindata-shlpname
+              AND subshlp = s_ssh-subshlp.
+      CLEAR s_sshp.   s_sshp = &lt;sp&gt;.    CLEAR: s_sshp-shlpname, s_sshp-subshlp, s_sshp-valuedirec.    &quot;auto determinded
+      INSERT s_sshp INTO TABLE s_ssh-params.
+    ENDLOOP.
+    DELETE s_ssh-params WHERE fieldname IS INITIAL.
+    INSERT s_ssh INTO TABLE sub_search_helps.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules object Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_txt      LIKE LINE OF fm_data-texts.
+  DATA s_field    LIKE LINE OF fm_data-fields.
+  DATA s_doc      LIKE LINE OF fm_data-docs.
+  DATA s_doc_txt  LIKE LINE OF s_doc-texts.
+  DATA s_ssh      LIKE LINE OF fm_data-sub_sh.
+  DATA s_sshp     LIKE LINE OF fm_data-ssh_params.
+  FIELD-SYMBOLS:
+    &lt;d&gt;  LIKE LINE OF fm_data-docs,
+    &lt;s&gt;  LIKE LINE OF sub_search_helps,
+    &lt;sp&gt; LIKE LINE OF &lt;s&gt;-params,
+    &lt;t&gt;  LIKE LINE OF texts.
+
+  fm_data-header = a0_maindata-hdr.
+  s_field-shlpname = fm_data-header-shlpname.   fm_data-fields = params.    MODIFY fm_data-fields FROM s_field TRANSPORTING shlpname WHERE table_line IS NOT INITIAL.
+
+* Texts
+*APPLICATION                                      DOKU
+*ID                                      RE
+*OBJECT                                      SAPLxxxx
+*LANGU                                      E
+*MASTERLANG                                      X
+*TYP                                      E
+*DOKFORM                                      S_DOCU_SHOW
+*DOKSTYLE                                      S_DOCUS1
+  s_doc-application = &apos;DOKU&apos;.   s_doc-id = doc_ids-header.   s_doc-object = fm_data-header-shlpname.
+  s_doc-masterlang = abap_true.   s_doc-typ = &apos;E&apos;.    s_doc-dokform = &apos;S_DOCU_SHOW&apos;.    s_doc-dokstyle = &apos;S_DOCUS1&apos;.
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    IF NOT &lt;t&gt;-short_txt IS INITIAL.    CLEAR s_txt.    s_txt-shlpname = fm_data-header-shlpname.   s_txt-ddlanguage = &lt;t&gt;-langu.   s_txt-ddtext = &lt;t&gt;-short_txt.   INSERT s_txt INTO TABLE fm_data-texts.    ENDIF.
+    IF NOT &lt;t&gt;-long_txt IS INITIAL.
+      CLEAR s_doc_txt.    s_doc_txt = &lt;t&gt;-long_txt.   s_doc_txt-tdspras = &lt;t&gt;-langu.    INSERT s_doc_txt INTO TABLE s_doc-texts.
+      IF s_doc-langu IS INITIAL.    s_doc-langu = s_doc_txt-tdspras.    ENDIF.
+    ENDIF.
+  ENDLOOP.
+  IF NOT s_doc-texts IS INITIAL.    INSERT s_doc INTO TABLE fm_data-docs.   ENDIF.
+
+* SUB_SEARCH_HELPS
+  LOOP AT sub_search_helps ASSIGNING &lt;s&gt;.
+    CLEAR s_ssh.   s_ssh = &lt;s&gt;-hdr.   s_ssh-shlpname = a0_maindata-shlpname.
+    IF s_ssh-viashlp IS INITIAL.    s_ssh-viashlp = a0_maindata-shlpname.  ENDIF.
+    INSERT s_ssh INTO TABLE fm_data-sub_sh.
+    LOOP AT &lt;s&gt;-params ASSIGNING &lt;sp&gt;.
+      CLEAR s_sshp.   s_sshp = &lt;sp&gt;.    s_sshp-shlpname = a0_maindata-shlpname.   s_sshp-subshlp = &lt;s&gt;-subshlp.
+      INSERT s_sshp INTO TABLE fm_data-ssh_params.
+    ENDLOOP.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPES>
+   <ITEM CMPNAME="TO_ME" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_SHLP_DATA"/>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    BEGIN OF ts_fm_data,
+        header        TYPE dd30v,
+        texts         TYPE tt_dd30t,
+        docs          TYPE tt_docs,
+        fields        TYPE tt_dd32p,
+        sub_sh        TYPE tt_dd31v,
+        ssh_params    TYPE tt_dd33v,
+      END OF ts_fm_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Function Module Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+    INCLUDE TYPE dd30v AS hdr.
+    TYPES:
+      END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="General Data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SUB_SH" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">BEGIN OF ts_sub_sh.
+    INCLUDE TYPE dd31v AS hdr.
+    TYPES:
+        params        TYPE tt_params,
+        zl_object     TYPE to_me,
+      END OF ts_sub_sh
+`</ITEM>
+   <ITEM CMPNAME="TT_DD30T" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">tt_dd30t TYPE SORTED TABLE OF dd30t WITH UNIQUE KEY ddlanguage
+`</ITEM>
+   <ITEM CMPNAME="TT_DD31V" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">tt_dd31v TYPE STANDARD TABLE OF dd31v WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD32P" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_dd32p TYPE STANDARD TABLE OF dd32p WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DD33V" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">tt_dd33v TYPE STANDARD TABLE OF dd33v WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_FIELDS" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">tt_fields TYPE SORTED TABLE OF dd32p WITH UNIQUE KEY fieldname
+`</ITEM>
+   <ITEM CMPNAME="TT_PARAMS" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">tt_params TYPE SORTED TABLE OF dd33v WITH UNIQUE KEY subfield
+`</ITEM>
+   <ITEM CMPNAME="TT_SUB_SH" EXPOSURE="2" STATE="1" EDITORDER="11 " TYPTYPE="4">tt_sub_sh TYPE SORTED TABLE OF ts_sub_sh WITH UNIQUE KEY shposition
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

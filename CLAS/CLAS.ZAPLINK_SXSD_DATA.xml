@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="BA24EB286407997C75CF202731BEA525" CODE_SIGNATURE="6679ABDAEEAD13840A0253AFCDC0A3D4" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_SXSD_DATA" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_BADI_DATA"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_BADI_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="BADI Definition Datas">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_BADI
+ASDefine XML structure of a BADI Definition
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA"/>
+   <ITEM CMPNAME="INTERFACE" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TO_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface data"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_BADI" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  super-&gt;constructor( ).
+*  DATA o_conn   TYPE to_connector.
+*  DATA o_sxsd   TYPE to_badi_def.
+*  DATA o_sxci   TYPE to_badi_impl.
+*  DATA _type    TYPE td_comptype.
+*
+*  CREATE OBJECT object.
+*  CASE type.
+*    WHEN st_badi_def.
+*      CREATE OBJECT o_sxsd.
+** Create empty interface object
+*      o_conn = zaplink_connectors=&gt;create_connector( type = t_badi_itf ).
+*      IF o_conn IS BOUND.
+*        _type = t_badi_itf.
+*        o_sxsd-&gt;interface = o_conn-&gt;create_new_raw( _type ).
+*      ENDIF.
+*      object-&gt;raw = o_sxsd.
+**      create object object type TO_CLASS.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="ANONYMIZE">
+    <SOURCE>`
+* Issue 81
+  DATA o_conn    TYPE to_connector.
+  DATA o_cleaner TYPE REF TO zaplink_cnx_ext_cleaner.
+  CLEAR: a0_maindata-uname, a0_maindata-udate, a0_maindata-utime.
+  IF interface IS BOUND.
+    o_conn = zaplink_connectors=&gt;create_connector( type = interface-&gt;type
+                                               connuuid = interface-&gt;connector ).
+    TRY.
+        o_cleaner ?= o_conn.
+        o_cleaner-&gt;anonymize( interface ).
+      CATCH cx_root.
+    ENDTRY.
+  ENDIF.
+  TRY.
+      super-&gt;anonymize( ).
+    CATCH zcx_zl_connector INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="FROM_DATA">
+    <SOURCE>`
+  DATA _fc    LIKE LINE OF functions_codes.
+  DATA _cc    LIKE LINE OF controls_composites.
+  DATA _scr   LIKE LINE OF subscreens.
+  DATA _t     LIKE LINE OF tables.
+*  DATA o_conn TYPE to_connector.
+*  CONSTANTS c_type TYPE td_comptype VALUE &apos;INTF&apos;.
+*  DATA _comp TYPE to_component.
+  FIELD-SYMBOLS:
+    &lt;fc&gt;  LIKE LINE OF fm_data-fcodes,
+    &lt;cc&gt;  LIKE LINE OF fm_data-cocos,
+    &lt;in&gt;  LIKE LINE OF fm_data-intas,
+    &lt;scr&gt; LIKE LINE OF fm_data-scrns,
+    &lt;me&gt;  LIKE LINE OF fm_data-methods,
+    &lt;it&gt;  LIKE LINE OF fm_data-inactive_tabstrips.
+
+  a0_maindata-main = fm_data-definition.
+  a0_maindata-mast_langu = fm_data-mast_langu.
+  a0_maindata-ext_clname = fm_data-ext_clname.
+
+  LOOP AT fm_data-intas ASSIGNING &lt;in&gt;
+    WHERE exit_name = a0_maindata-exit_name.
+    CLEAR _t.
+    _t = &lt;in&gt;.
+
+    CLEAR: _t-exit_name. &quot; VERSION
+    INSERT _t INTO TABLE tables.
+  ENDLOOP.
+
+  LOOP AT fm_data-cocos ASSIGNING &lt;cc&gt;
+    WHERE exit_name = a0_maindata-exit_name.
+    CLEAR _cc.
+    _cc = &lt;cc&gt;.
+
+    CLEAR: _cc-exit_name. &quot; VERSION
+    INSERT _cc INTO TABLE controls_composites.
+  ENDLOOP.
+
+  LOOP AT fm_data-fcodes ASSIGNING &lt;fc&gt;
+    WHERE exit_name = a0_maindata-exit_name.
+    CLEAR _fc.
+    _fc = &lt;fc&gt;.
+
+    CLEAR: _fc-exit_name. &quot; VERSION
+    INSERT _fc INTO TABLE functions_codes.
+  ENDLOOP.
+
+  LOOP AT fm_data-scrns ASSIGNING &lt;scr&gt;
+    WHERE exit_name = a0_maindata-exit_name.
+    CLEAR _scr.
+    _scr = &lt;scr&gt;.
+
+    CLEAR: _scr-exit_name. &quot; VERSION
+    INSERT _scr INTO TABLE subscreens.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_BADI_DATA" MTDNAME="TO_DATA">
+    <SOURCE>`
+  DATA _in  LIKE LINE OF fm_data-intas.
+  DATA _cc  LIKE LINE OF fm_data-cocos.
+  DATA _fc  LIKE LINE OF fm_data-fcodes.
+  DATA _scr LIKE LINE OF fm_data-scrns.
+  FIELD-SYMBOLS:
+    &lt;t&gt;   LIKE LINE OF tables,
+    &lt;scr&gt; LIKE LINE OF subscreens,
+    &lt;fc&gt;  LIKE LINE OF functions_codes,
+    &lt;cc&gt;  LIKE LINE OF controls_composites.
+
+*CLASS  TYPE  VSEOCLASS
+  fm_data-definition = a0_maindata-main.
+  fm_data-mast_langu = a0_maindata-mast_langu.
+  fm_data-ext_clname = a0_maindata-ext_clname.
+
+  LOOP AT tables ASSIGNING &lt;t&gt;.
+    CLEAR _in.
+    _in = &lt;t&gt;.
+
+    _in-exit_name = a0_maindata-exit_name.
+    INSERT _in INTO TABLE fm_data-intas.
+  ENDLOOP.
+
+  LOOP AT controls_composites ASSIGNING &lt;cc&gt;.
+    CLEAR _cc.
+    _cc = &lt;cc&gt;.
+
+    _cc-exit_name = a0_maindata-exit_name.
+    INSERT _cc INTO TABLE fm_data-cocos.
+  ENDLOOP.
+
+  LOOP AT functions_codes ASSIGNING &lt;fc&gt;.
+    CLEAR _fc.
+    _fc = &lt;fc&gt;.
+
+    _fc-exit_name = a0_maindata-exit_name.
+    INSERT _fc INTO TABLE fm_data-fcodes.
+  ENDLOOP.
+
+  LOOP AT subscreens ASSIGNING &lt;scr&gt;.
+    CLEAR _scr.
+    _scr = &lt;scr&gt;.
+
+    _scr-exit_name = a0_maindata-exit_name.
+    INSERT _scr INTO TABLE fm_data-scrns.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="SEEX" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+  INCLUDE TYPE badi_data AS main.
+  TYPES:
+      mast_langu  TYPE  sy-langu,
+      ext_clname  TYPE  seoclsname,
+    END OF ts_maindata
+    <TEXTS>
+     <ITEM LANG="E" TEXT="BADI Def Main data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

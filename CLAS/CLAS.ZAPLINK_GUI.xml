@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="29E601AF8C628CFA28744490E73FB253" CODE_SIGNATURE="CB389F47D031047A8E9F3DEC704AADDF" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_GUI" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <INHERITANCE REFCLSNAME="ZAPLINK_TOOLS" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZapLink GUI Actions">U1&amp;FUNCTIONALITY&amp;
+ASThis object stores GUI actions. The program ZAPLINK stores as less as
+  possible logic. All GUI actions are in this object. The program ZAPLINK
+  handle :
+AS,,- Screen logic
+AS,,- Result display
+U1&amp;RELATIONS&amp;
+ASIs the flow logic of program ZAPLINK.
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="BALLOG_OBJECT" EXPOSURE="2" REFCLSNAME="ZAPLINK_KERNEL_TYPES" REFCMPNAME="BALLOG_OBJECT"/>
+   <ITEM CMPNAME="TO_COMPONENT" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_COMPONENT"/>
+   <ITEM CMPNAME="TO_CONTAINER" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_CONTAINER"/>
+   <ITEM CMPNAME="TO_FILE" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_FILE"/>
+   <ITEM CMPNAME="TO_GUI" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_GUI"/>
+   <ITEM CMPNAME="TO_LIST" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_LIST"/>
+   <ITEM CMPNAME="TO_MSG_COLL" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_MSG_COLL"/>
+   <ITEM CMPNAME="TO_OPTIONS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_OPTIONS"/>
+   <ITEM CMPNAME="TO_OPT_DEVCLASS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_OPT_DEVCLASS"/>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_TYPES" REFCMPNAME="TO_RAW"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="APPLICATION_LOG" EXPOSURE="2" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_MSG_COLL">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log IDs"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="BALLOG_SUBOBJECT" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;GUI&apos;" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_LIGHT" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF c_light,
+*        no_light TYPE t_light VALUE 0,
+*        red      TYPE t_light VALUE 1,
+*        yellow   TYPE t_light VALUE 2,
+*        green    TYPE t_light VALUE 3,
+        no       TYPE td_light VALUE ICON_LIGHT_OUT,
+        red      TYPE td_light VALUE ICON_RED_LIGHT,
+        yellow   TYPE td_light VALUE ICON_YELLOW_LIGHT,
+        green    TYPE td_light VALUE ICON_GREEN_LIGHT,
+      END OF c_light
+`</ITEM>
+   <ITEM CMPNAME="O_CX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception for GUI"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_OPTIONS" EXPOSURE="2" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_OPTIONS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Options"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_TYPES" EXPOSURE="2" STATE="1" RELTYPE="1" EDITORDER="2 "/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ADD_OBJECT" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Add object to container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJTYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object Type"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="WITH_SUBCOMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="with sub components"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_cont   TYPE to_container.
+  DATA obj_list TYPE to_list.
+  DATA obj      TYPE to_component.
+  DATA _objname TYPE string.
+  DATA _cx      TYPE REF TO zcx_zaplink.
+
+  IF objtype IS INITIAL.
+    RAISE EXCEPTION TYPE ZCX_ZL_GUI
+      EXPORTING
+        textid = ZCX_ZL_GUI=&gt;missing_objtype.
+  ELSEIF name IS INITIAL.
+    RAISE EXCEPTION TYPE ZCX_ZL_GUI
+      EXPORTING
+        textid = ZCX_ZL_GUI=&gt;missing_name.
+  ENDIF.
+
+  TRY.
+    CALL METHOD _load
+      EXPORTING
+        file      = file
+      IMPORTING
+        container = o_cont.
+
+    CREATE OBJECT obj.
+    obj-&gt;set_type( objtype ).
+    _objname = name.
+    obj-&gt;set_name( _objname ).
+    obj-&gt;set_with_subcomp( with_subcomp ).
+
+    IF obj-&gt;connector_exists( ) = zaplink_component=&gt;connexists-not_exists. &quot; OR NOT obj-&gt;connector( ) IS BOUND.
+      RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+        EXPORTING
+          textid = ZCX_ZL_CONNECTOR=&gt;invalid_type
+          type   = objtype.
+    ENDIF.
+
+    CREATE OBJECT obj_list.
+    obj_list-&gt;add( obj ).
+    obj_list-&gt;select( obj ).
+
+    IF o_options IS BOUND.
+      o_cont-&gt;set_options( o_options ).
+    ENDIF.
+
+    o_cont-&gt;add_components( obj_list ).
+
+    CALL METHOD _save
+      EXPORTING
+        file      = file
+      IMPORTING
+        container = o_cont.
+
+    IF o_cont-&gt;log-&gt;has_messages_of_msgt( id_msgty = &apos;E&apos; ) = abap_true.
+      o_mycx ?= zcx_zaplink=&gt;create_from_application_log( cx_name = &apos;ZCX_ZL_GUI&apos;
+                                               message_collector = o_cont-&gt;log ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHANGE_SELECTION" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Let user change selection"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ACTION" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_ACTION">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Action : Export or Import"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to allow user to change selected"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  TRY.
+      IF NOT action IS INITIAL.
+        list-&gt;select_default( action ).
+      ENDIF.
+      list-&gt;change_selection( ).
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  mac_create_log application_log ballog_subobject space.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONTAINERFILE_SELECT" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Open dialog to select container&apos;s file"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILENAME" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Container&apos;s filename"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA o_file    TYPE to_file.
+  DATA o_cx_file TYPE REF TO ZCX_ZL_FILE.
+  DATA d_msg     TYPE string.
+
+  TRY.
+      CREATE OBJECT o_file.
+      o_file-&gt;set_filetype( zaplink_file=&gt;filetypes-local ).
+      o_file-&gt;load_dialog( filename ).
+      filename = o_file-&gt;get_filename( ).
+    CATCH ZCX_ZL_FILE INTO o_cx_file.
+      CHECK o_cx_file-&gt;is_exception_text( ZCX_ZL_FILE=&gt;dialog_canceled ) IS INITIAL.
+      d_msg = o_cx_file-&gt;get_text( ).
+      MESSAGE d_msg TYPE &apos;W&apos;.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create empty container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Container name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA s_info    TYPE ts_contdata.
+  DATA container TYPE to_container.
+  DATA def_fn    TYPE td_filename.
+*  DATA o_file    TYPE to_file.
+
+  IF name IS INITIAL.
+    RAISE EXCEPTION TYPE ZCX_ZL_GUI EXPORTING textid = ZCX_ZL_GUI=&gt;missing_container_name.
+  ENDIF.
+
+  TRY.
+*      CONCATENATE name ext_sep file_ext INTO def_fn.
+*      IF filename IS INITIAL.
+*        o_file = create_file( filename = def_fn ).
+*      ELSE.
+*        o_file = create_file( filename = filename ).
+*      ENDIF.
+*      o_file-&gt;save_dialog( def_fn ).
+
+    s_info-name = name.
+    container = zaplink_container=&gt;create_new( o_file = file
+                                                 data = s_info ).
+    container-&gt;save_to_file( ).
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CREATE_FILE" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Create File Manager"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILENAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filename"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FILETYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILETYPE" PARVALUE="ZAPLINK_FILE=&gt;C_FT_LOCAL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="O_FILE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File Manager"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _cx TYPE REF TO ZCX_ZL_LIST.
+  TRY.
+      CREATE OBJECT o_file.
+      o_file-&gt;set_filetype( filetype ).
+      o_file-&gt;set_filename( filename ).
+    CATCH ZCX_ZL_LIST INTO _cx.
+      mac_cascade_raise o_mycx _cx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXPORT" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Export object list to container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJLIST" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to export"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="WITH_SUBCOMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="With sub component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_cont     TYPE to_container.
+
+  TRY.
+    CALL METHOD _get_objlist
+      EXPORTING
+        file      = file
+      IMPORTING
+*          list      = o_list
+        container = o_cont.
+
+    IF o_options IS BOUND.
+      o_cont-&gt;set_options( o_options ).
+    ENDIF.
+
+    _update_subobj( o_list = objlist
+                     f_sub = with_subcomp ).
+    o_cont-&gt;add_components( objlist ).
+
+    CALL METHOD _save
+      EXPORTING
+        file      = file
+      IMPORTING
+        container = o_cont.
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_OBJLIST" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get container content"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List of container"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  TRY.
+      CALL METHOD _get_objlist
+        EXPORTING
+          file         = file
+         IMPORTING
+           list        = list.
+    CATCH ZCX_ZL_GUI INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_VALUES" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search Help for object of a type"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="TYPE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPTYPE"/>
+     <ITEM SCONAME="VALUE" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_COMPNAME"/>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_conn TYPE to_connector.
+
+  CHECK NOT type IS INITIAL.
+  TRY.
+      o_conn = zaplink_connectors=&gt;create_connector( type = type ).
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      IF o_cx-&gt;is_exception_text( ZCX_ZL_CONNECTOR=&gt;invalid_type ) = abap_true.
+* There is no ZAPLink connector installed for object type &apos;&amp;1&apos;
+        MESSAGE w050 WITH type.
+        EXIT.
+      ELSE.
+        RAISE EXCEPTION o_cx.
+      ENDIF.
+  ENDTRY.
+
+  TRY.
+      CALL METHOD o_conn-&gt;get_values
+        EXPORTING
+          type = type
+        CHANGING
+          name = value.
+    CATCH ZCX_ZL_CONNECTOR INTO o_cx.
+      RAISE EXCEPTION o_cx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IMPORT" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Import container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="ACTIVATE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE"/>
+     <ITEM SCONAME="ACTIVATE_ANYWAY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_BOOL" PARVALUE="ABAP_FALSE"/>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to import"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="For info : Container&apos;s name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="WITH_SUBCOMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="with sub components"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_cont    TYPE to_container.
+  DATA _cx       TYPE REF TO ZCX_ZAPLINK.
+  DATA o_activ   TYPE to_activate.
+  DATA o_list    TYPE to_list.
+  DATA t_keys    TYPE tt_compkeys.
+  DATA t_keys_ko TYPE tt_compkeys.
+  DATA o_comp    TYPE to_component.
+  DATA s_key     LIKE LINE OF t_keys_ko.
+
+  TRY.
+      CALL METHOD _get_objlist
+        EXPORTING
+          file      = file
+        IMPORTING
+          list      = list
+          container = o_cont
+          cont_name = name.
+
+*  IF my_badi IS BOUND.
+*    TRY.
+*        CALL METHOD my_badi-&gt;cont_imp_at_load
+*          EXPORTING
+*            file = file
+*          CHANGING
+*            list   = list.
+*      CATCH ZCX_ZAPLINK INTO o_mycx.
+*        RAISE EXCEPTION o_mycx.
+*    ENDTRY.
+*  ENDIF.
+
+      _update_subobj( o_list = list
+                       f_sub = with_subcomp ).
+      list-&gt;select_default( zaplink_list=&gt;sel_actions-import ).
+      list-&gt;change_selection( ).
+      _update_selection( list ).
+
+*  IF my_badi IS BOUND.
+*    TRY.
+*        CALL METHOD my_badi-&gt;cont_imp_before
+*          EXPORTING
+*            file = file
+*          CHANGING
+*            list   = list.
+*      CATCH ZCX_ZAPLINK INTO o_mycx.
+*        RAISE EXCEPTION o_mycx.
+*    ENDTRY.
+*  ENDIF.
+
+      IF o_options IS BOUND.
+        o_cont-&gt;set_options( o_options ).
+      ENDIF.
+      o_cont-&gt;transport_to_sap( list ).
+
+*  IF my_badi IS BOUND.
+*    TRY.
+*        CALL METHOD my_badi-&gt;cont_imp_after
+*          EXPORTING
+*            file = file
+*          CHANGING
+*            list   = list.
+*      CATCH ZCX_ZAPLINK INTO o_mycx.
+*        RAISE EXCEPTION o_mycx.
+*    ENDTRY.
+*  ENDIF.
+*  raise event after_file_import
+*    exporting
+*      file     =
+*      filename =
+*      list       =
+*      .
+
+      IF activate = abap_true.
+        o_list = list-&gt;selection_as_list( ).
+        t_keys = o_list-&gt;get_keys( ).
+        CREATE OBJECT o_activ.
+        o_activ-&gt;add_keys( t_keys ).
+        t_keys_ko = o_activ-&gt;activate( force_activation = activate_anyway ).
+        SORT t_keys_ko BY type name.
+        list-&gt;init_sel_iter( ).
+        list-&gt;display_progress = abap_false.
+        o_comp = list-&gt;get_next( ).
+        WHILE o_comp IS BOUND.
+          s_key-type = o_comp-&gt;get_type( ).   s_key-name = o_comp-&gt;get_name( ).
+          READ TABLE t_keys_ko TRANSPORTING NO FIELDS
+               WITH KEY type = s_key-type
+                        name = s_key-name.
+          IF sy-subrc = 0.    o_comp-&gt;set_action( zaplink_list=&gt;sel_actions-not_active ).   ELSE.   o_comp-&gt;set_action( zaplink_list=&gt;sel_actions-activated ).   ENDIF.
+          o_comp = list-&gt;get_next( ).
+        ENDWHILE.
+      ENDIF.
+
+    CATCH ZCX_ZAPLINK INTO _cx.
+      CREATE OBJECT o_mycx
+        EXPORTING
+          textid   = ZCX_ZL_GUI=&gt;system_error
+          previous = _cx.
+      o_mycx-&gt;update( ).
+      RAISE EXCEPTION o_mycx.
+
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="REFRESH" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Export object list to container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJLIST" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to export"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="WITH_SUBCOMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="With sub component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_cont     TYPE to_container.
+
+  TRY.
+    CALL METHOD _get_objlist
+      EXPORTING
+        file      = file
+      IMPORTING
+        list      = objlist
+        container = o_cont.
+
+    IF o_options IS BOUND.
+      o_cont-&gt;set_options( o_options ).
+    ENDIF.
+
+    _update_subobj( o_list = objlist
+                     f_sub = with_subcomp ).
+    objlist-&gt;select_default( zaplink_list=&gt;sel_actions-export ).
+    objlist-&gt;change_selection( ).
+    o_cont-&gt;add_components( objlist ).
+
+    CALL METHOD _save
+      EXPORTING
+        file      = file
+      IMPORTING
+        container = o_cont.
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNINSTALL" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Uninstall container content is system"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List of container"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NAME" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="For info : Container&apos;s name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="WITH_SUBCOMP" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP" PARVALUE="ABAP_TRUE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="with sub components"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_list TYPE to_list.
+  DATA o_cont TYPE to_container.
+
+  TRY.
+    CALL METHOD _get_objlist
+      EXPORTING
+        file      = file
+      IMPORTING
+        list      = o_list
+        container = o_cont
+        cont_name = name.
+
+    IF list IS BOUND.
+      o_list-&gt;keep_commun_list( list ).
+    ENDIF.
+
+    _update_subobj( o_list = o_list
+                     f_sub = with_subcomp ).
+    o_list-&gt;select_default( zaplink_list=&gt;sel_actions-uninstall ).
+    o_list-&gt;change_selection( ).
+
+    o_cont-&gt;uninstall_from_sap( o_list ).
+
+    list = o_list.
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UPDATE_SUBOBJ" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Update sub object in list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="F_SUB" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Also sub objects"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="O_LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to export"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  _update_subobj( o_list = o_list
+                   f_sub = f_sub ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_GET_OBJLIST" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get container content (protected)"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTAINER" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_CONTAINER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPLink Container"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="CONT_NAME" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Container&apos;s name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="LIST" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List of container"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+
+  TRY.
+    CALL METHOD _load
+      EXPORTING
+        file      = file
+      IMPORTING
+        container = container
+        cont_name = cont_name.
+
+    CHECK container IS BOUND.
+    list = container-&gt;get_content( ).
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_LOAD" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Load and create container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTAINER" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_CONTAINER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPLink : Container"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="CONT_NAME" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_CONTNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Container&apos;s name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+*  DATA o_file TYPE to_file.
+  DATA d_filename TYPE td_filename.
+
+  IF NOT file IS BOUND.
+    RAISE EXCEPTION TYPE ZCX_ZL_GUI EXPORTING textid = ZCX_ZL_GUI=&gt;missing_filename.
+  ENDIF.
+
+  TRY.
+      d_filename = file-&gt;get_filename( ).
+      IF file-&gt;get_filetype( ) = zaplink_file=&gt;filetypes-local.
+* Openning file &apos;&amp;1&apos; on local machine
+        IF 1 = 2. MESSAGE i002 WITH d_filename. ENDIF.
+        CALL METHOD application_log-&gt;add
+          EXPORTING
+*      is_message   =
+             id_msgty     = &apos;I&apos;
+             id_msgid     = &apos;ZAPLINK_GUI&apos;
+             id_msgno     = &apos;002&apos;
+             id_msgv1     = d_filename
+*      id_msgv2     =
+*      id_msgv3     =
+*      id_msgv4     =
+            .
+      ELSEIF file-&gt;get_filetype( ) = zaplink_file=&gt;filetypes-server.
+* Openning file &apos;&amp;1&apos; on ABAP Server
+        IF 1 = 2. MESSAGE i004 WITH d_filename. ENDIF.
+        CALL METHOD application_log-&gt;add
+          EXPORTING
+*      is_message   =
+             id_msgty     = &apos;I&apos;
+             id_msgid     = &apos;ZAPLINK_GUI&apos;
+             id_msgno     = &apos;004&apos;
+             id_msgv1     = d_filename
+*      id_msgv2     =
+*      id_msgv3     =
+*      id_msgv4     =
+            .
+      ENDIF.
+*      CREATE OBJECT o_file.
+*      o_file-&gt;set_filetype( zaplink_file=&gt;c_ft_local ).
+*      o_file-&gt;set_filename( file ).
+**  o_file-&gt;set_filekind( zaplink_file_zip=&gt;filekinds-zipped ).
+      CREATE OBJECT container
+        EXPORTING
+          o_file = file.
+
+      container-&gt;load_from_file( ).
+
+    CATCH ZCX_ZAPLINK INTO o_cx.
+      mac_cascade_raise o_mycx o_cx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_SAVE" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Save container"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CONTAINER" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_CONTAINER">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPLink Container"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="FILE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_FILE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_GUI" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+*  DATA o_file TYPE to_file.
+  DATA _fn    TYPE td_filename.
+
+  TRY.
+*      CREATE OBJECT o_file.
+*      o_file-&gt;set_filetype( zaplink_file=&gt;c_ft_local ).
+    _fn = file-&gt;get_filename( ).
+    IF _fn IS INITIAL.
+      CALL METHOD file-&gt;save_dialog
+        EXPORTING
+          filename = _fn.
+    ENDIF.
+    file-&gt;set_filename( _fn ).
+
+    container-&gt;save_to_file( file ).
+
+    mac_def_catch ZCX_ZL_GUI.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_UPDATE_SELECTION" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Update selection in sub component of the list&apos;s component"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="O_LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to export"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp   TYPE to_component.
+  DATA o_slist  TYPE to_list.
+
+  o_list-&gt;init_sel_iter( ).
+  o_list-&gt;display_progress = abap_false.
+  o_comp = o_list-&gt;get_next( ).
+  WHILE o_comp IS BOUND.
+    CLEAR o_slist.    o_slist = o_comp-&gt;get_subcomponents( ).
+    IF o_slist IS BOUND.    o_slist-&gt;select_all( ).   ENDIF.    &quot; for display list
+    o_comp = o_list-&gt;get_next( ).
+  ENDWHILE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_UPDATE_SUBOBJ" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Update sub object in list"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="F_SUB" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_WITH_SUBCOMP">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Also sub objects"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="O_LIST" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component List to export"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_comp   TYPE to_component.
+
+  o_list-&gt;init_iter( ).
+  o_list-&gt;display_progress = abap_false.
+  o_comp = o_list-&gt;get_next( ).
+  WHILE o_comp IS BOUND.
+    o_comp-&gt;set_with_subcomp( f_sub ).
+    o_comp = o_list-&gt;get_next( ).
+  ENDWHILE.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="ICON" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SLIS" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_ACTIVATE" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZAPLINK_ACTIVATE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink : Activate components"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CONNECTOR" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_CONNECTOR">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAP Link Connector interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZCX_ZL_GUI">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for GUI"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink ROOT Exception"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_ALV" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF t_alv,
+      fields TYPE slis_t_fieldcat_alv,
+      layout TYPE slis_layout_alv,
+    END OF t_alv
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ALV Data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

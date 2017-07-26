@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="364A60F27018206C8D8A2D58F33E8285" CODE_SIGNATURE="6A66551ED0152ED457D1F446C15392F1" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_TRAN_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_DATA" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="Data for transaction">U1&amp;FUNCTIONALITY&amp;
+ASIs part of connector : ZAPLINK_TRANSACTION
+ASDefine XML structure of a Transaction
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ALIASES>
+   <ITEM CMPNAME="TS_LANG" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TS_LANG"/>
+   <ITEM CMPNAME="TT_TEXTS" EXPOSURE="2" CMPTYPE="3" REFCLSNAME="ZAPLINK_DATATYPES" REFCMPNAME="TT_TEXTS"/>
+  </ALIASES>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="A0_MAINDATA" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_MAINDATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Program main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="AUTHORIZATION" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TS_AUTHORITY"/>
+   <ITEM CMPNAME="OBJECT" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_SUB_OBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub object : Object"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PARAMETERS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_PARAMS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transaction params"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="PROGRAM" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_SUB_OBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub object : Program"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TEXTS" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TT_TEXTS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Textpool table"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TRANSACTION" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TS_SUB_OBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub object : Transaction"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TRAN_KINDS" STATE="1" ATTDECLTYP="2" TYPTYPE="4">begin of tran_kinds,
+       Trans_d type TSTC-cinfo value &apos;00&apos;,
+       report  type TSTC-cinfo value &apos;80&apos;,
+       param   type TSTC-cinfo value &apos;02&apos;,
+       variant type TSTC-cinfo value &apos;10&apos;,    &quot; Variant mask with report
+       Object  type TSTC-cinfo value &apos;08&apos;,    &quot; Not supported yet
+* not used yet
+*      hex_men type x value &apos;01&apos;,               &quot; Bereichsmenü        M
+*      hex_chk type x value &apos;04&apos;,               &quot; mit Prüfobjekt
+*      hex_enq type x value &apos;20&apos;.               &quot; Gesperrt über SM01
+*
+     end of tran_kinds
+`</ITEM>
+   <ITEM CMPNAME="TRAN_TYPES" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF tran_types,
+             dialog  TYPE sychar01 VALUE ststc_c_type_dialog,
+             report  TYPE sychar01 VALUE ststc_c_type_report,
+             param   TYPE sychar01 VALUE ststc_c_type_parameters,
+             variant TYPE sychar01 VALUE ststc_c_type_variant,
+             object  TYPE sychar01 VALUE ststc_c_type_object,    &quot; Not supported yet
+* not used yet
+*  ststc_c_xxx     type sychar01 value &apos;A&apos;.           &quot;Objekt
+*
+           END OF tran_types
+`</ITEM>
+   <ITEM CMPNAME="ZL_OBJECT" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TO_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Component of transaction : Program, object, pool"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_TRANSACTION" STATE="1"/>
+  </FRIENDS>
+  <INTERFACES>
+   <ITEM REFCLSNAME="ZAPLINK_DATATYPES" EXPOSURE="2" STATE="1" RELTYPE="1"/>
+  </INTERFACES>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="ANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Anonymized component data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="DATA_2_TYPE" EXPOSURE="2" STATE="1">
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="RGLIF-DOCUTYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Transaction Type"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+   </ITEM>
+   <ITEM CMPNAME="FROM_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert FM Data to object attributes"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF texts.
+  DATA s_auth  TYPE ts_authority.
+  DATA s_value LIKE LINE OF s_auth-values.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF fm_data-tstca,
+    &lt;t&gt; LIKE LINE OF fm_data-tstct.
+
+  MOVE-CORRESPONDING fm_data-tstc TO a0_maindata.
+  MOVE-CORRESPONDING fm_data-tstcc TO a0_maindata.
+  MOVE-CORRESPONDING fm_data-rsstcd TO a0_maindata.
+  a0_maindata-gui_inh = fm_data-gui_inh.
+  clear a0_maindata-tc_type.          &quot; transaction type in text
+
+  parameters = fm_data-t_params.
+
+  LOOP AT fm_data-tstct ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-langu = &lt;t&gt;-sprsl.
+    s_text-short_txt = &lt;t&gt;-ttext.
+    INSERT s_text INTO TABLE texts.
+  ENDLOOP.
+
+  CLEAR authorization.
+  LOOP AT fm_data-tstca ASSIGNING &lt;o&gt;.
+    AT NEW objct.
+      CLEAR s_auth.
+      s_auth-object = &lt;o&gt;-objct.
+    ENDAT.
+
+    CLEAR s_value.
+    s_value-field = &lt;o&gt;-field.
+    s_value-value = &lt;o&gt;-value.
+    INSERT s_value INTO TABLE s_auth-values.
+
+    AT END OF objct.
+      IF NOT authorization IS INITIAL.
+*        raise EXCEPTION
+      ENDIF.
+      authorization = s_auth.
+    ENDAT.
+  ENDLOOP.
+*  DEFINE mac_flags.
+*    &amp;1-webgui  = fm_data-html_en.
+*    &amp;1-java    = fm_data-java_en.
+*    &amp;1-sapgui  = fm_data-wingui_en.
+*    &amp;1-srvfile = fm_data-servicefile.
+*  END-OF-DEFINITION.
+*
+*  a0_maindata-tcode = fm_data-tcode.
+*  a0_maindata-type = data_2_type( fm_data ).
+*
+*  CASE a0_maindata-type.
+*    WHEN tran_types-dialog.
+*      a0_maindata-dialog-program = fm_data-program.
+*      a0_maindata-dialog-dynnpro = fm_data-dynpro.
+*      mac_flags a0_maindata-dialog.
+*    WHEN tran_types-report.
+*      a0_maindata-report-program = fm_data-program.
+*      a0_maindata-report-variant = fm_data-variant.
+*      mac_flags a0_maindata-report.
+*    WHEN tran_types-param.
+*      a0_maindata-params-program = fm_data-program.
+*      a0_maindata-params-dynnpro = fm_data-dynpro.
+*      a0_maindata-params-called_t = fm_data-called_t.
+*      a0_maindata-params-skip_1st = fm_data-trans_skip.
+*      mac_flags a0_maindata-params.
+*    WHEN tran_types-variant.
+*      a0_maindata-variant-called_t = fm_data-called_t.
+*      a0_maindata-variant-variant = fm_data-variant.
+*      a0_maindata-variant-indep = fm_data-cl_indep.
+*    WHEN tran_types-object.   &quot; not supported yet
+*    WHEN OTHERS.
+** Not expected
+*  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="TO_DATA" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Convert object attributes to FM Data"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FM_DATA" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TS_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Function Modules Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA s_text  LIKE LINE OF fm_data-tstct.
+  DATA s_value LIKE LINE OF fm_data-tstca.
+  FIELD-SYMBOLS:
+    &lt;o&gt; LIKE LINE OF authorization-values,
+    &lt;t&gt; LIKE LINE OF texts.
+
+  MOVE-CORRESPONDING a0_maindata TO fm_data-tstc.
+  MOVE-CORRESPONDING a0_maindata TO fm_data-tstcc.
+  MOVE-CORRESPONDING a0_maindata TO fm_data-rsstcd.
+  fm_data-gui_inh = a0_maindata-gui_inh.
+*  clear a0_maindata-tc_type.          &quot; transaction type in text
+
+  fm_data-t_params = parameters.
+
+  LOOP AT texts ASSIGNING &lt;t&gt;.
+    CLEAR s_text.
+    s_text-tcode = a0_maindata-tcode.
+    s_text-sprsl = &lt;t&gt;-langu.
+    s_text-ttext = &lt;t&gt;-short_txt.
+    INSERT s_text INTO TABLE fm_data-tstct.
+  ENDLOOP.
+
+  LOOP AT authorization-values ASSIGNING &lt;o&gt;.
+    CLEAR s_value.
+    s_value-tcode = a0_maindata-tcode.
+    s_value-objct = authorization-object.
+    s_value-field = &lt;o&gt;-field.
+    s_value-value = &lt;o&gt;-value.
+    INSERT s_value INTO TABLE fm_data-tstca.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="UNANONYMIZE" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UnAnonymized component data"/>
+    </TEXTS>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" IMPLICIT="X"/>
+   <ITEM TYPEGROUP="STSTC" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TO_RAW" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="ZAPLINK_CONNECTOR=&gt;TO_RAW"/>
+   <ITEM CMPNAME="TS_AUTHORITY" EXPOSURE="2" STATE="1" EDITORDER="10 " TYPTYPE="4">BEGIN OF ts_authority,
+          object TYPE tstca-objct,
+          values TYPE tt_values,
+        END OF ts_authority
+`</ITEM>
+   <ITEM CMPNAME="TS_FM_DATA" EXPOSURE="2" STATE="1" EDITORDER="8 " TYPTYPE="4">BEGIN OF ts_fm_data,
+* Data required
+*        cinfo       TYPE tstc-cinfo,
+          tstc        TYPE tstc,
+          tstct       TYPE tt_tstct,
+          tstcc       TYPE tstcc,
+          tstca       TYPE tt_values,
+          rsstcd      TYPE rsstcd,
+          gui_inh     TYPE s_gui_inhe,  &quot; (SAPLSEUK)G_GUI_INHE
+* FM : RPY_TRANSACTION_INSERT
+*            transaction TYPE tstc-tcode,
+*            program     TYPE trdir-name,
+*            dynpro      TYPE d020s-dnum,
+*            language    TYPE sy-langu,
+*            with_docu   TYPE rglif-with_docu,
+*            docutype    TYPE rglif-docutype,
+**          dev_class   TYPE rglif-devclass,
+**          transport   TYPE rglif-trkorr,
+*            trans_type  TYPE rglif-docutype,
+*            shorttext   TYPE tstct-ttext,
+*            called_t    TYPE tstc-tcode,
+*            trans_skip  TYPE char01,
+*            variant     TYPE tcvariant,
+*            cl_indep    TYPE char01,
+*            easy_web_t  TYPE s_ewt,
+*            pro_user_t  TYPE s_prof,
+*            html_en     TYPE s_webgui,
+*            java_en     TYPE s_platin,
+*            wingui_en   TYPE s_win32,
+*            servicefile TYPE iacservic_,
+*            genflag     TYPE tadir-genflag,
+*          del_auth_ch TYPE char1,
+*          del_corr_i  TYPE char1,
+*&quot;  TABLES
+          t_doc_user  TYPE tt_doc_usr,
+          t_doc_tech  TYPE tt_doc_tech,
+          t_params    TYPE tt_params,
+        END OF ts_fm_data
+`</ITEM>
+   <ITEM CMPNAME="TS_MAINDATA" EXPOSURE="2" STATE="1" EDITORDER="9 " TYPTYPE="4">
+    BEGIN OF ts_maindata.
+    INCLUDE TYPE tstc.
+    INCLUDE TYPE rsstcd.
+*    TYPES:
+*      BEGIN OF ts_dialog,
+*            program TYPE tstc-pgmna,
+*            dynnpro TYPE tstc-dypno,
+*            webgui  TYPE tstcc-s_webgui,
+*            java    TYPE tstcc-s_platin,
+*            sapgui  TYPE tstcc-s_win32,
+*            srvfile TYPE tstcc-s_service,
+*          END OF ts_dialog .
+*    TYPES:
+*      BEGIN OF ts_report,
+*            program TYPE tstc-pgmna,
+*            variant TYPE rsstcd-repo_vari,
+*            webgui  TYPE tstcc-s_webgui,
+*            java    TYPE tstcc-s_platin,
+*            sapgui  TYPE tstcc-s_win32,
+*            srvfile TYPE tstcc-s_service,
+*          END OF ts_report .
+*    TYPES:
+*      BEGIN OF ts_variant,
+*            called_t TYPE tstc-tcode,
+*            variant  TYPE rsstcd-repo_vari,
+*            indep    TYPE char01,             &quot; CL_INDEPENDEND
+*          END OF ts_variant .
+*    TYPES:
+*      BEGIN OF ts_parameters,
+*            program  TYPE tstc-pgmna,
+*            dynnpro  TYPE tstc-dypno,
+*            called_t TYPE tstc-tcode,
+*            skip_1st TYPE rsstcd-st_skip_1,
+*            webgui   TYPE tstcc-s_webgui,
+*            java     TYPE tstcc-s_platin,
+*            sapgui   TYPE tstcc-s_win32,
+*            srvfile  TYPE tstcc-s_service,
+*            values   TYPE tt_params,
+*          END OF ts_parameters .
+*  ststc_c_type_dialog     type sychar01 value &apos;D&apos;,           &quot;Dialog
+*  ststc_c_type_report     type sychar01 value &apos;R&apos;,           &quot;Report
+*  ststc_c_type_variant    type sychar01 value &apos;V&apos;,           &quot;Varianten
+*  ststc_c_type_parameters type sychar01 value &apos;P&apos;,           &quot;Parameter
+*  ststc_c_type_object     type sychar01 value &apos;O&apos;.           &quot;Objekt
+*          type    TYPE rglif-docutype,
+*          code    TYPE tstc-tcode,
+*          dialog  TYPE ts_dialog,
+*          report  TYPE ts_report,
+*          variant TYPE ts_variant,
+*          params  TYPE ts_parameters,
+*        object  TYPE ts_object,     &quot; not supported yet
+    TYPES:
+      gui_inh   TYPE s_gui_inhe,
+* From TSTCC
+      s_webgui  TYPE tstcc-s_webgui,
+      s_win32   TYPE tstcc-s_win32,
+      s_platin  TYPE tstcc-s_platin,
+      s_service TYPE tstcc-s_service,
+      s_pervas  TYPE tstcc-s_pervas,
+    END OF ts_maindata
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="main data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_SUB_OBJ" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    begin of TS_SUB_OBJ,
+      ZL_OBJECT Type  TO_RAW,
+    end of TS_SUB_OBJ
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Sub object structure"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_DOC_TECH" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">tt_doc_tech TYPE STANDARD TABLE OF tline WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_DOC_USR" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="4">tt_doc_usr TYPE STANDARD TABLE OF rpy_objtab WITH DEFAULT KEY
+`</ITEM>
+   <ITEM CMPNAME="TT_PARAMS" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="4">
+    tt_params TYPE STANDARD TABLE OF rsparam WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Transaction params"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TSTCT" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">tt_tstct TYPE SORTED TABLE OF tstct WITH UNIQUE KEY sprsl
+`</ITEM>
+   <ITEM CMPNAME="TT_VALUES" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="4">tt_values TYPE SORTED TABLE OF tstca WITH UNIQUE KEY objct field
+`</ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

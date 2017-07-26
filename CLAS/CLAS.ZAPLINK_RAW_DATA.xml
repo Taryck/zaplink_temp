@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="4423A29AAB21C3F69307554A2C8FC45D" CODE_SIGNATURE="524167DB21320A034DDC623F7484D24D" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_RAW_DATA" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSABSTRCT="X" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink : Abstract class for component data">U1&amp;FUNCTIONALITY&amp;
+ASThis abstract object define is the entry point of inheritance for each
+  type dependent datas. Data for program (PROG) is completely different
+  from data for type pool. All data displayed in XML inherit from this
+  object allowing you to browse all supported type.
+ASIt also introduce the common concept of &quot;dependencies&quot; which list all
+  component that must be present before loading this component. This is
+  not the list of component that must be compiled before being able to
+  compile this component, but the list of component that will prevent this
+  component to load correctly if they are missing.
+AS
+ASAs example : If you try to load a connector before connector&apos;s interface
+  is loaded, you will get a short dump because your connector was unable
+  to create correctly any method that are redefinitions from an interface
+  that weren&apos;t exists.
+AS
+ASFor more details see Issue 37 :
+  https://code.google.com/p/zaplink/issues/detail?id=47
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="_CODE_SIGNATURE" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="ZAPLINK_DATATYPES=&gt;TD_CHECKSUM">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Source Code Checksum if applies"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_DEPENDENCIES" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="ZAPLINK_DATATYPES=&gt;TT_COMPKEYS">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="List of components that are required to install this comp."/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</MACROS>
+  </LOCAL>
+ </RAW>
+</ZL_OBJECT>

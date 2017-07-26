@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="3FE10A1ABD953350244155F2F11498DE" CODE_SIGNATURE="E3525B5A976B63E02C3B455D65B58292" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_FILE" TYPE="CLAS" VERSION="1.01">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK">
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink : File Manager">U1&amp;FUNCTIONALITY&amp;
+ASObject that handle file managment.
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="C_FT_LOCAL" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;L&apos;" TYPTYPE="1" TYPE="TD_FILETYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Local"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="C_FT_SERVER" EXPOSURE="2" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;S&apos;" TYPTYPE="1" TYPE="TD_FILETYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Server"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="FILEDIRKINDS" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF filedirkinds,
+              unknown   TYPE td_filedir_kind VALUE space,   &quot;#EC NOTEXT
+              file      TYPE td_filedir_kind VALUE &apos;F&apos;,     &quot;#EC NOTEXT
+              directory TYPE td_filedir_kind VALUE &apos;D&apos;,     &quot;#EC NOTEXT
+            END OF filedirkinds
+`</ITEM>
+   <ITEM CMPNAME="FILETYPES" EXPOSURE="2" STATE="1" ATTDECLTYP="2" TYPTYPE="4">BEGIN OF filetypes,
+              local     TYPE td_filetype VALUE &apos;L&apos;,         &quot;#EC NOTEXT
+              server    TYPE td_filetype VALUE &apos;S&apos;,         &quot;#EC NOTEXT
+            END OF filetypes
+`</ITEM>
+   <ITEM CMPNAME="FILE_SEP" EXPOSURE="2" STATE="1" ATTDECLTYP="1" ATTRDONLY="X" TYPTYPE="1" TYPE="C">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Directory and file separator"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_CX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_ROOT_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="O_MYCX" EXPOSURE="1" STATE="1" ATTDECLTYP="1" TYPTYPE="1" TYPE="TO_EXCEPTION">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for Files"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_CONTENT" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_CONTENT">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File content"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_FILENAME" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_FILENAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_FILETYPE" EXPOSURE="1" STATE="1" TYPTYPE="1" TYPE="TD_FILETYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* in the implementation part of the class
+
+INCLUDE ZAPLINK_MACROS.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CLASS_CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CLASS_CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  CALL METHOD cl_gui_frontend_services=&gt;get_file_separator
+    CHANGING
+      file_separator       = file_sep
+    EXCEPTIONS
+      cntl_error           = 1
+      error_no_gui         = 2
+      not_supported_by_gui = 3
+      OTHERS               = 4.
+  IF sy-subrc &lt;&gt; 0.
+    file_sep = &apos;\&apos;.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="DELETE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Delete File"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA d_rc TYPE i.
+  DATA cx   TYPE REF TO cx_root.
+
+  IF _filetype = c_ft_local.
+    CALL METHOD cl_gui_frontend_services=&gt;file_delete
+      EXPORTING
+        filename             = _filename
+      CHANGING
+        rc                   = d_rc
+      EXCEPTIONS
+        access_denied        = 1
+        cntl_error           = 2
+        error_no_gui         = 3
+        file_delete_failed   = 4
+        file_not_found       = 5
+        not_supported_by_gui = 6
+        unknown_error        = 7
+        wrong_parameter      = 8
+        OTHERS               = 9.
+    IF d_rc &lt;&gt; 0 AND sy-subrc = 0.     sy-subrc = 9.   ENDIF.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                        method = &apos;FILE_DELETE&apos;
+                                                         subrc = sy-subrc
+                                                  cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+  ELSEIF _filetype = c_ft_server.
+    TRY.
+        DELETE DATASET _filename.
+      CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+        CREATE OBJECT o_mycx
+          EXPORTING
+            textid   = ZCX_ZL_FILE=&gt;delete_error
+            filename = _filename
+            filetype = _filetype
+            previous = cx.
+        o_mycx-&gt;update( ).
+        RAISE EXCEPTION o_mycx.
+    ENDTRY.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;delete_error
+                    filename = _filename
+                    filetype = _filetype
+                     cx_name = &apos;DELETE DATASET&apos;.
+    ENDIF.
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="FILE_EXISTS" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Do file exists"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Do exists"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA tmptable TYPE table_of_strings.
+  DATA cx_name TYPE string.
+  DATA cx TYPE REF TO cx_root.
+*  DATA _cx TYPE REF TO ZCX_ZL_FILE.
+  DATA _str LIKE LINE OF tmptable.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF tmptable.
+
+  CASE _filetype.
+    WHEN c_ft_local.
+      CALL METHOD cl_gui_frontend_services=&gt;file_exist
+        EXPORTING
+          file                 = _filename
+        RECEIVING
+          result               = result
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          not_supported_by_gui = 3
+          wrong_parameter      = 4
+          OTHERS               = 5.
+      IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+        o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                         method = &apos;FILE_EXIST&apos;
+                                                          subrc = sy-subrc
+                                                         textid = ZCX_ZL_FILE=&gt;load_error
+                                                   cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+        RAISE EXCEPTION o_mycx.
+      ENDIF.
+    WHEN c_ft_server.
+      TRY.
+          OPEN DATASET _filename FOR INPUT IN TEXT MODE ENCODING DEFAULT.
+        CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+          CREATE OBJECT o_mycx
+            EXPORTING
+              textid   = ZCX_ZL_FILE=&gt;load_error
+              filename = _filename
+              filetype = _filetype
+              previous = cx.
+          o_mycx-&gt;update( ).
+          RAISE EXCEPTION o_mycx.
+      ENDTRY.
+      IF sy-subrc &lt;&gt; 0.
+        result = abap_false.
+        EXIT.
+      ENDIF.
+
+      result = abap_true.
+      TRY.
+          CLOSE DATASET _filename.
+        CATCH cx_root INTO cx.
+          EXIT.
+      ENDTRY.
+    WHEN OTHERS.
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                    filetype = _filetype.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_FILECONTENT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filecontent : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File Content as String"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  result = _content.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_FILENAME" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_FILENAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filename"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  result = _filename.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_FILETYPE" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Getter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_FILETYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  result = _filetype.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_TEMP_DIRECTORY" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search File or Directory from root"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_DIRECTORYNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Working Directory that exists"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA d_is_ok   TYPE abap_bool.
+
+  IF _filetype = c_ft_local.
+    CALL METHOD cl_gui_frontend_services=&gt;get_temp_directory
+      CHANGING
+        temp_dir             = result
+      EXCEPTIONS
+        cntl_error           = 1
+        error_no_gui         = 2
+        not_supported_by_gui = 3
+        OTHERS               = 4.
+    IF sy-subrc = 0.
+      CALL METHOD cl_gui_frontend_services=&gt;directory_exist
+        EXPORTING
+          directory            = result
+        RECEIVING
+          result               = d_is_ok
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          wrong_parameter      = 3
+          not_supported_by_gui = 4
+          OTHERS               = 5.
+      IF sy-subrc &lt;&gt; 0 OR d_is_ok IS INITIAL.
+        CLEAR result.
+      ENDIF.
+    ENDIF.
+    IF result IS INITIAL.
+      CALL METHOD cl_gui_frontend_services=&gt;get_sapgui_workdir
+        CHANGING
+          sapworkdir           = result
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          not_supported_by_gui = 3
+          OTHERS               = 4.
+      IF sy-subrc = 0.
+        CALL METHOD cl_gui_frontend_services=&gt;directory_exist
+          EXPORTING
+            directory            = result
+          RECEIVING
+            result               = d_is_ok
+          EXCEPTIONS
+            cntl_error           = 1
+            error_no_gui         = 2
+            wrong_parameter      = 3
+            not_supported_by_gui = 4
+            OTHERS               = 5.
+        IF sy-subrc &lt;&gt; 0 OR d_is_ok IS INITIAL.
+          CLEAR result.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+    IF result IS INITIAL.
+      CALL METHOD cl_gui_frontend_services=&gt;get_desktop_directory
+        CHANGING
+          desktop_directory    = result
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          not_supported_by_gui = 3
+          OTHERS               = 4.
+      IF sy-subrc = 0.
+        CALL METHOD cl_gui_frontend_services=&gt;directory_exist
+          EXPORTING
+            directory            = result
+          RECEIVING
+            result               = d_is_ok
+          EXCEPTIONS
+            cntl_error           = 1
+            error_no_gui         = 2
+            wrong_parameter      = 3
+            not_supported_by_gui = 4
+            OTHERS               = 5.
+        IF sy-subrc &lt;&gt; 0 OR d_is_ok IS INITIAL.
+          CLEAR result.
+        ENDIF.
+      ENDIF.
+    ENDIF.
+
+  ELSEIF _filetype = c_ft_server.
+* No dialog right now
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="LOAD" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Load file content"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA tmptable TYPE table_of_strings.
+  DATA cx_name TYPE string.
+  DATA cx TYPE REF TO cx_root.
+*  DATA _cx TYPE REF TO ZCX_ZL_FILE.
+  DATA _str LIKE LINE OF tmptable.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF tmptable.
+
+  IF _filetype = c_ft_local.
+    CALL METHOD cl_gui_frontend_services=&gt;gui_upload
+      EXPORTING
+        filename                = _filename
+      CHANGING
+        data_tab                = tmptable
+      EXCEPTIONS
+        access_denied           = 1
+        bad_data_format         = 2
+        disk_full               = 3
+        dp_out_of_memory        = 4
+        dp_timeout              = 5
+        error_no_gui            = 6
+        file_open_error         = 7
+        file_read_error         = 8
+        gui_refuse_filetransfer = 9
+        header_not_allowed      = 10
+        header_too_long         = 11
+        invalid_type            = 12
+        no_authority            = 13
+        no_batch                = 14
+        not_supported_by_gui    = 15
+        separator_not_allowed   = 16
+        unknown_dp_error        = 17
+        unknown_error           = 18
+        OTHERS                  = 19.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                       method = &apos;GUI_UPLOAD&apos;
+                                                        subrc = sy-subrc
+                                                 cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+  ELSEIF _filetype = c_ft_server.
+    TRY.
+        OPEN DATASET _filename FOR INPUT IN TEXT MODE ENCODING DEFAULT.
+      CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+        CREATE OBJECT o_mycx
+          EXPORTING
+            textid   = ZCX_ZL_FILE=&gt;load_error
+            filename = _filename
+            filetype = _filetype
+            previous = cx.
+        o_mycx-&gt;update( ).
+        RAISE EXCEPTION o_mycx.
+    ENDTRY.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;load_error
+                    filename = _filename
+                    filetype = _filetype
+                     cx_name = &apos;OPEN DATASET&apos;.
+    ENDIF.
+
+    DO.
+      TRY.
+          READ DATASET _filename INTO _str.
+        CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+          CREATE OBJECT o_mycx
+            EXPORTING
+              textid   = ZCX_ZL_FILE=&gt;load_error
+              filename = _filename
+              filetype = _filetype
+              previous = cx.
+          o_mycx-&gt;update( ).
+          RAISE EXCEPTION o_mycx.
+      ENDTRY.
+      IF sy-subrc &lt;&gt; 0.
+        EXIT.
+      ENDIF.
+      APPEND _str TO tmptable.
+    ENDDO.
+
+    TRY.
+        CLOSE DATASET _filename.
+      CATCH cx_root INTO cx.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+        CREATE OBJECT o_mycx
+          EXPORTING
+            textid   = ZCX_ZL_FILE=&gt;load_error
+            filename = _filename
+            filetype = _filetype
+            previous = cx.
+        o_mycx-&gt;update( ).
+        RAISE EXCEPTION o_mycx.
+    ENDTRY.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;load_error
+                    filename = _filename
+                    filetype = _filetype
+                     cx_name = &apos;CLOSE DATASET&apos;.
+    ENDIF.
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.
+
+  CLEAR _content.
+  LOOP AT tmptable ASSIGNING &lt;s&gt;.
+    CONCATENATE _content &lt;s&gt; cl_abap_char_utilities=&gt;newline
+                INTO _content.
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="LOAD_DIALOG" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Load Dialog"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILENAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filename"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA ft TYPE filetable.
+  DATA filecount TYPE i.
+  DATA cx_name TYPE string.
+
+  IF _filetype = c_ft_local.
+    CALL METHOD cl_gui_frontend_services=&gt;file_open_dialog
+      EXPORTING
+*        window_title            =
+*        default_extension       =
+        default_filename        = filename
+*        file_filter             =
+*        with_encoding           =
+*        initial_directory       =
+*        multiselection          =
+      CHANGING
+        file_table              = ft
+        rc                      = filecount
+*        user_action             =
+*        file_encoding           =
+      EXCEPTIONS
+        cntl_error              = 1
+        error_no_gui            = 2
+        file_open_dialog_failed = 3
+        not_supported_by_gui    = 4
+        OTHERS                  = 5.
+    IF sy-subrc &lt;&gt; 0.   &quot; OR filecount &lt; 0.
+* Exception &amp;cx_name&amp; while loading file &amp;filename&amp; (&amp;filetype&amp;)
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                       method = &apos;FILE_OPEN_DIALOG&apos;
+                                                        subrc = sy-subrc
+                                                       textid = ZCX_ZL_FILE=&gt;load_error
+                                                 cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      o_mycx-&gt;filename = filename.
+      o_mycx-&gt;filetype = _filetype.
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+    IF filecount = 0 OR ft IS INITIAL.
+* Dialog canceled by user
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;dialog_canceled
+                    filename = filename
+                    filetype = _filetype.
+    ENDIF.
+    READ TABLE ft INTO _filename INDEX 1.
+  ELSEIF _filetype = c_ft_server.
+* No dialog right now
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SAVE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Save file content"/>
+    </TEXTS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA tmptable  TYPE table_of_strings.
+*  DATA cx_name   TYPE string.
+  DATA o_cx      TYPE REF TO cx_root.
+  DATA o_cx_file TYPE REF TO ZCX_ZL_FILE.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF tmptable.
+
+  SPLIT _content AT cl_abap_char_utilities=&gt;newline
+            INTO TABLE tmptable.
+
+  IF _filetype = c_ft_local.
+    IF _filename IS INITIAL.
+      save_dialog( ).
+    ELSE.
+*     CALL METHOD cl_gui_frontend_services=&gt;gui_download
+*     Not used because of missing param : SHOW_TRANSFER_STATUS
+      CALL FUNCTION &apos;GUI_DOWNLOAD&apos;
+        EXPORTING
+*         BIN_FILESIZE                    =
+          filename                        = _filename
+          filetype                        = &apos;DAT&apos;
+*         APPEND                          = &apos; &apos;
+*         WRITE_FIELD_SEPARATOR           = &apos; &apos;
+*         HEADER                          = &apos;00&apos;
+*         TRUNC_TRAILING_BLANKS           = &apos; &apos;
+*         WRITE_LF                        = &apos;X&apos;
+*         COL_SELECT                      = &apos; &apos;
+*         COL_SELECT_MASK                 = &apos; &apos;
+*         DAT_MODE                        = &apos; &apos;
+*         CONFIRM_OVERWRITE               = &apos; &apos;
+*         NO_AUTH_CHECK                   = &apos; &apos;
+*         CODEPAGE                        = &apos; &apos;
+*         IGNORE_CERR                     = ABAP_TRUE
+*         REPLACEMENT                     = &apos;#&apos;
+*         WRITE_BOM                       = &apos; &apos;
+*         TRUNC_TRAILING_BLANKS_EOL       = &apos;X&apos;
+*         WK1_N_FORMAT                    = &apos; &apos;
+*         WK1_N_SIZE                      = &apos; &apos;
+*         WK1_T_FORMAT                    = &apos; &apos;
+*         WK1_T_SIZE                      = &apos; &apos;
+*         WRITE_LF_AFTER_LAST_LINE        = ABAP_TRUE
+          show_transfer_status            = abap_false
+*       IMPORTING
+*         FILELENGTH                      =
+        TABLES
+          data_tab                        = tmptable
+*         FIELDNAMES                      =
+        EXCEPTIONS
+          file_write_error                = 1
+          no_batch                        = 2
+          gui_refuse_filetransfer         = 3
+          invalid_type                    = 4
+          no_authority                    = 5
+          unknown_error                   = 6
+          header_not_allowed              = 7
+          separator_not_allowed           = 8
+          filesize_not_allowed            = 9
+          header_too_long                 = 10
+          dp_error_create                 = 11
+          dp_error_send                   = 12
+          dp_error_write                  = 13
+          unknown_dp_error                = 14
+          access_denied                   = 15
+          dp_out_of_memory                = 16
+          disk_full                       = 17
+          dp_timeout                      = 18
+          file_not_found                  = 19
+          dataprovider_exception          = 20
+          control_flush_error             = 21
+          OTHERS                          = 22.
+      IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+*        TRY.
+            o_cx_file ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;GUI_DOWNLOAD&apos;
+                                                           subrc = sy-subrc
+                                                       classname = &apos;ZCX_ZL_FILE&apos;
+                                                          textid = ZCX_ZL_FILE=&gt;save_error ).
+            o_cx_file-&gt;filename = _filename.
+            o_cx_file-&gt;filetype = _filetype.
+*          CATCH cx_root INTO o_cx.
+** Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+*            CREATE OBJECT o_cx_file
+*              EXPORTING
+*                textid   = ZCX_ZL_FILE=&gt;save_error
+*                filename = _filename
+*                filetype = _filetype
+*                previous = o_cx.
+*            o_cx_file-&gt;update( ).
+*            RAISE EXCEPTION o_cx_file.
+*        ENDTRY.
+        RAISE EXCEPTION o_cx_file.
+      ENDIF.
+    ENDIF.
+  ELSEIF _filetype = c_ft_server.
+    TRY.
+        OPEN DATASET _filename FOR OUTPUT IN TEXT MODE ENCODING DEFAULT.
+      CATCH cx_root INTO o_cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+        CREATE OBJECT o_cx_file
+          EXPORTING
+            textid   = ZCX_ZL_FILE=&gt;save_error
+            filename = _filename
+            filetype = _filetype
+            previous = o_cx.
+        o_cx_file-&gt;update( ).
+        RAISE EXCEPTION o_cx_file.
+    ENDTRY.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                    filename = _filename
+                    filetype = _filetype
+                     cx_name = &apos;OPEN DATASET&apos;.
+    ENDIF.
+
+    LOOP AT tmptable ASSIGNING &lt;s&gt;.
+      TRY.
+          TRANSFER &lt;s&gt; TO _filename.
+        CATCH cx_root INTO o_cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+          CREATE OBJECT o_cx_file
+            EXPORTING
+              textid   = ZCX_ZL_FILE=&gt;save_error
+              filename = _filename
+              filetype = _filetype
+              previous = o_cx.
+          o_cx_file-&gt;update( ).
+          RAISE EXCEPTION o_cx_file.
+      ENDTRY.
+    ENDLOOP.
+
+    TRY.
+        CLOSE DATASET _filename.
+      CATCH cx_root INTO o_cx.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+        CREATE OBJECT o_cx_file
+          EXPORTING
+            textid   = ZCX_ZL_FILE=&gt;save_error
+            filename = _filename
+            filetype = _filetype
+            previous = o_cx.
+        o_cx_file-&gt;update( ).
+        RAISE EXCEPTION o_cx_file.
+    ENDTRY.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &amp;cx_name&amp; while saving file &amp;filename&amp; (&amp;filetype&amp;)
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;save_error
+                    filename = _filename
+                    filetype = _filetype
+                     cx_name = &apos;CLOSE DATASET&apos;.
+    ENDIF.
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SAVE_DIALOG" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Save Dialog"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="FILENAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filename"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA retfilename TYPE string.
+  DATA retpath TYPE string.
+  DATA retfullpath TYPE string.
+  DATA retuseract TYPE i.
+
+  IF filename IS INITIAL.
+    retfilename = _filename.
+  ELSE.
+    retfilename = filename.
+  ENDIF.
+  IF _filetype = c_ft_local.
+
+    CALL METHOD cl_gui_frontend_services=&gt;file_save_dialog
+      EXPORTING
+        default_file_name = retfilename
+      CHANGING
+        filename          = retfilename
+        path              = retpath
+        fullpath          = retfullpath
+        user_action       = retuseract.
+    IF retuseract &lt;&gt; 0.
+* Dialog canceled by user
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;dialog_canceled
+                    filename = filename
+                    filetype = _filetype.
+    ENDIF.
+    _filename = retfullpath.                                &quot; Issue 69
+  ELSEIF _filetype = c_ft_server.
+* No dialog right now
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SEARCH" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search File or Directory from root"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="MASK" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File/Dir name Mask"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TT_FILE_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Files or Directory list"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="ROOT_DIR" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_DIRECTORYNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Root Directory Name"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA d_tmpdir  TYPE string.
+  DATA d_tmpfile TYPE string.
+  DATA d_guid    TYPE guid_32.
+  DATA d_is_ok   TYPE abap_bool.
+  DATA d_cmdline TYPE string.
+  DATA t_filelst TYPE STANDARD TABLE OF string.
+  DATA s_file    LIKE LINE OF result.
+  DATA d_rc      TYPE sy-subrc.
+  FIELD-SYMBOLS &lt;f&gt; LIKE LINE OF t_filelst.
+
+  IF _filetype = c_ft_local.
+    d_tmpdir = get_temp_directory( ).
+    IF d_tmpdir IS INITIAL.
+      RAISE EXCEPTION TYPE ZCX_ZL_FILE
+            EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                    filetype = _filetype.
+    ENDIF.
+    DO.
+      CALL FUNCTION &apos;GUID_CREATE&apos;
+        IMPORTING
+          ev_guid_32 = d_guid.
+      CONCATENATE d_tmpdir file_sep d_guid INTO d_tmpfile.
+      CALL METHOD cl_gui_frontend_services=&gt;file_exist
+        EXPORTING
+          file                 = d_tmpfile
+        RECEIVING
+          result               = d_is_ok
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          wrong_parameter      = 3
+          not_supported_by_gui = 4
+          OTHERS               = 5.
+      IF sy-subrc = 0 AND d_is_ok IS INITIAL.
+        EXIT.
+      ENDIF.
+    ENDDO.
+
+* example : /C &quot;dir /S /B c:\GoogleCode\ZAPLINK\*.*.XML &gt; c:\temp\12345678901234567890123456789012&quot;
+    CONCATENATE &apos;/c&apos; &apos; &quot;dir /S /B &quot;&apos; root_dir file_sep mask &apos;&quot; &gt; &quot;&apos; d_tmpfile &apos;&quot;&quot;&apos; INTO d_cmdline.     &quot;#EC NOTEXT
+
+    CALL METHOD cl_gui_frontend_services=&gt;execute
+      EXPORTING
+*        document               =
+        application            = &apos;CMD&apos;
+        parameter              = d_cmdline
+*        default_directory      =
+*        maximized              =
+        minimized              = &apos;X&apos;
+        synchronous            = &apos;X&apos;                        &quot; Issue 83
+*        operation              = &apos;OPEN&apos;
+      EXCEPTIONS
+        bad_parameter          = 1
+        cntl_error             = 2
+        error_execute_failed   = 3
+        error_no_gui           = 4
+        file_extension_unknown = 5
+        file_not_found         = 6
+        path_not_found         = 7
+        not_supported_by_gui   = 8
+        synchronous_failed     = 9
+        OTHERS                 = 10.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &apos;&amp;CX_NAME&amp;&apos; while searching in &apos;&amp;FILENAME&amp;&apos;
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                       method = &apos;EXECUTE&apos;
+                                                        subrc = sy-subrc
+                                                       textid = ZCX_ZL_FILE=&gt;search_error
+                                                 cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+*    wait up to 1 SECONDS.
+    CALL METHOD cl_gui_frontend_services=&gt;file_exist
+      EXPORTING
+        file                 = d_tmpfile
+      RECEIVING
+        result               = d_is_ok
+      EXCEPTIONS
+        cntl_error           = 1
+        error_no_gui         = 2
+        not_supported_by_gui = 3
+        wrong_parameter      = 4
+        OTHERS               = 5.
+    IF sy-subrc &lt;&gt; 0 OR d_is_ok IS INITIAL.
+* Exception &apos;&amp;CX_NAME&amp;&apos; while searching in &apos;&amp;FILENAME&amp;&apos;
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                       method = &apos;FILE_EXIST&apos;
+                                                        subrc = sy-subrc
+                                                       textid = ZCX_ZL_FILE=&gt;search_error
+                                                 cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+    CALL METHOD cl_gui_frontend_services=&gt;gui_upload
+      EXPORTING
+        filename                = d_tmpfile
+*        filetype                = &apos;ASC&apos;
+*        has_field_separator     = SPACE
+*        header_length           = 0
+*        read_by_line            = &apos;X&apos;
+*        dat_mode                = SPACE
+*        codepage                = SPACE
+*        ignore_cerr             = ABAP_TRUE
+*        replacement             = &apos;#&apos;
+*        virus_scan_profile      =
+*      IMPORTING
+*        filelength              =
+*        header                  =
+      CHANGING
+        data_tab                = t_filelst
+      EXCEPTIONS
+        access_denied           = 1
+        bad_data_format         = 2
+        disk_full               = 3
+        dp_out_of_memory        = 4
+        dp_timeout              = 5
+        error_no_gui            = 6
+        file_open_error         = 7
+        file_read_error         = 8
+        gui_refuse_filetransfer = 9
+        header_not_allowed      = 10
+        header_too_long         = 11
+        invalid_type            = 12
+        not_supported_by_gui    = 13
+        no_authority            = 14
+        no_batch                = 15
+        separator_not_allowed   = 16
+        unknown_dp_error        = 17
+        unknown_error           = 18
+        OTHERS                  = 19.
+    IF sy-subrc &lt;&gt; 0.
+* Exception &apos;&amp;CX_NAME&amp;&apos; while searching in &apos;&amp;FILENAME&amp;&apos;
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_method_cx( class_name = &apos;CL_GUI_FRONTEND_SERVICES&apos;
+                                                       method = &apos;FILE_EXIST&apos;
+                                                        subrc = sy-subrc
+                                                       textid = ZCX_ZL_FILE=&gt;search_error
+                                                 cx_classname = &apos;ZCX_ZL_FILE&apos; ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+    LOOP AT t_filelst ASSIGNING &lt;f&gt;.
+      CLEAR s_file.   s_file-name = &lt;f&gt;.
+      CALL METHOD cl_gui_frontend_services=&gt;file_exist
+        EXPORTING
+          file                 = d_tmpfile
+        RECEIVING
+          result               = d_is_ok
+        EXCEPTIONS
+          cntl_error           = 1
+          error_no_gui         = 2
+          wrong_parameter      = 3
+          not_supported_by_gui = 4
+          OTHERS               = 5.
+      IF sy-subrc = 0 AND d_is_ok = abap_true.
+        s_file-kind = filedirkinds-file.
+      ELSE.
+        CALL METHOD cl_gui_frontend_services=&gt;directory_exist
+          EXPORTING
+            directory            = d_tmpfile
+          RECEIVING
+            result               = d_is_ok
+          EXCEPTIONS
+            cntl_error           = 1
+            error_no_gui         = 2
+            wrong_parameter      = 3
+            not_supported_by_gui = 4
+            OTHERS               = 5.
+        IF sy-subrc = 0 AND d_is_ok = abap_true.
+          s_file-kind = filedirkinds-directory.
+        ELSE.
+          s_file-kind = filedirkinds-unknown.
+        ENDIF.
+      ENDIF.
+      APPEND s_file TO result.
+    ENDLOOP.
+    CALL METHOD cl_gui_frontend_services=&gt;file_delete
+      EXPORTING
+        filename             = d_tmpfile
+      CHANGING
+        rc                   = d_rc
+      EXCEPTIONS
+        file_delete_failed   = 1
+        cntl_error           = 2
+        error_no_gui         = 3
+        file_not_found       = 4
+        access_denied        = 5
+        unknown_error        = 6
+        not_supported_by_gui = 7
+        wrong_parameter      = 8
+        OTHERS               = 9.
+    IF sy-subrc &lt;&gt; 0.
+* Ignore
+    ELSEIF d_rc &lt;&gt; 0.
+* Ignore
+    ENDIF.
+
+  ELSEIF _filetype = c_ft_server.
+* No dialog right now
+  ELSE.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = _filetype.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_FILECONTENT" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filecontent : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="File Content as String"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  _content = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_FILENAME" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILENAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filename"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  IF data IS INITIAL.
+* Filename &apos;&amp;file&amp;&apos; is invalid. Please provide a valid filename for filetype &apos;&amp;filetype&amp;&apos;
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filename
+                  filename = data
+                  filetype = _filetype.
+  ENDIF.
+  IF NOT _filetype IS INITIAL.
+* TODO Check filename
+  ENDIF.
+  _filename = data.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SET_FILETYPE" EXPOSURE="2" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Setter"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TD_FILETYPE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_FILE" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  IF data &lt;&gt; c_ft_local AND data &lt;&gt; c_ft_server.
+    RAISE EXCEPTION TYPE ZCX_ZL_FILE
+          EXPORTING textid = ZCX_ZL_FILE=&gt;invalid_filetype
+                  filetype = data.
+  ENDIF.
+  IF NOT _filename IS INITIAL.
+* TODO Check filename
+  ENDIF.
+  _filetype = data.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_CONTENT" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File content"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_DIRECTORYNAME" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Directory Name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FILEDIR_KIND" EXPOSURE="2" STATE="1" EDITORDER="3 " TYPTYPE="1" TYPE="CHAR01">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File or Directory"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FILENAME" EXPOSURE="2" STATE="1" EDITORDER="5 " TYPTYPE="1" TYPE="ZCX_ZL_FILE=&gt;T_FILENAME">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filename"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FILETYPE" EXPOSURE="2" STATE="1" EDITORDER="6 " TYPTYPE="1" TYPE="ZCX_ZL_FILE=&gt;T_FILETYPE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Filetype : Local or Server"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TD_FULLNAME" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Full file or directory name"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="3" TYPE="ZCX_ZL_FILE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Exception for Files"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_ROOT_EXCEPTION" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZCX_ZAPLINK">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_FILE_INFO" EXPOSURE="2" STATE="1" EDITORDER="4 " TYPTYPE="4">
+    BEGIN OF ts_file_info,
+            name TYPE td_fullname,
+            kind TYPE td_filedir_kind,
+          END OF ts_file_info
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="File information"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_FILE_LIST" EXPOSURE="2" STATE="1" EDITORDER="7 " TYPTYPE="4">
+    tt_file_list TYPE STANDARD TABLE OF ts_file_info WITH DEFAULT KEY
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Files or Directory list"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

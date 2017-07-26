@@ -1,0 +1,2726 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="2A02F0C78EF300756157A6E8375A4D53" CODE_SIGNATURE="7DC1D871BA1EC2438CF2472AD7396DE0" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_OBJECT" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_CONNECTOR_"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-CONNECTORS-MAIN" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X" MSG_ID="ZAPLINK_OBJECT">
+   <INHERITANCE REFCLSNAME="ZAPLINK_CONNECTOR_" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="ZAPLink Class &amp; Interface connector">U1&amp;FUNCTIONALITY&amp;
+ASConnector for :
+AS,,- CLAS : ABAP Object classes
+AS,,- INTF : ABAP Object interfaces
+U1&amp;RELATIONS&amp;
+ASIs part of ZAP Link Framework as Official Connector.
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AShttps://code.google.com/p/zaplink/wiki/Connector
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application
+U1History
+ASVersion 1.00 :
+AS,,Full handle of class and interface ABAP Object
+ASVersion 1.01 :
+AS,,Documentation Sgment removed.
+AS,,Introducing : Screen &amp; Menu data</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="BALLOG_SUBOBJECT" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;CNX_OBJECT&apos;" TYPTYPE="1" TYPE="BALSUBOBJ">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Application Log: Subobject"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="OBJECT_DATA" STATE="1" TYPTYPE="1" TYPE="T_FM_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Object&apos;s data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_UUID" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;39AC0A4B07A5A05AE1000000AC120173&apos;" TYPTYPE="1" TYPE="TD_CONNUUID">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="UUID for connector Object"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="_VER" STATE="1" ATTDECLTYP="2" ATTVALUE="&apos;1.01&apos;" TYPTYPE="1" TYPE="TD_CONNVER">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Connector Version"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM REFCLSNAME="ZAPLINK_OBJECT_DATA" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* USE THIS SOURCE FILE FOR ANY TYPE DECLARATIONS (CLASS
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* IMPLEMENTATION OR PRIVATE METHOD&apos;S SIGNATURE
+
+*TYPE-POOLS: seoo, seos, seot.
+*INCLUDE lseokd01.</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* LOCAL CLASS IMPLEMENTATION FOR PUBLIC CLASS
+*&quot;* use this source file for the implementation part of
+*&quot;* LOCAL HELPER CLASSES
+
+*INCLUDE lseokp01.</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* USE THIS SOURCE FILE FOR ANY MACRO DEFINITIONS YOU NEED
+*&quot;* IN THE IMPLEMENTATION PART OF THE CLASS
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CHECK_CLASS_SECTIONS" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Service : Regenerate Class sections if needed"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="APPLICATION_LOG" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_MSG_COLL"/>
+     <ITEM SCONAME="CLASSKEY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class Key"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA includes      TYPE t_fm_data-includes.
+  DATA _msgid        TYPE symsgid.
+
+  IF application_log IS BOUND.    _msgid = application_log-&gt;msgid.    application_log-&gt;msgid = &apos;ZAPLINK_OBJECT&apos;.    ENDIF.
+  includes = get_includes( classkey-clsname ).
+
+  CALL METHOD _check_class_sections
+    EXPORTING
+      classkey        = classkey
+      pub_source      = includes-pubsec-raw_source
+      pro_source      = includes-prosec-raw_source
+      pri_source      = includes-prisec-raw_source
+      application_log = application_log.
+
+  IF application_log IS BOUND.    application_log-&gt;msgid = _msgid.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHECK_CLAS_SECTIONS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Regenerate Class sections if needed"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA classkey      TYPE seoclskey.
+
+  classkey-clsname = class-class-clsname.
+
+  CALL METHOD _check_class_sections
+    EXPORTING
+      classkey        = classkey
+      pub_source      = class-includes-pubsec-raw_source
+      pro_source      = class-includes-prosec-raw_source
+      pri_source      = class-includes-prisec-raw_source
+      application_log = application_log.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CHECK_INTF_SECTION" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Regenerate Interface section if needed"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INTERFACE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="T_FM_DATA">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class Data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA pubsec_source TYPE seo_section_source.
+*  DATA code          TYPE tt_abaprawsource.
+  DATA intkey        TYPE seoclskey.
+
+  CHECK interface-interface-state &lt;&gt; seoc_state_model_only.        &quot; Issue 111
+  intkey-clsname = interface-interface-clsname.
+  CALL FUNCTION &apos;SEO_INTERFACE_GENERATE_SECTION&apos;
+    EXPORTING
+      intkey                               = intkey
+      return_generated_sections_only       = seox_true
+*     TYPEINFO                             =
+*     LINE_SIZE                            = 255
+*     SUPPRESS_INDEX_UPDATE                = SEOX_FALSE
+    IMPORTING
+      interface_source                     = pubsec_source
+    EXCEPTIONS
+      not_existing                         = 1
+      model_only                           = 2
+      interf_section_not_generated         = 3
+      interf_section_not_initialised       = 4
+      OTHERS                               = 5.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTERFACE_GENERATE_SECTION&apos;
+                                                subrc = sy-subrc
+                                            classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+    application_log-&gt;add_symsg( ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+*  code = get_prog_rawsource( interface-includes-intfsec ).
+  IF pubsec_source = interface-includes-intfsec-raw_source.
+    CLEAR pubsec_source.
+  ELSE.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE w003 WITH text-pub intkey. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD application_log-&gt;add_warning
+      EXPORTING
+*        id_msgid     =
+        id_msgno     = &apos;003&apos;
+        id_msgv1     = &apos;Public section&apos;(pub)
+        id_msgv2     = intkey.
+*        id_msgv3     =
+*            id_msgv4     =
+*            id_detlevel  =
+*            id_probclass =
+  ENDIF.
+  IF NOT pubsec_source IS INITIAL.
+    CALL FUNCTION &apos;SEO_INTERFACE_GENERATE_SECTION&apos;
+      EXPORTING
+        intkey                               = intkey
+        return_generated_sections_only       = seox_false
+*      TYPEINFO                             =
+*      LINE_SIZE                            = 255
+*      SUPPRESS_INDEX_UPDATE                = SEOX_FALSE
+*    IMPORTING
+*      interface_source                     = pubsec_source
+      EXCEPTIONS
+        not_existing                         = 1
+        model_only                           = 2
+        interf_section_not_generated         = 3
+        interf_section_not_initialised       = 4
+        OTHERS                               = 5.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTERFACE_GENERATE_SECTION&apos;
+                                                  subrc = sy-subrc
+                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+      application_log-&gt;add_symsg( ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEANUP_CLASS" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Service : Clean up Class : Search for forward declaration"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSKEY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="HAS_CHANGE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Clean up made"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA o_cnx TYPE REF TO zaplink_object.
+
+  CREATE OBJECT o_cnx.
+  o_cnx-&gt;load_clas( EXPORTING classkey = classkey ).
+  has_change = o_cnx-&gt;_cleanup_class( ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CLEANUP_TYPEUSAGE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clean up Class for wrong typeusage"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="HAS_CHANGE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Clean up done"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="INCLUDE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TS_INCLUDE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Indlude : Name &amp; Source code"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="TEXT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="BAL_S_MSG-MSGV4">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Message Variable"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA new_code     TYPE tt_abaprawsource.
+  DATA t_typegrp    TYPE seot_typepusages_r.
+  DATA s_tgroup     LIKE LINE OF t_typegrp.
+  DATA s_grp_key    TYPE seotpukey.
+  DATA s_clas_key   TYPE seotpukey.
+
+  search_defered_declaration( EXPORTING sourcecode = include-raw_source
+                                         typepools = object_data-typeusages
+                          IMPORTING new_sourcecode = new_code
+                                     new_typepools = t_typegrp ).
+  IF NOT new_code IS INITIAL.
+    set_prog_rawsource( program = include-name
+                            raw = new_code ).
+    has_change = abap_true.
+  ENDIF.
+
+  IF NOT t_typegrp IS INITIAL.
+    SORT t_typegrp BY typegroup.  DELETE ADJACENT DUPLICATES FROM t_typegrp COMPARING typegroup.
+    LOOP AT t_typegrp INTO s_tgroup.
+      s_tgroup-clsname = object_data-class-clsname.
+      s_tgroup-version = object_data-class-version.
+*      READ TABLE object_data-typeusages TRANSPORTING NO FIELDS WITH KEY typegroup = s_tgroup-typegroup.
+      CASE s_tgroup-tputype.
+
+        WHEN 0.     &quot; Type-pool
+          MOVE-CORRESPONDING s_tgroup TO s_grp_key.
+          CALL FUNCTION &apos;SEO_TYPEPUSAGE_GET&apos;
+            EXPORTING
+              tplkey              = s_grp_key
+*             VERSION             = SEOC_VERSION_INACTIVE
+*           IMPORTING
+*             TYPEPUSAGE          =
+            EXCEPTIONS
+              not_existing        = 1
+              deleted             = 2
+              is_clsdeferrd       = 3
+              is_intdeferrd       = 4
+              OTHERS              = 5.
+          IF sy-subrc = 0.
+            CALL FUNCTION &apos;SEO_TYPEPUSAGE_DELETE_W_DEPS&apos;
+              EXPORTING
+                tplkey        = s_grp_key
+                save          = seox_false
+              EXCEPTIONS
+                not_existing  = 1
+                is_clsdeferrd = 2
+                is_intdeferrd = 3
+                not_deleted   = 4
+                db_error      = 5
+                OTHERS        = 6.
+            IF sy-subrc &lt;&gt; 0.
+              o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_TYPEPUSAGE_DELETE_W_DEPS&apos;
+                                                          subrc = sy-subrc
+                                                      classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+              application_log-&gt;add_symsg( ).
+              RAISE EXCEPTION o_mycx.
+            ENDIF.
+          ENDIF.
+          CALL FUNCTION &apos;SEO_TYPEPUSAGE_CREATE_F_DATA&apos;
+            EXPORTING
+              save                    = seox_false
+*          NOT_AFFECT_PUBLIC       = SEOX_FALSE
+            CHANGING
+              typepusage              = s_tgroup
+            EXCEPTIONS
+              existing                = 1
+              is_clsdeferrd           = 2
+              is_intdeferrd           = 3
+              not_created             = 4
+              db_error                = 5
+              OTHERS                  = 6.
+          IF sy-subrc &lt;&gt; 0.
+            o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_TYPEPUSAGE_CREATE_F_DATA&apos;
+                                                        subrc = sy-subrc
+                                                    classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+            application_log-&gt;add_symsg( ).
+            RAISE EXCEPTION o_mycx.
+          ENDIF.
+
+        WHEN 1.     &quot; Class
+          s_clas_key-clsname = s_tgroup-clsname.      s_clas_key-typegroup = s_tgroup-typegroup.
+          CALL FUNCTION &apos;SEO_CLSDEFERRD_GET&apos;
+            EXPORTING
+              cdfkey              = s_clas_key
+*             VERSION             = SEOC_VERSION_INACTIVE
+*           IMPORTING
+*             CLSDEFERRD          =
+            EXCEPTIONS
+              not_existing        = 1
+              deleted             = 2
+              is_intdeferrd       = 3
+              is_typepusage       = 4
+              OTHERS              = 5.
+          IF sy-subrc = 0.
+            CALL FUNCTION &apos;SEO_CLSDEFERRD_DELETE_W_DEPS&apos;
+              EXPORTING
+                cdfkey        = s_clas_key
+                save          = seox_false
+              EXCEPTIONS
+                not_existing  = 1
+                is_intdeferrd = 2
+                is_typepusage = 3
+                not_deleted   = 4
+                db_error      = 5
+                OTHERS        = 6.
+            IF sy-subrc &lt;&gt; 0.
+              o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLSDEFERRD_DELETE_W_DEPS&apos;
+                                                          subrc = sy-subrc
+                                                      classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+              application_log-&gt;add_symsg( ).
+              RAISE EXCEPTION o_mycx.
+            ENDIF.
+          ENDIF.
+          CALL FUNCTION &apos;SEO_CLSDEFERRD_CREATE_F_DATA&apos;
+            EXPORTING
+              save                    = seox_false
+*             NOT_AFFECT_PUBLIC       = SEOX_FALSE
+            CHANGING
+              clsdeferrd              = s_tgroup
+            EXCEPTIONS
+              existing                = 1
+              is_intdeferrd           = 2
+              is_typepusage           = 3
+              not_created             = 4
+              db_error                = 5
+              OTHERS                  = 6.
+          IF sy-subrc &lt;&gt; 0.
+            o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLSDEFERRD_CREATE_F_DATA&apos;
+                                                        subrc = sy-subrc
+                                                    classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+            application_log-&gt;add_symsg( ).
+            RAISE EXCEPTION o_mycx.
+          ENDIF.
+
+        WHEN 2.     &quot; Interface
+          s_clas_key-clsname = s_tgroup-clsname.      s_clas_key-typegroup = s_tgroup-typegroup.
+          CALL FUNCTION &apos;SEO_INTDEFERRD_GET&apos;
+            EXPORTING
+              idfkey              = s_clas_key
+*             VERSION             = SEOC_VERSION_INACTIVE
+*           IMPORTING
+*             INTDEFERRD          =
+            EXCEPTIONS
+              not_existing        = 1
+              deleted             = 2
+              is_typepusage       = 3
+              is_clsdeferrd       = 4
+              OTHERS              = 5.
+          IF sy-subrc = 0.
+            CALL FUNCTION &apos;SEO_INTDEFERRD_DELETE_W_DEPS&apos;
+              EXPORTING
+                idfkey        = s_clas_key
+                save          = seox_false
+              EXCEPTIONS
+                not_existing  = 1
+                is_typepusage = 2
+                is_clsdeferrd = 3
+                not_deleted   = 4
+                db_error      = 5
+                OTHERS        = 6.
+            IF sy-subrc &lt;&gt; 0.
+              o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTDEFERRD_DELETE_W_DEPS&apos;
+                                                          subrc = sy-subrc
+                                                      classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+              application_log-&gt;add_symsg( ).
+              RAISE EXCEPTION o_mycx.
+            ENDIF.
+          ENDIF.
+          CALL FUNCTION &apos;SEO_INTDEFERRD_CREATE_F_DATA&apos;
+            EXPORTING
+              save                    = seox_false
+*             NOT_AFFECT_PUBLIC       = SEOX_FALSE
+            CHANGING
+              intdeferrd              = s_tgroup
+            EXCEPTIONS
+              existing                = 1
+              is_typepusage           = 2
+              is_clsdeferrd           = 3
+              not_created             = 4
+              db_error                = 5
+              OTHERS                  = 6.
+          IF sy-subrc &lt;&gt; 0.
+            o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTDEFERRD_CREATE_F_DATA&apos;
+                                                        subrc = sy-subrc
+                                                    classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+            application_log-&gt;add_symsg( ).
+            RAISE EXCEPTION o_mycx.
+          ENDIF.
+
+        WHEN OTHERS.
+          ASSERT s_tgroup-tputype &gt;= 0 AND s_tgroup-tputype &lt;= 2.
+      ENDCASE.
+      INSERT s_tgroup INTO TABLE object_data-typeusages.
+      SET EXTENDED CHECK OFF.
+      IF 1 = 2. MESSAGE w002 WITH s_tgroup-typegroup object_data-class-clsname text. ENDIF.
+      SET EXTENDED CHECK ON.
+      CALL METHOD application_log-&gt;add_warning
+        EXPORTING
+*          id_msgid     =
+          id_msgno     = &apos;002&apos;
+          id_msgv1     = s_tgroup-typegroup
+          id_msgv2     = object_data-class-clsname
+          id_msgv3     = text
+*          id_msgv4     =
+*          id_detlevel  =
+*          id_probclass =
+          .
+    ENDLOOP.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <SOURCE>`
+  DATA type LIKE LINE OF supported_types.
+
+  CALL METHOD super-&gt;constructor.
+  mac_create_log application_log ballog_subobject space.
+  application_log-&gt;msgid = &apos;ZAPLINK_OBJECT&apos;.
+  type-type = zaplink_object_data=&gt;object_types-class.       INSERT type INTO TABLE supported_types.
+  type-type = zaplink_object_data=&gt;object_types-interface.    INSERT type INTO TABLE supported_types.
+
+  uuid = _uuid.
+  version = _ver.
+  CALL FUNCTION &apos;SEO_BUFFER_INIT&apos;.        &quot; Init buffers</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXPORT_FROM_SAP_CLASS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Export Class from SAP System"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component key"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_CLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA obj_mask   TYPE doku_obj.
+  DATA docu_key   TYPE zaplink_object_data=&gt;ts_doc_key.
+  DATA classkey   TYPE seoclskey.
+*  DATA _d         TYPE t_fm_data.
+  DATA d_flag     TYPE abap_bool.
+
+  TRY.
+    CHECK component-&gt;get_type( ) = zaplink_object_data=&gt;object_types-class.
+
+    classkey-clsname = component-&gt;get_name( ).
+    CALL FUNCTION &apos;SEO_BUFFER_REFRESH&apos;.
+    CALL FUNCTION &apos;SEO_CLASS_GET&apos;
+      EXPORTING
+        clskey       = classkey
+        version      = seoc_version_inactive     &quot; Issue 111
+        state        = seoc_state_model_only     &quot; Issue 111
+      IMPORTING
+        class        = object_data-class
+      EXCEPTIONS
+        not_existing = 1
+        deleted      = 2
+        is_interface = 3
+        model_only   = 4
+        OTHERS       = 5.
+    IF sy-subrc &lt;&gt; 0.
+      mac_add_mf_and_raise &apos;SEO_CLASS_GET&apos; sy-subrc.
+    ENDIF.
+
+    load_clas( EXPORTING classkey = classkey ).
+
+* Includes
+    object_data-includes = get_includes( object_data-class-clsname ).
+
+* Issue 71 : Code signature different due to slight change in sections
+    check_clas_sections( object_data ).
+* Issue 71 : Code signature different due to implicite type-pool declaration within public, protected or private section
+* From SEO_CLIF_SAVE_ALL
+** Clean-up unused implicite type pool usages (MS 20060921)
+*      DATA type_pool_usage_cleaner TYPE REF TO lcl_type_pool_usage_cleaner.
+*      TRY.
+*          type_pool_usage_cleaner = lcl_type_pool_usage_cleaner=&gt;create( classkey ).
+*          type_pool_usage_cleaner-&gt;clean_up( ).
+*        CATCH lcx_internal_error.                       &quot;#EC NO_HANDLER
+**     No handler needed here =&gt; default behavior
+*      ENDTRY.
+
+*      DELETE OBJECT_DATA-typeusages WHERE version &lt;&gt; OBJECT_DATA-class-version.   &quot; Remove type usage of the wrong version
+* Type-pools declaration might be present within method&apos;s declaration section (auto added by SAP when needed).
+* Have to detect it, add type pool to type pool list and delete type pool declaration
+    d_flag = _cleanup_class( ).
+
+    IF NOT d_flag IS INITIAL.   load_clas( EXPORTING classkey = classkey ).   ENDIF.
+* End of Issue 71
+
+* Documentations
+    docu_key-name = component-&gt;get_name( ).
+    docu_key-other = &apos;*&apos;.
+    obj_mask = docu_key.
+
+    object_data-documentation = zaplink_documentation=&gt;get( ids = zaplink_object_data=&gt;r_doc_ids-class
+                                                object = obj_mask ).
+
+    CREATE OBJECT object.
+    object-&gt;complete_data( CHANGING fm_data = object_data ).
+    object_data-dynpros = get_dynpros( object_data-includes-classpool-name ). &quot; Issue 8
+    object_data-menupainter = get_menus( object_data-includes-classpool-name ). &quot; Issue 9
+    object_data-textspool = get_prog_textpool( object_data-includes-classpool-name ). &quot; Issue 1
+    object-&gt;from_data( object_data ).
+    object-&gt;_code_signature = get_class_signature( classkey ).
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="EXPORT_FROM_SAP_INTERFACE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Export Interface from SAP System"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENT" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Component key"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="OBJECT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_INTERFACE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA obj_mask       TYPE doku_obj.
+  DATA docu_key       TYPE zaplink_object_data=&gt;ts_doc_key.
+  DATA classkey TYPE seoclskey.
+  DATA _d       TYPE t_fm_data.
+
+  TRY.
+
+    CHECK component-&gt;get_type( ) = zaplink_object_data=&gt;object_types-interface.
+
+    classkey-clsname = component-&gt;get_name( ).
+    CALL FUNCTION &apos;SEO_BUFFER_REFRESH&apos;.
+    CALL FUNCTION &apos;SEO_INTERFACE_GET&apos;
+      EXPORTING
+        intkey             = classkey
+        version            = seoc_version_inactive   &quot; Issue 111
+        state              = seoc_state_model_only   &quot; Issue 111
+      IMPORTING
+        INTERFACE          = _d-interface
+      EXCEPTIONS
+        NOT_EXISTING       = 1
+        DELETED            = 2
+        IS_CLASS           = 3
+        MODEL_ONLY         = 4
+        OTHERS             = 5.
+    IF sy-subrc &lt;&gt; 0.
+      mac_add_mf_and_raise &apos;SEO_INTERFACE_GET&apos; sy-subrc.
+    ENDIF.
+
+    CALL FUNCTION &apos;SEO_INTERFACE_TYPEINFO_GET&apos;
+      EXPORTING
+        intkey                        = classkey
+        version                       = _d-interface-version
+        state                         = _d-interface-state
+        with_master_language          = seox_true
+        with_enhancements             = seox_true
+*     READ_ACTIVE_ENHA              = SEOX_FALSE
+      IMPORTING
+        interface                     = _d-interface
+        attributes                    = _d-attributes
+        methods                       = _d-methods
+        events                        = _d-events
+        PARAMETERS                    = _d-parameters
+        exceps                        = _d-exceps
+        comprisings                   = _d-comprisings
+        typepusages                   = _d-typeusages
+        clsdeferrds                   = _d-clsdeferrds
+        intdeferrds                   = _d-intdeferrds
+        explore_comprisings           = _d-explore_comprisings
+        aliases                       = _d-aliases
+        types                         = _d-types
+        enhancement_methods           = _d-enhancement_methods
+        enhancement_attributes        = _d-enhancement_attributes
+        enhancement_events            = _d-enhancement_events
+        enhancement_comprisings       = _d-enhancement_comprisings
+      EXCEPTIONS
+        not_existing                  = 1
+        is_class                      = 2
+        model_only                    = 3
+        OTHERS                        = 4.
+    IF sy-subrc &lt;&gt; 0.
+      mac_add_mf_and_raise &apos;SEO_INTERFACE_TYPEINFO_GET&apos; sy-subrc.
+    ENDIF.
+
+* Includes
+    _d-includes = get_includes( _d-interface-clsname ).
+
+* Issue 71 : Code signature different due to slight change in sections
+    check_intf_section( _d ).
+
+* Documentations
+    docu_key-name = component-&gt;get_name( ).
+    docu_key-other = &apos;*&apos;.
+    obj_mask = docu_key.
+
+    _d-documentation = zaplink_documentation=&gt;get( ids = zaplink_object_data=&gt;r_doc_ids-interface
+                                                object = obj_mask ).
+
+    CREATE OBJECT object.
+    object-&gt;complete_data( CHANGING fm_data = _d ).
+    object-&gt;from_data( _d ).
+    object-&gt;_code_signature = get_interface_signature( classkey ).
+
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GENERATE_CLASS" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class generation"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS" CMPTYPE="1" TYPTYPE="1" TYPE="SEOCLSNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object Type Name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Activation was OK ?"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZAPLINK" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ZAPlink Framework : Root exception class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_comps      TYPE tt_compkeys.
+  DATA o_activ      TYPE REF TO zaplink_activate.
+  DATA s_comp       LIKE LINE OF t_comps.
+  DATA t_err        TYPE tt_compkeys.
+
+  s_comp-type = zaplink_object_data=&gt;object_types-class.    s_comp-name = class.
+  APPEND s_comp TO t_comps.
+  CREATE OBJECT o_activ.
+  o_activ-&gt;add_keys( t_comps ).
+  t_err = o_activ-&gt;generate( ).
+  IF t_err IS INITIAL.    result = abap_true.    ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLASSSOURCE_4SIGNATURE" EXPOSURE="1" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Provide Global source of a class read for signature"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_SOURCECODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="NOT_A_CLASS" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="The specified object is not a Class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_upcode    TYPE td_sourcecode.
+  DATA _line       LIKE LINE OF t_upcode.
+  DATA d_class     TYPE  vseoclass.
+  DATA t_attrs     TYPE  seoo_attributes_r.
+  FIELD-SYMBOLS:
+    &lt;a&gt; LIKE LINE OF t_attrs.
+
+  CALL FUNCTION &apos;SEO_CLASS_GET&apos;
+    EXPORTING
+      clskey       = class_name
+      version      = seoc_version_inactive
+      state        = &apos;0&apos;
+    IMPORTING
+      class        = d_class
+    EXCEPTIONS
+      not_existing = 1
+      deleted      = 2
+      is_interface = 3
+      model_only   = 4
+      OTHERS       = 5.
+  IF sy-subrc &lt;&gt; 0.
+    RAISE not_a_class.
+  ENDIF.
+  result = get_class_globalsource( class_name ).
+  zaplink_tools=&gt;pretty_printer( CHANGING table = result ).
+  IF d_class-category = &apos;40&apos;.  &quot; 40	Exception Class
+* Issue 71 : Exception class SOTR GUID
+    CALL FUNCTION &apos;SEO_CLASS_TYPEINFO_GET&apos;
+      EXPORTING
+        clskey                              = class_name
+*       VERSION                             = SEOC_VERSION_INACTIVE
+*       STATE                               = &apos;1&apos;
+*       WITH_DESCRIPTIONS                   = SEOX_TRUE
+*       RESOLVE_EVENTHANDLER_TYPEINFO       = SEOX_FALSE
+*       WITH_MASTER_LANGUAGE                = SEOX_FALSE
+*       WITH_ENHANCEMENTS                   = SEOX_FALSE
+*       READ_ACTIVE_ENHA                    = SEOX_FALSE
+      IMPORTING
+*       CLASS                               =
+        attributes                          = t_attrs
+*       METHODS                             =
+*       EVENTS                              =
+*       TYPES                               =
+*       PARAMETERS                          =
+*       EXCEPS                              =
+*       IMPLEMENTINGS                       =
+*       INHERITANCE                         =
+*       REDEFINITIONS                       =
+*       IMPL_DETAILS                        =
+*       FRIENDSHIPS                         =
+*       TYPEPUSAGES                         =
+*       CLSDEFERRDS                         =
+*       INTDEFERRDS                         =
+*       EXPLORE_INHERITANCE                 =
+*       EXPLORE_IMPLEMENTINGS               =
+*       ALIASES                             =
+*       ENHANCEMENT_METHODS                 =
+*       ENHANCEMENT_ATTRIBUTES              =
+*       ENHANCEMENT_EVENTS                  =
+*       ENHANCEMENT_IMPLEMENTINGS           =
+      EXCEPTIONS
+        not_existing                        = 1
+        is_interface                        = 2
+        model_only                          = 3
+        OTHERS                              = 4.
+    IF sy-subrc &lt;&gt; 0.
+      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+              WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    ENDIF.
+    DELETE t_attrs
+           WHERE   exposure &lt;&gt; 2    &quot; Public
+              OR attdecltyp &lt;&gt; 2    &quot; Cosntant
+              OR NOT type CP &apos;SOTR_CONC&apos;.
+    LOOP AT t_attrs ASSIGNING &lt;a&gt;.
+      REPLACE ALL OCCURRENCES OF &lt;a&gt;-attvalue IN TABLE result WITH space.   &quot; Issue 71, remove SOTR GUID values when calculating code signature
+    ENDLOOP.
+  ENDIF.
+*  Issue 71 : dot at the end. =&gt; Corrected with Pretty Printer.
+*  LOOP AT result ASSIGNING &lt;t&gt;.
+*    REPLACE FIRST OCCURRENCE OF REGEX &apos;\.$&apos; IN &lt;t&gt; WITH &apos; .&apos;.   &quot; change &apos;.&apos; to &apos; .&apos;
+*  ENDLOOP.
+  zaplink_tools=&gt;condense_abap_source( CHANGING table = result ).
+  t_upcode = result.
+  zaplink_tools=&gt;conv_table_2upcase( CHANGING table = t_upcode ).
+
+*Remove text before CLASS Zxxx DEFINITION
+  CONCATENATE &apos;CLASS&apos; class_name &apos;DEFINITION&apos; INTO _line SEPARATED BY space.
+  READ TABLE t_upcode TRANSPORTING NO FIELDS  FROM _line.
+  CHECK sy-subrc = 0.
+  SUBTRACT 1 FROM sy-tabix.   CHECK sy-tabix &gt;= 1.    DELETE result TO sy-tabix.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLASS_GLOBALSOURCE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Provide Global source of a class copy of CL_OO_SOURCE"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_SOURCECODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+*  DATA d_size TYPE i.
+*  FIELD-SYMBOLS &lt;line&gt; TYPE string.
+* Copy of CL_OO_SOURCE-&gt;CONSTRUCTOR
+*  DATA cpool TYPE seo_section_source.
+*  DATA pubsec TYPE seo_section_source.
+*  DATA prisec TYPE seo_section_source.
+*  DATA prosec TYPE seo_section_source.
+*  DATA cl TYPE seo_section_source.
+*  DATA ccdef TYPE seop_source_string.
+*  DATA ccimp TYPE seop_source_string.
+*  DATA ccmac TYPE seop_source_string.
+
+  DATA includes TYPE zaplink_object_data=&gt;ts_includes.      &quot; Issue 82
+*  DATA incname TYPE program.
+*  DATA pubsec_incname TYPE program.
+*  DATA prisec_incname TYPE program.
+*  DATA prosec_incname TYPE program.
+*  DATA cl_incname TYPE program.
+*  DATA cl_test_incname TYPE program.
+*  DATA ccdef_incname TYPE program.
+*  DATA ccimp_incname TYPE program.
+*  DATA ccmac_incname TYPE program.
+
+*  DATA meth_inc TYPE seop_method_w_include.
+*  DATA meth_incs TYPE seop_methods_w_include.
+*  DATA source_tmp TYPE seop_source_string.
+
+  FIELD-SYMBOLS:
+    &lt;m&gt; LIKE LINE OF includes-methods,
+    &lt;source_line&gt; LIKE LINE OF includes-classpool-raw_source.
+
+  includes = get_includes( class_name-clsname ).            &quot; Issue 82
+  CHECK NOT includes-classpool-name IS INITIAL. &quot; check it&apos;s a class
+*  incname = cl_oo_classname_service=&gt;get_classpool_name( class_name-clsname ).   &quot; Issue 82
+*  cpool = get_prog_rawsource( includes-incname ).                                          &quot; Issue 73
+*  READ REPORT incname INTO cpool STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT incname INTO cpool STATE &apos;A&apos;.
+*  ENDIF.
+
+* pubsec_incname = cl_oo_classname_service=&gt;get_pubsec_name( class_name-clsname ).&quot; Issue 82
+*  pubsec = get_prog_rawsource( pubsec_incname ).                                  &quot; Issue 73
+*  READ REPORT pubsec_incname INTO pubsec STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT pubsec_incname INTO pubsec STATE &apos;A&apos;.
+*  ENDIF.
+
+* prosec_incname = cl_oo_classname_service=&gt;get_prosec_name( class_name-clsname ).&quot; Issue 82
+*  prosec = get_prog_rawsource( prosec_incname ).                                  &quot; Issue 73
+*  READ REPORT prosec_incname INTO prosec STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT prosec_incname INTO prosec STATE &apos;A&apos;.
+*  ENDIF.
+
+* prisec_incname = cl_oo_classname_service=&gt;get_prisec_name( class_name-clsname ).&quot; Issue 82
+*  prisec = get_prog_rawsource( prisec_incname ).                                  &quot; Issue 73
+*  READ REPORT prisec_incname INTO prisec STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT prisec_incname INTO prisec STATE &apos;A&apos;.
+*  ENDIF.
+
+*  cl_incname = cl_oo_classname_service=&gt;get_cl_name( class_name-clsname ).       &quot; Issue 82
+*  cl = get_prog_rawsource( cl_incname ).                                          &quot; Issue 73
+*  READ REPORT cl_incname INTO cl STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT cl_incname INTO cl STATE &apos;A&apos;.
+*  ENDIF.
+
+*  ccdef_incname = cl_oo_classname_service=&gt;get_ccdef_name( class_name-clsname ). &quot; Issue 82
+*  ccdef = get_prog_rawsource( ccdef_incname ).                                    &quot; Issue 73
+*  READ REPORT ccdef_incname INTO ccdef STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT ccdef_incname INTO ccdef STATE &apos;A&apos;.
+*  ENDIF.
+
+*  ccimp_incname = cl_oo_classname_service=&gt;get_ccimp_name( class_name-clsname ). &quot; Issue 82
+*  ccimp = get_prog_rawsource( ccimp_incname ).                                    &quot; Issue 73
+*  READ REPORT ccimp_incname INTO ccimp STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT ccimp_incname INTO ccimp STATE &apos;A&apos;.
+*  ENDIF.
+
+*  ccmac_incname = cl_oo_classname_service=&gt;get_ccmac_name( class_name-clsname ). &quot; Issue 82
+*  ccmac = get_prog_rawsource( ccmac_incname ).                                    &quot; Issue 73
+*  READ REPORT ccmac_incname INTO ccmac STATE &apos;I&apos;.
+*  IF sy-subrc &lt;&gt; 0.
+*    READ REPORT ccmac_incname INTO ccmac STATE &apos;A&apos;.
+*  ENDIF.
+
+*  meth_incs = cl_oo_classname_service=&gt;get_all_method_includes( class_name-clsname ). &quot; Issue 82
+
+* Issue 68 : Methods are in historical order on the development system and in alphabetic order on a fresh install system
+  SORT includes-methods BY cpdkey.         &quot; Issue 68 : Force alphabetic order
+* End of change in Copy of CL_OO_SOURCE-&gt;CONSTRUCTOR
+
+  LOOP AT includes-classpool-raw_source ASSIGNING &lt;source_line&gt;.
+    IF &lt;source_line&gt; CS includes-pubsec-name.
+      APPEND LINES OF includes-pubsec-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-prosec-name.
+      APPEND LINES OF includes-prosec-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-prisec-name.
+      APPEND LINES OF includes-prisec-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-cl-name.
+      APPEND LINES OF includes-cl-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-ccdef-name.
+      APPEND LINES OF includes-ccdef-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-ccimp-name.
+      APPEND LINES OF includes-ccimp-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-ccmac-name.
+      APPEND LINES OF includes-ccmac-raw_source TO result.
+    ELSEIF &lt;source_line&gt; CS includes-localtestclass-name.   &quot; Ignore this include
+    ELSEIF &lt;source_line&gt; CS &apos;include methods&apos;.
+      LOOP AT includes-methods ASSIGNING &lt;m&gt;
+        WHERE NOT raw_source IS INITIAL.
+*        source_tmp = get_prog_rawsource( meth_inc-incname ).                     &quot; Issue 73
+**        READ REPORT meth_inc-incname INTO source_tmp STATE &apos;I&apos;.
+**        IF sy-subrc &lt;&gt; 0.
+**          READ REPORT meth_inc-incname INTO source_tmp STATE &apos;A&apos;.
+**        ENDIF.
+**        IF sy-subrc = 0.
+*        IF NOT source_tmp IS INITIAL.
+        APPEND LINES OF &lt;m&gt;-raw_source TO result.
+*        ENDIF.
+      ENDLOOP.
+    ELSE.
+      APPEND &lt;source_line&gt; TO result.
+    ENDIF .
+  ENDLOOP.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_CLASS_SIGNATURE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Source code Signature of class">U1&amp;FUNCTIONALITY&amp;
+ASRetrieve MD5 Hash from ABAP Class source code. After removing :
+B1Blank lines
+B1Comment lines
+U1&amp;PRECONDITION&amp;
+AS
+U1&amp;RESULT&amp;
+AS
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASS_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ZAPLINK_DATATYPES~TD_CHECKSUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Source Code Signature (Checksum)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_code    TYPE td_sourcecode.
+  DATA d_src     TYPE string.
+  DATA _key      TYPE string.
+
+  t_code = get_classsource_4signature( class_name ).
+  d_src = zaplink_tools=&gt;table_2_string( t_code ).
+  d_src = zaplink_tools=&gt;clean_abap_string( d_src ).
+  result = zaplink_tools=&gt;calculate_md5_hash( d_src ).
+  CONCATENATE zaplink_object_data=&gt;object_types-class &apos;/&apos; class_name INTO _key.
+  LOG-POINT ID zaplink  SUBKEY _key FIELDS result d_src.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_INCLUDES" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get report includes names from class name"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLSNAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSNAME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Object Type Name"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="INCLUDES" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TS_INCLUDES">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="List of Class&apos;s include with ABAP Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+* Copy of CL_OO_SOURCE-&gt;CONSTRUCTOR
+  DATA d_cifkey  TYPE seoclskey.
+  DATA d_clstype TYPE seoclstype.
+  DATA t_methods TYPE seop_methods_w_include.
+  DATA s_method  LIKE LINE OF includes-methods.
+  FIELD-SYMBOLS &lt;m&gt; LIKE LINE OF t_methods.
+
+  DEFINE lmac_get_load.
+    includes-&amp;1-name = cl_oo_classname_service=&gt;&amp;2( clsname ).
+    if not includes-&amp;1-name is initial.   includes-&amp;1-raw_source = get_prog_rawsource( includes-&amp;1-name ).    endif.
+  END-OF-DEFINITION.
+
+  d_cifkey-clsname = clsname.
+  CALL FUNCTION &apos;SEO_CLIF_GET&apos;
+    EXPORTING
+      cifkey             = d_cifkey
+*     VERSION            = SEOC_VERSION_INACTIVE
+*     STATE              = &apos;0&apos;
+    IMPORTING
+      clstype            = d_clstype
+*     CLASS              =
+*     INTERFACE          =
+    EXCEPTIONS
+      not_existing       = 1
+      deleted            = 2
+      model_only         = 3
+      OTHERS             = 4.
+  IF sy-subrc = 0.
+    IF d_clstype EQ 0.
+      lmac_get_load classpool get_classpool_name.
+      lmac_get_load pubsec get_pubsec_name.
+      lmac_get_load prosec get_prosec_name.
+      lmac_get_load prisec get_prisec_name.
+      lmac_get_load cl get_cl_name.
+      lmac_get_load ccdef get_ccdef_name.
+      lmac_get_load ccimp get_ccimp_name.
+      lmac_get_load ccmac get_ccmac_name.
+      lmac_get_load localtestclass get_local_testclasses_include. &quot; Issue 82
+      CALL METHOD cl_oo_classname_service=&gt;get_all_method_includes
+        EXPORTING
+          clsname            = clsname
+        RECEIVING
+          result             = t_methods
+        EXCEPTIONS
+          class_not_existing = 0
+          OTHERS             = 0.   &quot; Ignore exception : Class may not exits
+      LOOP AT t_methods ASSIGNING &lt;m&gt;.
+        CLEAR s_method.   s_method-hdr = &lt;m&gt;.
+        s_method-raw_source = get_prog_rawsource( &lt;m&gt;-incname ).
+        APPEND s_method TO includes-methods.
+      ENDLOOP.
+    ELSEIF d_clstype EQ 1.
+      lmac_get_load interfacepool get_interfacepool_name.
+      lmac_get_load intfsec get_intfsec_name.
+    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_INTERFACE_GLOBALSOURCE" EXPOSURE="2" STATE="1" MTDDECLTYP="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Provide Global source of a interface"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INTERFACE_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TD_SOURCECODE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="ABAP Source Code"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="FAILED" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Other system errors"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="NOT_A_CLASS" LANGU="E">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="The specified object is not a Class"/>
+      </TEXTS>
+     </ITEM>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA d_prog     TYPE program.
+  DATA t_upcode   TYPE td_sourcecode.
+  DATA _line      LIKE LINE OF t_upcode.
+
+  d_prog = cl_oo_classname_service=&gt;get_intfsec_name( interface_name-clsname ).
+
+  READ REPORT d_prog INTO result.
+  zaplink_tools=&gt;pretty_printer( CHANGING table = result ).
+  zaplink_tools=&gt;condense_abap_source( CHANGING table = result ).
+  t_upcode = result.    zaplink_tools=&gt;conv_table_2upcase( CHANGING table = t_upcode ).
+
+*Remove text before CLASS Zxxx DEFINITION
+  CONCATENATE &apos;INTERFACE&apos; interface_name INTO _line SEPARATED BY space.
+  READ TABLE t_upcode TRANSPORTING NO FIELDS  FROM _line.
+  CHECK sy-subrc = 0.
+  SUBTRACT 1 FROM sy-tabix.   CHECK sy-tabix &gt;= 1.   DELETE result TO sy-tabix.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="GET_INTERFACE_SIGNATURE" EXPOSURE="2" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Get Source code Signature of interface">U1&amp;FUNCTIONALITY&amp;
+ASRetrieve MD5 Hash from ABAP Class source code. After removing :
+B1Blank lines
+B1Comment lines
+U1&amp;PRECONDITION&amp;
+AS
+U1&amp;RESULT&amp;
+AS
+U1&amp;PARAMETERS&amp;
+AS
+U1&amp;EXCEPTIONS&amp;
+AS
+U1&amp;HINTS&amp;
+AS</ITEM>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="INTERFACE_NAME" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="RESULT" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ZAPLINK_DATATYPES~TD_CHECKSUM">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Source Code Signature (Checksum)"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA t_code    TYPE td_sourcecode.
+  DATA d_src     TYPE string.
+
+  t_code = get_interface_globalsource( interface_name ).
+  d_src = zaplink_tools=&gt;table_2_string( t_code ).
+  d_src = zaplink_tools=&gt;clean_abap_string( d_src ).
+  result = zaplink_tools=&gt;calculate_md5_hash( d_src ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IMPORT_TO_SAP_CLASS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Import Class into SAP system"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Components"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="O_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_CLASS">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _d               TYPE t_fm_data.
+  DATA i_korrnr         TYPE trkorr.              &quot;#EC NEEDED for debug
+  DATA _component       TYPE to_component.
+  DATA _name            TYPE td_compname.
+  DATA d_key            TYPE seoclskey.
+  DATA f_exists         TYPE abap_bool.
+
+  TRY.
+
+    _d = o_data-&gt;to_data( ).
+
+* Exceptions texts
+    IF NOT _d-exceptions_texts IS INITIAL.
+      zaplink_clas_data=&gt;update_concept( EXPORTING msg_col = application_log
+                                         CHANGING  fm_data = _d ).
+    ENDIF.
+
+    d_key-clsname = _d-class-clsname.
+    CALL FUNCTION &apos;SEO_CLIF_EXISTENCE_CHECK&apos;                &quot; Issue 119
+      EXPORTING
+        cifkey              = d_key
+      EXCEPTIONS
+        not_specified       = 1
+        not_existing        = 2
+        OTHERS              = 3.
+    IF sy-subrc = 0.
+      f_exists = abap_true.
+    ENDIF.
+
+* Allready done in overwrite
+*    CALL FUNCTION &apos;SEO_CLASS_EXISTENCE_CHECK&apos;
+*      EXPORTING
+*        clskey        = d_key
+**      IMPORTING
+**        not_active    = not_active
+*      EXCEPTIONS
+*        not_specified = 1
+*        not_existing  = 2
+*        is_interface  = 3
+*        no_text       = 4
+*        inconsistent  = 5
+*        OTHERS        = 6.
+*    IF sy-subrc = 0.
+*      CALL FUNCTION &apos;SEO_CLASS_DELETE_W_DEPS&apos;
+*        EXPORTING
+*          clskey       = d_key
+*        EXCEPTIONS
+*          not_existing = 1
+*          is_interface = 2
+*          not_deleted  = 3
+*          db_error     = 4
+*          OTHERS       = 5.
+*      IF sy-subrc &lt;&gt; 0.
+*        application_log-&gt;add_symsg( ).
+*      ENDIF.
+*    ENDIF.
+
+    CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
+     EXPORTING
+*     corrnr                             = e_corrnr
+*     devclass                           = &apos;$TMP&apos;                &quot;devclass
+*     version                            = e_version
+*     genflag                            = e_genflag
+*     authority_check                    = e_authority_check
+       overwrite                          = &apos;X&apos;                   &quot;overwrite
+*   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
+*   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
+       method_sources                     = _d-method_sources    &quot; Methods source
+       locals_def                         = _d-locals_def        &quot; LOCAL_TYPES
+       locals_imp                         = _d-locals_imp        &quot; LOCAL_IMP
+       locals_mac                         = _d-locals_mac        &quot; MACROS
+*   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
+     IMPORTING
+       korrnr                             = i_korrnr
+     TABLES
+       class_descriptions                 = _d-class_desc
+       component_descriptions             = _d-component_desc
+       subcomponent_descriptions          = _d-subcomponent_desc
+     CHANGING
+       class                              = _d-class
+       inheritance                        = _d-inheritance
+       redefinitions                      = _d-redefinitions
+       implementings                      = _d-implementings
+       impl_details                       = _d-impl_details
+       attributes                         = _d-attributes
+       methods                            = _d-methods
+       events                             = _d-events
+       types                              = _d-types
+*   TYPE_SOURCE                        = ch_type_source &quot;???
+       PARAMETERS                         = _d-parameters
+       exceps                             = _d-exceps
+       aliases                            = _d-aliases
+       typepusages                        = _d-typeusages
+       clsdeferrds                        = _d-clsdeferrds
+       intdeferrds                        = _d-intdeferrds
+       friendships                        = _d-friendships
+     EXCEPTIONS
+       existing                           = 1
+       is_interface                       = 2
+       db_error                           = 3
+       component_error                    = 4
+       no_access                          = 5
+       other                              = 6
+       OTHERS                             = 7.
+    IF sy-subrc = 4 AND f_exists IS INITIAL.                &quot; Issue 119
+      CALL FUNCTION &apos;SEO_BSP_CLASS_DELETE_COMPLETE&apos;         &quot; Brute force delete
+        EXPORTING
+          clskey = d_key.
+* Do it again
+      CALL FUNCTION &apos;SEO_CLASS_CREATE_COMPLETE&apos;
+       EXPORTING
+*     corrnr                             = e_corrnr
+*     devclass                           = &apos;$TMP&apos;                &quot;devclass
+*     version                            = e_version
+*     genflag                            = e_genflag
+*     authority_check                    = e_authority_check
+         overwrite                          = &apos;X&apos;                   &quot;overwrite
+*   SUPPRESS_METHOD_GENERATION         = e_suppress_meth_gen
+*   SUPPRESS_REFACTORING_SUPPORT       = e_suppress_refac_gen
+         method_sources                     = _d-method_sources    &quot; Methods source
+         locals_def                         = _d-locals_def        &quot; LOCAL_TYPES
+         locals_imp                         = _d-locals_imp        &quot; LOCAL_IMP
+         locals_mac                         = _d-locals_mac        &quot; MACROS
+*   SUPPRESS_INDEX_UPDATE              = e_suppress_ind_update
+       IMPORTING
+         korrnr                             = i_korrnr
+       TABLES
+         class_descriptions                 = _d-class_desc
+         component_descriptions             = _d-component_desc
+         subcomponent_descriptions          = _d-subcomponent_desc
+       CHANGING
+         class                              = _d-class
+         inheritance                        = _d-inheritance
+         redefinitions                      = _d-redefinitions
+         implementings                      = _d-implementings
+         impl_details                       = _d-impl_details
+         attributes                         = _d-attributes
+         methods                            = _d-methods
+         events                             = _d-events
+         types                              = _d-types
+*   TYPE_SOURCE                        = ch_type_source &quot;???
+         PARAMETERS                         = _d-parameters
+         exceps                             = _d-exceps
+         aliases                            = _d-aliases
+         typepusages                        = _d-typeusages
+         clsdeferrds                        = _d-clsdeferrds
+         intdeferrds                        = _d-intdeferrds
+         friendships                        = _d-friendships
+       EXCEPTIONS
+         existing                           = 1
+         is_interface                       = 2
+         db_error                           = 3
+         component_error                    = 4
+         no_access                          = 5
+         other                              = 6
+         OTHERS                             = 7.
+    ENDIF.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_CREATE_COMPLETE&apos;
+                                                  subrc = sy-subrc
+                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+      application_log-&gt;add_symsg( ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+
+    _d-includes = get_includes( _d-class-clsname ).
+
+    IF NOT _d-class-with_unit_tests IS INITIAL.             &quot; Issue 82
+      d_key-clsname = _d-class-clsname.
+      CALL FUNCTION &apos;SEO_CLASS_GENERATE_LOCALS&apos;
+        EXPORTING
+          clskey                       = d_key
+*         FORCE                        = SEOX_FALSE
+*         CORRNR                       =
+*         IMPLEMENTATION               =
+*         LOCALS_DEF                   =
+*         LOCALS_IMP                   =
+*         LOCALS_MAC                   =
+          locals_testclasses           = _d-locals_tst
+*         SUPPRESS_CORR                = SEOX_FALSE
+       EXCEPTIONS
+         not_existing                 = 1
+         model_only                   = 2
+         locals_not_generated         = 3
+         locals_not_initialised       = 4
+         OTHERS                       = 5.
+      IF sy-subrc &lt;&gt; 0.
+        o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_GENERATE_LOCALS&apos;
+                                                    subrc = sy-subrc
+                                                classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+        application_log-&gt;add_symsg( ).
+        RAISE EXCEPTION o_mycx.
+      ENDIF.
+    ENDIF.                                          &quot; End of Issue 82
+
+    set_dynpros( program = _d-includes-classpool-name       &quot; Issue 8
+                 dynpros = _d-dynpros ).
+    set_menus( program = _d-includes-classpool-name         &quot; Issue 9
+                 menus = _d-menupainter ).
+    set_prog_textpool( program = _d-includes-classpool-name &quot; Issue 1
+                      textpool = _d-textspool ).
+
+    zaplink_documentation=&gt;set( _d-documentation ).
+
+    zaplink_object=&gt;check_class_sections( classkey = d_key
+                                   application_log = application_log ).
+
+    CREATE OBJECT _component.
+    _component-&gt;set_type( zaplink_object_data=&gt;object_types-class ).
+    _name = _d-class-clsname.
+    _component-&gt;set_name( _name ).
+    CREATE OBJECT components.
+    components-&gt;add( _component ).
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="IMPORT_TO_SAP_INTERFACE" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Import Interface into SAP system"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="COMPONENTS" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="TO_LIST">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Components"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="O_DATA" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_INTERFACE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Interface data"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA _d           TYPE t_fm_data.
+  DATA i_korrnr     TYPE trkorr.                  &quot;#EC NEEDED for debug
+  DATA _component   TYPE to_component.
+  DATA _name        TYPE td_compname.
+* Patch SAP do not create type alias.
+  DATA intkey       TYPE seoclskey.
+  DATA type         TYPE vseotype.
+  DATA f_exists     TYPE abap_bool.
+  FIELD-SYMBOLS &lt;alias&gt; LIKE LINE OF _d-aliases.
+
+  TRY.
+
+    _d = o_data-&gt;to_data( ).
+    MOVE-CORRESPONDING _d-interface TO intkey.
+
+    CALL FUNCTION &apos;SEO_CLIF_EXISTENCE_CHECK&apos;      &quot; Issue 119
+      EXPORTING
+        cifkey              = intkey
+      EXCEPTIONS
+        NOT_SPECIFIED       = 1
+        NOT_EXISTING        = 2
+        OTHERS              = 3.
+    IF sy-subrc = 0.
+      f_exists = abap_true.
+    ENDIF.
+
+    CALL FUNCTION &apos;SEO_INTERFACE_CREATE_COMPLETE&apos;
+      EXPORTING
+*        CORRNR                             =
+*        devclass                           = &apos;$TMP&apos;
+*        VERSION                            = SEOC_VERSION_INACTIVE
+*        GENFLAG                            = &apos; &apos;
+*        AUTHORITY_CHECK                    = SEOX_TRUE
+        overwrite                          = seox_true
+*        SUPPRESS_REFACTORING_SUPPORT       = SEOX_TRUE
+      IMPORTING
+        korrnr                             = i_korrnr
+      TABLES
+        class_descriptions                 = _d-class_desc
+        component_descriptions             = _d-component_desc
+        subcomponent_descriptions          = _d-subcomponent_desc
+      CHANGING
+        interface                          = _d-interface
+        comprisings                        = _d-comprisings
+        attributes                         = _d-attributes
+        methods                            = _d-methods
+        events                             = _d-events
+        PARAMETERS                         = _d-parameters
+        exceps                             = _d-exceps
+        aliases                            = _d-aliases
+        typepusages                        = _d-typeusages
+        clsdeferrds                        = _d-clsdeferrds
+        intdeferrds                        = _d-intdeferrds
+        types                              = _d-types
+      EXCEPTIONS
+        existing                           = 1
+        is_class                           = 2
+        db_error                           = 3
+        component_error                    = 4
+        no_access                          = 5
+        other                              = 6
+        OTHERS                             = 7.
+    IF sy-subrc = 4 AND f_exists IS INITIAL.            &quot; Issue 119
+      CALL FUNCTION &apos;SEO_BSP_CLASS_DELETE_COMPLETE&apos;     &quot; Brute force delete
+        EXPORTING
+          clskey = intkey.
+* Do it again
+      CALL FUNCTION &apos;SEO_INTERFACE_CREATE_COMPLETE&apos;
+        EXPORTING
+*        CORRNR                             =
+*        devclass                           = &apos;$TMP&apos;
+*        VERSION                            = SEOC_VERSION_INACTIVE
+*        GENFLAG                            = &apos; &apos;
+*        AUTHORITY_CHECK                    = SEOX_TRUE
+          overwrite                          = seox_true
+*        SUPPRESS_REFACTORING_SUPPORT       = SEOX_TRUE
+        IMPORTING
+          korrnr                             = i_korrnr
+        TABLES
+          class_descriptions                 = _d-class_desc
+          component_descriptions             = _d-component_desc
+          subcomponent_descriptions          = _d-subcomponent_desc
+        CHANGING
+          interface                          = _d-interface
+          comprisings                        = _d-comprisings
+          attributes                         = _d-attributes
+          methods                            = _d-methods
+          events                             = _d-events
+          PARAMETERS                         = _d-parameters
+          exceps                             = _d-exceps
+          aliases                            = _d-aliases
+          typepusages                        = _d-typeusages
+          clsdeferrds                        = _d-clsdeferrds
+          intdeferrds                        = _d-intdeferrds
+          types                              = _d-types
+        EXCEPTIONS
+          existing                           = 1
+          is_class                           = 2
+          db_error                           = 3
+          component_error                    = 4
+          no_access                          = 5
+          other                              = 6
+          OTHERS                             = 7.
+    ENDIF.
+    IF sy-subrc &lt;&gt; 0.                                       &quot; Issue 118
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTERFACE_CREATE_COMPLETE&apos;
+                                                  subrc = sy-subrc
+                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+      application_log-&gt;add_symsg( ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+
+* Patch SAP do not create type alias.
+    LOOP AT _d-aliases ASSIGNING &lt;alias&gt;
+            WHERE cmptype = seoo_cmptype_type.
+      MOVE-CORRESPONDING &lt;alias&gt; TO type.
+      type-alias = seox_true.
+      type-state = seoc_state_implemented.
+      CALL FUNCTION &apos;SEO_TYPE_CREATE_F_DATA&apos;
+        EXPORTING
+          save   = seox_false
+        CHANGING
+          type   = type
+        EXCEPTIONS
+          OTHERS = 1.
+      IF sy-subrc &lt;&gt; 0.
+        IF sy-msgid = &apos;OO&apos; AND sy-msgno = &apos;002&apos;.            &quot; Issue 113
+          IF 1 = 2. MESSAGE w002(oo) WITH type-cmpname.   ENDIF.
+        ELSE.
+          CALL METHOD application_log-&gt;add_symsg
+            EXPORTING
+              id_msgty = &apos;W&apos;.
+        ENDIF.
+      ENDIF.
+    ENDLOOP.
+* End of patch
+
+    CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+      EXPORTING
+        cifkey                        = intkey
+        suppress_refactoring_entries  = seox_true
+        suppress_modification_support = seox_true
+*    CHANGING
+*      corrnr                        = corrnr
+*      devclass                      = devclass
+*      genflag                       = genflag
+      EXCEPTIONS
+        db_error                      = 1
+        OTHERS                        = 2.
+    IF sy-subrc &lt;&gt; 0.
+      CALL METHOD application_log-&gt;add_symsg
+        EXPORTING
+          id_msgty = &apos;W&apos;.
+    ENDIF.
+
+    zaplink_documentation=&gt;set( _d-documentation ).
+
+    CREATE OBJECT _component.
+    _component-&gt;set_type( zaplink_object_data=&gt;object_types-interface ).
+    _name = _d-interface-clsname.
+    _component-&gt;set_name( _name ).
+    CREATE OBJECT components.
+    components-&gt;add( _component ).
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="LOAD_CLAS" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Load Class from SAP System"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="CLASSKEY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Key structure of a class"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  CALL FUNCTION &apos;SEO_CLASS_TYPEINFO_GET&apos;
+    EXPORTING
+      clskey                              = classkey
+      version                             = object_data-class-version
+      state                               = object_data-class-state
+*     WITH_DESCRIPTIONS                   = SEOX_TRUE
+      resolve_eventhandler_typeinfo       = seox_true
+      with_master_language                = seox_true
+      with_enhancements                   = seox_true
+*     READ_ACTIVE_ENHA                    = SEOX_FALSE
+    IMPORTING
+      class                               = object_data-class
+      attributes                          = object_data-attributes
+      methods                             = object_data-methods
+      events                              = object_data-events
+      types                               = object_data-types
+      PARAMETERS                          = object_data-parameters
+      exceps                              = object_data-exceps
+      implementings                       = object_data-implementings
+      inheritance                         = object_data-inheritance
+      redefinitions                       = object_data-redefinitions
+      impl_details                        = object_data-impl_details
+      friendships                         = object_data-friendships
+      typepusages                         = object_data-typeusages
+      clsdeferrds                         = object_data-clsdeferrds
+      intdeferrds                         = object_data-intdeferrds
+      explore_inheritance                 = object_data-explore_inheritance
+      explore_implementings               = object_data-explore_implementings
+      aliases                             = object_data-aliases
+      enhancement_methods                 = object_data-enhancement_methods
+      enhancement_attributes              = object_data-enhancement_attributes
+      enhancement_events                  = object_data-enhancement_events
+      enhancement_implementings           = object_data-enhancement_implementings
+    EXCEPTIONS
+      not_existing                        = 1
+      is_interface                        = 2
+      model_only                          = 3
+      OTHERS                              = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_TYPEINFO_GET&apos;
+                                                subrc = sy-subrc
+                                            classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+    application_log-&gt;add_symsg( ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+* Begin of Issue 128 : Get Inheritance informations
+  CALL FUNCTION &apos;SEO_CLASS_RESOLVE_INHERITANCE&apos;
+    EXPORTING
+      clskey                              = classkey
+      version                             = object_data-class-version
+      state                               = object_data-class-state
+*     RESOLVE_EVENTHANDLER_TYPEINFO       = SEOX_FALSE
+*      WITH_ENHANCEMENTS                   = SEOX_TRUE
+*     IGNORE_SWITCHES                     = &apos;X&apos;
+    IMPORTING
+      attributes                          = object_data-attributes
+      methods                             = object_data-methods
+      events                              = object_data-events
+      types                               = object_data-types
+      PARAMETERS                          = object_data-parameters
+      exceps                              = object_data-exceps
+      implementings                       = object_data-implementings
+      aliases                             = object_data-aliases
+* Do not exist on ECC6.0 and not yet used so removed to ensure maximum workability
+*      enhancement_methods                 = object_data-enhancement_methods
+*      enhancement_attributes              = object_data-enhancement_attributes
+*      enhancement_events                  = object_data-enhancement_events
+*      enhancement_implementings           = object_data-enhancement_implementings
+*      enhancement_premeth                 = object_data-enhancement_premeth
+*      enhancement_postmeth                = object_data-enhancement_postmeth
+*      enhancement_owrmeth                 = object_data-enhancement_owrmeth
+    EXCEPTIONS
+      not_existing                        = 1
+      is_interface                        = 2
+      model_only                          = 3
+      OTHERS                              = 4.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_RESOLVE_INHERITANCE&apos;
+                                                subrc = sy-subrc
+                                            classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+    application_log-&gt;add_symsg( ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+* End of Issue 128 : Get Inheritance informations</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="SEARCH_DEFERED_DECLARATION" EXPOSURE="1" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Search for defered declaration (type pools, class, interface"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="NEW_SOURCECODE" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="NEW_TYPEPOOLS" CMPTYPE="1" PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+     <ITEM SCONAME="SOURCECODE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE"/>
+     <ITEM SCONAME="TYPEPOOLS" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R"/>
+    </PARAMETERS>
+    <SOURCE>`
+  DATA d_tabix        TYPE sy-tabix.
+  DATA t_tokens       TYPE STANDARD TABLE OF stokes.
+  DATA t_statements   TYPE STANDARD TABLE OF sstmnt.
+  DATA s_tp           LIKE LINE OF new_typepools.
+  DATA d_flag         TYPE abap_bool.
+  DATA d_comment      TYPE abap_bool.
+  DATA d_line         TYPE i.
+  DATA is_public      TYPE abap_bool.
+  FIELD-SYMBOLS:
+    &lt;s&gt; LIKE LINE OF new_sourcecode,
+    &lt;st&gt; LIKE LINE OF t_statements,
+    &lt;t&gt; LIKE LINE OF t_tokens,
+    &lt;n&gt; LIKE LINE OF t_tokens.
+
+  CHECK NOT sourcecode IS INITIAL.
+  new_sourcecode = sourcecode.    zaplink_tools=&gt;conv_table_2upcase( CHANGING table = new_sourcecode ).
+
+  SCAN ABAP-SOURCE new_sourcecode
+                   TOKENS INTO t_tokens
+                   STATEMENTS INTO t_statements.
+
+  READ TABLE t_statements ASSIGNING &lt;st&gt; INDEX 2.      &quot; public section. ?
+  IF &lt;st&gt; IS ASSIGNED.
+    READ TABLE new_sourcecode ASSIGNING &lt;s&gt; INDEX &lt;st&gt;-trow.
+    ASSERT &lt;s&gt; IS ASSIGNED.
+    IF &lt;s&gt; = &apos;PUBLIC SECTION.&apos;.
+      is_public = abap_true.
+      LOOP AT new_sourcecode FROM &lt;st&gt;-trow TRANSPORTING NO FIELDS WHERE table_line IS INITIAL.
+        d_line = sy-tabix.
+        EXIT.
+      ENDLOOP.
+    ENDIF.
+  ENDIF.
+
+  zaplink_tools=&gt;inverse_table_order( CHANGING my_table = t_statements ).
+
+  new_sourcecode = sourcecode.
+
+  LOOP AT t_statements ASSIGNING &lt;st&gt;.
+    CHECK is_public IS INITIAL OR &lt;st&gt;-trow &gt; d_line.
+    READ TABLE t_tokens ASSIGNING &lt;t&gt; INDEX &lt;st&gt;-from.
+    ASSERT sy-subrc = 0.
+    CLEAR d_comment.
+    CASE &lt;t&gt;-str.
+      WHEN &apos;TYPE-POOLS&apos;.
+        d_tabix = &lt;st&gt;-from + 1.
+        d_comment = abap_true.
+        LOOP AT t_tokens ASSIGNING &lt;n&gt; FROM d_tabix TO &lt;st&gt;-to.     &quot; do all type pools
+          READ TABLE typepools TRANSPORTING NO FIELDS
+               WITH KEY typegroup = &lt;n&gt;-str
+                         explicit = abap_true.
+          CHECK sy-subrc &lt;&gt; 0.
+* Type pool doesn&apos;t exist in class definition but is declared in the middle of sections
+          CLEAR s_tp.
+          s_tp-typegroup = &lt;n&gt;-str.
+          s_tp-tputype = 0.     &quot; Type group use                (TYPE-POOLS tp)
+          s_tp-explicit = abap_true.
+          s_tp-implicit = abap_false.
+          APPEND s_tp TO new_typepools.             d_flag = abap_true.
+        ENDLOOP.
+      WHEN &apos;CLASS&apos; OR &apos;INTERFACE&apos;.
+        d_tabix = &lt;st&gt;-to - 1.
+        READ TABLE t_tokens ASSIGNING &lt;n&gt; INDEX d_tabix.
+        CHECK sy-subrc = 0.
+        CHECK &lt;n&gt;-str = &apos;DEFINITION&apos;.
+
+        READ TABLE t_tokens ASSIGNING &lt;n&gt; INDEX &lt;st&gt;-to.
+        CHECK sy-subrc = 0.
+        CHECK &lt;n&gt;-str = &apos;LOAD&apos;.
+
+        d_tabix = &lt;st&gt;-from + 1.
+        READ TABLE t_tokens ASSIGNING &lt;n&gt; INDEX d_tabix.
+        CHECK sy-subrc = 0.
+        d_comment = abap_true.
+
+        READ TABLE typepools TRANSPORTING NO FIELDS
+             WITH KEY typegroup = &lt;n&gt;-str
+                       explicit = abap_true.
+        CHECK sy-subrc &lt;&gt; 0.
+        CLEAR s_tp.
+        s_tp-typegroup = &lt;n&gt;-str.
+        CASE &lt;t&gt;-str.
+          WHEN &apos;CLASS&apos;.
+            s_tp-tputype = 1.     &quot; 1	Forward declaration class     (CLASS c DEFINITION DEFERRED)
+          WHEN &apos;INTERFACE&apos;.
+            s_tp-tputype = 2.     &quot; 2	Forward declaration interface (INTERFACE i DEFINITION DEF...
+          WHEN OTHERS.
+            ASSERT &lt;t&gt;-str = &apos;CLASS&apos; OR &lt;t&gt;-str = &apos;INTERFACE&apos;.
+        ENDCASE.
+        s_tp-explicit = abap_true.
+        s_tp-implicit = abap_false.
+        APPEND s_tp TO new_typepools.             d_flag = abap_true.
+      WHEN OTHERS.
+        CONTINUE.
+    ENDCASE.
+
+    IF NOT d_comment IS INITIAL.
+* Line has to be commented
+      zaplink_tools=&gt;comment_statement( EXPORTING statement = &lt;st&gt;
+                                                     tokens = t_tokens
+                                              CHANGING code = new_sourcecode ).
+*      READ TABLE new_sourcecode ASSIGNING &lt;s&gt; INDEX &lt;n&gt;-row.
+*      CONCATENATE &apos;*&apos; &lt;s&gt; &apos;&quot;Auto commented by ZAPLINK_OBJECT connector and added as Explicit type group&apos;(cmt) INTO &lt;s&gt;.
+    ENDIF.
+
+  ENDLOOP.
+
+  IF d_flag IS INITIAL. CLEAR new_sourcecode. ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_CHECK_CLASS_SECTIONS" EXPOSURE="1" STATE="1" MTDDECLTYP="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Internal Regenerate Class sections if needed"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="APPLICATION_LOG" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_MSG_COLL"/>
+     <ITEM SCONAME="CLASSKEY" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SEOCLSKEY">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Class Key"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PRI_SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Actual Private section source"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PRO_SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Actual Protected section source"/>
+      </TEXTS>
+     </ITEM>
+     <ITEM SCONAME="PUB_SOURCE" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TT_ABAPRAWSOURCE">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Actual Public section source"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA pubsec_source TYPE seo_section_source.
+  DATA prosec_source TYPE seo_section_source.
+  DATA prisec_source TYPE seo_section_source.
+  DATA d_text        TYPE string.
+  DATA d_name        TYPE td_compname.
+
+  IF NOT application_log IS BOUND.
+    d_text = &apos;APPLICATION_LOG can&apos;&apos;t be null&apos;(eal).
+    RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+          EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;system_error
+                    cx_name = d_text.
+  ENDIF.
+
+  CALL FUNCTION &apos;SEO_CLASS_TYPEINFO_BY_VIS&apos;         &quot; Issue 105 : First call for nothing to ensure method order
+    EXPORTING
+      clskey                              = classkey
+      version                             = seoc_version_inactive
+      state                               = seoc_state_implemented
+*     RESOLVE_EVENTHANDLER_TYPEINFO       = SEOX_FALSE
+*     WITH_MASTER_LANGUAGE                = SEOX_FALSE
+*     WITH_ENHANCEMENTS                   = SEOX_FALSE
+*   IMPORTING
+    EXCEPTIONS
+      not_existing                        = 1
+      is_interface                        = 2
+      model_only                          = 3
+      OTHERS                              = 4.
+  IF sy-subrc = 3.        &quot; Issue 111
+    return.
+  ELSEIF sy-subrc = 1.
+    d_name = classkey.
+    RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;not_found
+                                                          type = zaplink_object_data=&gt;object_types-class
+                                                          name = d_name.
+  ELSEIF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_TYPEINFO_BY_VIS&apos;
+                                                subrc = sy-subrc
+                                            classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+    application_log-&gt;add_symsg( ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  CALL FUNCTION &apos;SEO_CLASS_GENERATE_SECTIONS&apos;
+    EXPORTING
+      clskey                               = classkey
+      public                               = seox_true
+      protected                            = seox_true
+      private                              = seox_true
+*      SUPPRESS_CORR                        = SEOX_FALSE
+      return_generated_sections_only       = seox_true
+*      TYPEINFO                             =
+*      LINE_SIZE                            = 255
+*      SUPPRESS_INDEX_UPDATE                = SEOX_FALSE
+    IMPORTING
+      pubsec_source                        = pubsec_source
+      prosec_source                        = prosec_source
+      prisec_source                        = prisec_source
+    EXCEPTIONS
+      not_existing                         = 1
+      model_only                           = 2
+      public_sec_not_generated             = 3
+      protected_sec_not_generated          = 4
+      private_sec_not_generated            = 5
+      public_sec_not_initialised           = 6
+      protected_sec_not_initialised        = 7
+      private_sec_not_initialised          = 8
+      _internal_class_not_existing         = 9
+      OTHERS                               = 10.
+  IF sy-subrc &lt;&gt; 0.
+    o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_GENERATE_SECTIONS&apos;
+                                                subrc = sy-subrc
+                                            classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+    application_log-&gt;add_symsg( ).
+    RAISE EXCEPTION o_mycx.
+  ENDIF.
+
+  IF pubsec_source = pub_source.
+    CLEAR pubsec_source.
+  ELSE.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE w002 WITH text-pub classkey. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD application_log-&gt;add_warning
+      EXPORTING
+*            id_msgid     =
+        id_msgno     = &apos;002&apos;
+        id_msgv1     = &apos;Public section&apos;(pub)
+        id_msgv2     = classkey.
+*            id_msgv3     =
+*            id_msgv4     =
+*            id_detlevel  =
+*            id_probclass =
+  ENDIF.
+
+  IF prosec_source = pro_source.
+    CLEAR prosec_source.
+  ELSE.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE w002 WITH text-pro classkey. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD application_log-&gt;add_warning
+      EXPORTING
+*        id_msgid     =
+        id_msgno     = &apos;002&apos;
+        id_msgv1     = &apos;Protected section&apos;(pro)
+        id_msgv2     = classkey.
+*        id_msgv3     =
+*        id_msgv4     =
+*        id_detlevel  =
+*        id_probclass =
+  ENDIF.
+
+  IF prisec_source = pri_source.
+    CLEAR prisec_source.
+  ELSE.
+    SET EXTENDED CHECK OFF.
+    IF 1 = 2. MESSAGE w002 WITH text-pri classkey. ENDIF.
+    SET EXTENDED CHECK ON.
+    CALL METHOD application_log-&gt;add_warning
+      EXPORTING
+*        id_msgid     =
+        id_msgno     = &apos;002&apos;
+        id_msgv1     = &apos;Private section&apos;(pri)
+        id_msgv2     = classkey.
+*        id_msgv3     =
+*        id_msgv4     =
+*        id_detlevel  =
+*        id_probclass =
+  ENDIF.
+  IF NOT pubsec_source IS INITIAL OR NOT prosec_source IS INITIAL OR NOT prisec_source IS INITIAL.
+    LOG-POINT ID zaplink
+              FIELDS pubsec_source prosec_source prisec_source.       &quot; Store information
+    CALL FUNCTION &apos;SEO_CLASS_GENERATE_SECTIONS&apos;
+      EXPORTING
+        clskey                               = classkey
+        public                               = seox_true
+        protected                            = seox_true
+        private                              = seox_true
+*         SUPPRESS_CORR                        = SEOX_FALSE
+*         return_generated_sections_only       = seox_false
+*         TYPEINFO                             =
+*         LINE_SIZE                            = 255
+*         SUPPRESS_INDEX_UPDATE                = SEOX_FALSE
+*        IMPORTING
+*          pubsec_source                        = pubsec_source
+*          prosec_source                        = prosec_source
+*          prisec_source                        = prisec_source
+      EXCEPTIONS
+        not_existing                         = 1
+        model_only                           = 2
+        public_sec_not_generated             = 3
+        protected_sec_not_generated          = 4
+        private_sec_not_generated            = 5
+        public_sec_not_initialised           = 6
+        protected_sec_not_initialised        = 7
+        private_sec_not_initialised          = 8
+        _internal_class_not_existing         = 9
+        OTHERS                               = 10.
+    IF sy-subrc &lt;&gt; 0.
+      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_GENERATE_SECTIONS&apos;
+                                                  subrc = sy-subrc
+                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+      application_log-&gt;add_symsg( ).
+      RAISE EXCEPTION o_mycx.
+    ENDIF.
+* Already a commit inside
+*    CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+*      EXPORTING
+*        cifkey                              = classkey
+**       NO_SECTIONS                         = SEOX_FALSE
+*        SECTIONS_ONLY                       = SEOX_true
+**       SUPPRESS_CORR                       = SEOX_FALSE
+**       SUPPRESS_REFACTORING_ENTRIES        = SEOX_FALSE
+**       SUPPRESS_METHOD_GENERATION          = SEOX_FALSE
+**       SUPPRESS_PUBSEC_GENERATION          = SEOX_FALSE
+**       SUPPRESS_PROSEC_GENERATION          = SEOX_FALSE
+**       SUPPRESS_PRISEC_GENERATION          = SEOX_FALSE
+**       SUPPRESS_DOCU_DELETE                = SEOX_FALSE
+**       SUPPRESS_MODIFICATION_SUPPORT       = SEOX_FALSE
+**       DISABLE_MODIFICATION_SUPPORT        = SEOX_FALSE
+**       GENERATE_IF_METHODS_INITIAL         = SEOX_FALSE
+**       LINE_SIZE                           = 255
+**       SUPPRESS_COMMIT                     = SEOX_FALSE
+**       NOTEASS_MODE                        = SEOX_FALSE
+**       SUPPRESS_INDEX_UPDATE               = SEOX_FALSE
+**     IMPORTING
+**       ERROR_OCCURRED                      =
+**       PUBLIC_SAVED                        =
+**       PRIVATE_SAVED                       =
+**       PROTECTED_SAVED                     =
+**     CHANGING
+**       CORRNR                              =
+**       DEVCLASS                            =
+**       GENFLAG                             =
+*      EXCEPTIONS
+*        NOT_EXISTING                        = 1
+*        NOTHING_TO_DO                       = 2
+*        ACCESS_ERROR                        = 3
+*        DB_ERROR                            = 4
+*        ERROR_IN_CODE_GENERATION            = 5
+*        OTHERS                              = 6.
+*    IF sy-subrc &lt;&gt; 0.
+*      o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLIF_SAVE_ALL&apos;
+*                                                  subrc = sy-subrc
+*                                              classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+*      application_log-&gt;add_symsg( ).
+*      RAISE EXCEPTION o_mycx.
+*    ENDIF.
+  ENDIF.</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="_CLEANUP_CLASS" EXPOSURE="1" STATE="1" MTDNEWEXC="X">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Clean up Class : Search for forward declaration"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="HAS_CHANGE" CMPTYPE="1" PARDECLTYP="3" TYPTYPE="1" TYPE="ABAP_BOOL">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Clean up made"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <EXCEPTIONS>
+     <ITEM SCONAME="ZCX_ZL_CONNECTOR" LANGU="E"/>
+    </EXCEPTIONS>
+    <SOURCE>`
+  DATA f_has_error  TYPE abap_bool.
+  DATA t_types      TYPE STANDARD TABLE OF seotypepls.
+  DATA s_key        TYPE seotpukey.
+  DATA d_classkey   TYPE seoclskey.
+  DATA s_data       TYPE vseocdefer.
+  FIELD-SYMBOLS &lt;t&gt; LIKE LINE OF t_types.
+
+  TRY.
+    IF generate_class( object_data-class-clsname ) IS INITIAL.    f_has_error = abap_true.    ENDIF.
+
+* From SEO_CLIF_SAVE_ALL
+** Clean-up unused implicite type pool usages (MS 20060921)
+*      DATA type_pool_usage_cleaner TYPE REF TO lcl_type_pool_usage_cleaner.
+*      TRY.
+*          type_pool_usage_cleaner = lcl_type_pool_usage_cleaner=&gt;create( classkey ).
+*          type_pool_usage_cleaner-&gt;clean_up( ).
+*        CATCH lcx_internal_error.                       &quot;#EC NO_HANDLER
+**     No handler needed here =&gt; default behavior
+*      ENDTRY.
+
+*      DELETE OBJECT_DATA-typeusages WHERE version &lt;&gt; OBJECT_DATA-class-version.   &quot; Remove type usage of the wrong version
+* Type-pools declaration might be present within method&apos;s declaration section (auto added by SAP when needed).
+* Have to detect it, add type pool to type pool list and delete type pool declaration
+    IF cleanup_typeusage( include = object_data-includes-pubsec
+                             text = &apos;Public section&apos;(pub) ) = abap_true.
+      has_change = abap_true.
+    ENDIF.
+    IF cleanup_typeusage( include = object_data-includes-prosec
+                             text = &apos;Protected section&apos;(pro) ) = abap_true.
+      has_change = abap_true.
+    ENDIF.
+    IF cleanup_typeusage( include = object_data-includes-prisec
+                             text = &apos;Private section&apos;(pri) ) = abap_true.
+      has_change = abap_true.
+    ENDIF.
+    IF NOT has_change IS INITIAL.
+      d_classkey-clsname = object_data-class-clsname.
+      CALL FUNCTION &apos;SEO_CLIF_SAVE_ALL&apos;
+        EXPORTING
+          cifkey                   = d_classkey
+        EXCEPTIONS
+          not_existing             = 1
+          nothing_to_do            = 2
+          access_error             = 3
+          db_error                 = 4
+          error_in_code_generation = 5
+          OTHERS                   = 6.
+      IF sy-subrc &lt;&gt; 0.
+        o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLIF_SAVE_ALL&apos;
+                                                    subrc = sy-subrc
+                                                classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+        application_log-&gt;add_symsg( ).
+        RAISE EXCEPTION o_mycx.
+      ENDIF.
+    ENDIF.
+
+    IF f_has_error IS INITIAL.
+
+* try to remove implicit type declaration : often useless
+      SELECT * INTO TABLE t_types
+        FROM seotypepls
+        WHERE clsname = object_data-class-clsname
+          AND tputype &lt;&gt; 0    &quot; no type-pool
+          AND explicit = abap_false
+          AND implicit = abap_true.
+
+      LOOP AT t_types ASSIGNING &lt;t&gt;.
+        CLEAR: s_key.    s_key-clsname = &lt;t&gt;-clsname.      s_key-typegroup = &lt;t&gt;-typegroup.
+        CASE &lt;t&gt;-tputype.
+          WHEN 1.
+            CALL FUNCTION &apos;SEO_CLSDEFERRD_DELETE_W_DEPS&apos;
+              EXPORTING
+                cdfkey        = s_key
+                save          = seox_true
+              EXCEPTIONS
+                not_existing  = 1
+                is_intdeferrd = 2
+                is_typepusage = 3
+                not_deleted   = 4
+                db_error      = 5
+                OTHERS        = 6.
+            IF sy-subrc &lt;&gt; 0.
+              o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLSDEFERRD_DELETE_W_DEPS&apos;
+                                                          subrc = sy-subrc
+                                                      classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+              application_log-&gt;add_symsg( ).
+              RAISE EXCEPTION o_mycx.
+            ENDIF.
+          WHEN 2.     &quot; interface*
+            CALL FUNCTION &apos;SEO_INTDEFERRD_DELETE_W_DEPS&apos;
+              EXPORTING
+                idfkey        = s_key
+                save          = seox_true
+              EXCEPTIONS
+                not_existing  = 1
+                is_typepusage = 2
+                is_clsdeferrd = 3
+                not_deleted   = 4
+                db_error      = 5
+                OTHERS        = 6.
+            IF sy-subrc &lt;&gt; 0.
+              o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTDEFERRD_DELETE_W_DEPS&apos;
+                                                          subrc = sy-subrc
+                                                      classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+              application_log-&gt;add_symsg( ).
+              RAISE EXCEPTION o_mycx.
+            ENDIF.
+          WHEN OTHERS.
+            ASSERT &lt;t&gt;-tputype &gt;= 1 AND &lt;t&gt;-tputype &lt;= 2.
+            CONTINUE.
+        ENDCASE.
+
+        IF NOT generate_class( s_key-clsname ) IS INITIAL.
+          has_change = abap_true.
+        ELSE.
+          MOVE-CORRESPONDING &lt;t&gt; TO s_data.
+* undo deletion
+          CASE &lt;t&gt;-tputype.
+            WHEN 1.
+              CALL FUNCTION &apos;SEO_CLSDEFERRD_CREATE_F_DATA&apos;
+                EXPORTING
+                  save                    = seox_true
+*             NOT_AFFECT_PUBLIC       = SEOX_FALSE
+                CHANGING
+                  clsdeferrd              = s_data
+                EXCEPTIONS
+                  existing                = 1
+                  is_intdeferrd           = 2
+                  is_typepusage           = 3
+                  not_created             = 4
+                  db_error                = 5
+                  OTHERS                  = 6.
+              IF sy-subrc &lt;&gt; 0.
+                o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLSDEFERRD_CREATE_F_DATA&apos;
+                                                            subrc = sy-subrc
+                                                        classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+                application_log-&gt;add_symsg( ).
+                RAISE EXCEPTION o_mycx.
+              ENDIF.
+            WHEN 2.     &quot; interface
+              CALL FUNCTION &apos;SEO_INTDEFERRD_CREATE_F_DATA&apos;
+                EXPORTING
+                  save                    = seox_true
+*                 NOT_AFFECT_PUBLIC       = SEOX_FALSE
+                CHANGING
+                  intdeferrd              = s_data
+                EXCEPTIONS
+                  existing                = 1
+                  is_typepusage           = 2
+                  is_clsdeferrd           = 3
+                  not_created             = 4
+                  db_error                = 5
+                  OTHERS                  = 6.
+              IF sy-subrc &lt;&gt; 0.
+                o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTDEFERRD_CREATE_F_DATA&apos;
+                                                            subrc = sy-subrc
+                                                        classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+                application_log-&gt;add_symsg( ).
+                RAISE EXCEPTION o_mycx.
+              ENDIF.
+            WHEN OTHERS.
+              ASSERT &lt;t&gt;-tputype &gt;= 1 AND &lt;t&gt;-tputype &lt;= 2.
+              CONTINUE.
+          ENDCASE.
+
+        ENDIF.
+
+      ENDLOOP.
+
+    ENDIF.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CNX_EXT_CLEANER~ANONYMIZE">
+    <SOURCE>`
+  DATA _o_class       TYPE to_class.
+  DATA _o_interface   TYPE to_interface.
+
+  CHECK object IS BOUND.
+
+  CASE object-&gt;type.
+    WHEN zaplink_object_data=&gt;object_types-class.
+      _o_class ?= object-&gt;raw.
+      _o_class-&gt;anonymize( ).
+    WHEN zaplink_object_data=&gt;object_types-interface.
+      _o_interface ?= object-&gt;raw.
+      _o_interface-&gt;anonymize( ).
+    WHEN OTHERS.
+      mac_raise_type_not_supported me-&gt;class_name object-&gt;type.
+  ENDCASE.
+
+  TRY.
+      super-&gt;zaplink_cnx_ext_cleaner~anonymize( object ).
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CNX_EXT_CLEANER~UNANONYMIZE">
+    <SOURCE>`
+  DATA _o_class       TYPE to_class.
+  DATA _o_interface   TYPE to_interface.
+
+  TRY.
+      super-&gt;zaplink_cnx_ext_cleaner~unanonymize( object ).
+    CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+      RAISE EXCEPTION o_mycx.
+  ENDTRY.
+
+  CASE object-&gt;type.
+    WHEN zaplink_object_data=&gt;object_types-class.
+      _o_class ?= object-&gt;raw.
+      _o_class-&gt;unanonymize( ).
+    WHEN zaplink_object_data=&gt;object_types-interface.
+      _o_interface ?= object-&gt;raw.
+      _o_interface-&gt;unanonymize( ).
+    WHEN OTHERS.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CNX_EXT_CODE_SIGNATURE~GET_SIGNATURE">
+    <SOURCE>`
+  DATA clskey TYPE seoclskey.
+  DATA d_type TYPE td_comptype.
+
+  TRY.
+    d_type = component-&gt;get_type( ).
+    CASE d_type.
+      WHEN zaplink_object_data=&gt;object_types-class.
+        clskey-clsname = component-&gt;get_name( ).
+        result = get_class_signature( clskey ).
+      WHEN zaplink_object_data=&gt;object_types-interface.
+        clskey-clsname = component-&gt;get_name( ).
+        result = get_interface_signature( clskey ).
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name d_type.
+    ENDCASE.
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~CREATE_NEW_RAW">
+    <SOURCE>`
+  DATA o_clas TYPE to_class.
+  DATA o_intf TYPE to_interface.
+
+  CREATE OBJECT object.
+  CASE type.
+    WHEN zaplink_object_data=&gt;object_types-class.
+      CREATE OBJECT o_clas.
+      object-&gt;raw = o_clas.
+*      create object object type TO_CLASS.
+    WHEN zaplink_object_data=&gt;object_types-interface.
+      CREATE OBJECT o_intf.
+      object-&gt;raw = o_intf.
+*      create object object type TO_CLASS.
+    WHEN OTHERS.
+      CLEAR object.
+      mac_raise_type_not_supported me-&gt;class_name type.
+  ENDCASE.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DELETE_FROM_SAP">
+    <SOURCE>`
+  DATA clskey  TYPE seoclskey.
+  DATA d_type  TYPE td_comptype.
+  DATA s_subrc TYPE sy-subrc.
+  DATA d_name  TYPE td_compname.
+
+  TRY.
+    d_type = component-&gt;get_type( ).
+    clskey-clsname = d_name = component-&gt;get_name( ).
+    CASE d_type.
+      WHEN zaplink_object_data=&gt;object_types-class.
+        CALL FUNCTION &apos;SEO_CLASS_DELETE_COMPLETE&apos;
+          EXPORTING
+            clskey       = clskey
+*           GENFLAG                    = &apos; &apos;
+*           AUTHORITY_CHECK            = SEOX_TRUE
+*           SUPPRESS_DOCU_DELETE       = SEOX_FALSE
+*           SUPPRESS_COMMIT            = SEOX_FALSE
+*         CHANGING
+*           CORRNR                     =
+          EXCEPTIONS
+            not_existing               = 1
+            is_interface               = 2
+            db_error                   = 3
+            no_access                  = 4
+            other                      = 5
+            OTHERS                     = 6.
+        IF sy-subrc &lt;&gt; 0.
+          CASE sy-subrc.
+            WHEN 1.
+              RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;not_found.
+            WHEN OTHERS.
+              s_subrc = sy-subrc.
+              CALL FUNCTION &apos;SEO_BSP_CLASS_DELETE_COMPLETE&apos;     &quot; Issue 119 : Brute force delete
+                EXPORTING
+                  clskey = clskey.
+              IF do_exists( component ) = abap_true.
+                o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_CLASS_DELETE_W_DEPS&apos;
+                                                            subrc = s_subrc
+                                                        classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+                application_log-&gt;add_symsg( ).
+                RAISE EXCEPTION o_mycx.
+              ENDIF.
+          ENDCASE.
+        ENDIF.
+      WHEN zaplink_object_data=&gt;object_types-interface.
+* Not working
+*      CALL FUNCTION &apos;SEO_INTERFACE_DELETE_W_DEPS&apos;
+*        EXPORTING
+*          intkey       = clskey
+*          save         = seox_true
+*        EXCEPTIONS
+*          not_existing = 1
+*          is_class     = 2
+*          not_deleted  = 3
+*          db_error     = 4
+*          OTHERS       = 5.
+        CALL FUNCTION &apos;SEO_INTERFACE_DELETE_COMPLETE&apos;
+          EXPORTING
+            intkey                     = clskey
+*         GENFLAG                    = &apos; &apos;
+            authority_check            = seox_true
+            suppress_docu_delete       = seox_true
+*         SUPPRESS_COMMIT            = SEOX_FALSE
+*       CHANGING
+*         CORRNR                     =
+          EXCEPTIONS
+            not_existing               = 1
+            is_class                   = 2
+            db_error                   = 3
+            no_access                  = 4
+            other                      = 5
+            OTHERS                     = 6
+                  .
+        IF sy-subrc &lt;&gt; 0.
+          CASE sy-subrc.
+            WHEN 1.
+              RAISE EXCEPTION TYPE ZCX_ZL_CONNECTOR
+                EXPORTING textid = ZCX_ZL_CONNECTOR=&gt;not_found.
+            WHEN OTHERS.
+              s_subrc = sy-subrc.
+              CALL FUNCTION &apos;SEO_BSP_CLASS_DELETE_COMPLETE&apos;     &quot; Issue 119 : Brute force delete
+                EXPORTING
+                  clskey = clskey.
+              IF do_exists( component ) = abap_true.
+                o_mycx ?= ZCX_ZAPLINK=&gt;create_from_mf_cx( funcname = &apos;SEO_INTERFACE_DELETE_COMPLETE&apos;
+                                                            subrc = s_subrc
+                                                        classname = &apos;ZCX_ZL_CONNECTOR&apos; ).
+                application_log-&gt;add_symsg( ).
+                RAISE EXCEPTION o_mycx.
+              ENDIF.
+          ENDCASE.
+        ENDIF.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name d_type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.
+  result = abap_true.
+* Issue 137 =&gt; Remove from Working Area
+  zaplink_tools=&gt;remove_comp_from_working_area( type = d_type
+                                                name = d_name ).</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~DO_EXISTS">
+    <SOURCE>`
+  DATA clskey TYPE seoclskey.
+  DATA d_type TYPE td_comptype.
+
+  TRY.
+    d_type = component-&gt;get_type( ).
+    CASE d_type.
+      WHEN zaplink_object_data=&gt;object_types-class.
+        clskey-clsname = component-&gt;get_name( ).
+
+        CALL FUNCTION &apos;SEO_CLASS_EXISTENCE_CHECK&apos;
+          EXPORTING
+            clskey        = clskey
+*        IMPORTING
+*          not_active    = not_active
+          EXCEPTIONS
+            not_specified = 1
+            not_existing  = 2
+            is_interface  = 3
+            no_text       = 4
+            inconsistent  = 5
+            OTHERS        = 6.
+
+        IF sy-subrc = 0.
+          exists = &apos;X&apos;.
+        ENDIF.
+      WHEN zaplink_object_data=&gt;object_types-interface.
+        clskey-clsname = component-&gt;get_name( ).
+
+        CALL FUNCTION &apos;SEO_INTERFACE_EXISTENCE_CHECK&apos;
+          EXPORTING
+            intkey              = clskey
+*       IMPORTING
+*         NOT_ACTIVE          =
+         EXCEPTIONS
+           not_specified       = 1
+           not_existing        = 2
+           is_class            = 3
+           no_text             = 4
+           inconsistent        = 5
+           OTHERS              = 6.
+
+        IF sy-subrc = 0.
+          exists = &apos;X&apos;.
+        ENDIF.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name d_type.
+    ENDCASE.
+
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~IS_SUPPORTED_VERSION">
+    <SOURCE>`
+  result = abap_false.
+  if version = _ver OR version = &apos;1.0&apos;.   &quot; version 1.01 is downward compatible with version 1.0
+    result = abap_true.
+  endif.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~READ_FROM_SAP">
+    <SOURCE>`
+  DATA o_clas TYPE to_class.
+  DATA o_intf TYPE to_interface.
+  DATA d_type TYPE td_comptype.
+
+  TRY.
+
+    CREATE OBJECT object.
+    object-&gt;set_component( component ).
+    d_type = component-&gt;get_type( ).
+    CASE d_type.
+      WHEN zaplink_object_data=&gt;object_types-class.
+        TRY.
+            o_clas = export_from_sap_class( component ).
+          CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+            IF NOT o_mycx-&gt;messages IS BOUND.
+              o_mycx-&gt;messages = application_log.
+              o_mycx-&gt;update( ).
+            ENDIF.
+            RAISE EXCEPTION o_mycx.
+        ENDTRY.
+        CLEAR o_clas-&gt;a0_maindata-clsname.
+        object-&gt;raw = o_clas.
+      WHEN zaplink_object_data=&gt;object_types-interface.
+        TRY.
+            o_intf = export_from_sap_interface( component ).
+          CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+            IF NOT o_mycx-&gt;messages IS BOUND.
+              o_mycx-&gt;messages = application_log.
+              o_mycx-&gt;update( ).
+            ENDIF.
+            RAISE EXCEPTION o_mycx.
+        ENDTRY.
+        CLEAR o_intf-&gt;a0_maindata-clsname.
+        object-&gt;raw = o_intf.
+      WHEN OTHERS.
+        CLEAR object.
+        mac_raise_type_not_supported me-&gt;class_name d_type.
+    ENDCASE.
+    object-&gt;update_connector_data( me ).                    &quot; Issue 66
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR_" MTDNAME="ZAPLINK_CONNECTOR~WRITE_TO_SAP">
+    <SOURCE>`
+  DATA _o_class       TYPE to_class.
+  DATA _o_interface   TYPE to_interface.
+  DATA o_comp         TYPE to_component.                    &quot; Issue 92
+
+  TRY.
+    CASE object-&gt;type.
+      WHEN zaplink_object_data=&gt;object_types-class.
+        _o_class ?= object-&gt;raw.
+        _o_class-&gt;a0_maindata-clsname = object-&gt;name.
+        TRY.
+            components = import_to_sap_class( _o_class ).
+          CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+            IF NOT o_mycx-&gt;messages IS BOUND.
+              o_mycx-&gt;messages = application_log.
+              o_mycx-&gt;update( ).
+            ENDIF.
+            RAISE EXCEPTION o_mycx.
+        ENDTRY.
+      WHEN zaplink_object_data=&gt;object_types-interface.
+        _o_interface ?= object-&gt;raw.
+        _o_interface-&gt;a0_maindata-clsname = object-&gt;name.
+        TRY.
+            components = import_to_sap_interface( _o_interface ).
+          CATCH ZCX_ZL_CONNECTOR INTO o_mycx.
+            IF NOT o_mycx-&gt;messages IS BOUND.
+              o_mycx-&gt;messages = application_log.
+              o_mycx-&gt;update( ).
+            ENDIF.
+            RAISE EXCEPTION o_mycx.
+        ENDTRY.
+      WHEN OTHERS.
+        mac_raise_type_not_supported me-&gt;class_name object-&gt;type.
+    ENDCASE.
+    check_component_list( EXPORTING     object = object
+                           CHANGING components = components ). &quot; Issue 92
+    mac_def_catch ZCX_ZL_CONNECTOR.
+  ENDTRY.</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TEXTSPOOL>
+   <ITEM ID="I" KEY="CMT">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY='&quot;Auto commented by ZAPLINK_OBJECT connector and added as Explicit type group' LENGTH="80 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="EAL">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="APPLICATION_LOG can&apos;t be null" LENGTH="132 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="PRI">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Private section" LENGTH="40 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="PRO">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Protected section" LENGTH="40 "/>
+    </TEXTS>
+   </ITEM>
+   <ITEM ID="I" KEY="PUB">
+    <TEXTS>
+     <ITEM LANGU="E" ENTRY="Public section" LENGTH="40 "/>
+    </TEXTS>
+   </ITEM>
+  </TEXTSPOOL>
+  <TYPEGROUPS>
+   <ITEM TYPEGROUP="ABAP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOF" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOK" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOP" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOR" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOS" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOT" EXPLICIT="X"/>
+   <ITEM TYPEGROUP="SEOX" EXPLICIT="X"/>
+  </TYPEGROUPS>
+  <TYPES>
+   <ITEM CMPNAME="TD_SOURCECODE" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="1" TYPE="SEOP_SOURCE_STRING">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ABAP Source Code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_CLASS" EXPOSURE="1" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_CLAS_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Class data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_INTERFACE" EXPOSURE="1" STATE="1" EDITORDER="2 " TYPTYPE="3" TYPE="ZAPLINK_INTF_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Interface data"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_BAPI_DATA" STATE="1" EDITORDER="1 " TYPTYPE="4">
+    BEGIN OF ts_bapi_data,
+    class                       TYPE  vseoclass,
+    attributes                  TYPE  seoo_attributes_r,
+    methods                     TYPE  seoo_methods_r,
+    events                      TYPE  seoo_events_r,
+    types                       TYPE  seoo_types_r,
+    parameters                  TYPE  seos_parameters_r,
+    exceps                      TYPE  seos_exceptions_r,
+    implementings               TYPE  seor_implementings_r,
+    inheritance                 TYPE  vseoextend,
+    redefinitions               TYPE  seor_redefinitions_r,
+    impl_details                TYPE  seor_redefinitions_r,
+    friendships                 TYPE  seof_friendships_r,
+    typepusages                 TYPE  seot_typepusages_r,
+    clsdeferrds                 TYPE  seot_clsdeferrds_r,
+    intdeferrds                 TYPE  seot_intdeferrds_r,
+    explore_inheritance         TYPE  seok_cls_typeinfos,
+    explore_implementings       TYPE  seok_int_typeinfos,
+    aliases                     TYPE  seoo_aliases_r,
+    enhancement_methods         TYPE  enhmeth_tabheader,
+    enhancement_attributes      TYPE  enhclasstabattrib,
+    enhancement_events          TYPE  enhclasstabevent,
+    enhancement_implementings   TYPE enhclasstabimplementing,
+  END OF ts_bapi_data
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="All Data for BAPI call of class creation"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_CLAS_ATTR" STATE="1" EDITORDER="2 " TYPTYPE="4">
+    BEGIN OF ts_clas_attr.
+  INCLUDE TYPE ts_base_attributs AS base.
+  TYPES:
+    END OF ts_clas_attr
+`
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Root attributs for CLAS"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TS_INCLUDE" EXPOSURE="1" STATE="1" EDITORDER="3 " TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;TS_INCLUDE">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Indlude : Name &amp; Source code"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TT_TYPEUSAGES" EXPOSURE="1" STATE="1" EDITORDER="4 " TYPTYPE="1" TYPE="SEOT_TYPEPUSAGES_R">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Type usage : Type pool or class/interface"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="T_FM_DATA" EXPOSURE="1" STATE="1" EDITORDER="5 " TYPTYPE="1" TYPE="ZAPLINK_OBJECT_DATA=&gt;T_FM_DATA"/>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

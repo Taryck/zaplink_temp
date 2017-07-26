@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="6CB95D84D151729DDFD4D7BF0527DF65" CODE_SIGNATURE="B2A5C6467EFA4E4703B615F27B08C584" CONNECTOR="39AC0A4B07A5A05AE1000000AC120173" NAME="ZAPLINK_RAW" TYPE="CLAS" VERSION="1.01">
+ <DEPENDENCIES>
+  <ITEM TYPE="CLAS" NAME="ZAPLINK_RAW_BASE"/>
+ </DEPENDENCIES>
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" CLSCCINCL="X" FIXPT="X" UNICODE="X">
+   <INHERITANCE REFCLSNAME="ZAPLINK_RAW_BASE" STATE="1"/>
+   <TEXTS>
+    <ITEM LANG="E" TEXT="RAW component with data">U1&amp;FUNCTIONALITY&amp;
+ASThis object define the common structure of the RAW object that connector
+  must handle. It inherit from ZAPLINK_RAW_BASE that do not store data but
+  only :
+AS,,- Component identification
+AS,,- Connector identification
+U1&amp;RELATIONS&amp;
+AS
+U1&amp;EXAMPLE&amp;
+AS
+U1&amp;HINTS&amp;
+AS
+U1&amp;FURTHER_SOURCES_OF_INF&amp;
+AS
+U1Memories
+ASThis application is dedicated to the memories of :
+B2My father : Lamri BENSIALI (1940-2004) without whom I never started
+  programming
+B2My uncle : Jacky BEDU (1934-2009) who died during the completion of this
+  application</ITEM>
+   </TEXTS>
+  </A0_MAINDATA>
+  <ATTRIBUTS>
+   <ITEM CMPNAME="RAW" EXPOSURE="2" STATE="1" TYPTYPE="1" TYPE="TO_RAW_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Real data"/>
+    </TEXTS>
+   </ITEM>
+  </ATTRIBUTS>
+  <FRIENDS>
+   <ITEM STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_CONNECTOR" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_CONTAINER_4INST" STATE="1"/>
+   <ITEM REFCLSNAME="ZAPLINK_EASYXML" STATE="1"/>
+  </FRIENDS>
+  <LOCAL>
+   <TYPES>`
+*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</TYPES>
+   <IMPLEMENTATIONS>`
+*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</IMPLEMENTATIONS>
+   <MACROS>`
+*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class
+
+INCLUDE zaplink_macros.</MACROS>
+  </LOCAL>
+  <METHODS>
+   <ITEM CMPNAME="CONSTRUCTOR" EXPOSURE="2" STATE="1" MTDTYPE="2">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="CONSTRUCTOR"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="O_COMP" CMPTYPE="1" MTDTYPE="2" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_COMPONENT" PAROPTIONL="X">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="Zap Link Component"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  super-&gt;constructor( o_comp ).</SOURCE>
+   </ITEM>
+   <ITEM CMPNAME="COPY_AS" EXPOSURE="2" STATE="1">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="Copy each attributs from an other RAW object"/>
+    </TEXTS>
+    <PARAMETERS>
+     <ITEM SCONAME="RAW" CMPTYPE="1" PARPASSTYP="1" TYPTYPE="1" TYPE="TO_ME">
+      <TEXTS>
+       <ITEM LANG="E" TEXT="My kind"/>
+      </TEXTS>
+     </ITEM>
+    </PARAMETERS>
+    <SOURCE>`
+  me-&gt;type = raw-&gt;type.
+  me-&gt;name = raw-&gt;name.
+  me-&gt;connector = raw-&gt;connector.
+  me-&gt;version = raw-&gt;version.
+  me-&gt;directory = raw-&gt;directory.
+  me-&gt;checksum = raw-&gt;checksum.
+  me-&gt;dependencies = raw-&gt;dependencies.
+  me-&gt;code_signature = raw-&gt;code_signature.
+  me-&gt;raw = raw-&gt;raw.</SOURCE>
+   </ITEM>
+  </METHODS>
+  <REDEFINITIONS>
+   <ITEM REFCLSNAME="ZAPLINK_RAW_BASE" MTDNAME="UPDATE_CONNECTOR_DATA">
+    <SOURCE>`
+  DATA o_raw_data      TYPE to_raw_data.
+
+  o_raw_data = me-&gt;raw.
+  IF NOT o_raw_data-&gt;_dependencies IS INITIAL.    me-&gt;dependencies = o_raw_data-&gt;_dependencies.     CLEAR o_raw_data-&gt;_dependencies.    ENDIF.  &quot; Issue 47 : Introducing dependencies
+  IF NOT o_raw_data-&gt;_code_signature IS INITIAL.  me-&gt;code_signature = o_raw_data-&gt;_code_signature. CLEAR o_raw_data-&gt;_code_signature.  ENDIF.  &quot; Issue 65 : Source Code signature
+  super-&gt;update_connector_data( o_connector = o_connector ).
+  me-&gt;set_checksum( ).</SOURCE>
+   </ITEM>
+  </REDEFINITIONS>
+  <TYPES>
+   <ITEM CMPNAME="TO_ME" EXPOSURE="2" STATE="1" TYPTYPE="3" TYPE="ZAPLINK_RAW">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="My kind"/>
+    </TEXTS>
+   </ITEM>
+   <ITEM CMPNAME="TO_RAW_DATA" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="3" TYPE="ZAPLINK_RAW_DATA">
+    <TEXTS>
+     <ITEM LANG="E" TEXT="ZAPLink : Abstract class for component data"/>
+    </TEXTS>
+   </ITEM>
+  </TYPES>
+ </RAW>
+</ZL_OBJECT>

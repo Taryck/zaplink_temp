@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="E670132E1FA9F0A5F49EDDDC9A8F2928" CONNECTOR="3D34954BEABE5F12E1000000AC120173" NAME="ZAPLINK-P_FILE" TYPE="DOCT" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-FRAMEWORK-CORE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA APPLICATION="DOKU" MASTERLANG="E" TYP="E" DOKFORM="S_DOCU_SHOW" DOKSTYLE="S_DOCUS1"/>
+  <TEXTS>
+   <ITEM LANGU="E">* Name of the file for the container.
+* Depending of file type selected :
+* * Server : file is save on presentation server (/tmp/)
+* * Local : file is save on your workstation (c:\)
+*
+* Dynamic file name :
+* You could use special tag in the file name that will be replaced by
+  dynamic values. Here is the list of this tags :
+* - &lt;:uname:&gt; : User ID
+* - &lt;:sysid:&gt; : SAP system ID
+* - &lt;:datum:&gt; : Running date
+* - &lt;:uzeit:&gt; : Running time
+* These specials tags are usefull when using mode &quot;One Step export (4
+  background)&quot;.
+*
+* Example :
+* &lt;:sysid:&gt;_&lt;:datum:&gt;.xml   is a good name for daily save
+* &lt;:uname:&gt;_ &lt;:datum:&gt;&lt;:uzeit:&gt;.xml   is a good name for your development
+  saves.</ITEM>
+  </TEXTS>
+ </RAW>
+</ZL_OBJECT>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ZL_OBJECT CHECKSUM="9DE12F3A16C24F377559D23B86061A7F" CODE_SIGNATURE="E81F07C1A6B9D0B8C64F828BAB62FB02" CONNECTOR="F1838F4B202C2806E1000000AC120173" NAME="ZAPLINK_REMOTE" TYPE="FUGR" VERSION="1.0">
+ <DIRECTORY DEVCLASS="ZAPLINK-REMOTE" MASTERLANG="E"/>
+ <RAW>
+  <A0_MAINDATA>
+   <TEXTS>
+    <ITEM LANGU="E" SHORT_TXT="RFC gateway to ZAPLINK Framework"/>
+   </TEXTS>
+  </A0_MAINDATA>
+  <FUNCTIONS>
+   <ITEM>
+    <ZL_OBJECT CHECKSUM="D3BB1F5FB94E481EC1993AB3CA230E51" CODE_SIGNATURE="F130E448E09F288A22BBE1B24491BAD5" CONNECTOR="F1838F4B202C2806E1000000AC120173" NAME="ZAPLINK_GET_COMPONENTS" TYPE="FUNC" VERSION="1.0">
+     <RAW>
+      <A0_MAINDATA REMOTE="R"/>
+      <PARAMETERS>
+       <ITEM KIND="I" PARAMETER="COMPONENTS_LIST" TYP="ZAPLINK_COMPONENTS_LIST">
+        <TEXTS>
+         <ITEM LANGU="E" SHORT_TXT="List of requested Components"/>
+        </TEXTS>
+       </ITEM>
+       <ITEM KIND="E" PARAMETER="DEFINITIONS" TYP="ZAPLINK_COMPONENTS_CONTENTS">
+        <TEXTS>
+         <ITEM LANGU="E" SHORT_TXT="Components contents"/>
+        </TEXTS>
+       </ITEM>
+      </PARAMETERS>
+      <SOURCE>`
+*&quot;----------------------------------------------------------------------
+*&quot;*&quot;Local Interface:
+*&quot;  IMPORTING
+*&quot;     VALUE(COMPONENTS_LIST) TYPE  ZAPLINK_COMPONENTS_LIST
+*&quot;  EXPORTING
+*&quot;     VALUE(DEFINITIONS) TYPE  ZAPLINK_COMPONENTS_CONTENTS
+*&quot;----------------------------------------------------------------------
+
+  DATA o_connector  TYPE REF TO zaplink_connector.
+  DATA o_component  TYPE zaplink_connector=&gt;to_component.
+  DATA o_data       TYPE zaplink_connector=&gt;to_raw.
+  DATA o_cnx_clean  TYPE REF TO zaplink_cnx_ext_cleaner.
+  DATA d_type       TYPE zaplink_datatypes=&gt;td_comptype.
+  DATA d_name       TYPE zaplink_datatypes=&gt;td_compname.
+  DATA s_comp       LIKE LINE OF definitions.
+  FIELD-SYMBOLS
+    &lt;comp&gt; LIKE LINE OF components_list.
+
+  SORT components_list BY type name.
+  LOOP AT components_list ASSIGNING &lt;comp&gt;.
+    CLEAR s_comp.     s_comp-key = &lt;comp&gt;.
+    CREATE OBJECT o_component.
+    d_type = &lt;comp&gt;-type.
+    o_component-&gt;set_type( d_type ).
+    d_name = &lt;comp&gt;-name.
+    o_component-&gt;set_name( d_name ).
+    o_connector = o_component-&gt;connector( ).
+    CHECK o_connector IS BOUND.
+    o_data = o_connector-&gt;read_from_sap( o_component ).
+    CHECK o_data IS BOUND.
+    TRY.
+        CLEAR o_cnx_clean.
+        o_cnx_clean ?= o_connector.
+        o_cnx_clean-&gt;anonymize( o_data ).
+      CATCH cx_root.
+    ENDTRY.
+    s_comp-checksum = o_data-&gt;get_checksum( ).
+    s_comp-code_signature = o_data-&gt;get_code_signature( ).
+    s_comp-content = zaplink_connectors=&gt;raw_2_string( o_data ).
+    INSERT s_comp INTO TABLE definitions.
+  ENDLOOP.
+`</SOURCE>
+      <TEXTS>
+       <ITEM LANGU="E" SHORT_TXT="Get components definition"/>
+      </TEXTS>
+     </RAW>
+    </ZL_OBJECT>
+   </ITEM>
+  </FUNCTIONS>
+  <INCLUDES>
+   <ITEM NAME="TOP">
+    <SOURCE>`
+FUNCTION-POOL [FUNCTIONGROUP NAME].               &quot;MESSAGE-ID ..
+`</SOURCE>
+   </ITEM>
+  </INCLUDES>
+ </RAW>
+</ZL_OBJECT>
